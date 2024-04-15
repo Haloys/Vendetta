@@ -1,0 +1,23 @@
+# Custom
+*.old
+nopush/*
+
+# Current Project
+my_rpg
+database/highest_score
+
+# Object files
+*.o
+
+# Librairies
+*.a
+
+# Executables
+*.out
+
+# Logs
+*.log
+
+# Criterion
+*.gc*
+unit_tests

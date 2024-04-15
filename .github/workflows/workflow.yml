@@ -1,0 +1,54 @@
+name: my_rpg
+
+on: [push, pull_request]
+
+env:
+  EXECUTABLE: ./my_rpg
+
+jobs:
+  check_coding_style:
+    name: Check coding style
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+    env:
+      REPORT_FILENAME: coding-style-reports.log
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Checking coding-style
+        run: |
+          check.sh $(pwd) $(pwd)
+          cat $REPORT_FILENAME | while read LINE; do
+              TYPE=$(echo $LINE | cut -d ':' -f 3 | tr -d ' ')
+              FILE=$(echo $LINE | cut -d ':' -f 1)
+              AT=$(echo $LINE | cut -d ':' -f 2)
+              ERROR=$(echo $LINE | cut -d ':' -f 4)
+              echo "::error::Coding Style: $TYPE $ERROR in $FILE at line $AT"
+          done
+          if [[ -s $REPORT_FILENAME ]]; then
+            exit 1
+          fi
+
+  build_and_test:
+    name: Build project
+    # needs: [check_coding_style]
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build project
+        timeout-minutes: 2
+        run: make
+
+      - name: Check executable
+        run: |
+          if [[ ! -f $EXECUTABLE ]]; then
+              echo "::error file=$EXECUTABLE::Executable not found !"
+              exit 1
+          fi
