@@ -22,9 +22,9 @@ static int invalid_args(void)
 static int start_game(char **av)
 {
     game_data_t game = {
-        .name = "Vendeta",
+        .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = MAIN_MENU,
+        .state = LOADING_SCREEN,
         .clock = sfClock_create(),
         .score = 0,
         .target_miss = 0,

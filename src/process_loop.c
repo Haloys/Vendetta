@@ -18,6 +18,9 @@ static void process_loop_main_menu(game_data_t *game)
 static void process_loop_update(game_data_t *game, float elapsed)
 {
     switch (game->state) {
+    case LOADING_SCREEN:
+        launch_loading(game);
+        break;
     case MAIN_MENU:
         process_loop_main_menu(game);
         break;
@@ -32,7 +35,6 @@ static void process_loop_update(game_data_t *game, float elapsed)
     }
 }
 
-
 void process_game_loop(game_data_t *game)
 {
     float elapsed = sfTime_asSeconds(sfClock_getElapsedTime(game->clock))
@@ -40,8 +42,6 @@ void process_game_loop(game_data_t *game)
 
     sfRenderWindow_clear(game->window, sfBlack);
     process_events(game);
-    sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_BACKGROUND_2),
-        NULL);
     process_loop_update(game, elapsed - game->last_update);
     game->last_update = elapsed;
     sfRenderWindow_display(game->window);

@@ -13,10 +13,13 @@
 static const char *SCORE_FILE_PATH = "./database/highest_score";
 
 static const char *IMAGES[] = {
-    "assets/images/game_bg.png",
-    "assets/images/game_bg_2.png",
-    "assets/images/menu.png",
-    "assets/images/crosshair.png",
+    "assets/images/loading_screen/bg_load1.png",
+    "assets/images/loading_screen/bg_load2.png",
+    "assets/images/loading_screen/bg_load3.png",
+    "assets/images/loading_screen/flavibot.png",
+    "assets/images/loading_screen/ora.png",
+    "assets/images/loading_screen/tryade.png",
+    "assets/images/loading_screen/vendetta.png",
 };
 
 static const char *SOUND_L[] = {
@@ -25,76 +28,118 @@ static const char *SOUND_L[] = {
 };
 
 static const char *MUSIC_L[] = {
-    "assets/musics/chrono_trigger.ogg",
+    "assets/musics/loading_music.ogg",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
 
 typedef enum texture_id_e {
-    BACKGROUND,
-    BACKGROUND_2,
-    MENU,
-    CROSSHAIR
+    LOADING_1,
+    LOADING_2,
+    LOADING_3,
+    FLAVIBOT,
+    ORA,
+    TRYADE,
+    VENDETTA
 } texture_id_t;
 
 typedef struct game_sprite_s {
     texture_id_t id;
     sfIntRect rect;
     float scale;
+    sfVector2f position;
 } game_sprite_t;
 
 static const game_sprite_t SPRITES[] = {
     {
-        .id = BACKGROUND,
+        .id = LOADING_1,
         .rect = {
             .left = 0,
             .top = 0,
             .width = 1980,
             .height = 1080
         },
-        .scale = 1
+        .scale = 1,
+        .position = {0, 0}
     },
     {
-        .id = BACKGROUND_2,
+        .id = LOADING_2,
         .rect = {
             .left = 0,
             .top = 0,
             .width = 1980,
             .height = 1080
         },
-        .scale = 1
+        .scale = 1,
+        .position = {0, 0}
     },
     {
-        .id = MENU,
+        .id = LOADING_3,
         .rect = {
             .left = 0,
             .top = 0,
             .width = 1980,
             .height = 1080
         },
-        .scale = 1
+        .scale = 1,
+        .position = {0, 0}
     },
     {
-        .id = CROSSHAIR,
+        .id = FLAVIBOT,
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 512,
-            .height = 512
+            .width = 418,
+            .height = 81
         },
-        .scale = 1
-    }
+        .scale = 1,
+        .position = {1097, 452}
+    },
+    {
+        .id = ORA,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 300,
+            .height = 300
+        },
+        .scale = 1,
+        .position = {810, 634}
+    },
+    {
+        .id = TRYADE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 482,
+            .height = 162
+        },
+        .scale = 1,
+        .position = {404, 411}
+    },
+    {
+        .id = VENDETTA,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 351,
+            .height = 292
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
 
 typedef enum sprite_id_e {
-    SP_BACKGROUND,
-    SP_BACKGROUND_2,
-    SP_MENU,
-    SP_PLANE,
-    SP_TOWER,
-    SP_CROSSHAIR
+    SP_LOADING_1,
+    SP_LOADING_2,
+    SP_LOADING_3,
+    SP_FLAVIBOT,
+    SP_ORA,
+    SP_TRYADE,
+    SP_VENDETTA
 } sprite_id_t;
 
 typedef enum sound_id_e {

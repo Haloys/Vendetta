@@ -40,6 +40,7 @@ SRC	=	./src/help.c \
 		./src/events.c \
 		./src/events/menu/mouse_button_pressed.c \
 		./src/events/playing/mouse_button_pressed.c \
+		./src/loading_screen/loading.c \
 		./src/screne_loop/playing.c
 
 SRC_TESTS	=	\
