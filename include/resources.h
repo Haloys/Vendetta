@@ -20,6 +20,11 @@ static const char *IMAGES[] = {
     "assets/images/loading_screen/ora.png",
     "assets/images/loading_screen/tryade.png",
     "assets/images/loading_screen/vendetta.png",
+    "assets/images/loading_screen/dev_1.png",
+    "assets/images/loading_screen/dev_2.png",
+    "assets/images/loading_screen/dev_3.png",
+    "assets/images/loading_screen/dev_4.png",
+    "assets/images/loading_screen/vendetta_t.png",
 };
 
 static const char *SOUND_L[] = {
@@ -40,7 +45,12 @@ typedef enum texture_id_e {
     FLAVIBOT,
     ORA,
     TRYADE,
-    VENDETTA
+    VENDETTA,
+    DEV_1,
+    DEV_2,
+    DEV_3,
+    DEV_4,
+    VENDETTA_T
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -128,6 +138,61 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {0, 0}
     },
+    {
+        .id = DEV_1,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 472,
+            .height = 74
+        },
+        .scale = 1,
+        .position = {410, 388}
+    },
+    {
+        .id = DEV_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 389,
+            .height = 74
+        },
+        .scale = 1,
+        .position = {1089, 388}
+    },
+    {
+        .id = DEV_3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 439,
+            .height = 74
+        },
+        .scale = 1,
+        .position = {410, 618}
+    },
+    {
+        .id = DEV_4,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 421,
+            .height = 80
+        },
+        .scale = 1,
+        .position = {1089, 618}
+    },
+    {
+        .id = VENDETTA_T,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 351,
+            .height = 402
+        },
+        .scale = 1,
+        .position = {784, 339}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -139,7 +204,12 @@ typedef enum sprite_id_e {
     SP_FLAVIBOT,
     SP_ORA,
     SP_TRYADE,
-    SP_VENDETTA
+    SP_VENDETTA,
+    SP_DEV_1,
+    SP_DEV_2,
+    SP_DEV_3,
+    SP_DEV_4,
+    SP_VENDETTA_T
 } sprite_id_t;
 
 typedef enum sound_id_e {
