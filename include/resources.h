@@ -25,6 +25,8 @@ static const char *IMAGES[] = {
     "assets/images/loading_screen/dev_3.png",
     "assets/images/loading_screen/dev_4.png",
     "assets/images/loading_screen/vendetta_t.png",
+    "assets/images/main_menu/menu_bg.png",
+    "assets/images/main_menu/vendetta_t.png",
 };
 
 static const char *SOUND_L[] = {
@@ -50,7 +52,9 @@ typedef enum texture_id_e {
     DEV_2,
     DEV_3,
     DEV_4,
-    VENDETTA_T
+    VENDETTA_T,
+    MAIN_BG,
+    VENDETTA_MENU
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -193,6 +197,28 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {784, 339}
     },
+    {
+        .id = MAIN_BG,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1920,
+            .height = 1080
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = VENDETTA_MENU,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 202,
+            .height = 91
+        },
+        .scale = 1,
+        .position = {1764, 34}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -209,7 +235,9 @@ typedef enum sprite_id_e {
     SP_DEV_2,
     SP_DEV_3,
     SP_DEV_4,
-    SP_VENDETTA_T
+    SP_VENDETTA_T,
+    SP_MAIN_BG,
+    SP_VENDETTA_MENU
 } sprite_id_t;
 
 typedef enum sound_id_e {

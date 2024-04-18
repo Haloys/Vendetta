@@ -22,6 +22,7 @@ static void process_loop_update(game_data_t *game, float elapsed)
         launch_loading(game);
         break;
     case MAIN_MENU:
+        basic_menu(game);
         process_loop_main_menu(game);
         break;
     case PLAYING:
