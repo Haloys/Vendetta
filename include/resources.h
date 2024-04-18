@@ -217,7 +217,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 91
         },
         .scale = 1,
-        .position = {1764, 34}
+        .position = {1704, 34}
     },
 };
 
