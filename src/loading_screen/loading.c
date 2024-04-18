@@ -79,6 +79,8 @@ static int page_show(game_data_t *game, int page)
         case 3:
             start_load_third(game);
             break;
+        case 4:
+            game->state = MAIN_MENU;
     }
 }
 
@@ -88,13 +90,14 @@ void launch_loading(game_data_t *game)
     sfTime elapsed_time;
 
     start_music(&game->assets, M_LOADING);
-    for (int page = 1; page <= 3; page++) {
+    for (int page = 1; page <= 4; page++) {
         sfClock_restart(clock);
         page_show(game, page);
         sfRenderWindow_display(game->window);
         do {
             elapsed_time = sfClock_getElapsedTime(clock);
         } while (sfTime_asMilliseconds(elapsed_time) < 6500);
+
     }
     sfClock_destroy(clock);
 }
