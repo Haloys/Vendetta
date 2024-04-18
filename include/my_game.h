@@ -17,6 +17,7 @@
     #include "game_utils.h"
 
 typedef enum state_e {
+    LOADING_SCREEN,
     MAIN_MENU,
     PLAYING,
     PAUSE,
@@ -85,6 +86,8 @@ int destroy_game_data(game_data_t *game, int code);
 sfSprite *get_sprite(game_data_t *game, sprite_id_t id);
 int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
+void launch_loading(game_data_t *game);
+void basic_menu(game_data_t *game);
 
 // Menu events
 void m_mouse_button_pressed(game_data_t *game, sfMouseButtonEvent evt);
@@ -95,7 +98,7 @@ void process_loop_in_game(game_data_t *game, float elapsed);
 
 // Score manager
 void start_music(game_assets_t *assets, music_id_t id);
-void set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 void set_score(game_data_t *game, int new_points);
 
 int parse_file(char *filepath, game_data_t *game);

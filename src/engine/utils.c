@@ -41,14 +41,16 @@ void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
     sfRenderWindow_drawText(game->window, game->help_text, NULL);
 }
 
-void set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
+sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
 {
     sfText *text = sfText_create();
 
+    if (text == NULL)
+        return;
     sfText_setString(text, txt);
     sfText_setFont(text, game->font);
     sfText_setCharacterSize(text, size);
     sfText_setFillColor(text, sfColor_fromRGB(250, 250, 250));
     sfText_setPosition(text, pos);
-    sfRenderWindow_drawText(game->window, text, NULL);
+    return text;
 }

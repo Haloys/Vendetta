@@ -9,6 +9,13 @@
 #include "my.h"
 #include <stdlib.h>
 
+static void set_sprite_attribut(sfSprite *sprite, game_sprite_t SPRITE)
+{
+    sfSprite_setTextureRect(sprite, SPRITE.rect);
+    sfSprite_setPosition(sprite, SPRITE.position);
+    sfSprite_setScale(sprite, (sfVector2f){SPRITE.scale, SPRITE.scale});
+}
+
 static int load_textures(game_assets_t *assets)
 {
     sfSprite *sprite = NULL;
@@ -26,7 +33,7 @@ static int load_textures(game_assets_t *assets)
         if (sprite == NULL)
             return RET_FAIL;
         sfSprite_setTexture(sprite, assets->texture[SPRITES[i].id], sfTrue);
-        sfSprite_setTextureRect(sprite, SPRITES[i].rect);
+        set_sprite_attribut(sprite, SPRITES[i]);
         assets->sprite[i] = sprite;
         my_putstr("OK !\n");
     }
@@ -65,7 +72,7 @@ static int load_musics(game_assets_t *assets)
 
 static int load_font(game_data_t *game)
 {
-    char path[] = "assets/fonts/Arial.ttf";
+    char path[] = "assets/fonts/MullerRegular.ttf";
     sfFont *font = sfFont_createFromFile(path);
 
     my_printf("Loading font: %s\n", path);
