@@ -28,7 +28,7 @@ static const char *IMAGES[] = {
 };
 
 static const char *SOUND_L[] = {
-    "assets/sounds/hitmarker.ogg",
+    // "assets/sounds/hitmarker.ogg",
     "assets/sounds/oui.ogg",
 };
 
@@ -229,7 +229,7 @@ static const sound_t SOUNDS[] = {
     #define SOUND_COUNT (sizeof(SOUNDS) / sizeof(sound_t))
 
 typedef enum music_id_e {
-    M_CHRONO,
+    M_LOADING,
 } music_id_t;
 
 typedef struct music_s {
@@ -239,8 +239,8 @@ typedef struct music_s {
 
 static const music_t MUSICS[] = {
     {
-        .id = M_CHRONO,
-        .volume = 5
+        .id = M_LOADING,
+        .volume = 70
     }
 };
 

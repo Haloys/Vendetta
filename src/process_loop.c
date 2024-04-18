@@ -12,7 +12,7 @@
 
 static void process_loop_main_menu(game_data_t *game)
 {
-
+    return;
 }
 
 static void process_loop_update(game_data_t *game, float elapsed)

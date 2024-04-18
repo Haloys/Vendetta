@@ -15,6 +15,5 @@
 
 void process_loop_in_game(game_data_t *game, float elapsed)
 {
-   
-
+    return;
 }
