@@ -97,7 +97,6 @@ void launch_loading(game_data_t *game)
         do {
             elapsed_time = sfClock_getElapsedTime(clock);
         } while (sfTime_asMilliseconds(elapsed_time) < 6500);
-
     }
     sfClock_destroy(clock);
 }
