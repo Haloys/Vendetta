@@ -12,6 +12,21 @@
 #include "my.h"
 #include "score.h"
 
+static int handle_loading_event(game_data_t *game)
+{
+    sfEvent event;
+    int ret = 0;
+
+    while (sfRenderWindow_pollEvent(game->window, &event)) {
+        if (event.type == sfEvtClosed) {
+            ret = 1;
+            sfRenderWindow_close(game->window);
+            return ret;
+        }
+    }
+    return ret;
+}
+
 void start_load_one(game_data_t *game)
 {
     sprite_id_t elements[] = {SP_LOADING_1, SP_FLAVIBOT, SP_ORA, SP_TRYADE};
@@ -84,17 +99,32 @@ static int page_show(game_data_t *game, int page)
     }
 }
 
+static int do_check(game_data_t *game, int ret)
+{
+    if (handle_loading_event(game) == 1) {
+        ret = 1;
+    }
+    return ret;
+}
+
 void launch_loading(game_data_t *game)
 {
     sfClock *clock = sfClock_create();
     sfTime elapsed_time;
+    int ret = 0;
+    int a = 0;
 
     start_music(&game->assets, M_LOADING);
     for (int page = 1; page <= 4; page++) {
+        if (ret == 1)
+            break;
         sfClock_restart(clock);
         page_show(game, page);
         sfRenderWindow_display(game->window);
         do {
+            ret = do_check(game, ret);
+            if (ret == 1)
+                break;
             elapsed_time = sfClock_getElapsedTime(clock);
         } while (sfTime_asMilliseconds(elapsed_time) < 6500);
     }
