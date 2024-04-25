@@ -35,6 +35,7 @@ SRC	=	./src/help.c \
 		./src/engine/entity/entity.c \
 		./src/engine/entity/hitboxes.c \
 		./src/engine/entity/plane.c \
+		./src/engine/fade_in_out.c \
 		./src/score_manager.c \
 		./src/music.c \
 		./src/events.c \
