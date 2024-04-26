@@ -11,6 +11,7 @@
 #include "my_game.h"
 #include "my.h"
 #include "score.h"
+#include "fade_in_out.h"
 
 static int handle_loading_event(game_data_t *game)
 {
@@ -27,75 +28,83 @@ static int handle_loading_event(game_data_t *game)
     return ret;
 }
 
-void start_load_one(game_data_t *game)
+void start_load_one(game_data_t *game, sfRenderWindow *win, sfClock *clock)
 {
     sprite_id_t elements[] = {SP_LOADING_1, SP_FLAVIBOT, SP_ORA, SP_TRYADE};
     int element_count = 4;
-    sfText *text;
+    sfSprite *sprites[element_count];
     sfVector2f text_pos = {750, 200};
+    sfText *text = set_text(game, "POWERED BY", 30, text_pos);
+    fade_in_out_params_t params = {
+        win, sprites, element_count, text, clock, 2000, 6500, 6500 - 2000
+    };
 
-    for (size_t i = 0; i < element_count; i++) {
-        sfRenderWindow_drawSprite(game->window,
-            get_sprite(game, elements[i]), NULL);
+    for (int i = 0; i < element_count; i++) {
+        sprites[i] = get_sprite(game, elements[i]);
     }
-    text = set_text(game, "POWERED BY", 30, text_pos);
     sfText_setLetterSpacing(text, 10.0f);
     sfText_setStyle(text, sfTextBold);
-    sfRenderWindow_drawText(game->window, text, NULL);
+    fade_in_out_all(&params);
     sfText_destroy(text);
 }
 
-void start_load_two(game_data_t *game)
+void start_load_two(game_data_t *game, sfRenderWindow *window, sfClock *clock)
 {
-    sprite_id_t elements[] = {SP_LOADING_2, SP_DEV_1, SP_DEV_2, SP_DEV_3,
-        SP_DEV_4};
-    int element_count = 5;
-    sfText *text;
+    sprite_id_t elements[] = {SP_LOADING_2, SP_DEV_1, SP_DEV_2,
+        SP_DEV_3, SP_DEV_4};
+    int element_count = sizeof(elements) / sizeof(sprite_id_t);
+    sfSprite *sprites[element_count];
     sfVector2f text_pos = {750, 200};
+    sfText *text = set_text(game, "CREATED BY", 30, text_pos);
+    fade_in_out_params_t params = {
+        window, sprites, element_count, text, clock, 3500, 6500, 6500 - 2000
+    };
 
-    for (size_t i = 0; i < element_count; i++) {
-        sfRenderWindow_drawSprite(game->window,
-            get_sprite(game, elements[i]), NULL);
+    for (int i = 0; i < element_count; i++) {
+        sprites[i] = get_sprite(game, elements[i]);
     }
-    text = set_text(game, "CREATED BY", 30, text_pos);
     sfText_setLetterSpacing(text, 10.0f);
     sfText_setStyle(text, sfTextBold);
-    sfRenderWindow_drawText(game->window, text, NULL);
+    fade_in_out_all(&params);
     sfText_destroy(text);
 }
 
-void start_load_third(game_data_t *game)
+void start_load_third(game_data_t *game, sfRenderWindow *window, sfClock *clock)
 {
     sprite_id_t elements[] = {SP_LOADING_3, SP_VENDETTA_T};
-    int element_count = 2;
-    sfText *text;
+    int element_count = sizeof(elements) / sizeof(sprite_id_t);
+    sfSprite *sprites[element_count];
     sfVector2f text_pos = {785, 153};
+    sfText *text = set_text(game, "PRESENTS", 24, text_pos);
+    fade_in_params_t params = {
+        window, sprites, element_count, text, clock, 3500
+    };
 
-    for (size_t i = 0; i < element_count; i++) {
-        sfRenderWindow_drawSprite(game->window,
-            get_sprite(game, elements[i]), NULL);
+    for (int i = 0; i < element_count; i++) {
+        sprites[i] = get_sprite(game, elements[i]);
     }
-    text = set_text(game, "PRESENTS", 24, text_pos);
     sfText_setLetterSpacing(text, 14.5f);
     sfText_setStyle(text, sfTextBold);
-    sfRenderWindow_drawText(game->window, text, NULL);
+    fade_in_all(&params);
     sfText_destroy(text);
 }
 
-static int page_show(game_data_t *game, int page)
+static void page_show(game_data_t *game, sfRenderWindow *window,
+    sfClock *clock, int page)
 {
     switch (page) {
         case 1:
-            start_load_one(game);
+            start_load_one(game, window, clock);
             break;
         case 2:
-            start_load_two(game);
+            start_load_two(game, window, clock);
             break;
         case 3:
-            start_load_third(game);
+            start_load_third(game, window, clock);
             break;
         case 4:
             game->state = MAIN_MENU;
+            break;
     }
 }
 
@@ -110,6 +119,7 @@ static int do_check(game_data_t *game, int ret)
 void launch_loading(game_data_t *game)
 {
     sfClock *clock = sfClock_create();
+    sfRenderWindow *window = game->window;
     sfTime elapsed_time;
     int ret = 0;
     int a = 0;
@@ -119,7 +129,7 @@ void launch_loading(game_data_t *game)
         if (ret == 1)
             break;
         sfClock_restart(clock);
-        page_show(game, page);
+        page_show(game, window, clock, page);
         sfRenderWindow_display(game->window);
         do {
             ret = do_check(game, ret);
