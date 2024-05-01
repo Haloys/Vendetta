@@ -15,10 +15,13 @@
     #include "resources.h"
     #include "list.h"
     #include "game_utils.h"
+    #include <stdbool.h>
 
 typedef enum state_e {
     LOADING_SCREEN,
     MAIN_MENU,
+    SETTINGS,
+    HELP,
     PLAYING,
     PAUSE,
 } state_t;
@@ -44,6 +47,17 @@ typedef struct corner_s {
     int planec;
     struct corner_s *corners[4];
 } corner_t;
+
+#define NAVBAR_TEXT_COLOR sfColor_fromRGB(197, 197, 197)
+#define NAVBAR_LINE_COLOR sfColor_fromRGBA(255, 255, 255, 76)
+#define ACTIVE_NAVBAR_TEXT_COLOR sfColor_fromRGB(51, 217, 122)
+
+typedef struct navbar_element_s {
+    const char *label;
+    sprite_id_t icon;
+    sfVector2f position;
+    sfVector2f size;
+} navbar_element_t;
 
 typedef struct game_data_s {
     char name[10];
@@ -71,7 +85,14 @@ typedef struct game_data_s {
     sfText *help_text;
     float speed;
     sfUint8 *pixels;
+    bool hover_save_button;
+    int mouse_x;
+    int mouse_y;
+    bool hover_array[4];
+    bool hover_slot_array[3];
 } game_data_t;
+
+void draw_navbar(game_data_t *game);
 
 int print_game_help(void);
 

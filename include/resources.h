@@ -27,6 +27,10 @@ static const char *IMAGES[] = {
     "assets/images/loading_screen/vendetta_t.png",
     "assets/images/main_menu/menu_bg.png",
     "assets/images/main_menu/vendetta_t.png",
+    "assets/images/main_menu/icon_play.png",
+    "assets/images/main_menu/icon_settings.png",
+    "assets/images/main_menu/icon_help.png",
+    "assets/images/main_menu/icon_quit.png",
 };
 
 static const char *SOUND_L[] = {
@@ -54,7 +58,11 @@ typedef enum texture_id_e {
     DEV_4,
     VENDETTA_T,
     MAIN_BG,
-    VENDETTA_MENU
+    VENDETTA_MENU,
+    ICON_PLAY,
+    ICON_SETTINGS,
+    ICON_HELP,
+    ICON_QUIT,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -219,6 +227,50 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {1704, 34}
     },
+    {
+        .id = ICON_PLAY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 19,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {113, 56}
+    },
+    {
+        .id = ICON_SETTINGS,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 22,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {325, 54}
+    },
+    {
+        .id = ICON_HELP,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 21,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {594, 54}
+    },
+    {
+        .id = ICON_QUIT,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 19,
+            .height = 19
+        },
+        .scale = 1,
+        .position = {788, 56}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -237,7 +289,11 @@ typedef enum sprite_id_e {
     SP_DEV_4,
     SP_VENDETTA_T,
     SP_MAIN_BG,
-    SP_VENDETTA_MENU
+    SP_VENDETTA_MENU,
+    SP_ICON_PLAY,
+    SP_ICON_SETTINGS,
+    SP_ICON_HELP,
+    SP_ICON_QUIT,
 } sprite_id_t;
 
 typedef enum sound_id_e {
