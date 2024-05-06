@@ -57,6 +57,7 @@ typedef struct navbar_element_s {
     sprite_id_t icon;
     sfVector2f position;
     sfVector2f size;
+    state_t target_state;
 } navbar_element_t;
 
 typedef struct settings_navbar_element_s {

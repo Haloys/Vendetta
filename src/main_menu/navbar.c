@@ -14,6 +14,13 @@
 #include "my.h"
 #include "score.h"
 
+const navbar_element_t elements[] = {
+    {"PLAY", ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
+    {"SETTINGS", ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS},
+    {"HELP", ICON_HELP, {633, 42}, {80, 30}, HELP},
+    {"QUIT", ICON_QUIT, {827, 42}, {80, 30}, MAIN_MENU}
+};
+
 static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 {
     sfRectangleShape *line = sfRectangleShape_create();
@@ -58,14 +65,24 @@ static void draw_navbar_element(game_data_t *game,
     sfRectangleShape_destroy(hover_area);
 }
 
+void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
+{
+    const navbar_element_t *elem;
+
+    for (int i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
+        elem = &elements[i];
+        if (mouse_event.x >= elem->position.x &&
+            mouse_event.x <= elem->position.x + elem->size.x &&
+            mouse_event.y >= elem->position.y &&
+            mouse_event.y <= elem->position.y + elem->size.y) {
+            game->state = elem->target_state;
+            break;
+        }
+    }
+}
+
 void draw_navbar(game_data_t *game)
 {
-    const navbar_element_t elements[] = {
-        {"PLAY", ICON_PLAY, {159, 42}, {80, 30}},
-        {"SETTINGS", ICON_SETTINGS, {367, 42}, {155, 30}},
-        {"HELP", ICON_HELP, {633, 42}, {80, 30}},
-        {"QUIT", ICON_QUIT, {827, 42}, {80, 30}}
-    };
     int navbar_element_count = sizeof(elements) / sizeof(navbar_element_t);
 
     for (int i = 0; i < navbar_element_count; i++) {

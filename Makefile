@@ -45,6 +45,7 @@ SRC	=	./src/help.c \
 		./src/main_menu/main_menu.c \
 		./src/main_menu/navbar.c \
 		./src/main_menu/settings.c \
+		./src/main_menu/help.c \
 		./src/screne_loop/playing.c
 
 SRC_TESTS	=	\

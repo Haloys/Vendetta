@@ -105,6 +105,7 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
     if (evt->type == sfEvtMouseButtonPressed) {
         remap_event_coords(game->window, &evt->mouseButton.x,
             &evt->mouseButton.y);
+        handle_navbar_click(game, evt->mouseButton);
         return;
     }
     if (evt->type == sfEvtMouseMoved) {
