@@ -31,6 +31,12 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/icon_settings.png",
     "assets/images/main_menu/icon_help.png",
     "assets/images/main_menu/icon_quit.png",
+    "assets/images/main_menu/arrow_r1.png",
+    "assets/images/main_menu/arrow_l1.png",
+    "assets/images/main_menu/arrow_r2.png",
+    "assets/images/main_menu/arrow_l2.png",
+    "assets/images/main_menu/arrow_r3.png",
+    "assets/images/main_menu/arrow_l3.png",
 };
 
 static const char *SOUND_L[] = {
@@ -63,6 +69,12 @@ typedef enum texture_id_e {
     ICON_SETTINGS,
     ICON_HELP,
     ICON_QUIT,
+    ARROW_R1,
+    ARROW_L1,
+    ARROW_R2,
+    ARROW_L2,
+    ARROW_R3,
+    ARROW_L3,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -271,6 +283,72 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {788, 56}
     },
+    {
+        .id = ARROW_R1,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {745, 277}
+    },
+    {
+        .id = ARROW_L1,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {521, 277}
+    },
+    {
+        .id = ARROW_R2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {745, 338}
+    },
+    {
+        .id = ARROW_L2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {521, 338}
+    },
+    {
+        .id = ARROW_R3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {745, 399}
+    },
+    {
+        .id = ARROW_L3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 21
+        },
+        .scale = 1,
+        .position = {521, 399}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -294,6 +372,12 @@ typedef enum sprite_id_e {
     SP_ICON_SETTINGS,
     SP_ICON_HELP,
     SP_ICON_QUIT,
+    SP_ARROW_R1,
+    SP_ARROW_L1,
+    SP_ARROW_R2,
+    SP_ARROW_L2,
+    SP_ARROW_R3,
+    SP_ARROW_L3,
 } sprite_id_t;
 
 typedef enum sound_id_e {

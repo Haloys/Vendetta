@@ -86,6 +86,7 @@ typedef struct game_data_s {
     float last_update;
     int score;
     int target_miss;
+    int fps;
     int highest_score;
     int crash;
     int success;

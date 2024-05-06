@@ -31,6 +31,7 @@ static int start_game(char **av)
         .highest_score = get_highest_score(),
         .crash = 0,
         .success = 0,
+        .fps = 60,
         .opts = { 0, 1, 1, 0 },
         .fps_clock = sfClock_create(),
         .help_text = sfText_create(),

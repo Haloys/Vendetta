@@ -74,4 +74,6 @@ void basic_settings(game_data_t *game)
     basic_menu(game);
     draw_active_navbar_line(game, 290.0f, 270.0f);
     draw_settings_navbar(game);
+    load_arrow(game);
+    set_fps_text(game);
 }
