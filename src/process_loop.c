@@ -25,6 +25,9 @@ static void process_loop_update(game_data_t *game, float elapsed)
         basic_play(game);
         process_loop_main_menu(game);
         break;
+    case SETTINGS:
+        basic_settings(game);
+        break;
     case PLAYING:
         clock_update(&game->delay_clock, elapsed);
         if (game->opts.paused)

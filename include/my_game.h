@@ -59,6 +59,17 @@ typedef struct navbar_element_s {
     sfVector2f size;
 } navbar_element_t;
 
+typedef struct settings_navbar_element_s {
+    const char *label;
+    sfVector2f position;
+    sfVector2f size;
+} settings_navbar_element_t;
+
+typedef struct text_draw_info_settings_s {
+    sfVector2f text_position;
+    sfColor hover_color;
+} text_draw_info_settings_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -93,6 +104,9 @@ typedef struct game_data_s {
 } game_data_t;
 
 void draw_navbar(game_data_t *game);
+void draw_active_navbar_line(game_data_t *game,
+    float pos_x, float size_x);
+
 
 int print_game_help(void);
 

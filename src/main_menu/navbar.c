@@ -36,7 +36,8 @@ static void handle_navbar_hover(game_data_t *game,
     sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
 }
 
-static void draw_navbar_element(game_data_t *game, const navbar_element_t *element, int i)
+static void draw_navbar_element(game_data_t *game,
+    const navbar_element_t *element, int i)
 {
     sfRectangleShape *hover_area = sfRectangleShape_create();
     sfSprite *icon = get_sprite(game, element->icon);

@@ -12,7 +12,7 @@
 #include "my.h"
 #include "score.h"
 
-static void draw_active_navbar_line(game_data_t *game,
+void draw_active_navbar_line(game_data_t *game,
     float pos_x, float size_x)
 {
     sfRectangleShape *line = sfRectangleShape_create();
