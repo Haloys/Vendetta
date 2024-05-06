@@ -122,11 +122,11 @@ static const game_sprite_t SPRITES[] = {
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 300,
-            .height = 300
+            .width = 196,
+            .height = 146
         },
         .scale = 1,
-        .position = {810, 634}
+        .position = {862, 718}
     },
     {
         .id = TRYADE,
