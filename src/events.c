@@ -9,8 +9,9 @@
 
 static void process_menu_events(game_data_t *game, sfEvent *event)
 {
-    if (event->type == sfEvtMouseButtonPressed)
+    if (event->type == sfEvtMouseButtonPressed) {
         m_mouse_button_pressed(game, event->mouseButton);
+    }
 }
 
 static void process_in_game_events(game_data_t *game, sfEvent *event)
@@ -55,12 +56,14 @@ static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
 
 static void process_key_event(game_data_t *game, sfEvent *evt)
 {
-    if (evt->key.code == sfKeyL)
-        game->opts.hitboxes = game->opts.hitboxes == 0;
-    if (evt->key.code == sfKeyS)
-        game->opts.sprites = game->opts.sprites == 0;
+    if (evt->key.code == sfKeyS) {
+        set_screen_size(game);
+        sfRenderWindow_setSize(game->window, (sfVector2u) {
+            game->video_mode.width, game->video_mode.height
+        });
+    }
     if (evt->key.code == sfKeyQ)
-        game->opts.quadtree_view = game->opts.quadtree_view == 0;
+        arrow_l_fps(game);
     if (evt->key.code == sfKeyP) {
         game->opts.paused = game->opts.paused == 0;
         game->delay_clock.running = game->delay_clock.running == 0;
@@ -73,6 +76,22 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
         if (game->speed < 2.0f)
             game->speed += 0.1f;
     }
+}
+
+static void process_mouse_move_event(game_data_t *game, sfMouseMoveEvent mouseEvent)
+{
+    game->mouse_x = mouseEvent.x;
+    game->mouse_y = mouseEvent.y;
+    game->hover_save_button = (mouseEvent.x >= 147 && mouseEvent.x <= 382 &&
+    mouseEvent.y >= 148 && mouseEvent.y <= 198);
+    game->hover_save_button = (mouseEvent.x >= 147 && mouseEvent.x <= 382 &&
+    mouseEvent.y >= 148 && mouseEvent.y <= 198);
+    game->hover_slot_array[0] = (mouseEvent.x >= 147 && mouseEvent.x <= 599 &&
+    mouseEvent.y >= 241 && mouseEvent.y <= 870);
+    game->hover_slot_array[1] = (mouseEvent.x >= 734 && mouseEvent.x <= 1186 &&
+    mouseEvent.y >= 241 && mouseEvent.y <= 870);
+    game->hover_slot_array[2] = (mouseEvent.x >= 1321 && mouseEvent.x <= 1773 &&
+    mouseEvent.y >= 241 && mouseEvent.y <= 870);
 }
 
 static void process_global_events(game_data_t *game, sfEvent *evt)
@@ -88,6 +107,11 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
     if (evt->type == sfEvtMouseButtonPressed) {
         remap_event_coords(game->window, &evt->mouseButton.x,
             &evt->mouseButton.y);
+        handle_navbar_click(game, evt->mouseButton);
+        return;
+    }
+    if (evt->type == sfEvtMouseMoved) {
+        process_mouse_move_event(game, evt->mouseMove);
         return;
     }
     if (evt->type == sfEvtKeyPressed)

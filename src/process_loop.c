@@ -22,8 +22,13 @@ static void process_loop_update(game_data_t *game, float elapsed)
         launch_loading(game);
         break;
     case MAIN_MENU:
-        basic_menu(game);
-        process_loop_main_menu(game);
+        basic_play(game);
+        break;
+    case SETTINGS:
+        basic_settings(game);
+        break;
+    case HELP:
+        basic_help(game);
         break;
     case PLAYING:
         clock_update(&game->delay_clock, elapsed);

@@ -15,10 +15,13 @@
     #include "resources.h"
     #include "list.h"
     #include "game_utils.h"
+    #include <stdbool.h>
 
 typedef enum state_e {
     LOADING_SCREEN,
     MAIN_MENU,
+    SETTINGS,
+    HELP,
     PLAYING,
     PAUSE,
 } state_t;
@@ -45,6 +48,29 @@ typedef struct corner_s {
     struct corner_s *corners[4];
 } corner_t;
 
+#define NAVBAR_TEXT_COLOR sfColor_fromRGB(197, 197, 197)
+#define NAVBAR_LINE_COLOR sfColor_fromRGBA(255, 255, 255, 76)
+#define ACTIVE_NAVBAR_TEXT_COLOR sfColor_fromRGB(51, 217, 122)
+
+typedef struct navbar_element_s {
+    const char *label;
+    sprite_id_t icon;
+    sfVector2f position;
+    sfVector2f size;
+    state_t target_state;
+} navbar_element_t;
+
+typedef struct settings_navbar_element_s {
+    const char *label;
+    sfVector2f position;
+    sfVector2f size;
+} settings_navbar_element_t;
+
+typedef struct text_draw_info_settings_s {
+    sfVector2f text_position;
+    sfColor hover_color;
+} text_draw_info_settings_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -57,9 +83,11 @@ typedef struct game_data_s {
     sfFont *font;
     list_t towers;
     list_t planes;
+    bool is_fullscreen;
     float last_update;
     int score;
     int target_miss;
+    int fps;
     int highest_score;
     int crash;
     int success;
@@ -71,7 +99,17 @@ typedef struct game_data_s {
     sfText *help_text;
     float speed;
     sfUint8 *pixels;
+    bool hover_save_button;
+    int mouse_x;
+    int mouse_y;
+    bool hover_array[4];
+    bool hover_slot_array[3];
 } game_data_t;
+
+void draw_navbar(game_data_t *game);
+void draw_active_navbar_line(game_data_t *game,
+    float pos_x, float size_x);
+
 
 int print_game_help(void);
 
@@ -88,6 +126,12 @@ int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
 void launch_loading(game_data_t *game);
 void basic_menu(game_data_t *game);
+void set_screen_text(game_data_t *game);
+void set_fps_text(game_data_t *game);
+void load_arrow(game_data_t *game);
+void set_screen_size(game_data_t *game);
+void set_reso_text(game_data_t *game);
+void set_reso(game_data_t *game);
 
 // Menu events
 void m_mouse_button_pressed(game_data_t *game, sfMouseButtonEvent evt);
