@@ -56,12 +56,14 @@ static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
 
 static void process_key_event(game_data_t *game, sfEvent *evt)
 {
-    if (evt->key.code == sfKeyL)
-        game->opts.hitboxes = game->opts.hitboxes == 0;
-    if (evt->key.code == sfKeyS)
-        game->opts.sprites = game->opts.sprites == 0;
+    if (evt->key.code == sfKeyS) {
+        set_screen_size(game);
+        sfRenderWindow_setSize(game->window, (sfVector2u) {
+            game->video_mode.width, game->video_mode.height
+        });
+    }
     if (evt->key.code == sfKeyQ)
-        game->opts.quadtree_view = game->opts.quadtree_view == 0;
+        arrow_l_fps(game);
     if (evt->key.code == sfKeyP) {
         game->opts.paused = game->opts.paused == 0;
         game->delay_clock.running = game->delay_clock.running == 0;

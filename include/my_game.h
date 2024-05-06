@@ -83,6 +83,7 @@ typedef struct game_data_s {
     sfFont *font;
     list_t towers;
     list_t planes;
+    bool is_fullscreen;
     float last_update;
     int score;
     int target_miss;
@@ -125,6 +126,12 @@ int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
 void launch_loading(game_data_t *game);
 void basic_menu(game_data_t *game);
+void set_screen_text(game_data_t *game);
+void set_fps_text(game_data_t *game);
+void load_arrow(game_data_t *game);
+void set_screen_size(game_data_t *game);
+void set_reso_text(game_data_t *game);
+void set_reso(game_data_t *game);
 
 // Menu events
 void m_mouse_button_pressed(game_data_t *game, sfMouseButtonEvent evt);

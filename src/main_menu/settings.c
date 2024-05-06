@@ -76,4 +76,6 @@ void basic_settings(game_data_t *game)
     draw_settings_navbar(game);
     load_arrow(game);
     set_fps_text(game);
+    set_screen_text(game);
+    set_reso_text(game);
 }

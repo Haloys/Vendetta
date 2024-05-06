@@ -28,6 +28,7 @@ static int start_game(char **av)
         .clock = sfClock_create(),
         .score = 0,
         .target_miss = 0,
+        .is_fullscreen = false,
         .highest_score = get_highest_score(),
         .crash = 0,
         .success = 0,

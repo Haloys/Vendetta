@@ -48,6 +48,7 @@ SRC	=	./src/help.c \
 		./src/settings/settings_fps.c \
 		./src/settings/settings_screen.c \
 		./src/main_menu/help.c \
+		./src/settings/settings_resolution.c \
 		./src/screne_loop/playing.c
 
 SRC_TESTS	=	\
