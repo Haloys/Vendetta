@@ -75,6 +75,7 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/settings.c \
 				settings/settings_fps.c \
 				settings/settings_screen.c \
+				settings/settings_utils.c \
 				main_menu/help.c \
 				settings/settings_resolution.c \
 				screne_loop/playing.c

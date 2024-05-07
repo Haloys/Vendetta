@@ -26,12 +26,12 @@ void load_arrow(game_data_t *game)
 
 void set_fps_text(game_data_t *game)
 {
-    sfVector2f text_pos = {621, 271};
+    sfVector2f text_pos = {621, 273};
     sfText *text;
     char buffer[10];
 
     sprintf(buffer, "%d", game->fps);
-    text = set_text(game, buffer, 26, text_pos);
+    text = set_text(game, buffer, 22, text_pos);
     sfRenderWindow_drawText(game->window, text, NULL);
     sfText_destroy(text);
 }

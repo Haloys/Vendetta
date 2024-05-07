@@ -132,6 +132,7 @@ void load_arrow(game_data_t *game);
 void set_screen_size(game_data_t *game);
 void set_reso_text(game_data_t *game);
 void set_reso(game_data_t *game);
+void set_utils_text(game_data_t *game);
 
 // Menu events
 void m_mouse_button_pressed(game_data_t *game, sfMouseButtonEvent evt);
