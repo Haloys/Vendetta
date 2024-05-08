@@ -65,8 +65,7 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
     if (evt->key.code == sfKeyQ)
         arrow_l_fps(game);
     if (evt->key.code == sfKeyP) {
-        game->opts.paused = game->opts.paused == 0;
-        game->delay_clock.running = game->delay_clock.running == 0;
+        set_reso(game);
     }
     if (evt->key.code == sfKeyLeft) {
         if (game->speed > 0.1f)
