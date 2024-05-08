@@ -36,7 +36,8 @@ void set_reso(game_data_t *game)
     }
     if (game->is_fullscreen == true) {
         sfRenderWindow_destroy(game->window);
-        game->window = sfRenderWindow_create(game->video_mode, game->name, sfResize | sfClose, NULL);
+        game->window = sfRenderWindow_create(game->video_mode, game->name,
+            sfResize | sfClose, NULL);
         game->is_fullscreen = false;
         return;
     }
