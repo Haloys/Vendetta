@@ -104,6 +104,8 @@ typedef struct game_data_s {
     int mouse_y;
     bool hover_array[4];
     bool hover_slot_array[3];
+    sfVector2f mouse_pos;
+    bool is_navbar_visible;
 } game_data_t;
 
 void draw_navbar(game_data_t *game);
