@@ -35,12 +35,11 @@ static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 static void handle_navbar_hover(game_data_t *game,
     const navbar_element_t *element, int i, sfText *text)
 {
-    game->hover_array[i] = (game->mouse_x >= element->position.x &&
-    game->mouse_x <= element->position.x + element->size.x &&
-    game->mouse_y >= element->position.y &&
-    game->mouse_y <= element->position.y + element->size.y);
-    sfText_setColor(text, game->hover_array[i] ?
-    sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
+    game->hover_array[i] = (game->mouse_pos.x >= element->position.x &&
+                            game->mouse_pos.x <= element->position.x + element->size.x &&
+                            game->mouse_pos.y >= element->position.y &&
+                            game->mouse_pos.y <= element->position.y + element->size.y);
+    sfText_setColor(text, game->hover_array[i] ? sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
 }
 
 static void draw_navbar_element(game_data_t *game,
@@ -69,6 +68,9 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
 {
     const navbar_element_t *elem;
 
+    if (!game->is_navbar_visible) {
+        return;
+    }
     for (int i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
         elem = &elements[i];
         if (mouse_event.x >= elem->position.x &&
@@ -85,6 +87,7 @@ void draw_navbar(game_data_t *game)
 {
     int navbar_element_count = sizeof(elements) / sizeof(navbar_element_t);
 
+    game->is_navbar_visible = true;
     for (int i = 0; i < navbar_element_count; i++) {
         draw_navbar_element(game, &elements[i], i);
     }

@@ -17,8 +17,8 @@ void draw_active_navbar_line(game_data_t *game,
 {
     sfRectangleShape *line = sfRectangleShape_create();
 
-    sfRectangleShape_setPosition(line, (sfVector2f){pos_x, 104.0f});
-    sfRectangleShape_setSize(line, (sfVector2f){size_x, 2.0f});
+    sfRectangleShape_setPosition(line, (sfVector2f){pos_x, 102.0f});
+    sfRectangleShape_setSize(line, (sfVector2f){size_x, 4.0f});
     sfRectangleShape_setFillColor(line, ACTIVE_NAVBAR_TEXT_COLOR);
     sfRenderWindow_drawRectangleShape(game->window, line, NULL);
     sfRectangleShape_destroy(line);

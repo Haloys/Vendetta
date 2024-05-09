@@ -24,6 +24,11 @@ static int handle_loading_event(game_data_t *game)
             sfRenderWindow_close(game->window);
             return ret;
         }
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
+            ret = 1;
+            game->state = MAIN_MENU;
+            return ret;
+        }
     }
     return ret;
 }

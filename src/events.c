@@ -65,8 +65,7 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
     if (evt->key.code == sfKeyQ)
         arrow_l_fps(game);
     if (evt->key.code == sfKeyP) {
-        game->opts.paused = game->opts.paused == 0;
-        game->delay_clock.running = game->delay_clock.running == 0;
+        set_reso(game);
     }
     if (evt->key.code == sfKeyLeft) {
         if (game->speed > 0.1f)
@@ -80,18 +79,15 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
 
 static void process_mouse_move_event(game_data_t *game, sfMouseMoveEvent mouseEvent)
 {
-    game->mouse_x = mouseEvent.x;
-    game->mouse_y = mouseEvent.y;
-    game->hover_save_button = (mouseEvent.x >= 147 && mouseEvent.x <= 382 &&
-    mouseEvent.y >= 148 && mouseEvent.y <= 198);
-    game->hover_save_button = (mouseEvent.x >= 147 && mouseEvent.x <= 382 &&
-    mouseEvent.y >= 148 && mouseEvent.y <= 198);
-    game->hover_slot_array[0] = (mouseEvent.x >= 147 && mouseEvent.x <= 599 &&
-    mouseEvent.y >= 241 && mouseEvent.y <= 870);
-    game->hover_slot_array[1] = (mouseEvent.x >= 734 && mouseEvent.x <= 1186 &&
-    mouseEvent.y >= 241 && mouseEvent.y <= 870);
-    game->hover_slot_array[2] = (mouseEvent.x >= 1321 && mouseEvent.x <= 1773 &&
-    mouseEvent.y >= 241 && mouseEvent.y <= 870);
+    set_mouse_pos(game);
+    game->hover_save_button = (game->mouse_pos.x >= 147 && game->mouse_pos.x <= 382 &&
+    game->mouse_pos.y >= 148 && game->mouse_pos.y <= 198);
+    game->hover_slot_array[0] = (game->mouse_pos.x >= 147 && game->mouse_pos.x <= 599 &&
+    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
+    game->hover_slot_array[1] = (game->mouse_pos.x >= 734 && game->mouse_pos.x <= 1186 &&
+    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
+    game->hover_slot_array[2] = (game->mouse_pos.x >= 1321 && game->mouse_pos.x <= 1773 &&
+    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
 }
 
 static void process_global_events(game_data_t *game, sfEvent *evt)

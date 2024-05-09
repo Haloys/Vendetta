@@ -41,6 +41,15 @@ static void process_loop_update(game_data_t *game, float elapsed)
     }
 }
 
+void set_mouse_pos(game_data_t *game)
+{
+    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f map_pos = sfRenderWindow_mapPixelToCoords(game->window,
+        mouse_pos, sfRenderWindow_getView(game->window));
+
+    game->mouse_pos = map_pos;
+}
+
 void process_game_loop(game_data_t *game)
 {
     float elapsed = sfTime_asSeconds(sfClock_getElapsedTime(game->clock))

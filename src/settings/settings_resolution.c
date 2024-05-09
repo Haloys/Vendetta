@@ -27,12 +27,18 @@ void set_reso_text(game_data_t *game)
 
 void set_reso(game_data_t *game)
 {
-    if (game->is_fullscreen == true) {
-        game->is_fullscreen = false;
+    if (game->is_fullscreen == false) {
+        sfRenderWindow_destroy(game->window);
+        game->window = sfRenderWindow_create(game->video_mode, game->name,
+            sfFullscreen, NULL);
+        game->is_fullscreen = true;
         return;
     }
-    if (game->is_fullscreen == false) {
-        game->is_fullscreen = true;
+    if (game->is_fullscreen == true) {
+        sfRenderWindow_destroy(game->window);
+        game->window = sfRenderWindow_create(game->video_mode, game->name,
+            sfResize | sfClose, NULL);
+        game->is_fullscreen = false;
         return;
     }
 }
