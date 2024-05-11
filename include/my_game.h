@@ -12,10 +12,12 @@
     #include <SFML/Audio.h>
     #include <SFML/Audio.h>
     #include <SFML/Audio/SoundBuffer.h>
+    #include <stdbool.h>
+
     #include "resources.h"
     #include "list.h"
+    #include "inventory.h"
     #include "game_utils.h"
-    #include <stdbool.h>
 
 typedef enum state_e {
     LOADING_SCREEN,
@@ -24,6 +26,7 @@ typedef enum state_e {
     HELP,
     PLAYING,
     PAUSE,
+    INVENTORY,
 } state_t;
 
 typedef struct game_assets_s {
@@ -71,6 +74,10 @@ typedef struct text_draw_info_settings_s {
     sfColor hover_color;
 } text_draw_info_settings_t;
 
+typedef struct player_data_s {
+    inventory_t *inventory;
+} player_data_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -106,6 +113,7 @@ typedef struct game_data_s {
     bool hover_slot_array[3];
     sfVector2f mouse_pos;
     bool is_navbar_visible;
+    player_data_t *player_data;
 } game_data_t;
 
 void draw_navbar(game_data_t *game);
@@ -156,5 +164,8 @@ void entity_draw(plane_t *plane, game_data_t *game);
 void entity_update(game_data_t *game, plane_t *plane, float elapsed);
 int is_plane_active(data_t *data, game_data_t *game);
 void entity_init_plane(data_t *d);
+
+// Inventory
+void basic_inventory(game_data_t *game);
 
 #endif /* MY_GAME_H */
