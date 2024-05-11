@@ -37,6 +37,7 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/arrow_l2.png",
     "assets/images/main_menu/arrow_r3.png",
     "assets/images/main_menu/arrow_l3.png",
+    "assets/images/main_menu/help_dialogues.png",
 };
 
 static const char *SOUND_L[] = {
@@ -75,6 +76,7 @@ typedef enum texture_id_e {
     ARROW_L2,
     ARROW_R3,
     ARROW_L3,
+    DIALOGUES,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -349,6 +351,17 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {521, 399}
     },
+    {
+        .id = DIALOGUES,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1184,
+            .height = 675
+        },
+        .scale = 1,
+        .position = {22, 203}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -378,6 +391,7 @@ typedef enum sprite_id_e {
     SP_ARROW_L2,
     SP_ARROW_R3,
     SP_ARROW_L3,
+    SP_DIALOGUES,
 } sprite_id_t;
 
 typedef enum sound_id_e {
