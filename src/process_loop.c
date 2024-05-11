@@ -36,6 +36,9 @@ static void process_loop_update(game_data_t *game, float elapsed)
             elapsed = 0.f;
         process_loop_in_game(game, elapsed);
         break;
+    case INVENTORY:
+        basic_inventory(game);
+        break;
     case PAUSE:
         break;
     }
