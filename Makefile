@@ -83,10 +83,15 @@ SRC_UI    =   	loading_screen/loading.c \
 SRC_EVENTS    =	  events/menu/mouse_button_pressed.c \
 				  events/playing/mouse_button_pressed.c \
 
+SRC_INVENTORY    =   	inventory/inventory.c \
+						inventory/inventory_utils.c \
+						inventory/inventory_management.c \
+
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_EVENTS)) \
-            $(addprefix $(SRC_DIR)/,$(SRC_UI))
+            $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 
 OBJ =         $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
               $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
