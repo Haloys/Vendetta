@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
@@ -43,8 +44,24 @@ static int start_game(char **av)
     return init_game(&game, av);
 }
 
-int main(int ac, char **av)
+int handle_env(char **env)
 {
+    if (env == NULL || env[0] == NULL) {
+        dprintf(2, "Environment is empty, please restart your computer.\n");
+        return RET_FAIL;
+    }
+    for (int i = 0; env[i] != NULL; i++) {
+        if (strncmp(env[i], "DISPLAY", 7) == 0)
+            return RET_NONE;
+    }
+    dprintf(2, "Missing DISPLAY variable, please restart your computer.\n");
+    return RET_FAIL;
+}
+
+int main(int ac, char **av, char **env)
+{
+    if (handle_env(env) == RET_FAIL)
+        return RET_FAIL;
     if (ac == 2 && my_strcmp(av[1], "-h") == 0)
         return print_game_help();
     else if (ac != 1)
