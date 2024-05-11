@@ -51,8 +51,9 @@ int handle_env(char **env)
         return RET_FAIL;
     }
     for (int i = 0; env[i] != NULL; i++) {
-        if (strncmp(env[i], "DISPLAY", 7) == 0)
+        if (strncmp(env[i], "DISPLAY", 7) == 0) {
             return RET_NONE;
+        }
     }
     dprintf(2, "Missing DISPLAY variable, please restart your computer.\n");
     return RET_FAIL;
