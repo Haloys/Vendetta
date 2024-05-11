@@ -154,4 +154,6 @@ void entity_update(game_data_t *game, plane_t *plane, float elapsed);
 int is_plane_active(data_t *data, game_data_t *game);
 void entity_init_plane(data_t *d);
 
+#define ICON_PATH "assets/images/game_icon/icon.png"
+
 #endif /* MY_GAME_H */
