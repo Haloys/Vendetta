@@ -29,9 +29,6 @@ static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
     *y = coords.y;
 }
 
-/* Source:
-* https://github.com/SFML/SFML/wiki/Source%3A-Letterbox-effect-using-a-view
-*/
 static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
 {
     sfView *view = sfRenderWindow_getView(window);
