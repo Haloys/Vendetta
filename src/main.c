@@ -24,7 +24,7 @@ static int start_game(char **av)
     game_data_t game = {
         .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = MAIN_MENU,
+        .state = INVENTORY,
         .clock = sfClock_create(),
         .score = 0,
         .target_miss = 0,
