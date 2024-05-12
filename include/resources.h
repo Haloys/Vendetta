@@ -72,6 +72,15 @@ static const char *IMAGES[] = {
     "assets/images/inventory/items/third_book.png",
     "assets/images/inventory/items/whiskey.png",
     "assets/images/inventory/stats.png",
+    "assets/images/main_menu/help_dialogues.png",
+};
+
+static const char *SOUND_L[] = {
+    "assets/sounds/oui.ogg",
+};
+
+static const char *MUSIC_L[] = {
+    "assets/musics/loading_music.ogg",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -137,7 +146,8 @@ typedef enum texture_id_e {
     SHOES_RED,
     THIRD_BOOK,
     WHISKEY,
-    STATS
+    STATS,
+    DIALOGUES,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -818,7 +828,18 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1385, 575}
-    }
+    },
+    {
+        .id = DIALOGUES,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1184,
+            .height = 675
+        },
+        .scale = 1,
+        .position = {22, 203}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -885,6 +906,7 @@ typedef enum sprite_id_e {
     SP_THIRD_BOOK,
     SP_WHISKEY,
     SP_STATS,
+    SP_DIALOGUES,
 } sprite_id_t;
 
 typedef enum sound_id_e {
