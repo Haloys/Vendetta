@@ -10,15 +10,14 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 void draw_active_navbar_line(game_data_t *game,
     float pos_x, float size_x)
 {
     sfRectangleShape *line = sfRectangleShape_create();
 
-    sfRectangleShape_setPosition(line, (sfVector2f){pos_x, 104.0f});
-    sfRectangleShape_setSize(line, (sfVector2f){size_x, 2.0f});
+    sfRectangleShape_setPosition(line, (sfVector2f){pos_x, 102.0f});
+    sfRectangleShape_setSize(line, (sfVector2f){size_x, 4.0f});
     sfRectangleShape_setFillColor(line, ACTIVE_NAVBAR_TEXT_COLOR);
     sfRenderWindow_drawRectangleShape(game->window, line, NULL);
     sfRectangleShape_destroy(line);
@@ -27,7 +26,7 @@ void draw_active_navbar_line(game_data_t *game,
 void basic_menu(game_data_t *game)
 {
     sprite_id_t elements[] = {SP_MAIN_BG, SP_VENDETTA_MENU};
-    int element_count = 2;
+    size_t element_count = 2;
 
     for (size_t i = 0; i < element_count; i++) {
         sfRenderWindow_drawSprite(game->window,

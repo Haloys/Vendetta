@@ -12,7 +12,6 @@
 
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 #include "fade_in_out.h"
 
 static int calculate_fade_in_alpha(fade_in_params_t *params)

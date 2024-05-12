@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include "my_game.h"
 #include "my.h"
-#include "entity.h"
 
 static void destroy_game_elements(game_data_t *game)
 {
@@ -20,7 +19,6 @@ static void destroy_game_elements(game_data_t *game)
         sfSoundBuffer_destroy(game->assets.sound[i]);
     for (size_t i = 0; i < MUSIC_COUNT; ++i)
         sfMusic_destroy(game->assets.music[i]);
-    free(game->corner.planes);
 }
 
 static void destroy_game_clocks(game_data_t *game)
@@ -37,10 +35,6 @@ int destroy_game_data(game_data_t *game, int code)
     destroy_game_clocks(game);
     sfRenderWindow_destroy(game->window);
     sfFont_destroy(game->font);
-    free_entity_hitbox(game);
-    free_entity_hitbox_tower(game);
-    free_list(&game->towers);
-    free_list(&game->planes);
     my_putstr("OK !\n");
     return code;
 }

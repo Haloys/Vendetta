@@ -10,7 +10,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 static text_draw_info_settings_t get_text_draw_info(game_data_t *game,
     const settings_navbar_element_t *element, sfText *text)
@@ -28,7 +27,7 @@ static text_draw_info_settings_t get_text_draw_info(game_data_t *game,
         game->mouse_x <= element->position.x + element->size.x &&
         game->mouse_y >= element->position.y &&
         game->mouse_y <= element->position.y + element->size.y;
-    info.hover_color = is_hovered ? sfColor_fromRGBA(51, 217, 122, 51)
+    info.hover_color = is_hovered ? sfColor_fromRGBA(51, 217, 122, 20)
     : sfColor_fromRGBA(255, 255, 255, 0);
     return info;
 }
@@ -39,6 +38,7 @@ static void draw_settings_element(game_data_t *game,
     sfText *text = sfText_create();
     text_draw_info_settings_t draw_info;
     sfRectangleShape *hover_area;
+    sfVector2f hover_pos = {element->position.x, element->position.y + 5};
 
     sfText_setString(text, element->label);
     sfText_setFont(text, game->font);
@@ -46,7 +46,7 @@ static void draw_settings_element(game_data_t *game,
     draw_info = get_text_draw_info(game, element, text);
     sfText_setPosition(text, draw_info.text_position);
     hover_area = sfRectangleShape_create();
-    sfRectangleShape_setPosition(hover_area, element->position);
+    sfRectangleShape_setPosition(hover_area, hover_pos);
     sfRectangleShape_setSize(hover_area, element->size);
     sfRectangleShape_setFillColor(hover_area, draw_info.hover_color);
     sfRenderWindow_drawRectangleShape(game->window, hover_area, NULL);
@@ -78,4 +78,5 @@ void basic_settings(game_data_t *game)
     set_fps_text(game);
     set_screen_text(game);
     set_reso_text(game);
+    set_utils_text(game);
 }

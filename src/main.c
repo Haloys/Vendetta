@@ -11,7 +11,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 static int invalid_args(void)
 {
@@ -20,28 +19,20 @@ static int invalid_args(void)
     return RET_FAIL;
 }
 
-static int start_game(char **av)
+static int start_game()
 {
     game_data_t game = {
         .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = MAIN_MENU,
+        .state = INVENTORY,
         .clock = sfClock_create(),
-        .score = 0,
-        .target_miss = 0,
-        .is_fullscreen = false,
-        .highest_score = get_highest_score(),
-        .crash = 0,
-        .success = 0,
-        .fps = 60,
-        .opts = { 0, 1, 1, 0 },
         .fps_clock = sfClock_create(),
         .help_text = sfText_create(),
         .speed = 1.0f,
     };
 
     srand(time(NULL));
-    return init_game(&game, av);
+    return init_game(&game);
 }
 
 int handle_env(char **env)
@@ -67,5 +58,5 @@ int main(int ac, char **av, char **env)
         return print_game_help();
     else if (ac != 1)
         return invalid_args();
-    return start_game(av);
+    return start_game();
 }

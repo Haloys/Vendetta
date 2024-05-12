@@ -7,7 +7,6 @@
 
 #include <stdlib.h>
 #include "my_game.h"
-#include "entity.h"
 
 inline int play_sound(game_data_t *game, sound_id_t id)
 {
@@ -46,7 +45,7 @@ sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
     sfText *text = sfText_create();
 
     if (text == NULL)
-        return;
+        return NULL;
     sfText_setString(text, txt);
     sfText_setFont(text, game->font);
     sfText_setCharacterSize(text, size);

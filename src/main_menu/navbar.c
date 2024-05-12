@@ -10,16 +10,8 @@
 #include <time.h>
 #include <string.h>
 
-#include "my_game.h"
+#include "navbar.h"
 #include "my.h"
-#include "score.h"
-
-const navbar_element_t elements[] = {
-    {"PLAY", ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
-    {"SETTINGS", ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS},
-    {"HELP", ICON_HELP, {633, 42}, {80, 30}, HELP},
-    {"QUIT", ICON_QUIT, {827, 42}, {80, 30}, MAIN_MENU}
-};
 
 static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 {
@@ -35,12 +27,11 @@ static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 static void handle_navbar_hover(game_data_t *game,
     const navbar_element_t *element, int i, sfText *text)
 {
-    game->hover_array[i] = (game->mouse_x >= element->position.x &&
-    game->mouse_x <= element->position.x + element->size.x &&
-    game->mouse_y >= element->position.y &&
-    game->mouse_y <= element->position.y + element->size.y);
-    sfText_setColor(text, game->hover_array[i] ?
-    sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
+    game->hover_array[i] = (game->mouse_pos.x >= element->position.x &&
+                            game->mouse_pos.x <= element->position.x + element->size.x &&
+                            game->mouse_pos.y >= element->position.y &&
+                            game->mouse_pos.y <= element->position.y + element->size.y);
+    sfText_setColor(text, game->hover_array[i] ? sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
 }
 
 static void draw_navbar_element(game_data_t *game,
@@ -69,7 +60,10 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
 {
     const navbar_element_t *elem;
 
-    for (int i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
+    if (!game->is_navbar_visible) {
+        return;
+    }
+    for (size_t i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
         elem = &elements[i];
         if (mouse_event.x >= elem->position.x &&
             mouse_event.x <= elem->position.x + elem->size.x &&
@@ -85,6 +79,7 @@ void draw_navbar(game_data_t *game)
 {
     int navbar_element_count = sizeof(elements) / sizeof(navbar_element_t);
 
+    game->is_navbar_visible = true;
     for (int i = 0; i < navbar_element_count; i++) {
         draw_navbar_element(game, &elements[i], i);
     }

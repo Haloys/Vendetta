@@ -10,7 +10,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 #include "fade_in_out.h"
 
 static int handle_loading_event(game_data_t *game)
@@ -22,6 +21,11 @@ static int handle_loading_event(game_data_t *game)
         if (event.type == sfEvtClosed) {
             ret = 1;
             sfRenderWindow_close(game->window);
+            return ret;
+        }
+        if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
+            ret = 1;
+            game->state = MAIN_MENU;
             return ret;
         }
     }
@@ -122,7 +126,6 @@ void launch_loading(game_data_t *game)
     sfRenderWindow *window = game->window;
     sfTime elapsed_time;
     int ret = 0;
-    int a = 0;
 
     start_music(&game->assets, M_LOADING);
     for (int page = 1; page <= 4; page++) {
