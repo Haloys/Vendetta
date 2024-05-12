@@ -5,6 +5,10 @@
 ** inventory_utils
 */
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "my_game.h"
 #include "inventory.h"
 #include "items.h"
@@ -48,17 +52,17 @@ void update_inventory_weight(game_data_t *game)
     for (int i = 0; i < 29; i++) {
         if (game->player_data->inventory->slots[i].item != NULL) {
             game->player_data->inventory->total_weight +=
-                game->player_data->inventory->slots[i].weight *
-                game->player_data->inventory->slots[i].quantity;
+                game->player_data->inventory->slots[i].weight;
         }
     }
 }
 
-item_t *get_item_by_name(game_data_t *game, char *item_name)
+item_t *get_item_by_name(char *item_name)
 {
-    for (int i = 0; i < ITEM_COUNT; i++) {
+    for (size_t i = 0; i < ITEM_COUNT; i++) {
         if (strcmp(ITEMS[i].name, item_name) == 0) {
             return (&ITEMS[i]);
         }
     }
+    return NULL;
 }
