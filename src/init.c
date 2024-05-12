@@ -29,7 +29,7 @@ static int init_inventory(game_data_t *game)
     return RET_NONE;
 }
 
-static int init_partie_one(game_data_t *game, char **av)
+static int init_partie_one(game_data_t *game)
 {
     init_assets(game);
     if (init_inventory(game) == RET_FAIL)
@@ -50,9 +50,9 @@ static int init_partie_one(game_data_t *game, char **av)
 }
 
 
-int init_game(game_data_t *game, char **av)
+int init_game(game_data_t *game)
 {
-    if (init_partie_one(game, av) == RET_FAIL)
+    if (init_partie_one(game) == RET_FAIL)
         return destroy_game_data(game, RET_FAIL);
     sfRenderWindow_setFramerateLimit(game->window, WINDOW_FPS);
     my_putstr("Start game loop\n");

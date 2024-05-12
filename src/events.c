@@ -7,19 +7,6 @@
 
 #include "my_game.h"
 
-static void process_menu_events(game_data_t *game, sfEvent *event)
-{
-    if (event->type == sfEvtMouseButtonPressed) {
-        m_mouse_button_pressed(game, event->mouseButton);
-    }
-}
-
-static void process_in_game_events(game_data_t *game, sfEvent *event)
-{
-    if (event->type == sfEvtMouseButtonPressed)
-        p_mouse_button_pressed(game, event->mouseButton);
-}
-
 static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
 {
     sfVector2f coords = sfRenderWindow_mapPixelToCoords(window,
@@ -74,7 +61,7 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
     }
 }
 
-static void process_mouse_move_event(game_data_t *game, sfMouseMoveEvent mouseEvent)
+static void process_mouse_move_event(game_data_t *game)
 {
     set_mouse_pos(game);
     game->hover_save_button = (game->mouse_pos.x >= 147 && game->mouse_pos.x <= 382 &&
@@ -104,7 +91,7 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
         return;
     }
     if (evt->type == sfEvtMouseMoved) {
-        process_mouse_move_event(game, evt->mouseMove);
+        process_mouse_move_event(game);
         return;
     }
     if (evt->type == sfEvtKeyPressed)
@@ -114,10 +101,6 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
 static void annalyse_event(game_data_t *game, sfEvent *evt)
 {
     process_global_events(game, evt);
-    if (game->state == MAIN_MENU)
-        process_menu_events(game, evt);
-    else if (game->state == PLAYING)
-        process_in_game_events(game, evt);
 }
 
 void process_events(game_data_t *game)

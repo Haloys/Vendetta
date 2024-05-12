@@ -74,15 +74,6 @@ static const char *IMAGES[] = {
     "assets/images/inventory/stats.png",
 };
 
-static const char *SOUND_L[] = {
-    // "assets/sounds/hitmarker.ogg",
-    "assets/sounds/oui.ogg",
-};
-
-static const char *MUSIC_L[] = {
-    "assets/musics/loading_music.ogg",
-};
-
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
 
 typedef enum texture_id_e {

@@ -126,7 +126,6 @@ void launch_loading(game_data_t *game)
     sfRenderWindow *window = game->window;
     sfTime elapsed_time;
     int ret = 0;
-    int a = 0;
 
     start_music(&game->assets, M_LOADING);
     for (int page = 1; page <= 4; page++) {

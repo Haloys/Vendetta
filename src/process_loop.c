@@ -10,12 +10,7 @@
 #include "my_game.h"
 #include "my.h"
 
-static void process_loop_main_menu(game_data_t *game)
-{
-    return;
-}
-
-static void process_loop_update(game_data_t *game, float elapsed)
+static void process_loop_update(game_data_t *game)
 {
     switch (game->state) {
     case LOADING_SCREEN:
@@ -31,10 +26,6 @@ static void process_loop_update(game_data_t *game, float elapsed)
         basic_help(game);
         break;
     case PLAYING:
-        clock_update(&game->delay_clock, elapsed);
-        if (game->opts.paused)
-            elapsed = 0.f;
-        process_loop_in_game(game, elapsed);
         break;
     case INVENTORY:
         basic_inventory(game);
@@ -55,12 +46,8 @@ void set_mouse_pos(game_data_t *game)
 
 void process_game_loop(game_data_t *game)
 {
-    float elapsed = sfTime_asSeconds(sfClock_getElapsedTime(game->clock))
-        * game->speed;
-
     sfRenderWindow_clear(game->window, sfBlack);
     process_events(game);
-    process_loop_update(game, elapsed - game->last_update);
-    game->last_update = elapsed;
+    process_loop_update(game);
     sfRenderWindow_display(game->window);
 }

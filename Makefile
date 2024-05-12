@@ -54,16 +54,11 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/animation.c \
 						engine/utils.c \
 						engine/free_game.c \
-						engine/entity/destroy.c \
-						engine/entity/entity.c \
-						engine/entity/hitboxes.c \
-						engine/entity/plane.c \
 						engine/fade_in_out.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
 							init_assets.c \
-							list.c \
 							process_loop.c \
 							music.c \
 							events.c \
@@ -76,11 +71,7 @@ SRC_UI    =   	loading_screen/loading.c \
 				settings/settings_screen.c \
 				settings/settings_utils.c \
 				main_menu/help.c \
-				settings/settings_resolution.c \
-				screne_loop/playing.c
-
-SRC_EVENTS    =	  events/menu/mouse_button_pressed.c \
-				  events/playing/mouse_button_pressed.c \
+				settings/settings_resolution.c
 
 SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_utils.c \
@@ -90,7 +81,6 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
-			$(addprefix $(SRC_DIR)/,$(SRC_EVENTS)) \
             $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 
