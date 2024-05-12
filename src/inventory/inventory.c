@@ -11,7 +11,7 @@
 #include "my_game.h"
 #include "inventory.h"
 
-void draw_inventory_grid(game_data_t *game, sfRectangleShape ***grid)
+static void draw_inventory_grid(game_data_t *game, sfRectangleShape ***grid)
 {
     sfVector2f pos = {220, 280};
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
@@ -33,7 +33,7 @@ void draw_inventory_grid(game_data_t *game, sfRectangleShape ***grid)
     }
 }
 
-void draw_progbar(game_data_t *game)
+static void draw_progbar(game_data_t *game)
 {
     sfRectangleShape *weight_bg = sfRectangleShape_create();
     sfRectangleShape *weight_bar = sfRectangleShape_create();
@@ -51,7 +51,7 @@ void draw_progbar(game_data_t *game)
     sfRectangleShape_destroy(weight_bar);
 }
 
-void draw_title_and_progbar(game_data_t *game)
+static void draw_title_and_progbar(game_data_t *game)
 {
     sfText *title = set_text(game, "CAPACITY", 26, (sfVector2f){220, 190});
     sfText *subtitle = NULL;
@@ -75,33 +75,25 @@ void draw_title_and_progbar(game_data_t *game)
     free(total_weight);
 }
 
-void destroy_action_buttons(sfRectangleShape *use_btn,
-    sfRectangleShape *del_btn, sfText *use_text, sfText *del_text)
+static void draw_action_buttons(game_data_t *game, sfRectangleShape ***grid)
 {
-    sfRectangleShape_destroy(use_btn);
-    sfRectangleShape_destroy(del_btn);
+    sfText *use_text = set_text(game, "USE", 20, (sfVector2f){318, 927});
+    sfText *del_text = set_text(game, "TRASH", 20, (sfVector2f){668, 927});
+
+    (*grid)[29] = create_rectangle(game, (sfVector2f){220, 915}, 235, 50);
+    (*grid)[30] = create_rectangle(game, (sfVector2f){585, 915}, 235, 50);
+    sfRenderWindow_drawText(game->window, use_text, NULL);
+    sfRenderWindow_drawText(game->window, del_text, NULL);
     sfText_destroy(use_text);
     sfText_destroy(del_text);
 }
 
-void draw_action_buttons(game_data_t *game, sfRectangleShape ***grid)
-{
-    (*grid)[29] = create_rectangle(game, (sfVector2f){220, 915}, 235, 50);
-    (*grid)[30] = create_rectangle(game, (sfVector2f){585, 915}, 235, 50);
-    sfText *use_text = set_text(game, "USE", 20, (sfVector2f){318, 927});
-    sfText *del_text = set_text(game, "TRASH", 20, (sfVector2f){668, 927});
-
-    sfRenderWindow_drawText(game->window, use_text, NULL);
-    sfRenderWindow_drawText(game->window, del_text, NULL);
-    destroy_action_buttons((*grid)[29], (*grid)[30], use_text, del_text);
-}
-
-void draw_statistics_txt(game_data_t *game, char *health, char *armor,
+static void draw_statistics_txt(game_data_t *game, char *health, char *armor,
     char *speed)
 {
     sfText *health_txt = set_text(game, health, 20, (sfVector2f){1640, 642});
     sfText *armor_txt = set_text(game, armor, 20, (sfVector2f){1640, 712});
-    sfText *speed_txt = set_text(game, speed, 20, (sfVector2f){1640, 782});
+    sfText *speed_txt = set_text(game, speed, 20, (sfVector2f){1640, 852});
 
     sfRenderWindow_drawText(game->window, health_txt, NULL);
     sfRenderWindow_drawText(game->window, armor_txt, NULL);
@@ -114,7 +106,7 @@ void draw_statistics_txt(game_data_t *game, char *health, char *armor,
     free(speed);
 }
 
-void draw_statistics(game_data_t *game)
+static void draw_statistics(game_data_t *game)
 {
     char *health = malloc(3);
     char *armor = malloc(3);
@@ -122,11 +114,11 @@ void draw_statistics(game_data_t *game)
     char *attack = malloc(3);
     sfText *attack_txt = NULL;
 
-    sprintf(health, "%d", 10);
-    sprintf(armor, "%d", 10);
-    sprintf(speed, "%d", 10);
-    sprintf(attack, "%d", 10);
-    attack_txt = set_text(game, attack, 20, (sfVector2f){1640, 852});
+    sprintf(health, "%d", game->player_data->max_health);
+    sprintf(armor, "%d", game->player_data->armor);
+    sprintf(speed, "%d", game->player_data->speed);
+    sprintf(attack, "%d", game->player_data->attack);
+    attack_txt = set_text(game, attack, 20, (sfVector2f){1640, 782});
     sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_STATS), NULL);
     sfRenderWindow_drawText(game->window, attack_txt, NULL);
     draw_statistics_txt(game, health, armor, speed);
@@ -134,7 +126,7 @@ void draw_statistics(game_data_t *game)
     free(attack);
 }
 
-void draw_equipment_slots_txt(game_data_t *game)
+static void draw_equipment_slots_txt(game_data_t *game)
 {
     sfText *helmet_txt = set_text(game, "HELMET", 14, (sfVector2f){1010, 255});
     sfText *armor_txt = set_text(game, "ARMOR", 14, (sfVector2f){1010, 415});
@@ -151,7 +143,7 @@ void draw_equipment_slots_txt(game_data_t *game)
     sfText_destroy(weapon_txt);
 }
 
-void draw_equipment_slots(game_data_t *game, sfRectangleShape ***grid)
+static void draw_equipment_slots(game_data_t *game, sfRectangleShape ***grid)
 {
     (*grid)[25] = create_rectangle(game, (sfVector2f){1010, 280}, SIZE, SIZE);
     (*grid)[26] = create_rectangle(game, (sfVector2f){1010, 440}, SIZE, SIZE);
@@ -160,59 +152,29 @@ void draw_equipment_slots(game_data_t *game, sfRectangleShape ***grid)
     draw_equipment_slots_txt(game);
 }
 
-void display_item_images(game_data_t *game, sfRectangleShape **grid)
+static void destroy_grid(sfRectangleShape ***grid)
 {
-    sfVector2f pos = {0};
-    sfSprite *sprite = NULL;
-    inventory_slot_t *slot = NULL;
-    sfText *weight = NULL;
-    sfText *qty = NULL;
-    char *qty_txt = malloc(3);
-    char *weight_txt = malloc(6);
-
-    for (int i = 0; i < COUNT; i++) {
-        if (game->player_data->inventory->slots[i].item != NULL) {
-            sprintf(qty_txt, "x%d", game->player_data->inventory->slots[i].quantity);
-            sprintf(weight_txt, "%.1fkg", game->player_data->inventory->slots[i].weight);
-            pos = sfRectangleShape_getPosition(grid[i]);
-            qty = set_text(game, qty_txt, 14, (sfVector2f){pos.x + 7, pos.y + 10});
-            weight = set_text(game, weight_txt, 14, (sfVector2f){pos.x + 65, pos.y + 10});
-            sfRenderWindow_drawText(game->window, qty, NULL);
-            sfRenderWindow_drawText(game->window, weight, NULL);
-            slot = &game->player_data->inventory->slots[i];
-            sprite = get_sprite(game, slot->item->sprite_id);
-            sfSprite_setPosition(sprite, (sfVector2f){pos.x + 25, pos.y + 35});
-            sfRenderWindow_drawSprite(game->window, sprite, NULL);
-        }
-    }
-}
-
-void destroy_grid(sfRectangleShape ***grid)
-{
-    for (size_t i = 0; i < 29; i++) {
+    for (size_t i = 0; i < 31; i++) {
         sfRectangleShape_destroy((*grid)[i]);
     }
 }
 
 void basic_inventory(game_data_t *game)
 {
-    sprite_id_t elements[] = {SP_MAIN_BG, SP_MAN_SKIN, SP_STATS, SP_AIDKIT,
-    SP_ARMOR, SP_ARMOR2, SP_ARMOR3, SP_BANDAGE, SP_BONE, SP_CASH, SP_EPHEDRINE,
-    SP_FIRST_BOOK, SP_GOLDCOIN, SP_HEROIN, SP_KEYA, SP_JOINT, SP_KEYB, SP_KEYC,
-    SP_KNIFE, SP_LIGHTER_BLUE, SP_MASK1, SP_MASK2, SP_MASK3, SP_MASK4, SP_MK18,
-    SP_OLD_PAPER, SP_OXY, SP_PISTOLMK2, SP_PUMPSHOTGUN, SP_RING, SP_ROLEX,
-    SP_SECOND_BOOK, SP_SHOES, SP_SHOES_BLUE, SP_SHOES_GREEN, SP_SHOES_RED,
-    SP_THIRD_BOOK, SP_WHISKEY};
-    int element_count = sizeof(elements) / sizeof(sprite_id_t);
     sfRectangleShape **grid = malloc(31 * sizeof(sfRectangleShape *));
 
-    test_inventory_and_print(game);
     draw_title_and_progbar(game);
     draw_inventory_grid(game, &grid);
     draw_action_buttons(game, &grid);
     draw_statistics(game);
     draw_equipment_slots(game, &grid);
     display_item_images(game, grid);
+    handle_drag_and_drop(game, grid);
+    insert_item_in_inventory(game, "mask2", 1);
+    insert_item_in_inventory(game, "shoes", 1);
+    insert_item_in_inventory(game, "armor", 1);
+    insert_item_in_inventory(game, "pistol", 1);
+    insert_item_in_inventory(game, "oxycodone", 1);
     destroy_grid(&grid);
     free(grid);
 }
