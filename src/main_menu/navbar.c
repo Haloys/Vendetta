@@ -32,7 +32,7 @@ static void handle_navbar_hover(game_data_t *game,
             game->mouse_pos.y >= element->position.y &&
             game->mouse_pos.y <= element->position.y + element->size.y);
     sfText_setColor(text, game->hover_array[i] ?
-        sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
+        sfWhite : NAVBAR_TEXT_COLOR);
 }
 
 static void draw_navbar_element(game_data_t *game,
@@ -63,7 +63,7 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
     const navbar_element_t *elem;
 
     if (!game->is_navbar_visible) {
-        return;
+        return NULL;
     }
     for (size_t i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
         elem = &elements[i];

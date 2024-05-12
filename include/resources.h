@@ -75,14 +75,6 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/help_dialogues.png",
 };
 
-static const char *SOUND_L[] = {
-    "assets/sounds/oui.ogg",
-};
-
-static const char *MUSIC_L[] = {
-    "assets/musics/loading_music.ogg",
-};
-
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
 
 typedef enum texture_id_e {
@@ -321,7 +313,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 21
         },
         .scale = 1,
-        .position = {113, 56}
+        .position = {113, 52}
     },
     {
         .id = ICON_SETTINGS,
@@ -332,7 +324,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 22
         },
         .scale = 1,
-        .position = {325, 54}
+        .position = {325, 52}
     },
     {
         .id = ICON_HELP,
@@ -343,7 +335,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 21
         },
         .scale = 1,
-        .position = {594, 54}
+        .position = {594, 52}
     },
     {
         .id = ICON_QUIT,
@@ -354,7 +346,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 19
         },
         .scale = 1,
-        .position = {788, 56}
+        .position = {788, 52}
     },
     {
         .id = ARROW_R1,

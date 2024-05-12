@@ -12,7 +12,7 @@
 
 static const navbar_element_t elements[] = {
     {"PLAY", SP_ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
-    {"SETTINGS", SP_ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS},
+    {"SETTINGS", SP_ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS_VIDEO},
     {"HELP", SP_ICON_HELP, {633, 42}, {80, 30}, HELP},
     {"QUIT", SP_ICON_QUIT, {827, 42}, {80, 30}, MAIN_MENU}
 };
