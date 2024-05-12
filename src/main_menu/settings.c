@@ -10,7 +10,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 static text_draw_info_settings_t get_text_draw_info(game_data_t *game,
     const settings_navbar_element_t *element, sfText *text)

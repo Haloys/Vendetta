@@ -10,7 +10,7 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
+
 
 void basic_help(game_data_t *game)
 {

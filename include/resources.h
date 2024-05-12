@@ -10,8 +10,6 @@
 
     #include <SFML/Audio.h>
 
-static const char *SCORE_FILE_PATH = "./database/highest_score";
-
 static const char *IMAGES[] = {
     "assets/images/loading_screen/bg_load1.png",
     "assets/images/loading_screen/bg_load2.png",

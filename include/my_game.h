@@ -76,6 +76,15 @@ typedef struct text_draw_info_settings_s {
 
 typedef struct player_data_s {
     inventory_t *inventory;
+    int max_health;
+    int health;
+    int speed;
+    int armor;
+    int attack;
+    int item_health;
+    int item_speed;
+    int item_armor;
+    int item_attack;
 } player_data_t;
 
 typedef struct game_data_s {
@@ -90,7 +99,6 @@ typedef struct game_data_s {
     sfFont *font;
     list_t towers;
     list_t planes;
-    bool is_fullscreen;
     float last_update;
     int score;
     int target_miss;
@@ -106,13 +114,14 @@ typedef struct game_data_s {
     sfText *help_text;
     float speed;
     sfUint8 *pixels;
-    bool hover_save_button;
     int mouse_x;
     int mouse_y;
+    bool is_fullscreen;
+    bool hover_save_button;
     bool hover_array[4];
     bool hover_slot_array[3];
-    sfVector2f mouse_pos;
     bool is_navbar_visible;
+    sfVector2f mouse_pos;
     player_data_t *player_data;
 } game_data_t;
 

@@ -10,7 +10,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 static int invalid_args(void)
 {
@@ -26,10 +25,8 @@ static int start_game(char **av)
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
         .state = INVENTORY,
         .clock = sfClock_create(),
-        .score = 0,
         .target_miss = 0,
         .is_fullscreen = false,
-        .highest_score = get_highest_score(),
         .crash = 0,
         .success = 0,
         .fps = 60,
@@ -38,7 +35,7 @@ static int start_game(char **av)
         .help_text = sfText_create(),
         .speed = 1.0f,
     };
-
+    
     srand(time(NULL));
     return init_game(&game, av);
 }

@@ -12,7 +12,6 @@
 
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 const navbar_element_t elements[] = {
     {"PLAY", ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},

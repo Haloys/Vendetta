@@ -10,7 +10,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 #include "fade_in_out.h"
 
 static int handle_loading_event(game_data_t *game)
