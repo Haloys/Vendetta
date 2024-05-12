@@ -65,7 +65,6 @@ SRC_FILES            =   	help.c \
 							init_assets.c \
 							list.c \
 							process_loop.c \
-							score_manager.c \
 							music.c \
 							events.c \
 
@@ -86,6 +85,8 @@ SRC_EVENTS    =	  events/menu/mouse_button_pressed.c \
 SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_utils.c \
 						inventory/inventory_management.c \
+						inventory/display_items.c \
+						inventory/handle_drag_drop.c \
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
