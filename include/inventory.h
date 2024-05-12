@@ -9,6 +9,7 @@
     #define INVENTORY_H_
     #include <stdlib.h>
     #include <stdbool.h>
+    #include <SFML/Graphics.h>
 
     #define WIDTH 5
     #define HEIGHT 5
@@ -35,6 +36,7 @@ typedef struct item_s {
     int sprite_id;
     float rarity;
     float weight;
+    bool is_stackable;
     bool is_equipable;
     bool is_usable;
     item_type_t type;
@@ -61,6 +63,12 @@ sfRectangleShape *create_rectangle(game_data_t *game, sfVector2f pos,
     int sizex, int sizey);
 int is_valid_weight(game_data_t *game, float added_weight);
 void update_inventory_weight(game_data_t *game);
-item_t *get_item_by_name(game_data_t *game, char *item_name);
+item_t *get_item_by_name(char *item_name);
+void display_item_images(game_data_t *game, sfRectangleShape **grid);
+void handle_drag_and_drop(game_data_t *game, sfRectangleShape **grid);
+void calculate_player_stats(game_data_t *game);
+void swap_items(game_data_t *game, int dest, int src);
+void insert_item_in_inventory(game_data_t *game, char *item_name, int qty);
+void use_or_trash(game_data_t *game, int slot_id, int item_id);
 
 #endif /* !INVENTORY_H_ */
