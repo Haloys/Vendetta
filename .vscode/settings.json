@@ -14,10 +14,5 @@
     "[c]": {
         "editor.semanticHighlighting.enabled": true,
         "editor.defaultFormatter": "ms-vscode.cpptools"
-    },
-    "files.associations": {
-        "*.ejs": "html",
-        "navbar.h": "c",
-        "my.h": "c"
     }
 }
