@@ -24,8 +24,14 @@ static void process_loop_update(game_data_t *game, float elapsed)
     case MAIN_MENU:
         basic_play(game);
         break;
-    case SETTINGS:
+    case SETTINGS_VIDEO:
         basic_settings(game);
+        break;
+    case SETTINGS_CONTROLS:
+        draw_settings_navbar(game);
+        break;
+    case SETTINGS_AUDIO:
+        draw_settings_navbar(game);
         break;
     case HELP:
         basic_help(game);

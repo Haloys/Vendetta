@@ -16,7 +16,7 @@
 
 const navbar_element_t elements[] = {
     {"PLAY", ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
-    {"SETTINGS", ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS},
+    {"SETTINGS", ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS_VIDEO},
     {"HELP", ICON_HELP, {633, 42}, {80, 30}, HELP},
     {"QUIT", ICON_QUIT, {827, 42}, {80, 30}, MAIN_MENU}
 };

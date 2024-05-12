@@ -20,7 +20,9 @@
 typedef enum state_e {
     LOADING_SCREEN,
     MAIN_MENU,
-    SETTINGS,
+    SETTINGS_VIDEO,
+    SETTINGS_CONTROLS,
+    SETTINGS_AUDIO,
     HELP,
     PLAYING,
     PAUSE,
