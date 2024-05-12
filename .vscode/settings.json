@@ -14,16 +14,5 @@
     "[c]": {
         "editor.semanticHighlighting.enabled": true,
         "editor.defaultFormatter": "ms-vscode.cpptools"
-    },
-    "files.associations": {
-        "*.ejs": "html",
-        "stdlib.h": "c",
-        "inventory.h": "c",
-        "my_game.h": "c",
-        "graphics.h": "c",
-        "audio.h": "c",
-        "soundbuffer.h": "c",
-        "time.h": "c",
-        "concepts": "c"
     }
 }
