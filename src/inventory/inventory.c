@@ -170,11 +170,6 @@ void basic_inventory(game_data_t *game)
     draw_equipment_slots(game, &grid);
     display_item_images(game, grid);
     handle_drag_and_drop(game, grid);
-    insert_item_in_inventory(game, "mask2", 1);
-    insert_item_in_inventory(game, "shoes", 1);
-    insert_item_in_inventory(game, "armor", 1);
-    insert_item_in_inventory(game, "pistol", 1);
-    insert_item_in_inventory(game, "oxycodone", 1);
     destroy_grid(&grid);
     free(grid);
 }
