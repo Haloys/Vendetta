@@ -25,7 +25,7 @@ static int calculate_fade_in_alpha(fade_in_params_t *params)
     return alpha > full_opacity ? full_opacity : alpha;
 }
 
-void fade_in_all(fade_in_params_t *params)
+void fade_in_all(fade_in_params_t *params, int *ret)
 {
     int alpha;
     sfColor color;
@@ -43,6 +43,9 @@ void fade_in_all(fade_in_params_t *params)
         sfText_setFillColor(params->text, color);
         sfRenderWindow_drawText(params->window, params->text, NULL);
         sfRenderWindow_display(params->window);
+        *ret = do_check(params->window, ret);
+        if (*ret == 1)
+            return;
     }
 }
 
@@ -62,7 +65,7 @@ static int calculate_alpha(fade_in_out_params_t *params)
     return alpha;
 }
 
-void fade_in_out_all(fade_in_out_params_t *params)
+void fade_in_out_all(fade_in_out_params_t *params, int *ret)
 {
     int alpha;
     sfColor color;
@@ -80,5 +83,8 @@ void fade_in_out_all(fade_in_out_params_t *params)
         sfText_setFillColor(params->text, color);
         sfRenderWindow_drawText(params->window, params->text, NULL);
         sfRenderWindow_display(params->window);
+        *ret = do_check(params->window, ret);
+        if (*ret == 1)
+            return;
     }
 }

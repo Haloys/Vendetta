@@ -30,7 +30,7 @@ typedef struct fade_in_out_params_s {
     int fade_out_start_ms;
 } fade_in_out_params_t;
 
-void fade_in_all(fade_in_params_t *params);
-void fade_in_out_all(fade_in_out_params_t *params);
+void fade_in_all(fade_in_params_t *params, int *ret);
+void fade_in_out_all(fade_in_out_params_t *params, int *ret);
 
 #endif /* !FADE_IN_OUT_H_ */
