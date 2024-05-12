@@ -133,4 +133,6 @@ sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 // Inventory
 void basic_inventory(game_data_t *game);
 
+#define ICON_PATH "assets/images/game_icon/icon.png"
+
 #endif /* MY_GAME_H */
