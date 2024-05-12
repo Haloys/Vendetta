@@ -10,7 +10,6 @@
 #include <time.h>
 #include "my_game.h"
 #include "my.h"
-#include "score.h"
 
 static sfVector2f get_text_position(const settings_navbar_element_t
     *element, sfText *text)

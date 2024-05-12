@@ -10,8 +10,6 @@
 
     #include <SFML/Audio.h>
 
-static const char *SCORE_FILE_PATH = "./database/highest_score";
-
 static const char *IMAGES[] = {
     "assets/images/loading_screen/bg_load1.png",
     "assets/images/loading_screen/bg_load2.png",
@@ -37,11 +35,47 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/arrow_l2.png",
     "assets/images/main_menu/arrow_r3.png",
     "assets/images/main_menu/arrow_l3.png",
+    "assets/images/inventory/man.png",
+    "assets/images/inventory/items/aidkit.png",
+    "assets/images/inventory/items/armor.png",
+    "assets/images/inventory/items/armor2.png",
+    "assets/images/inventory/items/armor3.png",
+    "assets/images/inventory/items/bandage.png",
+    "assets/images/inventory/items/bone.png",
+    "assets/images/inventory/items/cash.png",
+    "assets/images/inventory/items/ephedrine.png",
+    "assets/images/inventory/items/first_book.png",
+    "assets/images/inventory/items/goldcoin.png",
+    "assets/images/inventory/items/heroin.png",
+    "assets/images/inventory/items/joint.png",
+    "assets/images/inventory/items/keya.png",
+    "assets/images/inventory/items/keyb.png",
+    "assets/images/inventory/items/keyc.png",
+    "assets/images/inventory/items/knife.png",
+    "assets/images/inventory/items/lighter_blue.png",
+    "assets/images/inventory/items/mask1.png",
+    "assets/images/inventory/items/mask2.png",
+    "assets/images/inventory/items/mask3.png",
+    "assets/images/inventory/items/mask4.png",
+    "assets/images/inventory/items/mk18.png",
+    "assets/images/inventory/items/old_paper.png",
+    "assets/images/inventory/items/oxy.png",
+    "assets/images/inventory/items/pistolmk2.png",
+    "assets/images/inventory/items/pumpshotgun.png",
+    "assets/images/inventory/items/ring.png",
+    "assets/images/inventory/items/rolex.png",
+    "assets/images/inventory/items/second_book.png",
+    "assets/images/inventory/items/shoes.png",
+    "assets/images/inventory/items/shoes_blue.png",
+    "assets/images/inventory/items/shoes_green.png",
+    "assets/images/inventory/items/shoes_red.png",
+    "assets/images/inventory/items/third_book.png",
+    "assets/images/inventory/items/whiskey.png",
+    "assets/images/inventory/stats.png",
     "assets/images/main_menu/help_dialogues.png",
 };
 
 static const char *SOUND_L[] = {
-    // "assets/sounds/hitmarker.ogg",
     "assets/sounds/oui.ogg",
 };
 
@@ -76,6 +110,43 @@ typedef enum texture_id_e {
     ARROW_L2,
     ARROW_R3,
     ARROW_L3,
+    MAN_SKIN,
+    AIDKIT,
+    ARMOR,
+    ARMOR2,
+    ARMOR3,
+    BANDAGE,
+    BONE,
+    CASH,
+    EPHEDRINE,
+    FIRST_BOOK,
+    GOLDCOIN,
+    HEROIN,
+    JOINT,
+    KEYA,
+    KEYB,
+    KEYC,
+    KNIFE,
+    LIGHTER_BLUE,
+    MASK1,
+    MASK2,
+    MASK3,
+    MASK4,
+    MK18,
+    OLD_PAPER,
+    OXY,
+    PISTOLMK2,
+    PUMPSHOTGUN,
+    RING,
+    ROLEX,
+    SECOND_BOOK,
+    SHOES,
+    SHOES_BLUE,
+    SHOES_GREEN,
+    SHOES_RED,
+    THIRD_BOOK,
+    WHISKEY,
+    STATS,
     DIALOGUES,
 } texture_id_t;
 
@@ -352,6 +423,413 @@ static const game_sprite_t SPRITES[] = {
         .position = {521, 399}
     },
     {
+        .id = MAN_SKIN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 637,
+            .height = 610
+        },
+        .scale = 1,
+        .position = {760, 280}
+    },
+    {
+        .id = AIDKIT,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = ARMOR,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = ARMOR2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = ARMOR3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = BANDAGE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = BONE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = CASH,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = EPHEDRINE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = FIRST_BOOK,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = GOLDCOIN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = HEROIN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = JOINT,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = KEYA,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = KEYB,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = KEYC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = KNIFE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = LIGHTER_BLUE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = MASK1,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = MASK2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = MASK3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = MASK4,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = MK18,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = OLD_PAPER,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = OXY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = PISTOLMK2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = PUMPSHOTGUN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = RING,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = ROLEX,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = SECOND_BOOK,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = SHOES,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = SHOES_BLUE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = SHOES_GREEN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = SHOES_RED,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = THIRD_BOOK,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = WHISKEY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 60,
+            .height = 60
+        },
+        .scale = 1,
+        .position = {0, 0}
+    },
+    {
+        .id = STATS,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 319,
+            .height = 317
+        },
+        .scale = 1,
+        .position = {1385, 575}
+    },
+    {
         .id = DIALOGUES,
         .rect = {
             .left = 0,
@@ -391,6 +869,43 @@ typedef enum sprite_id_e {
     SP_ARROW_L2,
     SP_ARROW_R3,
     SP_ARROW_L3,
+    SP_MAN_SKIN,
+    SP_AIDKIT,
+    SP_ARMOR,
+    SP_ARMOR2,
+    SP_ARMOR3,
+    SP_BANDAGE,
+    SP_BONE,
+    SP_CASH,
+    SP_EPHEDRINE,
+    SP_FIRST_BOOK,
+    SP_GOLDCOIN,
+    SP_HEROIN,
+    SP_JOINT,
+    SP_KEYA,
+    SP_KEYB,
+    SP_KEYC,
+    SP_KNIFE,
+    SP_LIGHTER_BLUE,
+    SP_MASK1,
+    SP_MASK2,
+    SP_MASK3,
+    SP_MASK4,
+    SP_MK18,
+    SP_OLD_PAPER,
+    SP_OXY,
+    SP_PISTOLMK2,
+    SP_PUMPSHOTGUN,
+    SP_RING,
+    SP_ROLEX,
+    SP_SECOND_BOOK,
+    SP_SHOES,
+    SP_SHOES_BLUE,
+    SP_SHOES_GREEN,
+    SP_SHOES_RED,
+    SP_THIRD_BOOK,
+    SP_WHISKEY,
+    SP_STATS,
     SP_DIALOGUES,
 } sprite_id_t;
 

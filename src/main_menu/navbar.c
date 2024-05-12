@@ -10,16 +10,8 @@
 #include <time.h>
 #include <string.h>
 
-#include "my_game.h"
+#include "navbar.h"
 #include "my.h"
-#include "score.h"
-
-const navbar_element_t elements[] = {
-    {"PLAY", ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
-    {"SETTINGS", ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS_VIDEO},
-    {"HELP", ICON_HELP, {633, 42}, {80, 30}, HELP},
-    {"QUIT", ICON_QUIT, {827, 42}, {80, 30}, MAIN_MENU}
-};
 
 static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 {
@@ -70,7 +62,10 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
 {
     const navbar_element_t *elem;
 
-    for (int i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
+    if (!game->is_navbar_visible) {
+        return;
+    }
+    for (size_t i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
         elem = &elements[i];
         if (mouse_event.x >= elem->position.x &&
             mouse_event.x <= elem->position.x + elem->size.x &&

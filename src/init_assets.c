@@ -6,6 +6,7 @@
 */
 
 #include "my_game.h"
+#include "music.h"
 #include "my.h"
 #include <stdlib.h>
 
