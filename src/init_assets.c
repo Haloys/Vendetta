@@ -14,6 +14,7 @@ static void set_sprite_attribut(sfSprite *sprite, game_sprite_t SPRITE)
     sfSprite_setTextureRect(sprite, SPRITE.rect);
     sfSprite_setPosition(sprite, SPRITE.position);
     sfSprite_setScale(sprite, (sfVector2f){SPRITE.scale, SPRITE.scale});
+    sfSprite_setOrigin(sprite, SPRITE.origin);
 }
 
 static int load_textures(game_assets_t *assets)
