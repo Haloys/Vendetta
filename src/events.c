@@ -52,14 +52,6 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
     if (evt->key.code == sfKeyP) {
         set_reso(game);
     }
-    if (evt->key.code == sfKeyLeft) {
-        if (game->speed > 0.1f)
-            game->speed -= 0.1f;
-    }
-    if (evt->key.code == sfKeyRight) {
-        if (game->speed < 2.0f)
-            game->speed += 0.1f;
-    }
     process_playing_event(game, evt);
 }
 
