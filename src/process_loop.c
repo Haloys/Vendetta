@@ -26,7 +26,7 @@ static void process_loop_update(game_data_t *game)
         draw_settings_navbar(game);
         break;
     case SETTINGS_AUDIO:
-        draw_settings_navbar(game);
+        draw_everything_sound(game);
         break;
     case HELP:
         basic_help(game);

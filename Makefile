@@ -70,6 +70,9 @@ SRC_UI    =   	loading_screen/loading.c \
 				settings/settings_fps.c \
 				settings/settings_screen.c \
 				settings/settings_utils.c \
+				settings/settings_audio.c \
+				settings/settings_audio_utils.c \
+				settings/settings_audio_utils2.c \
 				main_menu/help.c \
 				settings/settings_resolution.c
 
