@@ -7,7 +7,7 @@
 
 #include "my_game.h"
 
-void process_player_event(game_data_t *game, sfEvent *evt)
+void process_player_key_event(game_data_t *game, sfEvent *evt)
 {
     sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
     sfVector2f pos = sfSprite_getPosition(sp);
