@@ -5,6 +5,8 @@
 ** Process player events
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
 #include "gameplay.h"
 
