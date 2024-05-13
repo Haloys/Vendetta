@@ -10,35 +10,23 @@
 #include "main_menu.h"
 #include "gameplay.h"
 
+const process_state_t process_state[] = {
+    launch_loading,
+    basic_play,
+    basic_settings,
+    draw_settings_navbar,
+    draw_everything_sound,
+    basic_help,
+    process_playing_gameplay,
+    basic_inventory
+};
+
 static void process_loop_update(game_data_t *game)
 {
-    switch (game->state) {
-    case LOADING_SCREEN:
-        launch_loading(game);
-        break;
-    case MAIN_MENU:
-        basic_play(game);
-        break;
-    case SETTINGS_VIDEO:
-        basic_settings(game);
-        break;
-    case SETTINGS_CONTROLS:
-        draw_settings_navbar(game);
-        break;
-    case SETTINGS_AUDIO:
-        draw_everything_sound(game);
-        break;
-    case HELP:
-        basic_help(game);
-        break;
-    case PLAYING:
-        process_playing_gameplay(game);
-        break;
-    case INVENTORY:
-        basic_inventory(game);
-        break;
-    case PAUSE:
-        break;
+    for (size_t i = 0; i < STATE_COUNT; ++i) {
+        if (game->state == i) {
+            process_state[i](game);
+        }
     }
 }
 
