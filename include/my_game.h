@@ -40,6 +40,27 @@ typedef struct player_data_s {
     int item_attack;
 } player_data_t;
 
+typedef struct slider_s {
+    sfRectangleShape *bg_music;
+    sfCircleShape *thumb_music;
+    sfRectangleShape *bg_global;
+    sfCircleShape *thumb_global;
+    sfRectangleShape *bg_ambient;
+    sfCircleShape *thumb_ambient;
+    float min_music;
+    float max_music;
+    float min_global;
+    float max_global;
+    float min_ambient;
+    float max_ambient;
+    sfVector2f pos_music;
+    sfVector2f pos_global;
+    sfVector2f pos_ambient;
+    float value_music;
+    float value_global;
+    float value_ambient;
+} slider_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -64,6 +85,7 @@ typedef struct game_data_s {
     bool is_navbar_visible;
     sfVector2f mouse_pos;
     player_data_t *player_data;
+    slider_t slider;
 } game_data_t;
 
 // Init
@@ -100,6 +122,17 @@ void set_reso_text(game_data_t *game);
 void set_reso(game_data_t *game);
 void set_utils_text(game_data_t *game);
 void arrow_l_fps(game_data_t *game);
+void draw_everything_sound(game_data_t *game);
+void init_slider_music(slider_t *slider, sfVector2f position,
+    float min, float max);
+void init_slider_global(slider_t *slider, sfVector2f position,
+    float min, float max);
+void init_slider_ambient(slider_t *slider, sfVector2f position,
+    float min, float max);
+void update_slider_ambient(game_data_t *const game, slider_t *slider);
+void update_slider_music(game_data_t *const game, slider_t *slider);
+void update_slider_global(game_data_t *const game, slider_t *slider);
+void draw_slider(slider_t *sl, game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
