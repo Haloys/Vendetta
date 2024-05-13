@@ -1,14 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta
 ** File description:
-** my_radar project
+** Process Loop
 */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "my_game.h"
 #include "my.h"
+#include "main_menu.h"
 
 static void process_loop_update(game_data_t *game)
 {

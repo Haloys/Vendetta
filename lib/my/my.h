@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my.h
+** Vendetta / Header
 ** File description:
-** dd
+** My Header
 */
 
 #include <stdarg.h>

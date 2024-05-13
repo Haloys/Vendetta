@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_game.h
+** Vendetta / Header
 ** File description:
-** dd
+** My Game
 */
 
 #ifndef MY_GAME_H
@@ -17,18 +17,8 @@
     #include "resources.h"
     #include "inventory.h"
     #include "game_utils.h"
-
-typedef enum state_e {
-    LOADING_SCREEN,
-    MAIN_MENU,
-    SETTINGS_VIDEO,
-    SETTINGS_CONTROLS,
-    SETTINGS_AUDIO,
-    HELP,
-    PLAYING,
-    PAUSE,
-    INVENTORY,
-} state_t;
+    #include "state.h"
+    #include "navbar.h"
 
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
@@ -36,29 +26,6 @@ typedef struct game_assets_s {
     sfSoundBuffer *sound[SOUND_COUNT];
     sfMusic *music[MUSIC_COUNT];
 } game_assets_t;
-
-#define NAVBAR_TEXT_COLOR sfColor_fromRGB(197, 197, 197)
-#define NAVBAR_LINE_COLOR sfColor_fromRGBA(255, 255, 255, 76)
-#define ACTIVE_NAVBAR_TEXT_COLOR sfColor_fromRGB(51, 217, 122)
-
-typedef struct navbar_element_s {
-    const char *label;
-    sprite_id_t icon;
-    sfVector2f position;
-    sfVector2f size;
-    state_t target_state;
-} navbar_element_t;
-
-typedef struct settings_navbar_element_s {
-    const char *label;
-    sfVector2f position;
-    sfVector2f size;
-} settings_navbar_element_t;
-
-typedef struct text_draw_info_settings_s {
-    sfVector2f text_position;
-    sfColor hover_color;
-} text_draw_info_settings_t;
 
 typedef struct player_data_s {
     inventory_t *inventory;
@@ -99,26 +66,32 @@ typedef struct game_data_s {
     player_data_t *player_data;
 } game_data_t;
 
-void draw_navbar(game_data_t *game);
-void draw_active_navbar_line(game_data_t *game,
-    float pos_x, float size_x);
-
-
+// Init
 int print_game_help(void);
-
-void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
-
 int init_game(game_data_t *game);
-void start_game_loop(game_data_t *game);
-void process_events(game_data_t *game);
-void process_game_loop(game_data_t *game);
 int init_assets(game_data_t *game);
+void start_game_loop(game_data_t *game);
+void set_mouse_pos(game_data_t *game);
+
+// Events
+void process_events(game_data_t *game);
+
+// Main Loop
+void process_game_loop(game_data_t *game);
+void launch_loading(game_data_t *game);
+
+// Free
 int destroy_game_data(game_data_t *game, int code);
+
+// Utils
 sfSprite *get_sprite(game_data_t *game, sprite_id_t id);
 int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
-void launch_loading(game_data_t *game);
-void basic_menu(game_data_t *game);
+void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+void start_music(game_assets_t *assets, music_id_t id);
+
+// Settings
 void set_screen_text(game_data_t *game);
 void set_fps_text(game_data_t *game);
 void load_arrow(game_data_t *game);
@@ -126,11 +99,7 @@ void set_screen_size(game_data_t *game);
 void set_reso_text(game_data_t *game);
 void set_reso(game_data_t *game);
 void set_utils_text(game_data_t *game);
-
-
-// Score manager
-void start_music(game_assets_t *assets, music_id_t id);
-sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+void arrow_l_fps(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);

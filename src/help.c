@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** list
+** Vendetta
 ** File description:
-** list manager
+** Help
 */
 
 #include <stdio.h>

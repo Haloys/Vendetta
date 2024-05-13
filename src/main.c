@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta
 ** File description:
-** my_radar project
+** Main
 */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+
 #include "my_game.h"
 #include "my.h"
 

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel [WSL: Ubuntu]
+** Vendetta / Inventory
 ** File description:
-** inventory_utils
+** Inventory Utils
 */
 
 #include <stdlib.h>
