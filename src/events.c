@@ -101,16 +101,11 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
         process_key_event(game, evt);
 }
 
-static void annalyse_event(game_data_t *game, sfEvent *evt)
-{
-    process_global_events(game, evt);
-}
-
 void process_events(game_data_t *game)
 {
     sfEvent evt;
 
     while (sfRenderWindow_pollEvent(game->window, &evt)) {
-        annalyse_event(game, &evt);
+        process_global_events(game, &evt);
     }
 }
