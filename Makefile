@@ -35,7 +35,8 @@ CPPFLAGS    = -iquote ./include
 
 LDFLAGS     = -L./lib
 
-LDLIBS      = -lmy -lcsfml-audio -lcsfml-graphics -lcsfml-system -lcsfml-window -lm
+LDLIBS      = 	-lmy -lcsfml-audio -lcsfml-graphics -lcsfml-system \
+				-lcsfml-window -lm
 
 LIB_PATH    = ./lib/my
 
@@ -83,7 +84,8 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/handle_drag_drop.c \
 
 SRC_GAMEPLAY	=	gameplay/gameplay.c \
-					gameplay/events.c
+					gameplay/events.c \
+					gameplay/events/movement.c
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
@@ -91,8 +93,8 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
 
-OBJ =         $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
-              $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
+OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
+			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
 
 
 ###########

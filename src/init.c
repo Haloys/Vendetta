@@ -8,6 +8,17 @@
 #include "my_game.h"
 #include "my.h"
 
+static int init_map_pos(game_data_t *game)
+{
+    sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
+    sfVector2f pos = sfSprite_getPosition(sp);
+
+    if (sp == NULL)
+        return RET_FAIL;
+    game->player_data->map_pos = pos;
+    return RET_NONE;
+}
+
 static int init_inventory(game_data_t *game)
 {
     game->player_data = malloc(sizeof(player_data_t));
@@ -25,7 +36,8 @@ static int init_inventory(game_data_t *game)
     game->player_data->health = 10;
     game->player_data->attack = 10;
     game->player_data->max_health = 15;
-    game->player_data->pos = (sfVector2i){0, 0};
+    game->player_data->pos_offset = (sfVector2f){0, 0};
+    init_map_pos(game);
     return RET_NONE;
 }
 

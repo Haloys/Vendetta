@@ -905,8 +905,8 @@ static const game_sprite_t SPRITES[] = {
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 1920,
-            .height = 1080
+            .width = 3640,
+            .height = 2660
         },
         .scale = 1,
         .position = {0, 0},
@@ -917,8 +917,8 @@ static const game_sprite_t SPRITES[] = {
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 1920,
-            .height = 1080
+            .width = 3640,
+            .height = 2660
         },
         .scale = 1,
         .position = {0, 0},
@@ -932,8 +932,8 @@ static const game_sprite_t SPRITES[] = {
             .width = 110,
             .height = 110
         },
-        .scale = 1,
-        .position = {500, 500},
+        .scale = 0.65,
+        .position = {1920 / 2, 1080 / 2},
         .origin = {55, 55}
     }
 };
