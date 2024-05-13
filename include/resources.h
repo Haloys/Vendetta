@@ -73,7 +73,7 @@ static const char *IMAGES[] = {
     "assets/images/inventory/items/whiskey.png",
     "assets/images/inventory/stats.png",
     "assets/images/main_menu/help_dialogues.png",
-    "assets/images/maps/map_1.png",
+    "assets/images/maps/map_1.jpg",
     "assets/images/maps/cols_map_1.png",
     "assets/images/player/hand_spritesheet.png"
 };
