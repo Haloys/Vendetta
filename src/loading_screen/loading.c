@@ -110,12 +110,11 @@ static void page_show(game_data_t *game, sfClock *clock, int page, int *ret)
     }
 }
 
-int do_check(sfRenderWindow *window, int ret)
+void do_check(sfRenderWindow *window, int *ret)
 {
     if (handle_loading_event(window) == 1) {
-        ret = 1;
+        *ret = 1;
     }
-    return ret;
 }
 
 void launch_loading(game_data_t *game)
@@ -130,7 +129,7 @@ void launch_loading(game_data_t *game)
         page_show(game, clock, page, &ret);
         sfRenderWindow_display(game->window);
         do {
-            ret = do_check(game->window, ret);
+            do_check(game->window, &ret);
             if (ret == 1) {
                 game->state = MAIN_MENU;
                 sfClock_destroy(clock);
