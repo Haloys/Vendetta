@@ -1,15 +1,18 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Main Menu / Navbar
 ** File description:
-** main_menu
+** Navbar Settings
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
+
 #include "my_game.h"
 #include "my.h"
+#include "main_menu.h"
 
 static sfVector2f get_text_position(const settings_navbar_element_t
     *element, sfText *text)
@@ -92,7 +95,7 @@ static void draw_settings_element(game_data_t *game,
     draw_text(game, element, draw_info.text_position);
 }
 
-int get_clicked_element_index(game_data_t *game)
+static int get_clicked_element_index(game_data_t *game)
 {
     const settings_navbar_element_t elements[] = {
         {"Video", {115, 140}, {153, 52}},

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta / Events
 ** File description:
-** my_radar project
+** Event Handling
 */
 
 #include "my_game.h"

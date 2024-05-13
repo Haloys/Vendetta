@@ -1,13 +1,10 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Loading Screen
 ** File description:
-** loading
+** Loading Screen
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
 #include "my_game.h"
 #include "my.h"
 #include "fade_in_out.h"

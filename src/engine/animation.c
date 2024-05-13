@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** animation
+** Vendetta / Game Engine
 ** File description:
-** dd
+** Animation
 */
 
 #include "animation.h"

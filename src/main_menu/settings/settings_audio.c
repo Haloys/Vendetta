@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "my_game.h"
 #include "my.h"
 

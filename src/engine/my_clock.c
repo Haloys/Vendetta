@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta / Game Engine
 ** File description:
-** my_radar project
+** Clock
 */
 
 #include "my_clock.h"

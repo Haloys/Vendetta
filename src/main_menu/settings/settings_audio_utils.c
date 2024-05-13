@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
+
 #include "my_game.h"
 #include "my.h"
 

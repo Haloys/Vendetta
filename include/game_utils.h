@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** game_utils.h
+** Vendetta / Header
 ** File description:
-** dd
+** Game Utils
 */
 
 #ifndef GAME_UTILS

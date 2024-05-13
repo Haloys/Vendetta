@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_clock.h
+** Vendetta / Header
 ** File description:
-** dd
+** Clock
 */
 
 #ifndef MY_CLOCK_H

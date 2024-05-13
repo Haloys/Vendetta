@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** resources.h
+** Vendetta / Header
 ** File description:
-** dd
+** Resources
 */
 
 #ifndef RESOURCES_H

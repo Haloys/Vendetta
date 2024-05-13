@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel [WSL: Ubuntu]
+** Vendetta / Inventory
 ** File description:
-** handle_drag_drop
+** Handle Drag And Drop
 */
 
 #include "inventory.h"

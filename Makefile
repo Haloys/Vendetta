@@ -65,16 +65,16 @@ SRC_FILES            =   	help.c \
 
 SRC_UI    =   	loading_screen/loading.c \
 				main_menu/main_menu.c \
-				main_menu/navbar.c \
-				main_menu/settings.c \
-				settings/settings_fps.c \
-				settings/settings_screen.c \
-				settings/settings_utils.c \
-				settings/settings_audio.c \
-				settings/settings_audio_utils.c \
-				settings/settings_audio_utils2.c \
-				main_menu/help.c \
-				settings/settings_resolution.c
+				main_menu/help/help_menu.c \
+				main_menu/navbar/navbar.c \
+				main_menu/navbar/navbar_settings.c \
+				main_menu/settings/settings_fps.c \
+				main_menu/settings/settings_screen.c \
+				main_menu/settings/settings_utils.c \
+				main_menu/settings/settings_resolution.c \
+				main_menu/settings/settings_audio.c \
+				main_menu/settings/settings_audio_utils.c \
+				main_menu/settings/settings_audio_utils2.c \
 
 SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_utils.c \

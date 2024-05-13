@@ -1,17 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Game Engine
 ** File description:
-** loading
+** Fade In And Out
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
 #include <math.h>
 
 #include "my_game.h"
-#include "my.h"
 #include "fade_in_out.h"
 
 static int calculate_fade_in_alpha(fade_in_params_t *params)

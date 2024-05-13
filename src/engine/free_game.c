@@ -1,11 +1,10 @@
 /*
 ** EPITECH PROJECT, 2024
-** animation
+** Vendetta / Game Engine
 ** File description:
-** dd
+** Free game data
 */
 
-#include <stdlib.h>
 #include "my_game.h"
 #include "my.h"
 

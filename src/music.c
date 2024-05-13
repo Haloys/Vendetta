@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta
 ** File description:
-** my_radar project
+** Music
 */
 
 #include "my_game.h"

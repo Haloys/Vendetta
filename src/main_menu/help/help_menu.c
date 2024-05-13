@@ -1,16 +1,17 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Main Menu / Help Menu
 ** File description:
-** main_menu
+** Help
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "my_game.h"
 #include "my.h"
-
+#include "main_menu.h"
 
 void draw_help_texts(game_data_t *game)
 {
