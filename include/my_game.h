@@ -20,6 +20,8 @@
     #include "state.h"
     #include "navbar.h"
 
+    #define ICON_PATH "assets/images/game_icon/icon.png"
+
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
     sfSprite *sprite[SPRITE_COUNT];
@@ -34,10 +36,6 @@ typedef struct player_data_s {
     int speed;
     int armor;
     int attack;
-    int item_health;
-    int item_speed;
-    int item_armor;
-    int item_attack;
     sfVector2i pos;
 } player_data_t;
 
@@ -137,7 +135,5 @@ void draw_slider(slider_t *sl, game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
-
-#define ICON_PATH "assets/images/game_icon/icon.png"
 
 #endif /* MY_GAME_H */
