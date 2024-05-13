@@ -8,6 +8,7 @@
 #include "my_game.h"
 #include "my.h"
 #include "main_menu.h"
+#include "gameplay.h"
 
 static void process_loop_update(game_data_t *game)
 {
@@ -31,6 +32,7 @@ static void process_loop_update(game_data_t *game)
         basic_help(game);
         break;
     case PLAYING:
+        process_playing_gameplay(game);
         break;
     case INVENTORY:
         basic_inventory(game);

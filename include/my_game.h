@@ -38,6 +38,7 @@ typedef struct player_data_s {
     int item_speed;
     int item_armor;
     int item_attack;
+    sfVector2i pos;
 } player_data_t;
 
 typedef struct slider_s {

@@ -25,6 +25,7 @@ static int init_inventory(game_data_t *game)
     game->player_data->health = 10;
     game->player_data->attack = 10;
     game->player_data->max_health = 15;
+    game->player_data->pos = (sfVector2i){0, 0};
     return RET_NONE;
 }
 

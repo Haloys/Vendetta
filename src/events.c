@@ -6,6 +6,7 @@
 */
 
 #include "my_game.h"
+#include "gameplay.h"
 
 static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
 {
@@ -59,6 +60,7 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
         if (game->speed < 2.0f)
             game->speed += 0.1f;
     }
+    process_player_key_event(game, evt);
 }
 
 static void process_mouse_move_event(game_data_t *game)

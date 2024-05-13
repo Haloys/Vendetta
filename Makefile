@@ -82,10 +82,14 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/display_items.c \
 						inventory/handle_drag_drop.c \
 
+SRC_GAMEPLAY	=	gameplay/gameplay.c \
+					gameplay/events.c
+
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
             $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
 
 OBJ =         $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
               $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
