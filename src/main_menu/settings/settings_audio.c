@@ -32,18 +32,11 @@ static void set_sound_text(game_data_t *game)
     sfText_destroy(text3);
 }
 
-static void draw_slider_line(game_data_t *game)
-{
-    init_slider_music(&game->slider, (sfVector2f){420.0f, 280.0f}, 420.0f, 643.0f);
-    init_slider_ambient(&game->slider, (sfVector2f){420.0f, 340.0f}, 420.0f, 643.0f);
-    init_slider_global(&game->slider, (sfVector2f){420.0f, 400.0f}, 420.0f, 643.0f);
-}
-
 static void draw_global_sound(game_data_t *game)
 {
     sfRectangleShape *line = sfRectangleShape_create();
     sfVector2f line_pos = {427, 285};
-    sfVector2f line_size = {85, 5};
+    sfVector2f line_size = {game->sg_x, 5};
 
     sfRectangleShape_setPosition(line, line_pos);
     sfRectangleShape_setSize(line, line_size);
@@ -56,7 +49,7 @@ static void draw_music_sound(game_data_t *game)
 {
     sfRectangleShape *line = sfRectangleShape_create();
     sfVector2f line_pos = {427, 346};
-    sfVector2f line_size = {20, 5};
+    sfVector2f line_size = {game->sm_x, 5};
 
     sfRectangleShape_setPosition(line, line_pos);
     sfRectangleShape_setSize(line, line_size);
@@ -69,7 +62,7 @@ static void draw_ambient_sound(game_data_t *game)
 {
     sfRectangleShape *line = sfRectangleShape_create();
     sfVector2f line_pos = {427, 407};
-    sfVector2f line_size = {130, 5};
+    sfVector2f line_size = {game->sa_x, 5};
 
     sfRectangleShape_setPosition(line, line_pos);
     sfRectangleShape_setSize(line, line_size);
@@ -78,15 +71,33 @@ static void draw_ambient_sound(game_data_t *game)
     sfRectangleShape_destroy(line);
 }
 
+static void draw_bg_line(game_data_t *game)
+{
+    sfRectangleShape *line;
+    sfVector2f line_pos = {427, 285};
+    sfVector2f line_size = {243, 5};
+    int nbr_line = 3;
+
+    for (int i = 0; i < nbr_line; i++) {
+        line = sfRectangleShape_create();
+        if (i > 0)
+            line_pos.y += 61;
+        sfRectangleShape_setPosition(line, line_pos);
+        sfRectangleShape_setSize(line, line_size);
+        sfRectangleShape_setFillColor(line, sfColor_fromRGB(180, 180, 180));
+        sfRenderWindow_drawRectangleShape(game->window, line, NULL);
+        sfRectangleShape_destroy(line);
+    }
+}
+
 void draw_everything_sound(game_data_t *game)
 {
     basic_menu(game);
     draw_active_navbar_line(game, 290.0f, 270.0f);
     draw_settings_navbar(game);
     set_sound_text(game);
-    draw_slider_line(game);
-    draw_slider(&game->slider, game);
-    update_slider_music(game, &game->slider);
-    update_slider_ambient(game, &game->slider);
-    update_slider_global(game, &game->slider);
+    draw_bg_line(game);
+    draw_global_sound(game);
+    draw_music_sound(game);
+    draw_ambient_sound(game);
 }

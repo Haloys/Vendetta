@@ -84,6 +84,9 @@ typedef struct game_data_s {
     bool hover_slot_array[3];
     bool is_navbar_visible;
     sfVector2f mouse_pos;
+    int sg_x;
+    int sm_x;
+    int sa_x;
     player_data_t *player_data;
     slider_t slider;
 } game_data_t;
