@@ -6,6 +6,7 @@
 */
 
 #include "my_game.h"
+#include "gameplay.h"
 
 static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
 {
@@ -51,14 +52,7 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
     if (evt->key.code == sfKeyP) {
         set_reso(game);
     }
-    if (evt->key.code == sfKeyLeft) {
-        if (game->speed > 0.1f)
-            game->speed -= 0.1f;
-    }
-    if (evt->key.code == sfKeyRight) {
-        if (game->speed < 2.0f)
-            game->speed += 0.1f;
-    }
+    process_playing_event(game, evt);
 }
 
 static void process_mouse_move_event(game_data_t *game)
@@ -99,16 +93,11 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
         process_key_event(game, evt);
 }
 
-static void annalyse_event(game_data_t *game, sfEvent *evt)
-{
-    process_global_events(game, evt);
-}
-
 void process_events(game_data_t *game)
 {
     sfEvent evt;
 
     while (sfRenderWindow_pollEvent(game->window, &evt)) {
-        annalyse_event(game, &evt);
+        process_global_events(game, &evt);
     }
 }

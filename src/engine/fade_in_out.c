@@ -39,7 +39,7 @@ void fade_in_all(fade_in_params_t *params, int *ret)
         sfText_setFillColor(params->text, color);
         sfRenderWindow_drawText(params->window, params->text, NULL);
         sfRenderWindow_display(params->window);
-        *ret = do_check(params->window, ret);
+        do_check(params->window, ret);
         if (*ret == 1)
             return;
     }
@@ -79,7 +79,7 @@ void fade_in_out_all(fade_in_out_params_t *params, int *ret)
         sfText_setFillColor(params->text, color);
         sfRenderWindow_drawText(params->window, params->text, NULL);
         sfRenderWindow_display(params->window);
-        *ret = do_check(params->window, ret);
+        do_check(params->window, ret);
         if (*ret == 1)
             return;
     }
