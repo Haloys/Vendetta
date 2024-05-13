@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Main Menu / Navbar
 ** File description:
-** main_menu
+** Navbar
 */
 
 #include <stdlib.h>
@@ -28,10 +28,11 @@ static void handle_navbar_hover(game_data_t *game,
     const navbar_element_t *element, int i, sfText *text)
 {
     game->hover_array[i] = (game->mouse_pos.x >= element->position.x &&
-                            game->mouse_pos.x <= element->position.x + element->size.x &&
-                            game->mouse_pos.y >= element->position.y &&
-                            game->mouse_pos.y <= element->position.y + element->size.y);
-    sfText_setColor(text, game->hover_array[i] ? sfColor_fromRGB(0, 120, 255) : NAVBAR_TEXT_COLOR);
+            game->mouse_pos.x <= element->position.x + element->size.x &&
+            game->mouse_pos.y >= element->position.y &&
+            game->mouse_pos.y <= element->position.y + element->size.y);
+    sfText_setColor(text, game->hover_array[i] ?
+        sfWhite : NAVBAR_TEXT_COLOR);
 }
 
 static void draw_navbar_element(game_data_t *game,
@@ -56,12 +57,13 @@ static void draw_navbar_element(game_data_t *game,
     sfRectangleShape_destroy(hover_area);
 }
 
-void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
+static const navbar_element_t *get_clicked_element(game_data_t *game,
+    sfMouseButtonEvent mouse_event)
 {
     const navbar_element_t *elem;
 
     if (!game->is_navbar_visible) {
-        return;
+        return NULL;
     }
     for (size_t i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
         elem = &elements[i];
@@ -69,8 +71,24 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
             mouse_event.x <= elem->position.x + elem->size.x &&
             mouse_event.y >= elem->position.y &&
             mouse_event.y <= elem->position.y + elem->size.y) {
-            game->state = elem->target_state;
-            break;
+            return elem;
+        }
+    }
+    return NULL;
+}
+
+void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
+{
+    const navbar_element_t *clicked_element =
+        get_clicked_element(game, mouse_event);
+
+    if (!game->is_navbar_visible)
+        return;
+    if (clicked_element) {
+        if (strcmp(clicked_element->label, "QUIT") == 0) {
+            sfRenderWindow_close(game->window);
+        } else {
+            game->state = clicked_element->target_state;
         }
     }
 }

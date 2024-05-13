@@ -1,14 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta
 ** File description:
-** my_radar project
+** Process Loop
 */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "my_game.h"
 #include "my.h"
+#include "main_menu.h"
 
 static void process_loop_update(game_data_t *game)
 {
@@ -19,8 +18,14 @@ static void process_loop_update(game_data_t *game)
     case MAIN_MENU:
         basic_play(game);
         break;
-    case SETTINGS:
+    case SETTINGS_VIDEO:
         basic_settings(game);
+        break;
+    case SETTINGS_CONTROLS:
+        draw_settings_navbar(game);
+        break;
+    case SETTINGS_AUDIO:
+        draw_everything_sound(game);
         break;
     case HELP:
         basic_help(game);

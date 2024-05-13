@@ -1,16 +1,16 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Main Menu / Settings
 ** File description:
-** settings_utils
+** Settings Utils
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "my_game.h"
 #include "my.h"
-
 
 void set_utils_text(game_data_t *game)
 {

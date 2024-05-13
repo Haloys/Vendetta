@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta
 ** File description:
-** my_radar project
+** Main
 */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+
 #include "my_game.h"
 #include "my.h"
 
@@ -24,7 +24,7 @@ static int start_game()
     game_data_t game = {
         .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = MAIN_MENU,
+        .state = LOADING_SCREEN,
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
         .help_text = sfText_create(),

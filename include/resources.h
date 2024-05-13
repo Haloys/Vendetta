@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** resources.h
+** Vendetta / Header
 ** File description:
-** dd
+** Resources
 */
 
 #ifndef RESOURCES_H
@@ -72,6 +72,7 @@ static const char *IMAGES[] = {
     "assets/images/inventory/items/third_book.png",
     "assets/images/inventory/items/whiskey.png",
     "assets/images/inventory/stats.png",
+    "assets/images/main_menu/help_dialogues.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -137,7 +138,8 @@ typedef enum texture_id_e {
     SHOES_RED,
     THIRD_BOOK,
     WHISKEY,
-    STATS
+    STATS,
+    DIALOGUES,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -311,7 +313,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 21
         },
         .scale = 1,
-        .position = {113, 56}
+        .position = {113, 52}
     },
     {
         .id = ICON_SETTINGS,
@@ -322,7 +324,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 22
         },
         .scale = 1,
-        .position = {325, 54}
+        .position = {325, 52}
     },
     {
         .id = ICON_HELP,
@@ -333,7 +335,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 21
         },
         .scale = 1,
-        .position = {594, 54}
+        .position = {594, 52}
     },
     {
         .id = ICON_QUIT,
@@ -344,7 +346,7 @@ static const game_sprite_t SPRITES[] = {
             .height = 19
         },
         .scale = 1,
-        .position = {788, 56}
+        .position = {788, 52}
     },
     {
         .id = ARROW_R1,
@@ -818,7 +820,18 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1385, 575}
-    }
+    },
+    {
+        .id = DIALOGUES,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1184,
+            .height = 675
+        },
+        .scale = 1,
+        .position = {22, 203}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -885,6 +898,7 @@ typedef enum sprite_id_e {
     SP_THIRD_BOOK,
     SP_WHISKEY,
     SP_STATS,
+    SP_DIALOGUES,
 } sprite_id_t;
 
 typedef enum sound_id_e {

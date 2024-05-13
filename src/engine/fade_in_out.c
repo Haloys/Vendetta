@@ -1,17 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** B-MUL-200-PAR-2-1-myrpg-maxence.bunel
+** Vendetta / Game Engine
 ** File description:
-** loading
+** Fade In And Out
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
 #include <math.h>
 
 #include "my_game.h"
-#include "my.h"
 #include "fade_in_out.h"
 
 static int calculate_fade_in_alpha(fade_in_params_t *params)
@@ -25,7 +21,7 @@ static int calculate_fade_in_alpha(fade_in_params_t *params)
     return alpha > full_opacity ? full_opacity : alpha;
 }
 
-void fade_in_all(fade_in_params_t *params)
+void fade_in_all(fade_in_params_t *params, int *ret)
 {
     int alpha;
     sfColor color;
@@ -43,6 +39,9 @@ void fade_in_all(fade_in_params_t *params)
         sfText_setFillColor(params->text, color);
         sfRenderWindow_drawText(params->window, params->text, NULL);
         sfRenderWindow_display(params->window);
+        *ret = do_check(params->window, ret);
+        if (*ret == 1)
+            return;
     }
 }
 
@@ -62,7 +61,7 @@ static int calculate_alpha(fade_in_out_params_t *params)
     return alpha;
 }
 
-void fade_in_out_all(fade_in_out_params_t *params)
+void fade_in_out_all(fade_in_out_params_t *params, int *ret)
 {
     int alpha;
     sfColor color;
@@ -80,5 +79,8 @@ void fade_in_out_all(fade_in_out_params_t *params)
         sfText_setFillColor(params->text, color);
         sfRenderWindow_drawText(params->window, params->text, NULL);
         sfRenderWindow_display(params->window);
+        *ret = do_check(params->window, ret);
+        if (*ret == 1)
+            return;
     }
 }

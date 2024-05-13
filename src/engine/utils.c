@@ -1,11 +1,10 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta / Game Engine
 ** File description:
-** my_radar project
+** Utils
 */
 
-#include <stdlib.h>
 #include "my_game.h"
 
 inline int play_sound(game_data_t *game, sound_id_t id)

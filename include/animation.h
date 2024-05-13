@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** animation.h
+** Vendetta / Header
 ** File description:
-** dd
+** Animation
 */
 
 #ifndef ANIMATION_H

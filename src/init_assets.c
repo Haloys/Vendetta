@@ -1,14 +1,13 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_radar
+** Vendetta
 ** File description:
-** my_radar project
+** Initialize Assets
 */
 
 #include "my_game.h"
 #include "music.h"
 #include "my.h"
-#include <stdlib.h>
 
 static void set_sprite_attribut(sfSprite *sprite, game_sprite_t SPRITE)
 {
