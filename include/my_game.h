@@ -19,6 +19,7 @@
     #include "game_utils.h"
     #include "state.h"
     #include "navbar.h"
+    #include "save.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 

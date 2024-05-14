@@ -36,6 +36,26 @@ void basic_menu(game_data_t *game)
     draw_navbar(game);
 }
 
+void set_hover_save_button(game_data_t *game)
+{
+    game->hover_save_button = (game->mouse_pos.x >= 147 &&
+    game->mouse_pos.x <= 382 &&
+    game->mouse_pos.y >= 148 && game->mouse_pos.y <= 198);
+}
+
+void set_hover_game_slots(game_data_t *game)
+{
+    game->hover_slot_array[0] = (game->mouse_pos.x >= 147 &&
+    game->mouse_pos.x <= 599 &&
+    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
+    game->hover_slot_array[1] = (game->mouse_pos.x >= 734 &&
+    game->mouse_pos.x <= 1186 &&
+    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
+    game->hover_slot_array[2] = (game->mouse_pos.x >= 1321 &&
+    game->mouse_pos.x <= 1773 &&
+    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
+}
+
 static void draw_game_slot(game_data_t *game, float rect_x, float rect_y,
     int slot_index)
 {

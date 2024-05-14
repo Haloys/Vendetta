@@ -13,7 +13,7 @@
     #include "main_menu.h"
     #include "gameplay.h"
 
-    #define STATE_COUNT 8
+    #define STATE_COUNT 9
 
 typedef enum state_e {
     LOADING_SCREEN,
@@ -23,8 +23,8 @@ typedef enum state_e {
     SETTINGS_AUDIO,
     HELP,
     PLAYING,
-    PAUSE,
     INVENTORY,
+    SAVE,
 } state_t;
 
 typedef void (*process_state_t)(game_data_t *game);
