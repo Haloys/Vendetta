@@ -85,7 +85,8 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 
 SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/events.c \
-					gameplay/events/movement.c
+					gameplay/events/movement.c \
+					gameplay/utils.c
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \

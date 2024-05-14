@@ -15,7 +15,7 @@
 
 static int insert_existing_item(game_data_t *game, char *name, int qty, int i)
 {
-    inventory_slot_t *slot = &game->player_data->inventory->slots[i];
+    inventory_slot_t *slot = &game->player->inventory->slots[i];
 
     if (slot->item != NULL && strcmp(slot->item->name, name) == 0 &&
     slot->item->is_stackable == true) {
@@ -32,7 +32,7 @@ static int insert_existing_item(game_data_t *game, char *name, int qty, int i)
 
 static void remove_item_from_inventory(game_data_t *game, int slot_id)
 {
-    inventory_slot_t *slot = &game->player_data->inventory->slots[slot_id];
+    inventory_slot_t *slot = &game->player->inventory->slots[slot_id];
 
     if (slot->item != NULL) {
         slot->item = NULL;
@@ -44,7 +44,7 @@ static void remove_item_from_inventory(game_data_t *game, int slot_id)
 
 static void use_item(game_data_t *game, int slot_id)
 {
-    inventory_slot_t *slot = &game->player_data->inventory->slots[slot_id];
+    inventory_slot_t *slot = &game->player->inventory->slots[slot_id];
 
     if (slot->item != NULL && slot->item->is_usable == true) {
         slot->quantity--;
@@ -52,13 +52,13 @@ static void use_item(game_data_t *game, int slot_id)
         if (slot->item->effect != NULL) {
             slot->item->effect(game);
         } else {
-            game->player_data->armor += slot->item->armor;
-            game->player_data->speed += slot->item->speed;
-            game->player_data->health = game->player_data->health +
-            slot->item->health > game->player_data->max_health ?
-            game->player_data->max_health : game->player_data->health +
+            game->player->armor += slot->item->armor;
+            game->player->speed += slot->item->speed;
+            game->player->health = game->player->health +
+            slot->item->health > game->player->max_health ?
+            game->player->max_health : game->player->health +
             slot->item->health;
-            game->player_data->attack += slot->item->damage;
+            game->player->attack += slot->item->damage;
         }
         if (slot->quantity == 0) {
             remove_item_from_inventory(game, slot_id);
@@ -68,27 +68,27 @@ static void use_item(game_data_t *game, int slot_id)
 
 void calculate_player_stats(game_data_t *game)
 {
-    game->player_data->armor = 10;
-    game->player_data->speed = 10;
-    game->player_data->max_health = 15;
-    game->player_data->attack = 10;
+    game->player->armor = 10;
+    game->player->speed = 10;
+    game->player->max_health = 15;
+    game->player->attack = 10;
     for (size_t i = 25; i < 29; i++) {
-        if (game->player_data->inventory->slots[i].item != NULL) {
-            game->player_data->armor +=
-            game->player_data->inventory->slots[i].item->armor;
-            game->player_data->speed +=
-            game->player_data->inventory->slots[i].item->speed;
-            game->player_data->max_health +=
-            game->player_data->inventory->slots[i].item->health;
-            game->player_data->attack +=
-            game->player_data->inventory->slots[i].item->damage;
+        if (game->player->inventory->slots[i].item != NULL) {
+            game->player->armor +=
+            game->player->inventory->slots[i].item->armor;
+            game->player->speed +=
+            game->player->inventory->slots[i].item->speed;
+            game->player->max_health +=
+            game->player->inventory->slots[i].item->health;
+            game->player->attack +=
+            game->player->inventory->slots[i].item->damage;
         }
     }
 }
 
 void use_or_trash(game_data_t *game, int slot_id, int item_id)
 {
-    inventory_slot_t *slot = &game->player_data->inventory->slots[item_id];
+    inventory_slot_t *slot = &game->player->inventory->slots[item_id];
 
     if (slot->item != NULL) {
         if (slot_id == 29) {
@@ -102,8 +102,8 @@ void use_or_trash(game_data_t *game, int slot_id, int item_id)
 
 void swap_items(game_data_t *game, int dest, int src)
 {
-    inventory_slot_t *slot = &game->player_data->inventory->slots[dest];
-    inventory_slot_t *slot_bis = &game->player_data->inventory->slots[src];
+    inventory_slot_t *slot = &game->player->inventory->slots[dest];
+    inventory_slot_t *slot_bis = &game->player->inventory->slots[src];
     inventory_slot_t tmp = {0};
 
     if ((dest == 25 && slot_bis->item->type != ITEM_HELMET) ||
@@ -133,7 +133,7 @@ void insert_item_in_inventory(game_data_t *game, char *item_name, int qty)
             return;
     }
     for (int j = 0; j < 25 && count > 0; j++) {
-        slot = &game->player_data->inventory->slots[j];
+        slot = &game->player->inventory->slots[j];
         if (slot->item == NULL &&
         is_valid_weight(game,
         get_item_by_name(item_name)->weight * qty) == 1) {
