@@ -40,7 +40,7 @@ sfRectangleShape *create_rectangle(game_data_t *game, sfVector2f pos,
 
 int is_valid_weight(game_data_t *game, float added_weight)
 {
-    if (game->player_data->inventory->total_weight + added_weight > 25) {
+    if (game->player->inventory->total_weight + added_weight > 25) {
         return 0;
     }
     return 1;
@@ -48,11 +48,11 @@ int is_valid_weight(game_data_t *game, float added_weight)
 
 void update_inventory_weight(game_data_t *game)
 {
-    game->player_data->inventory->total_weight = 0;
+    game->player->inventory->total_weight = 0;
     for (int i = 0; i < 29; i++) {
-        if (game->player_data->inventory->slots[i].item != NULL) {
-            game->player_data->inventory->total_weight +=
-                game->player_data->inventory->slots[i].weight;
+        if (game->player->inventory->slots[i].item != NULL) {
+            game->player->inventory->total_weight +=
+                game->player->inventory->slots[i].weight;
         }
     }
 }
