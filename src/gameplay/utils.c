@@ -9,6 +9,5 @@
 
 sfColor get_pixel_color(sfImage *image, int x, int y)
 {
-    sfColor color = sfImage_getPixel(image, x, y);
-    return color;
+    return sfImage_getPixel(image, x, y);
 }
