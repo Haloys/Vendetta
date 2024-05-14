@@ -11,11 +11,16 @@
 static int init_map_pos(game_data_t *game)
 {
     sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
-    sfVector2f pos = sfSprite_getPosition(sp);
+    sfSprite *sp_cols_map = get_sprite(game, SP_COLS_MAP_1);
+    sfVector2f pos = {0, 0};
 
-    if (sp == NULL)
+    if (sp == NULL || sp_cols_map == NULL)
         return RET_FAIL;
+    pos = sfSprite_getPosition(sp);
     game->player_data->map_pos = pos;
+    game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
+    if (game->cols_map == NULL)
+        return RET_FAIL;
     return RET_NONE;
 }
 

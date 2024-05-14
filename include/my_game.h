@@ -86,6 +86,7 @@ typedef struct game_data_s {
     sfVector2f mouse_pos;
     player_data_t *player_data;
     slider_t slider;
+    sfImage *cols_map;
 } game_data_t;
 
 // Init
