@@ -117,6 +117,23 @@ void do_check(sfRenderWindow *window, int *ret)
     }
 }
 
+static bool process_page(game_data_t *game, sfClock *clock, int page,
+    int *ret)
+{
+    sfTime elapsed_time;
+
+    page_show(game, clock, page, ret);
+    sfRenderWindow_display(game->window);
+    do {
+        do_check(game->window, ret);
+        if (*ret == 1) {
+            return true;
+        }
+        elapsed_time = sfClock_getElapsedTime(clock);
+    } while (sfTime_asMilliseconds(elapsed_time) < 6500);
+    return false;
+}
+
 void launch_loading(game_data_t *game)
 {
     sfClock *clock = sfClock_create();
@@ -126,17 +143,9 @@ void launch_loading(game_data_t *game)
     start_music(&game->assets, M_LOADING);
     for (int page = 1; page <= 4; page++) {
         sfClock_restart(clock);
-        page_show(game, clock, page, &ret);
-        sfRenderWindow_display(game->window);
-        do {
-            do_check(game->window, &ret);
-            if (ret == 1) {
-                game->state = MAIN_MENU;
-                sfClock_destroy(clock);
-                return;
-            }
-            elapsed_time = sfClock_getElapsedTime(clock);
-        } while (sfTime_asMilliseconds(elapsed_time) < 6500);
+        if (process_page(game, clock, page, &ret) == true) {
+            break;
+        }
     }
     sfClock_destroy(clock);
 }
