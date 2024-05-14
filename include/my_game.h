@@ -39,6 +39,12 @@ typedef struct player_data_s {
     int attack;
     sfVector2f pos_offset;
     sfVector2f map_pos;
+    sfClock *clock;
+    float pspeed;
+    sfVector2f direction;
+    sfVector2f position;
+    float rotation;
+    float target_rot;
 } player_data_t;
 
 typedef struct slider_s {
@@ -88,6 +94,8 @@ typedef struct game_data_s {
     player_data_t *player;
     slider_t slider;
     sfImage *cols_map;
+    int key_state;
+    int key_change;
 } game_data_t;
 
 // Init

@@ -86,9 +86,10 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/handle_drag_drop.c \
 
 SRC_GAMEPLAY	=	gameplay/gameplay.c \
-					gameplay/events.c \
 					gameplay/events/movement.c \
-					gameplay/utils.c
+					gameplay/utils.c \
+					gameplay/key_management.c \
+					gameplay/is_key.c
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \

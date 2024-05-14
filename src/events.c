@@ -56,8 +56,9 @@ static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
     sfRenderWindow_setView(window, view);
 }
 
-static void process_key_event(game_data_t *game, sfEvent *evt)
+static void process_key_event(game_data_t *game, sfEvent *evt, bool pressed)
 {
+    update_key(game, evt->key.code, pressed);
     if (evt->key.code == sfKeyS) {
         set_screen_size(game);
         sfRenderWindow_setSize(game->window, (sfVector2u) {
@@ -78,7 +79,8 @@ static void process_mouse_move_event(game_data_t *game)
     set_hover_game_slots(game);
 }
 
-static void process_mouse_button_pressed(game_data_t *game, sfMouseButtonEvent *evt)
+static void process_mouse_button_pressed(game_data_t *game,
+    sfMouseButtonEvent *evt)
 {
     remap_event_coords(game->window, &evt->x, &evt->y);
     handle_navbar_click(game, *evt);
@@ -104,8 +106,9 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
         break;
     case sfEvtKeyPressed:
     case sfEvtKeyReleased:
-        update_key(game, evt->key.code, evt->type == sfEvtKeyPressed);
-        process_key_event(game, evt);
+        process_key_event(game, evt, evt->type == sfEvtKeyPressed);
+        break;
+    default:
         break;
     }
 }
