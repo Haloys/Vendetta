@@ -17,13 +17,14 @@ static void process_key_left(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
 
     if (game->player_data->pos_offset.x > 0
         || game->player_data->map_pos.x <= VIEW_WIDTH) {
-        sfSprite_setPosition(sp, (sfVector2f){pos.x - 10, pos.y});
-        game->player_data->pos_offset.x -= 10;
+        sfSprite_setPosition(sp, (sfVector2f){pos.x - MOVE_SPEED, pos.y});
+        game->player_data->pos_offset.x -= MOVE_SPEED;
     } else {
-        sfSprite_setPosition(sp_map, (sfVector2f){pos_map.x + 10, pos_map.y});
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x + MOVE_SPEED, pos_map.y});
     }
     sfSprite_setRotation(sp, 180);
-    game->player_data->map_pos.x -= 10;
+    game->player_data->map_pos.x -= MOVE_SPEED;
 }
 
 static void process_key_right(game_data_t *game, sfSprite *sp,
@@ -34,12 +35,13 @@ static void process_key_right(game_data_t *game, sfSprite *sp,
 
     if (game->player_data->pos_offset.x < 0
         || game->player_data->map_pos.x + VIEW_WIDTH >= 3640) {
-        sfSprite_setPosition(sp, (sfVector2f){pos.x + 10, pos.y});
-        game->player_data->pos_offset.x += 10;
+        sfSprite_setPosition(sp, (sfVector2f){pos.x + MOVE_SPEED, pos.y});
+        game->player_data->pos_offset.x += MOVE_SPEED;
     } else
-        sfSprite_setPosition(sp_map, (sfVector2f){pos_map.x - 10, pos_map.y});
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x - MOVE_SPEED, pos_map.y});
     sfSprite_setRotation(sp, 0);
-    game->player_data->map_pos.x += 10;
+    game->player_data->map_pos.x += MOVE_SPEED;
 }
 
 static void process_key_up(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
@@ -49,12 +51,13 @@ static void process_key_up(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
 
     if (game->player_data->pos_offset.y > 0
         || game->player_data->map_pos.y <= VIEW_HEIGHT) {
-        sfSprite_setPosition(sp, (sfVector2f){pos.x, pos.y - 10});
-        game->player_data->pos_offset.y -= 10;
+        sfSprite_setPosition(sp, (sfVector2f){pos.x, pos.y - MOVE_SPEED});
+        game->player_data->pos_offset.y -= MOVE_SPEED;
     } else {
-        sfSprite_setPosition(sp_map, (sfVector2f){pos_map.x, pos_map.y + 10});
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x, pos_map.y + MOVE_SPEED});
     }
-    game->player_data->map_pos.y -= 10;
+    game->player_data->map_pos.y -= MOVE_SPEED;
     sfSprite_setRotation(sp, 270);
 }
 
@@ -65,12 +68,13 @@ static void process_key_down(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
 
     if (game->player_data->pos_offset.y < 0
         || game->player_data->map_pos.y + VIEW_HEIGHT >= 2660) {
-        sfSprite_setPosition(sp, (sfVector2f){pos.x, pos.y + 10});
-        game->player_data->pos_offset.y += 10;
+        sfSprite_setPosition(sp, (sfVector2f){pos.x, pos.y + MOVE_SPEED});
+        game->player_data->pos_offset.y += MOVE_SPEED;
     } else {
-        sfSprite_setPosition(sp_map, (sfVector2f){pos_map.x, pos_map.y - 10});
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x, pos_map.y - MOVE_SPEED});
     }
-    game->player_data->map_pos.y += 10;
+    game->player_data->map_pos.y += MOVE_SPEED;
     sfSprite_setRotation(sp, 90);
 }
 

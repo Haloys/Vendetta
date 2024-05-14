@@ -14,6 +14,8 @@
     #define VIEW_WIDTH WINDOW_WIDTH / 2
     #define VIEW_HEIGHT WINDOW_HEIGHT / 2
 
+    #define MOVE_SPEED 10
+
 void process_playing_gameplay(game_data_t *game);
 
 void process_events(game_data_t *game);
