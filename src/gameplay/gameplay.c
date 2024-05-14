@@ -7,17 +7,32 @@
 
 #include "my_game.h"
 
-void display_player(game_data_t *game)
+static void display_player(game_data_t *game)
 {
-    const sfSprite *player = get_sprite(game, SP_PLAYER_HAND);
+    sfSprite *sp_player = get_sprite(game, SP_PLAYER_HAND);
 
-    sfRenderWindow_drawSprite(game->window, player, NULL);
+    if (sp_player == NULL)
+        return;
+    sfSprite_setPosition(sp_player, game->player->position);
+    sfSprite_setRotation(sp_player, game->player->rotation);
+    sfRenderWindow_drawSprite(game->window, sp_player, NULL);
+}
+
+static void display_map(game_data_t *game)
+{
+    sfSprite *sp_map = get_sprite(game, SP_MAP_1);
+
+    if (sp_map == NULL)
+        return;
+    sfRenderWindow_drawSprite(game->window, sp_map, NULL);
 }
 
 void process_playing_gameplay(game_data_t *game)
 {
-    const sfSprite *map = get_sprite(game, SP_MAP_1);
+    sfTime time = sfClock_getElapsedTime(game->player->clock);
 
-    sfRenderWindow_drawSprite(game->window, map, NULL);
+    sfClock_restart(game->player->clock);
+    update_player(game, time);
+    display_map(game);
     display_player(game);
 }
