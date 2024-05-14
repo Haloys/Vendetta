@@ -76,6 +76,8 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/settings/settings_audio.c \
 				main_menu/settings/settings_audio_utils.c \
 				main_menu/settings/settings_audio_utils2.c \
+				main_menu/save/save_ui.c \
+				main_menu/save/save_text_type.c \
 
 SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_utils.c \

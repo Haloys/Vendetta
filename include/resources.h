@@ -75,7 +75,8 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/help_dialogues.png",
     "assets/images/maps/map_1.jpg",
     "assets/images/maps/cols_map_1.png",
-    "assets/images/player/hand_spritesheet.png"
+    "assets/images/player/hand_spritesheet.png",
+    "assets/images/main_menu/load_save_help.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -145,7 +146,8 @@ typedef enum texture_id_e {
     DIALOGUES,
     MAP_1,
     COLS_MAP_1,
-    PLAYER_HAND
+    PLAYER_HAND,
+    LOAD_SAVE_HELP,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -935,7 +937,19 @@ static const game_sprite_t SPRITES[] = {
         .scale = 0.65,
         .position = {1920 / 2, 1080 / 2},
         .origin = {55, 55}
-    }
+    },
+    {
+        .id = LOAD_SAVE_HELP,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 990,
+            .height = 97
+        },
+        .scale = 1,
+        .position = {428, 300},
+        .origin = {0, 0}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1005,7 +1019,8 @@ typedef enum sprite_id_e {
     SP_DIALOGUES,
     SP_MAP_1,
     SP_COLS_MAP_1,
-    SP_PLAYER_HAND
+    SP_PLAYER_HAND,
+    SP_LOAD_SAVE_HELP,
 } sprite_id_t;
 
 typedef enum sound_id_e {

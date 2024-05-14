@@ -8,6 +8,23 @@
 #include "my_game.h"
 #include "gameplay.h"
 
+static void process_mouse_click_play(game_data_t *game)
+{
+    for (int i = 0; i < 3; i++) {
+        if (game->hover_slot_array[i]) {
+            game->state = PLAYING;
+            break;
+        }
+    }
+}
+
+static void process_mouse_click_save(game_data_t *game)
+{
+    if (game->hover_save_button) {
+        game->state = SAVE;
+    }
+}
+
 static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
 {
     sfVector2f coords = sfRenderWindow_mapPixelToCoords(window,
@@ -58,14 +75,8 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
 static void process_mouse_move_event(game_data_t *game)
 {
     set_mouse_pos(game);
-    game->hover_save_button = (game->mouse_pos.x >= 147 && game->mouse_pos.x <= 382 &&
-    game->mouse_pos.y >= 148 && game->mouse_pos.y <= 198);
-    game->hover_slot_array[0] = (game->mouse_pos.x >= 147 && game->mouse_pos.x <= 599 &&
-    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
-    game->hover_slot_array[1] = (game->mouse_pos.x >= 734 && game->mouse_pos.x <= 1186 &&
-    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
-    game->hover_slot_array[2] = (game->mouse_pos.x >= 1321 && game->mouse_pos.x <= 1773 &&
-    game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
+    set_hover_save_button(game);
+    set_hover_game_slots(game);
 }
 
 static void process_global_events(game_data_t *game, sfEvent *evt)
@@ -83,6 +94,8 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
             &evt->mouseButton.y);
         handle_navbar_click(game, evt->mouseButton);
         handle_settings_click(game);
+        process_mouse_click_play(game);
+        process_mouse_click_save(game);
         return;
     }
     if (evt->type == sfEvtMouseMoved) {

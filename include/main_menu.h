@@ -18,5 +18,7 @@ void draw_active_navbar_line(game_data_t *game,
     float pos_x, float size_x);
 void setup_game_slots(game_data_t *game);
 void basic_play(game_data_t *game);
+void set_hover_save_button(game_data_t *game);
+void set_hover_game_slots(game_data_t *game);
 
 #endif /* !MAIN_MENU_H_ */
