@@ -86,6 +86,10 @@ typedef struct game_data_s {
     bool is_navbar_visible;
     sfVector2f mouse_pos;
     player_data_t *player;
+    int sg_x;
+    int sm_x;
+    int sa_x;
+    player_data_t *player_data;
     slider_t slider;
     sfImage *cols_map;
 } game_data_t;

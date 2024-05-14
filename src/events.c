@@ -65,9 +65,9 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
         });
     }
     if (evt->key.code == sfKeyQ)
-        arrow_l_fps(game);
+        game->sm_x -= 5;
     if (evt->key.code == sfKeyP) {
-        set_reso(game);
+        game->sm_x += 5;
     }
     process_playing_event(game, evt);
 }
