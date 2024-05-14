@@ -8,12 +8,12 @@
 #ifndef NAVBAR_H_
     #define NAVBAR_H_
 
-#include "my_game.h"
-#include "state.h"
+    #include "my_game.h"
+    #include "state.h"
 
-#define NAVBAR_TEXT_COLOR sfColor_fromRGB(197, 197, 197)
-#define NAVBAR_LINE_COLOR sfColor_fromRGBA(255, 255, 255, 76)
-#define ACTIVE_NAVBAR_TEXT_COLOR sfColor_fromRGB(51, 217, 122)
+    #define NAVBAR_TEXT_COLOR sfColor_fromRGB(197, 197, 197)
+    #define NAVBAR_LINE_COLOR sfColor_fromRGBA(255, 255, 255, 76)
+    #define ACTIVE_NAVBAR_TEXT_COLOR sfColor_fromRGB(51, 217, 122)
 
 typedef struct navbar_element_s {
     const char *label;
