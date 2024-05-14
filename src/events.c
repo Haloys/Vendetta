@@ -69,7 +69,6 @@ static void process_key_event(game_data_t *game, sfEvent *evt)
     if (evt->key.code == sfKeyP) {
         set_reso(game);
     }
-    process_playing_event(game, evt);
 }
 
 static void process_mouse_move_event(game_data_t *game)
@@ -79,36 +78,41 @@ static void process_mouse_move_event(game_data_t *game)
     set_hover_game_slots(game);
 }
 
+static void process_mouse_button_pressed(game_data_t *game, sfMouseButtonEvent *evt)
+{
+    remap_event_coords(game->window, &evt->x, &evt->y);
+    handle_navbar_click(game, *evt);
+    handle_settings_click(game);
+    process_mouse_click_play(game);
+    process_mouse_click_save(game);
+}
+
 static void process_global_events(game_data_t *game, sfEvent *evt)
 {
-    if (evt->type == sfEvtResized) {
+    switch (evt->type) {
+    case sfEvtResized:
         window_resize_handler(game->window, &evt->size);
-        return;
-    }
-    if (evt->type == sfEvtClosed) {
+        break;
+    case sfEvtClosed:
         sfRenderWindow_close(game->window);
-        return;
-    }
-    if (evt->type == sfEvtMouseButtonPressed) {
-        remap_event_coords(game->window, &evt->mouseButton.x,
-            &evt->mouseButton.y);
-        handle_navbar_click(game, evt->mouseButton);
-        handle_settings_click(game);
-        process_mouse_click_play(game);
-        process_mouse_click_save(game);
-        return;
-    }
-    if (evt->type == sfEvtMouseMoved) {
+        break;
+    case sfEvtMouseButtonPressed:
+        process_mouse_button_pressed(game, &evt->mouseButton);
+        break;
+    case sfEvtMouseMoved:
         process_mouse_move_event(game);
-        return;
-    }
-    if (evt->type == sfEvtKeyPressed)
+        break;
+    case sfEvtKeyPressed:
+    case sfEvtKeyReleased:
+        update_key(game, evt->key.code, evt->type == sfEvtKeyPressed);
         process_key_event(game, evt);
+        break;
+    }
 }
 
 void process_events(game_data_t *game)
 {
-    sfEvent evt;
+    sfEvent evt = {0};
 
     while (sfRenderWindow_pollEvent(game->window, &evt)) {
         process_global_events(game, &evt);
