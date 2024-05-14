@@ -27,7 +27,7 @@ typedef enum state_e {
     INVENTORY,
 } state_t;
 
-typedef int (*process_state_t)(game_data_t *game);
+typedef void (*process_state_t)(game_data_t *game);
 
 extern const process_state_t process_state[];
 

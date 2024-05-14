@@ -8,7 +8,7 @@
 #ifndef MAIN_MENU_H_
     #define MAIN_MENU_H_
 
-#include "my_game.h"
+    #include "my_game.h"
 
 void basic_help(game_data_t *game);
 void draw_help_texts(game_data_t *game);
