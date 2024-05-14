@@ -18,7 +18,8 @@ const process_state_t process_state[] = {
     draw_everything_sound,
     basic_help,
     process_playing_gameplay,
-    basic_inventory
+    basic_inventory,
+    basic_save,
 };
 
 static void process_loop_update(game_data_t *game)
