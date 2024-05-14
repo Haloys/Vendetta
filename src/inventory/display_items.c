@@ -33,7 +33,7 @@ void display_item_images(game_data_t *game, sfRectangleShape **grid)
     char *weight_txt = malloc(6);
 
     for (int i = 0; i < COUNT; i++) {
-        slot = &game->player_data->inventory->slots[i];
+        slot = &game->player->inventory->slots[i];
         if (slot->item != NULL) {
             sprintf(qty_txt, "x%d", slot->quantity);
             sprintf(weight_txt, "%.1fkg", slot->weight);

@@ -110,34 +110,40 @@ static void page_show(game_data_t *game, sfClock *clock, int page, int *ret)
     }
 }
 
-int do_check(sfRenderWindow *window, int ret)
+void do_check(sfRenderWindow *window, int *ret)
 {
     if (handle_loading_event(window) == 1) {
-        ret = 1;
+        *ret = 1;
     }
-    return ret;
+}
+
+static bool process_page(game_data_t *game, int page, int *ret)
+{
+    sfTime elapsed_time = sfTime_Zero;
+    sfClock *clock = sfClock_create();
+
+    page_show(game, clock, page, ret);
+    sfRenderWindow_display(game->window);
+    do {
+        do_check(game->window, ret);
+        if (*ret == 1) {
+            game->state = MAIN_MENU;
+            sfClock_destroy(clock);
+            return true;
+        }
+        elapsed_time = sfClock_getElapsedTime(clock);
+    } while (sfTime_asMilliseconds(elapsed_time) < 6500);
+    return false;
 }
 
 void launch_loading(game_data_t *game)
 {
-    sfClock *clock = sfClock_create();
-    sfTime elapsed_time;
     int ret = 0;
 
     start_music(&game->assets, M_LOADING);
     for (int page = 1; page <= 4; page++) {
-        sfClock_restart(clock);
-        page_show(game, clock, page, &ret);
-        sfRenderWindow_display(game->window);
-        do {
-            ret = do_check(game->window, ret);
-            if (ret == 1) {
-                game->state = MAIN_MENU;
-                sfClock_destroy(clock);
-                return;
-            }
-            elapsed_time = sfClock_getElapsedTime(clock);
-        } while (sfTime_asMilliseconds(elapsed_time) < 6500);
+        if (process_page(game, page, &ret) == true) {
+            return;
+        }
     }
-    sfClock_destroy(clock);
 }

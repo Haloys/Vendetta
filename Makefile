@@ -35,7 +35,8 @@ CPPFLAGS    = -iquote ./include
 
 LDFLAGS     = -L./lib
 
-LDLIBS      = -lmy -lcsfml-audio -lcsfml-graphics -lcsfml-system -lcsfml-window -lm
+LDLIBS      = 	-lmy -lcsfml-audio -lcsfml-graphics -lcsfml-system \
+				-lcsfml-window -lm
 
 LIB_PATH    = ./lib/my
 
@@ -73,6 +74,9 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/settings/settings_utils.c \
 				main_menu/settings/settings_resolution.c \
 				main_menu/settings/settings_audio.c \
+				main_menu/save/save_ui.c \
+				main_menu/save/save_text_type.c \
+
 
 SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_utils.c \
@@ -80,13 +84,19 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/display_items.c \
 						inventory/handle_drag_drop.c \
 
+SRC_GAMEPLAY	=	gameplay/gameplay.c \
+					gameplay/events.c \
+					gameplay/events/movement.c \
+					gameplay/utils.c
+
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
             $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
 
-OBJ =         $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
-              $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
+OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
+			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
 
 
 ###########

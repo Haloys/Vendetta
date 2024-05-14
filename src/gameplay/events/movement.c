@@ -1,0 +1,130 @@
+/*
+** EPITECH PROJECT, 2024
+** Vendetta
+** File description:
+** Process player events
+*/
+
+#include <stdio.h>
+
+#include "my_game.h"
+#include "gameplay.h"
+
+static void process_key_left(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
+{
+    sfVector2f pos = sfSprite_getPosition(sp);
+    sfVector2f pos_map = sfSprite_getPosition(sp_map);
+    sfSprite *sp_cols_map = get_sprite(game, SP_COLS_MAP_1);
+    sfColor color = get_pixel_color(game->cols_map,
+        game->player->map_pos.x - RADAR_SIZE, game->player->map_pos.y);
+
+    if (color.r == 0)
+        return;
+    if (game->player->pos_offset.x > 0
+        || game->player->map_pos.x <= VIEW_WIDTH) {
+        sfSprite_setPosition(sp, (sfVector2f){pos.x - MOVE_SPEED, pos.y});
+        game->player->pos_offset.x -= MOVE_SPEED;
+    } else {
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x + MOVE_SPEED, pos_map.y});
+        sfSprite_setPosition(sp_cols_map,
+            (sfVector2f){pos_map.x + MOVE_SPEED, pos_map.y});
+    }
+    sfSprite_setRotation(sp, 180);
+    game->player->map_pos.x -= MOVE_SPEED;
+}
+
+static void process_key_right(game_data_t *game, sfSprite *sp,
+    sfSprite *sp_map)
+{
+    sfVector2f pos = sfSprite_getPosition(sp);
+    sfVector2f pos_map = sfSprite_getPosition(sp_map);
+    sfSprite *sp_cols_map = get_sprite(game, SP_COLS_MAP_1);
+    sfColor color = get_pixel_color(game->cols_map,
+        game->player->map_pos.x + RADAR_SIZE, game->player->map_pos.y);
+
+    if (color.r == 0)
+        return;
+    if (game->player->pos_offset.x < 0
+        || game->player->map_pos.x + VIEW_WIDTH >= 3640) {
+        sfSprite_setPosition(sp, (sfVector2f){pos.x + MOVE_SPEED, pos.y});
+        game->player->pos_offset.x += MOVE_SPEED;
+    } else {
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x - MOVE_SPEED, pos_map.y});
+        sfSprite_setPosition(sp_cols_map,
+            (sfVector2f){pos_map.x - MOVE_SPEED, pos_map.y});
+    }
+    sfSprite_setRotation(sp, 0);
+    game->player->map_pos.x += MOVE_SPEED;
+}
+
+static void process_key_up(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
+{
+    sfVector2f pos = sfSprite_getPosition(sp);
+    sfVector2f pos_map = sfSprite_getPosition(sp_map);
+    sfSprite *sp_cols_map = get_sprite(game, SP_COLS_MAP_1);
+    sfColor color = get_pixel_color(game->cols_map, game->player->map_pos.x,
+        game->player->map_pos.y - RADAR_SIZE);
+
+    if (color.r == 0)
+        return;
+    if (game->player->pos_offset.y > 0
+        || game->player->map_pos.y <= VIEW_HEIGHT) {
+        sfSprite_setPosition(sp, (sfVector2f){pos.x, pos.y - MOVE_SPEED});
+        game->player->pos_offset.y -= MOVE_SPEED;
+    } else {
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x, pos_map.y + MOVE_SPEED});
+        sfSprite_setPosition(sp_cols_map,
+            (sfVector2f){pos_map.x, pos_map.y + MOVE_SPEED});
+    }
+    game->player->map_pos.y -= MOVE_SPEED;
+    sfSprite_setRotation(sp, 270);
+}
+
+static void process_key_down(game_data_t *game, sfSprite *sp, sfSprite *sp_map)
+{
+    sfVector2f pos = sfSprite_getPosition(sp);
+    sfVector2f pos_map = sfSprite_getPosition(sp_map);
+    sfSprite *sp_cols_map = get_sprite(game, SP_COLS_MAP_1);
+    sfColor color = get_pixel_color(game->cols_map, game->player->map_pos.x,
+        game->player->map_pos.y + MOVE_SPEED);
+
+    if (color.r == 0)
+        return;
+    if (game->player->pos_offset.y < 0
+        || game->player->map_pos.y + VIEW_HEIGHT >= 2660) {
+        sfSprite_setPosition(sp, (sfVector2f){pos.x, pos.y + MOVE_SPEED});
+        game->player->pos_offset.y += MOVE_SPEED;
+    } else {
+        sfSprite_setPosition(sp_map,
+            (sfVector2f){pos_map.x, pos_map.y - MOVE_SPEED});
+        sfSprite_setPosition(sp_cols_map,
+            (sfVector2f){pos_map.x, pos_map.y - MOVE_SPEED});
+    }
+    game->player->map_pos.y += MOVE_SPEED;
+    sfSprite_setRotation(sp, 90);
+}
+
+void process_player_movement(game_data_t *game, sfKeyEvent *key)
+{
+    sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
+    sfSprite *sp_map = get_sprite(game, SP_MAP_1);
+    sfVector2f pos = sfSprite_getPosition(sp);
+    sfVector2f pos_map = sfSprite_getPosition(sp_map);
+
+    printf("offset x = %f, offset y = %f\n", game->player->pos_offset.x,
+        game->player->pos_offset.y);
+    if (key->code == sfKeyLeft)
+        process_key_left(game, sp, sp_map);
+    if (key->code == sfKeyRight)
+        process_key_right(game, sp, sp_map);
+    if (key->code == sfKeyUp)
+        process_key_up(game, sp, sp_map);
+    if (key->code == sfKeyDown)
+        process_key_down(game, sp, sp_map);
+    printf("pos.x = %f, pos.y = %f | pos_map.x = %f, pos_map.y = %f "
+        "| map_pos.x = %f, map_pos.y = %f\n\n", pos.x, pos.y, pos_map.x,
+    pos_map.y, game->player->map_pos.x, game->player->map_pos.y);
+}

@@ -8,23 +8,41 @@
 #include "my_game.h"
 #include "my.h"
 
+static int init_map_pos(game_data_t *game)
+{
+    sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
+    sfSprite *sp_cols_map = get_sprite(game, SP_COLS_MAP_1);
+    sfVector2f pos = {0, 0};
+
+    if (sp == NULL || sp_cols_map == NULL)
+        return RET_FAIL;
+    pos = sfSprite_getPosition(sp);
+    game->player->map_pos = pos;
+    game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
+    if (game->cols_map == NULL)
+        return RET_FAIL;
+    return RET_NONE;
+}
+
 static int init_inventory(game_data_t *game)
 {
-    game->player_data = malloc(sizeof(player_data_t));
-    game->player_data->inventory = malloc(sizeof(inventory_t));
-    if (game->player_data == NULL || game->player_data->inventory == NULL)
+    game->player = malloc(sizeof(player_data_t));
+    game->player->inventory = malloc(sizeof(inventory_t));
+    if (game->player == NULL || game->player->inventory == NULL)
         return RET_FAIL;
     for (int i = 0; i < 29; i++) {
-        game->player_data->inventory->slots[i].item = NULL;
-        game->player_data->inventory->slots[i].quantity = 0;
-        game->player_data->inventory->slots[i].weight = 0;
+        game->player->inventory->slots[i].item = NULL;
+        game->player->inventory->slots[i].quantity = 0;
+        game->player->inventory->slots[i].weight = 0;
     }
-    game->player_data->inventory->total_weight = 0;
-    game->player_data->armor = 10;
-    game->player_data->speed = 10;
-    game->player_data->health = 10;
-    game->player_data->attack = 10;
-    game->player_data->max_health = 15;
+    game->player->inventory->total_weight = 0;
+    game->player->armor = 10;
+    game->player->speed = 10;
+    game->player->health = 10;
+    game->player->attack = 10;
+    game->player->max_health = 15;
+    game->player->pos_offset = (sfVector2f){0, 0};
+    init_map_pos(game);
     return RET_NONE;
 }
 

@@ -37,7 +37,7 @@ static void draw_progbar(game_data_t *game)
 {
     sfRectangleShape *weight_bg = sfRectangleShape_create();
     sfRectangleShape *weight_bar = sfRectangleShape_create();
-    int width = game->player_data->inventory->total_weight * 600 / 25;
+    int width = game->player->inventory->total_weight * 600 / 25;
 
     sfRectangleShape_setPosition(weight_bg, (sfVector2f){220, 240});
     sfRectangleShape_setPosition(weight_bar, (sfVector2f){220, 240});
@@ -62,8 +62,8 @@ static void draw_title_and_progbar(game_data_t *game)
     sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_MAN_SKIN),
         NULL);
     sprintf(total_weight, "%.2f / 25.00 KG",
-    game->player_data->inventory->total_weight);
-    if (game->player_data->inventory->total_weight < 10.f)
+    game->player->inventory->total_weight);
+    if (game->player->inventory->total_weight < 10.f)
         subtitle = set_text(game, total_weight, 20, (sfVector2f){670, 190});
     else
         subtitle = set_text(game, total_weight, 20, (sfVector2f){660, 190});
@@ -114,10 +114,10 @@ static void draw_statistics(game_data_t *game)
     char *attack = malloc(3);
     sfText *attack_txt = NULL;
 
-    sprintf(health, "%d", game->player_data->max_health);
-    sprintf(armor, "%d", game->player_data->armor);
-    sprintf(speed, "%d", game->player_data->speed);
-    sprintf(attack, "%d", game->player_data->attack);
+    sprintf(health, "%d", game->player->max_health);
+    sprintf(armor, "%d", game->player->armor);
+    sprintf(speed, "%d", game->player->speed);
+    sprintf(attack, "%d", game->player->attack);
     attack_txt = set_text(game, attack, 20, (sfVector2f){1640, 782});
     sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_STATS), NULL);
     sfRenderWindow_drawText(game->window, attack_txt, NULL);

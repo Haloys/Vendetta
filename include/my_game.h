@@ -19,6 +19,9 @@
     #include "game_utils.h"
     #include "state.h"
     #include "navbar.h"
+    #include "save.h"
+
+    #define ICON_PATH "assets/images/game_icon/icon.png"
 
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
@@ -34,10 +37,8 @@ typedef struct player_data_s {
     int speed;
     int armor;
     int attack;
-    int item_health;
-    int item_speed;
-    int item_armor;
-    int item_attack;
+    sfVector2f pos_offset;
+    sfVector2f map_pos;
 } player_data_t;
 
 typedef struct slider_s {
@@ -84,11 +85,13 @@ typedef struct game_data_s {
     bool hover_slot_array[3];
     bool is_navbar_visible;
     sfVector2f mouse_pos;
+    player_data_t *player;
     int sg_x;
     int sm_x;
     int sa_x;
     player_data_t *player_data;
     slider_t slider;
+    sfImage *cols_map;
 } game_data_t;
 
 // Init
@@ -139,7 +142,5 @@ void draw_slider(slider_t *sl, game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
-
-#define ICON_PATH "assets/images/game_icon/icon.png"
 
 #endif /* MY_GAME_H */

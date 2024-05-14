@@ -26,10 +26,10 @@ static void select_sprite(game_data_t *game, int *is_dragging,
     for (size_t i = 0; i < 29; i++) {
         rect = sfRectangleShape_getGlobalBounds(grid[i]);
         if (sfFloatRect_contains(&rect, pos.x, pos.y) &&
-        game->player_data->inventory->slots[i].item != NULL) {
+        game->player->inventory->slots[i].item != NULL) {
             *is_dragging = i;
             *sprite = get_sprite(game,
-                game->player_data->inventory->slots[i].item->sprite_id);
+                game->player->inventory->slots[i].item->sprite_id);
         }
     }
 }

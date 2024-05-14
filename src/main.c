@@ -19,7 +19,7 @@ static int invalid_args(void)
     return RET_FAIL;
 }
 
-static int start_game()
+static int start_game(void)
 {
     game_data_t game = {
         .name = "Vendetta",
