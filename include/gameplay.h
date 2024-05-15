@@ -15,7 +15,14 @@
     #define VIEW_HEIGHT WINDOW_HEIGHT / 2
 
     #define PLAYER_MOVE_SPEED 150.f
-    #define RADAR_SIZE 30
+    #define RADAR_SIZE 10.f
+
+    #define ZOOM_SPEED 1.01f
+    #define ZOOM_MIN 0.5f
+
+    #define MIN(a, b) (b < a ? b : a)
+    #define MAX(a, b) (b > a ? b : a)
+    #define CLAMP(a, b, c) (MIN(MAX(a, b), c))
 
     #define PI 3.1415926535f
 
@@ -33,7 +40,9 @@ typedef enum keybinds_e {
     MoveLeft,
     Reset,
     Sprint,
-    Echap
+    Echap,
+    KeyPlus,
+    KeyMinus
 } keybinds_t;
 
 typedef struct sf_to_keybind_s {
@@ -52,7 +61,9 @@ static const sf_to_keybind_t KEYBINDS[] = {
     {sfKeyQ, MoveLeft},
     {sfKeyLShift, Sprint},
     {sfKeyR, Reset},
-    {sfKeyEscape, Echap}
+    {sfKeyEscape, Echap},
+    {sfKeyAdd, KeyPlus},
+    {sfKeySubtract, KeyMinus}
 };
 
 static const int KEYBINDS_COUNT = sizeof(KEYBINDS) / sizeof(sf_to_keybind_t);
@@ -73,10 +84,10 @@ void update_key(game_data_t *game, sfKeyCode code, int state);
 void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);
-void update_player_direction(game_data_t *game);
 
 // IS_KEY
 bool is_key_down(game_data_t *game, keybinds_t key);
+bool is_key_pressed(game_data_t *game, keybinds_t key);
 
 // MOVEMENT
 void process_key_left(game_data_t *game, sfSprite *sp_map, float scale);

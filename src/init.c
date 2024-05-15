@@ -8,6 +8,17 @@
 #include "my_game.h"
 #include "my.h"
 
+static int init_view(game_data_t *game)
+{
+    game->view_zoom = 1;
+    game->target_zoom = 1;
+    game->view = sfView_createFromRect(
+        (sfFloatRect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT});
+    if (game->view == NULL)
+        return RET_FAIL;
+    return RET_NONE;
+}
+
 static int init_map_pos(game_data_t *game)
 {
     sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
@@ -18,7 +29,6 @@ static int init_map_pos(game_data_t *game)
     if (sp == NULL || sp_cols_map == NULL || game->player->clock == NULL)
         return RET_FAIL;
     pos = sfSprite_getPosition(sp);
-    game->player->map_pos = pos;
     game->player->pspeed = PLAYER_MOVE_SPEED;
     game->player->direction = (sfVector2f){0, 0};
     game->player->position = pos;
@@ -47,15 +57,15 @@ static int init_inventory(game_data_t *game)
     game->player->health = 10;
     game->player->attack = 10;
     game->player->max_health = 15;
-    game->player->pos_offset = (sfVector2f){0, 0};
     init_map_pos(game);
+    game->map = SPRITES[SP_MAP_1];
     return RET_NONE;
 }
 
 static int init_partie_one(game_data_t *game)
 {
     init_assets(game);
-    if (init_inventory(game) == RET_FAIL)
+    if (init_inventory(game) == RET_FAIL || init_view(game) == RET_FAIL)
         return RET_FAIL;
     my_putstr("OK !\n");
     my_putstr("Loading window\n");
@@ -83,6 +93,12 @@ static void icon_loader(game_data_t *game)
     sfImage_destroy(icon);
 }
 
+static void start_game_loop(game_data_t *game)
+{
+    while (sfRenderWindow_isOpen(game->window))
+        process_game_loop(game);
+}
+
 int init_game(game_data_t *game)
 {
     if (init_partie_one(game) == RET_FAIL)
@@ -92,10 +108,4 @@ int init_game(game_data_t *game)
     my_putstr("Start game loop\n");
     start_game_loop(game);
     return destroy_game_data(game, RET_NONE);
-}
-
-void start_game_loop(game_data_t *game)
-{
-    while (sfRenderWindow_isOpen(game->window))
-        process_game_loop(game);
 }

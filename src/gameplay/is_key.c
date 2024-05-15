@@ -14,3 +14,8 @@ bool is_key_down(game_data_t *game, keybinds_t key)
 {
     return (1 << key) & game->key_state;
 }
+
+bool is_key_pressed(game_data_t *game, keybinds_t key)
+{
+    return (1 << key) & game->key_change & game->key_state;
+}
