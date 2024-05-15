@@ -37,8 +37,6 @@ typedef struct player_data_s {
     int speed;
     int armor;
     int attack;
-    sfVector2f pos_offset;
-    sfVector2f map_pos;
     sfClock *clock;
     float pspeed;
     sfVector2f direction;
@@ -102,13 +100,17 @@ typedef struct game_data_s {
     sfImage *cols_map;
     int key_state;
     int key_change;
+    sfView *view;
+    sfVector2f view_pos;
+    float view_zoom;
+    float target_zoom;
+    game_sprite_t map;
 } game_data_t;
 
 // Init
 int print_game_help(void);
 int init_game(game_data_t *game);
 int init_assets(game_data_t *game);
-void start_game_loop(game_data_t *game);
 void set_mouse_pos(game_data_t *game);
 
 // Events
