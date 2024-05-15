@@ -20,5 +20,7 @@ void setup_game_slots(game_data_t *game);
 void basic_play(game_data_t *game);
 void set_hover_save_button(game_data_t *game);
 void set_hover_game_slots(game_data_t *game);
+void determine_button_colors(game_data_t *game, sfColor *fill_color,
+    sfColor *outline_color);
 
 #endif /* !MAIN_MENU_H_ */

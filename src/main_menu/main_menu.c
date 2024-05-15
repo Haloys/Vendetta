@@ -36,34 +36,6 @@ void basic_menu(game_data_t *game)
     draw_navbar(game);
 }
 
-void set_hover_save_button(game_data_t *game)
-{
-    if (game->state == MAIN_MENU) {
-        if (game->validation_count >= 3) {
-            game->hover_save_button = false;
-        } else {
-            game->hover_save_button = (game->mouse_pos.x >= 147 &&
-            game->mouse_pos.x <= 382 &&
-            game->mouse_pos.y >= 148 && game->mouse_pos.y <= 198);
-        }
-    }
-}
-
-void set_hover_game_slots(game_data_t *game)
-{
-    if (game->state == MAIN_MENU) {
-        game->hover_slot_array[0] = (game->mouse_pos.x >= 147 &&
-        game->mouse_pos.x <= 599 &&
-        game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
-        game->hover_slot_array[1] = (game->mouse_pos.x >= 734 &&
-        game->mouse_pos.x <= 1186 &&
-        game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
-        game->hover_slot_array[2] = (game->mouse_pos.x >= 1321 &&
-        game->mouse_pos.x <= 1773 &&
-        game->mouse_pos.y >= 241 && game->mouse_pos.y <= 870);
-    }
-}
-
 static void draw_game_slot(game_data_t *game, float rect_x, float rect_y,
     int slot_index)
 {
@@ -93,24 +65,14 @@ static void draw_load_save_button(game_data_t *game)
     sfRectangleShape *saveButton = sfRectangleShape_create();
     sfVector2f textPosition = {198, 161};
     sfText *saveText = set_text(game, "LOAD A SAVE", 20, textPosition);
-    sfColor fillColor;
-    sfColor outlineColor;
+    sfColor fill_color;
+    sfColor outline_color;
 
-    if (game->hover_save_button) {
-        fillColor = sfColor_fromRGBA(51, 217, 122, 128);
-        outlineColor = sfColor_fromRGBA(51, 217, 122, 255);
-    } else if (game->validation_count >= 3) {
-        fillColor = sfColor_fromRGBA(242, 115, 132, 51);
-        outlineColor = sfColor_fromRGBA(242, 115, 132, 128);
-    } else {
-        fillColor = sfColor_fromRGBA(51, 217, 122, 51);
-        outlineColor = sfColor_fromRGBA(51, 217, 122, 128);
-    }
-
+    determine_button_colors(game, &fill_color, &outline_color);
     sfRectangleShape_setPosition(saveButton, (sfVector2f){147, 148});
     sfRectangleShape_setSize(saveButton, (sfVector2f){235, 50});
-    sfRectangleShape_setFillColor(saveButton, fillColor);
-    sfRectangleShape_setOutlineColor(saveButton, outlineColor);
+    sfRectangleShape_setFillColor(saveButton, fill_color);
+    sfRectangleShape_setOutlineColor(saveButton, outline_color);
     sfRectangleShape_setOutlineThickness(saveButton, 1.0f);
     sfRenderWindow_drawRectangleShape(game->window, saveButton, NULL);
     sfRectangleShape_destroy(saveButton);
@@ -118,7 +80,7 @@ static void draw_load_save_button(game_data_t *game)
     sfText_destroy(saveText);
 }
 
-void draw_load_save(game_data_t *game)
+static void draw_load_save(game_data_t *game)
 {
     sprite_id_t elements[] = {SP_SAVE_1, SP_SAVE_2, SP_SAVE_3};
     int element_count = sizeof(elements) / sizeof(elements[0]);
@@ -134,7 +96,7 @@ void draw_load_save(game_data_t *game)
     }
 }
 
-void draw_empty_slots(game_data_t *game)
+static void draw_empty_slots(game_data_t *game)
 {
     sfVector2f positions[] = {
         {227.0f, 311.0f},
