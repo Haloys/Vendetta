@@ -69,20 +69,9 @@ static void handle_key_load_save(sfEvent event,
 
 static void handle_mouse_load_save(game_data_t *game, game_ui_t *game_ui)
 {
-    sfFloatRect valid_bounds =
-        sfRectangleShape_getGlobalBounds(game_ui->valid_b);
-    sfFloatRect cancel_bounds =
-        sfRectangleShape_getGlobalBounds(game_ui->cancel_b);
-
     set_mouse_pos(game);
-    if (sfFloatRect_contains(&valid_bounds, game->mouse_pos.x,
-        game->mouse_pos.y)) {
-        printf("Text entered: %s\n", game_ui->input);
-        game->state = MAIN_MENU;
-    } else if (sfFloatRect_contains(&cancel_bounds,
-        game->mouse_pos.x, game->mouse_pos.y)) {
-        game->state = MAIN_MENU;
-    }
+    handle_valid_button_click(game, game_ui);
+    handle_cancel_button_click(game, game_ui);
 }
 
 static void handle_save_evt(game_data_t *game, sfEvent event,
@@ -104,6 +93,7 @@ static void handle_game_ui(game_data_t *game, game_ui_t *game_ui)
     while (game->state == SAVE) {
         while (sfRenderWindow_pollEvent(game->window, &event))
             handle_save_evt(game, event, game_ui);
+        update_valid_button_color(game, game_ui);
         sfRenderWindow_clear(game->window, sfBlack);
         basic_menu(game);
         draw_load_save_texts(game);

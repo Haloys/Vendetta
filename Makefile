@@ -66,6 +66,7 @@ SRC_FILES            =   	help.c \
 
 SRC_UI    =   	loading_screen/loading.c \
 				main_menu/main_menu.c \
+				main_menu/hover_main_menu.c \
 				main_menu/help/help_menu.c \
 				main_menu/navbar/navbar.c \
 				main_menu/navbar/navbar_settings.c \
@@ -76,6 +77,7 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/settings/settings_audio.c \
 				main_menu/save/save_ui.c \
 				main_menu/save/save_text_type.c \
+				main_menu/save/valid_save.c \
 
 
 SRC_INVENTORY    =   	inventory/inventory.c \
