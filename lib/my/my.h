@@ -79,7 +79,7 @@ int display_zero(int nb_zero);
 char *my_strtok(char *str, const char *delimiters);
 
 
-typedef int (*function) (va_list *, int);
+typedef int (*function_t) (va_list *, int);
 int my_printf(const char *str, ...);
 int invalid_flag(va_list *ap, int precision);
 int my_printf_flag_c(va_list *ap, int precision);
