@@ -43,6 +43,8 @@ void handle_valid_button_click(game_data_t *game, game_ui_t *game_ui)
         printf("Text entered: %s\n", game_ui->input);
         if (is_file_valid(game_ui)) {
             game->state = MAIN_MENU;
+            game->validation_count++;
+            game->is_sprite_displayed = true;
         }
     }
 }

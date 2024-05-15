@@ -77,6 +77,10 @@ static const char *IMAGES[] = {
     "assets/images/maps/cols_map_1.png",
     "assets/images/player/hand_spritesheet.png",
     "assets/images/main_menu/load_save_help.png",
+    "assets/images/main_menu/save_1.png",
+    "assets/images/main_menu/save_2.png",
+    "assets/images/main_menu/save_3.png",
+    "assets/images/main_menu/empty_slot.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -148,6 +152,10 @@ typedef enum texture_id_e {
     COLS_MAP_1,
     PLAYER_HAND,
     LOAD_SAVE_HELP,
+    SAVE_1,
+    SAVE_2,
+    SAVE_3,
+    EMPTY_SLOT
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -950,6 +958,54 @@ static const game_sprite_t SPRITES[] = {
         .position = {428, 300},
         .origin = {0, 0}
     },
+    {
+        .id = SAVE_1,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 452,
+            .height = 516
+        },
+        .scale = 1,
+        .position = {149, 241},
+        .origin = {0, 0}
+    },
+    {
+        .id = SAVE_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 452,
+            .height = 516
+        },
+        .scale = 1,
+        .position = {727, 241},
+        .origin = {0, 0}
+    },
+    {
+        .id = SAVE_3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 452,
+            .height = 516
+        },
+        .scale = 1,
+        .position = {1321, 241},
+        .origin = {0, 0}
+    },
+    {
+        .id = EMPTY_SLOT,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 291,
+            .height = 354
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1021,6 +1077,10 @@ typedef enum sprite_id_e {
     SP_COLS_MAP_1,
     SP_PLAYER_HAND,
     SP_LOAD_SAVE_HELP,
+    SP_SAVE_1,
+    SP_SAVE_2,
+    SP_SAVE_3,
+    SP_EMPTY_SLOT,
 } sprite_id_t;
 
 typedef enum sound_id_e {
