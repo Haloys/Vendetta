@@ -72,9 +72,11 @@ static void modify_parameters(game_data_t *game)
         && game->state == SETTINGS_VIDEO) {
         if (game->video_mode.width == 1920) {
             game->video_mode = (sfVideoMode){1366, 768, 32};
-        } else if (game->video_mode.width == 1600) {
+        }
+        if (game->video_mode.width == 1600) {
             game->video_mode = (sfVideoMode){1920, 1080, 32};
-        } else if (game->video_mode.width == 1366) {
+        }
+        if (game->video_mode.width == 1366) {
             game->video_mode = (sfVideoMode){1600, 900, 32};
         }
         sfRenderWindow_setSize(game->window, (sfVector2u) {
