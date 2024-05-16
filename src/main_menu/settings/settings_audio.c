@@ -102,15 +102,7 @@ void draw_bg_rectangle(game_data_t *game)
             rectangle_pos.y += 61;
         sfRectangleShape_setPosition(rect, rectangle_pos);
         sfRectangleShape_setSize(rect, rectangle_size);
-        if (i == game->clicked_rect_index) {
-            sfRectangleShape_setFillColor(rect, sfColor_fromRGBA(255, 255, 255, 20));
-            sfRectangleShape_setOutlineThickness(rect, 2);
-            sfRectangleShape_setOutlineColor(rect, sfColor_fromRGB(51, 217, 122));
-        } else {
-            sfRectangleShape_setFillColor(rect, sfColor_fromRGBA(255, 255, 255, 0));
-        }
-        sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
-        sfRectangleShape_destroy(rect);
+        draw_tools(game, rect, i);
     }
 }
 

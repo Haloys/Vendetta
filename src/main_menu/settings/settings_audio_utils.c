@@ -42,3 +42,19 @@ void modify_sound(game_data_t *game)
     game->sg_x = CLAMP(game->sg_x, 0, 243);
     game->sa_x = CLAMP(game->sa_x, 0, 243);
 }
+
+void draw_tools(game_data_t *game, sfRectangleShape *rect, int i)
+{
+    if (i == game->clicked_rect_index) {
+        sfRectangleShape_setFillColor(rect,
+            sfColor_fromRGBA(255, 255, 255, 20));
+        sfRectangleShape_setOutlineThickness(rect, 2);
+        sfRectangleShape_setOutlineColor(rect,
+            sfColor_fromRGB(51, 217, 122));
+    } else {
+        sfRectangleShape_setFillColor(rect,
+            sfColor_fromRGBA(255, 255, 255, 0));
+    }
+    sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
+    sfRectangleShape_destroy(rect);
+}

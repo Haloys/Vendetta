@@ -12,6 +12,22 @@
 #include "my_game.h"
 #include "my.h"
 
+static void draw_rect_reso(game_data_t *game, sfRectangleShape *rect, int i)
+{
+    if (i == game->clicked_rect) {
+        sfRectangleShape_setFillColor(rect,
+            sfColor_fromRGBA(255, 255, 255, 20));
+        sfRectangleShape_setOutlineThickness(rect, 2);
+        sfRectangleShape_setOutlineColor(rect,
+            sfColor_fromRGB(51, 217, 122));
+    } else {
+        sfRectangleShape_setFillColor(rect,
+            sfColor_fromRGBA(255, 255, 255, 0));
+    }
+    sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
+    sfRectangleShape_destroy(rect);
+}
+
 void draw_reso_rectangle(game_data_t *game)
 {
     sfRectangleShape *rect;
@@ -25,15 +41,7 @@ void draw_reso_rectangle(game_data_t *game)
             rectangle_pos.y += 61;
         sfRectangleShape_setPosition(rect, rectangle_pos);
         sfRectangleShape_setSize(rect, rectangle_size);
-        if (i == game->clicked_rect) {
-            sfRectangleShape_setFillColor(rect, sfColor_fromRGBA(255, 255, 255, 20));
-            sfRectangleShape_setOutlineThickness(rect, 2);
-            sfRectangleShape_setOutlineColor(rect, sfColor_fromRGB(51, 217, 122));
-        } else {
-            sfRectangleShape_setFillColor(rect, sfColor_fromRGBA(255, 255, 255, 0));
-        }
-        sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
-        sfRectangleShape_destroy(rect);
+        draw_rect_reso(game, rect, i);
     }
 }
 
@@ -73,7 +81,7 @@ static void modify_parameters(game_data_t *game)
             game->video_mode.width, game->video_mode.height
         });
     }
-    if (is_key_pressed(game, MoveLeft) && game->clicked_rect == 2 
+    if (is_key_pressed(game, MoveLeft) && game->clicked_rect == 2
         && game->state == SETTINGS_VIDEO)
         set_reso(game);
 }
