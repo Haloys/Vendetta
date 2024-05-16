@@ -59,17 +59,7 @@ static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
 static void process_key_event(game_data_t *game, sfEvent *evt, bool pressed)
 {
     update_key(game, evt->key.code, pressed);
-    if (evt->key.code == sfKeyS) {
-        set_screen_size(game);
-        sfRenderWindow_setSize(game->window, (sfVector2u) {
-            game->video_mode.width, game->video_mode.height
-        });
-    }
-    if (evt->key.code == sfKeyQ)
-        game->sm_x -= 5;
-    if (evt->key.code == sfKeyP) {
-        game->sm_x += 5;
-    }
+    modify_screen(game);
 }
 
 static void process_mouse_move_event(game_data_t *game)

@@ -24,7 +24,7 @@ static int start_game(void)
     game_data_t game = {
         .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = LOADING_SCREEN,
+        .state = MAIN_MENU,
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
         .help_text = sfText_create(),
@@ -32,6 +32,7 @@ static int start_game(void)
         .sg_x = 243,
         .sm_x = 243,
         .sa_x = 243,
+        .fps = 60,
     };
 
     srand(time(NULL));

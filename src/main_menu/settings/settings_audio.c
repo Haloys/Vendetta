@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-
 #include "my_game.h"
 #include "my.h"
 
@@ -90,12 +89,39 @@ static void draw_bg_line(game_data_t *game)
     }
 }
 
+void draw_bg_rectangle(game_data_t *game)
+{
+    sfRectangleShape *rect;
+    sfVector2f rectangle_pos = {106, 260};
+    sfVector2f rectangle_size = {664, 52};
+    int nbr_rect = 3;
+
+    for (int i = 0; i < nbr_rect; i++) {
+        rect = sfRectangleShape_create();
+        if (i > 0)
+            rectangle_pos.y += 61;
+        sfRectangleShape_setPosition(rect, rectangle_pos);
+        sfRectangleShape_setSize(rect, rectangle_size);
+        if (i == game->clicked_rect_index) {
+            sfRectangleShape_setFillColor(rect, sfColor_fromRGBA(255, 255, 255, 20));
+            sfRectangleShape_setOutlineThickness(rect, 2);
+            sfRectangleShape_setOutlineColor(rect, sfColor_fromRGB(51, 217, 122));
+        } else {
+            sfRectangleShape_setFillColor(rect, sfColor_fromRGBA(255, 255, 255, 0));
+        }
+        sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
+        sfRectangleShape_destroy(rect);
+    }
+}
+
 void draw_everything_sound(game_data_t *game)
 {
     basic_menu(game);
     draw_active_navbar_line(game, 290.0f, 270.0f);
     draw_settings_navbar(game);
     set_sound_text(game);
+    modify_sound(game);
+    draw_bg_rectangle(game);
     draw_bg_line(game);
     draw_global_sound(game);
     draw_music_sound(game);
