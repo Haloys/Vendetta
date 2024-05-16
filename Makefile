@@ -75,6 +75,7 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/settings/settings_utils.c \
 				main_menu/settings/settings_resolution.c \
 				main_menu/settings/settings_audio.c \
+				main_menu/settings/settings_audio_utils.c \
 				main_menu/save/save_ui.c \
 				main_menu/save/save_text_type.c \
 				main_menu/save/valid_save.c \

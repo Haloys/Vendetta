@@ -95,6 +95,8 @@ typedef struct game_data_s {
     int sg_x;
     int sm_x;
     int sa_x;
+    int clicked_rect_index;
+    int clicked_rect;
     player_data_t *player_data;
     slider_t slider;
     sfImage *cols_map;
@@ -151,6 +153,13 @@ void update_slider_ambient(game_data_t *const game, slider_t *slider);
 void update_slider_music(game_data_t *const game, slider_t *slider);
 void update_slider_global(game_data_t *const game, slider_t *slider);
 void draw_slider(slider_t *sl, game_data_t *game);
+void draw_bg_rectangle(game_data_t *game);
+void handle_click_sound(game_data_t *game, sfVector2f click_pos);
+void handle_events_sound(game_data_t *game);
+void modify_sound(game_data_t *game);
+void draw_reso_rectangle(game_data_t *game);
+void modify_screen(game_data_t *game);
+void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 
 // Inventory
 void basic_inventory(game_data_t *game);
