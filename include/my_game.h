@@ -37,8 +37,12 @@ typedef struct player_data_s {
     int speed;
     int armor;
     int attack;
-    sfVector2f pos_offset;
-    sfVector2f map_pos;
+    sfClock *clock;
+    float pspeed;
+    sfVector2f direction;
+    sfVector2f position;
+    float rotation;
+    float target_rot;
 } player_data_t;
 
 typedef struct slider_s {
@@ -84,6 +88,8 @@ typedef struct game_data_s {
     bool hover_array[4];
     bool hover_slot_array[3];
     bool is_navbar_visible;
+    int validation_count;
+    bool is_sprite_displayed;
     sfVector2f mouse_pos;
     player_data_t *player;
     int sg_x;
@@ -92,13 +98,19 @@ typedef struct game_data_s {
     player_data_t *player_data;
     slider_t slider;
     sfImage *cols_map;
+    int key_state;
+    int key_change;
+    sfView *view;
+    sfVector2f view_pos;
+    float view_zoom;
+    float target_zoom;
+    game_sprite_t map;
 } game_data_t;
 
 // Init
 int print_game_help(void);
 int init_game(game_data_t *game);
 int init_assets(game_data_t *game);
-void start_game_loop(game_data_t *game);
 void set_mouse_pos(game_data_t *game);
 
 // Events

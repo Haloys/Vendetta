@@ -24,7 +24,7 @@ static int start_game(void)
     game_data_t game = {
         .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = MAIN_MENU,
+        .state = LOADING_SCREEN,
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
         .help_text = sfText_create(),

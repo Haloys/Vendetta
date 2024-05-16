@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include "../my.h"
 
-function ope_flag[256] = {invalid_flag};
+function_t ope_flag[256] = {invalid_flag};
 static const char lm[] = ".+-";
 
 int invalid_flag(va_list *ap, int precision)
