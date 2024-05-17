@@ -58,11 +58,6 @@ static int init_inventory(game_data_t *game)
     game->player->health = 10;
     game->player->attack = 10;
     game->player->max_health = 15;
-    insert_item_in_inventory(game, "shoes", 1);
-    insert_item_in_inventory(game, "armor3", 1);
-    insert_item_in_inventory(game, "shotgun", 1);
-    insert_item_in_inventory(game, "mask2", 1);
-    insert_item_in_inventory(game, "oxycodone", 1);
     init_map_pos(game);
     game->map = SPRITES[SP_MAP_1];
     return RET_NONE;
