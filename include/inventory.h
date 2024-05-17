@@ -51,6 +51,7 @@ typedef struct inventory_slot_s {
     item_t *item;
     int quantity;
     float weight;
+    bool is_selected;
 } inventory_slot_t;
 
 typedef struct inventory_s {
