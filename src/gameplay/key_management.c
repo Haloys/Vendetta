@@ -22,6 +22,7 @@ void update_key(game_data_t *game, sfKeyCode code, int state)
             game->key_change = (game->key_change & ~mask)
                 | ((game->key_state & mask) ^ new_state);
             game->key_state = (game->key_state & ~mask) | new_state;
+            game->key_update |= mask;
             return;
         }
     }
