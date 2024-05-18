@@ -107,7 +107,9 @@ void process_events(game_data_t *game)
 {
     sfEvent evt = {0};
 
+    reset_key_update(game);
     while (sfRenderWindow_pollEvent(game->window, &evt)) {
         process_global_events(game, &evt);
     }
+    after_key_update(game);
 }

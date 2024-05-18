@@ -102,6 +102,7 @@ typedef struct game_data_s {
     sfImage *cols_map;
     int key_state;
     int key_change;
+    int key_update;
     sfView *view;
     sfVector2f view_pos;
     float view_zoom;

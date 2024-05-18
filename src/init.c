@@ -34,6 +34,7 @@ static int init_map_pos(game_data_t *game)
     game->player->position = pos;
     game->key_state = 0;
     game->key_change = 0;
+    game->key_update = 0;
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
     if (game->cols_map == NULL)
         return RET_FAIL;
