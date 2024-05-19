@@ -44,7 +44,6 @@ static void handle_mouse_click(mouse_click_params_t *click_p)
     sfFloatRect box_bounds;
     sfVector2f mouse_pos = click_p->game->mouse_pos;
 
-    set_mouse_pos(click_p->game);
     handle_mouse_hover(click_p);
     if (!sfMouse_isButtonPressed(sfMouseLeft))
         return;

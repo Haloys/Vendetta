@@ -66,7 +66,6 @@ static void process_key_event(game_data_t *game, sfEvent *evt, bool pressed)
 
 static void process_mouse_move_event(game_data_t *game)
 {
-    set_mouse_pos(game);
     set_hover_save_button(game);
     set_hover_game_slots(game);
 }
