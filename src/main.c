@@ -11,6 +11,7 @@
 
 #include "my_game.h"
 #include "my.h"
+#include "utils.h"
 
 static int invalid_args(void)
 {
@@ -24,10 +25,8 @@ static int start_game(void)
     game_data_t game = {
         .name = "Vendetta",
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
-        .state = MAIN_MENU,
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
-        .help_text = sfText_create(),
         .speed = 1.0f,
         .sg_x = 243,
         .sm_x = 243,
@@ -35,11 +34,12 @@ static int start_game(void)
         .fps = 60,
     };
 
+    change_game_mode(&game, LOADING_SCREEN);
     srand(time(NULL));
     return init_game(&game);
 }
 
-int handle_env(char **env)
+static int handle_env(char **env)
 {
     if (env == NULL || env[0] == NULL) {
         dprintf(2, "Environment is empty, please restart your computer.\n");
