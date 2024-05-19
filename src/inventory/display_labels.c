@@ -106,8 +106,6 @@ static void disp_stats_values(game_data_t *game, sfVector2i pos, item_t *item)
         asprintf(&armor, "+ %d", item->armor);
     else
         asprintf(&armor, "- %d", item->armor);
-    if (health == NULL || armor == NULL)
-        return;
     h_txt = set_text(game, health, 14, (sfVector2f){pos.x + 60, pos.y + 73});
     a_txt = set_text(game, armor, 14, (sfVector2f){pos.x + 60, pos.y + 103});
     display_values(game, h_txt, a_txt);
