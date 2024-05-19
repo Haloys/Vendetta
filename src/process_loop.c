@@ -44,6 +44,7 @@ void set_mouse_pos(game_data_t *game)
 void process_game_loop(game_data_t *game)
 {
     sfRenderWindow_clear(game->window, sfBlack);
+    set_mouse_pos(game);
     process_events(game);
     process_loop_update(game);
     sfRenderWindow_display(game->window);

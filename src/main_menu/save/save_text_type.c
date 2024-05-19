@@ -67,7 +67,6 @@ static void handle_key_load_save(sfEvent event,
 
 static void handle_mouse_load_save(game_data_t *game, game_ui_t *game_ui)
 {
-    set_mouse_pos(game);
     handle_valid_button_click(game, game_ui);
     handle_cancel_button_click(game, game_ui);
 }
