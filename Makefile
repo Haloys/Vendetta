@@ -98,9 +98,10 @@ SRC_INIT	=   	init/game_icon.c \
 					init/player.c \
 					init/view.c \
 
-SRC_DIALOGUES =   	dialogues/choice_box.c \
-					dialogues/load_dialogue.c \
-					dialogues/handle_text.c \
+SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
+					npc_dialogues/load_dialogue.c \
+					npc_dialogues/handle_text.c \
+					npc_dialogues/dialogues_event.c \
 
 SRC_UTILS	=   	utils/utils.c \
 
