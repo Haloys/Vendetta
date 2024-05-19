@@ -142,6 +142,17 @@ static void display_icons_sprites(game_data_t *game, skill_tree_t *tree,
     display_icons_sprites_2(game, tree, pos, i);
 }
 
+float get_multiplier(int lvl)
+{
+    if (lvl == 1)
+        return 1.10;
+    if (lvl == 2)
+        return 1.25;
+    if (lvl == 3)
+        return 1.4;
+    return 1;
+}
+
 void display_icons(game_data_t *game)
 {
     sfVector2f pos = {245, 455};
