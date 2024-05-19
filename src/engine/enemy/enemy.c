@@ -23,7 +23,8 @@ static void update_spritesheet(enemy_t *enemy, sfTime time)
     sfIntRect rect = sfSprite_getTextureRect(enemy->sprite);
 
     if (sfTime_asMilliseconds(time) >= 70) {
-        if (rect.left >= 6768 - enemy->sprite_data->rect.width)
+        if (rect.left >= enemy->sprite_data->rect.width
+            * (enemy->sprite_data->rect_count - 1))
             rect.left = 0;
         else
             rect.left += enemy->sprite_data->rect.width;
