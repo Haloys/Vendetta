@@ -24,6 +24,9 @@
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
+    #define FILL_COLOR sfColor_fromRGBA(255, 255, 255, 51)
+    #define OUTLINE_COLOR sfColor_fromRGBA(255, 255, 255, 128)
+
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
     sfSprite *sprite[SPRITE_COUNT];
@@ -111,6 +114,10 @@ typedef struct game_data_s {
     map_config_t map;
 } game_data_t;
 
+
+void text_box(game_data_t *game);
+void npc_dialogues(game_data_t *game);
+
 // Init
 int print_game_help(void);
 int init_game(game_data_t *game);
@@ -132,7 +139,10 @@ sfSprite *get_sprite(game_data_t *game, sprite_id_t id);
 int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
 sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+sfText *set_text_const(game_data_t *game, const char *txt,
+    int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
+void basic_design(game_data_t *game);
 
 // Settings
 void set_screen_text(game_data_t *game);

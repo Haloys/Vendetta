@@ -85,6 +85,7 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/save_2.png",
     "assets/images/main_menu/save_3.png",
     "assets/images/main_menu/empty_slot.png",
+    "assets/images/dialogues/lucia.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -163,7 +164,8 @@ typedef enum texture_id_e {
     SAVE_1,
     SAVE_2,
     SAVE_3,
-    EMPTY_SLOT
+    EMPTY_SLOT,
+    LUCIA,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1062,6 +1064,18 @@ static const game_sprite_t SPRITES[] = {
         .position = {0, 0},
         .origin = {0, 0}
     },
+    {
+        .id = LUCIA,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1007,
+            .height = 735
+        },
+        .scale = 1,
+        .position = {1920, 345},
+        .origin = {0, 0}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1141,6 +1155,7 @@ typedef enum sprite_id_e {
     SP_SAVE_2,
     SP_SAVE_3,
     SP_EMPTY_SLOT,
+    SP_LUCIA,
 } sprite_id_t;
 
 typedef enum sound_id_e {

@@ -54,6 +54,7 @@ BUILD_DIR   = ./build
 SRC_ENGINE        =   	engine/my_clock.c \
 						engine/animation.c \
 						engine/utils.c \
+						engine/utils_two.c \
 						engine/free_game.c \
 						engine/fade_in_out.c \
 
@@ -98,6 +99,11 @@ SRC_INIT	=   	init/game_icon.c \
 					init/player.c \
 					init/view.c \
 
+SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
+					npc_dialogues/load_dialogue.c \
+					npc_dialogues/handle_text.c \
+					npc_dialogues/dialogues_event.c \
+
 SRC_UTILS	=   	utils/utils.c \
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
@@ -106,6 +112,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INIT)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_DIALOGUES)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
