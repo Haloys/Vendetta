@@ -28,11 +28,7 @@ static void handle_sprite_selected(sfSprite *sprite, bool is_selected)
 {
     sfColor color = sfSprite_getColor(sprite);
 
-    if (is_selected) {
-        color.a = 125;
-    } else {
-        color.a = 255;
-    }
+    color.a = is_selected ? 125 : 255;
     sfSprite_setColor(sprite, color);
 }
 
@@ -41,20 +37,22 @@ void display_item_images(game_data_t *game, sfRectangleShape **grid)
     sfVector2f pos = {0};
     sfSprite *sprite = NULL;
     inventory_slot_t *slot = NULL;
-    char *qty_txt = malloc(3);
-    char *weight_txt = malloc(6);
+    char *qty_txt = NULL;
+    char *weight_txt = NULL;
 
     for (int i = 0; i < COUNT; i++) {
         slot = &game->player->inventory->slots[i];
-        if (slot->item != NULL) {
-            sprintf(qty_txt, "x%d", slot->quantity);
-            sprintf(weight_txt, "%.1fkg", slot->weight);
-            pos = sfRectangleShape_getPosition(grid[i]);
-            display_inv_text(game, pos, qty_txt, weight_txt);
-            sprite = get_sprite(game, slot->item->sprite_id);
-            sfSprite_setPosition(sprite, (sfVector2f){pos.x + 25, pos.y + 35});
-            handle_sprite_selected(sprite, slot->is_selected);
-            sfRenderWindow_drawSprite(game->window, sprite, NULL);
-        }
+        if (slot->item == NULL)
+            continue;
+        asprintf(&qty_txt, "x%d", slot->quantity);
+        asprintf(&weight_txt, "%.1fkg", slot->weight);
+        if (qty_txt == NULL || weight_txt == NULL)
+            return;
+        pos = sfRectangleShape_getPosition(grid[i]);
+        display_inv_text(game, pos, qty_txt, weight_txt);
+        sprite = get_sprite(game, slot->item->sprite_id);
+        sfSprite_setPosition(sprite, (sfVector2f){pos.x + 25, pos.y + 35});
+        handle_sprite_selected(sprite, slot->is_selected);
+        sfRenderWindow_drawSprite(game->window, sprite, NULL);
     }
 }

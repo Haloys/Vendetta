@@ -28,6 +28,8 @@ static void draw_base_design(game_data_t *game)
 
     asprintf(&lvl, "LEVEL  %d", game->player->current_lvl);
     asprintf(&pts, "AVAILABLE SKILL POINTS : %d", game->player->skill_points);
+    if (lvl == NULL || pts == NULL)
+        return;
     level_txt = game->player->current_lvl >= 10 ? set_text(game, lvl, 20,
     (sfVector2f){723, 167}) : set_text(game, lvl, 20, (sfVector2f){733, 167});
     pts_txt = set_text(game, pts, 25, (sfVector2f){1336, 172});
@@ -83,6 +85,8 @@ void display_skill_tree(game_data_t *game)
     sfRectangleShape **grid = malloc(sizeof(sfRectangleShape *) * 12);
     sfRectangleShape **lines = malloc(sizeof(sfRectangleShape *) * 8);
 
+    if (grid == NULL || lines == NULL)
+        return;
     draw_base_design(game);
     draw_progress_bar(game);
     draw_squares(game, &grid);

@@ -55,13 +55,13 @@ static void draw_title_and_progbar(game_data_t *game)
 {
     sfText *title = set_text(game, "CAPACITY", 26, (sfVector2f){220, 190});
     sfText *subtitle = NULL;
-    char *total_weight = malloc(18);
+    char *total_weight = NULL;
 
     sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_MAIN_BG),
         NULL);
     sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_MAN_SKIN),
         NULL);
-    sprintf(total_weight, "%.2f / 25.00 KG",
+    asprintf(&total_weight, "%.2f / 25.00 KG",
     game->player->inventory->total_weight);
     if (game->player->inventory->total_weight < 10.f)
         subtitle = set_text(game, total_weight, 20, (sfVector2f){670, 190});
@@ -108,16 +108,18 @@ static void draw_statistics_txt(game_data_t *game, char *health, char *armor,
 
 static void draw_statistics(game_data_t *game)
 {
-    char *health = malloc(3);
-    char *armor = malloc(3);
-    char *speed = malloc(3);
-    char *attack = malloc(3);
+    char *health = NULL;
+    char *armor = NULL;
+    char *speed = NULL;
+    char *attack = NULL;
     sfText *attack_txt = NULL;
 
-    sprintf(health, "%d", game->player->max_health);
-    sprintf(armor, "%d", game->player->armor);
-    sprintf(speed, "%d", game->player->speed);
-    sprintf(attack, "%d", game->player->attack);
+    asprintf(&health, "%d", game->player->max_health);
+    asprintf(&armor, "%d", game->player->armor);
+    asprintf(&speed, "%d", game->player->speed);
+    asprintf(&attack, "%d", game->player->attack);
+    if (health == NULL || armor == NULL || speed == NULL || attack == NULL)
+        return;
     attack_txt = set_text(game, attack, 20, (sfVector2f){1640, 782});
     sfRenderWindow_drawSprite(game->window, get_sprite(game, SP_STATS), NULL);
     sfRenderWindow_drawText(game->window, attack_txt, NULL);
@@ -163,6 +165,8 @@ void basic_inventory(game_data_t *game)
 {
     sfRectangleShape **grid = malloc(31 * sizeof(sfRectangleShape *));
 
+    if (grid == NULL)
+        return;
     draw_title_and_progbar(game);
     draw_inventory_grid(game, &grid);
     draw_action_buttons(game, &grid);

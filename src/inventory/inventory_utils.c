@@ -61,7 +61,7 @@ item_t *get_item_by_name(char *item_name)
 {
     for (size_t i = 0; i < ITEM_COUNT; i++) {
         if (strcmp(ITEMS[i].name, item_name) == 0) {
-            return (&ITEMS[i]);
+            return ((item_t *)&ITEMS[i]);
         }
     }
     return NULL;

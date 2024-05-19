@@ -38,7 +38,7 @@ static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
 
 static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
 {
-    sfView *view = sfRenderWindow_getView(window);
+    sfView *view = (sfView *)sfRenderWindow_getView(window);
     sfVector2f view_size = sfView_getSize(view);
     float window_ratio = evt->width / (float) evt->height;
     float view_ratio = view_size.x / view_size.y;
