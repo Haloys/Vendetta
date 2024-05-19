@@ -204,6 +204,7 @@ typedef struct game_sprite_s {
     float scale;
     sfVector2f position;
     sfVector2f origin;
+    int rect_count;
 } game_sprite_t;
 
 static const game_sprite_t SPRITES[] = {
@@ -217,7 +218,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = LOADING_2,
@@ -229,7 +231,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = LOADING_3,
@@ -241,7 +244,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = FLAVIBOT,
@@ -253,7 +257,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1097, 452},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ORA,
@@ -265,7 +270,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {862, 718},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = TRYADE,
@@ -277,7 +283,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {404, 411},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = VENDETTA,
@@ -289,7 +296,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = DEV_1,
@@ -301,7 +309,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {410, 388},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = DEV_2,
@@ -313,7 +322,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1089, 388},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = DEV_3,
@@ -325,7 +335,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {410, 618},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = DEV_4,
@@ -337,7 +348,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1089, 618},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = VENDETTA_T,
@@ -349,7 +361,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {784, 339},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MAIN_BG,
@@ -361,7 +374,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = VENDETTA_MENU,
@@ -373,7 +387,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1704, 34},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ICON_PLAY,
@@ -385,7 +400,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {113, 52},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ICON_SETTINGS,
@@ -397,7 +413,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {325, 52},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ICON_HELP,
@@ -409,7 +426,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {594, 52},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ICON_QUIT,
@@ -421,7 +439,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {788, 52},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARROW_R1,
@@ -433,7 +452,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {745, 277},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARROW_L1,
@@ -445,7 +465,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {521, 277},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARROW_R2,
@@ -457,7 +478,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {745, 338},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARROW_L2,
@@ -469,7 +491,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {521, 338},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARROW_R3,
@@ -481,7 +504,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {745, 399},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARROW_L3,
@@ -493,7 +517,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {521, 399},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MAN_SKIN,
@@ -505,7 +530,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {760, 280},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = AIDKIT,
@@ -517,7 +543,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARMOR,
@@ -529,7 +556,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARMOR2,
@@ -541,7 +569,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARMOR3,
@@ -553,7 +582,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = BANDAGE,
@@ -565,7 +595,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = BONE,
@@ -577,7 +608,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = CASH,
@@ -589,7 +621,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = EPHEDRINE,
@@ -601,7 +634,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = FIRST_BOOK,
@@ -613,7 +647,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = GOLDCOIN,
@@ -625,7 +660,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = HEROIN,
@@ -637,7 +673,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = JOINT,
@@ -649,7 +686,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = KEYA,
@@ -661,7 +699,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = KEYB,
@@ -673,7 +712,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = KEYC,
@@ -685,7 +725,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = KNIFE,
@@ -697,7 +738,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = LIGHTER_BLUE,
@@ -709,7 +751,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MASK1,
@@ -720,7 +763,8 @@ static const game_sprite_t SPRITES[] = {
             .height = 60
         },
         .scale = 1,
-        .position = {0, 0}
+        .position = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MASK2,
@@ -732,7 +776,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MASK3,
@@ -744,7 +789,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MASK4,
@@ -756,7 +802,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MK18,
@@ -768,7 +815,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = OLD_PAPER,
@@ -780,7 +828,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = OXY,
@@ -792,7 +841,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = PISTOLMK2,
@@ -804,7 +854,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = PUMPSHOTGUN,
@@ -816,7 +867,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = RING,
@@ -828,7 +880,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ROLEX,
@@ -840,7 +893,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SECOND_BOOK,
@@ -852,7 +906,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SHOES,
@@ -864,7 +919,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SHOES_BLUE,
@@ -876,7 +932,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SHOES_GREEN,
@@ -888,7 +945,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SHOES_RED,
@@ -900,7 +958,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = THIRD_BOOK,
@@ -912,7 +971,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = WHISKEY,
@@ -924,7 +984,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = STATS,
@@ -936,7 +997,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1385, 575},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = HELP_DIALOGUES,
@@ -948,7 +1010,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {22, 203},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MAP_1,
@@ -960,7 +1023,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = MAP_2,
@@ -972,7 +1036,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
         {
         .id = MAP_3,
@@ -984,7 +1049,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = COLS_MAP_1,
@@ -996,7 +1062,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = COLS_MAP_2,
@@ -1008,7 +1075,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = COLS_MAP_3,
@@ -1020,7 +1088,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = PLAYER_HAND,
@@ -1032,7 +1101,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 0.65,
         .position = {0, 0},
-        .origin = {55, 55}
+        .origin = {55, 55},
+        .rect_count = 1
     },
     {
         .id = ENEMY_EZ_IDLE,
@@ -1044,7 +1114,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {44.5, 55}
+        .origin = {44.5, 55},
+        .rect_count = 1
     },
         {
         .id = ENEMY_EZ_SHOOTING,
@@ -1056,7 +1127,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {44.5, 55}
+        .origin = {44.5, 55},
+        .rect_count = 1
     },
     {
         .id = LOAD_SAVE_HELP,
@@ -1068,7 +1140,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {428, 300},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SAVE_1,
@@ -1080,7 +1153,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {149, 241},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SAVE_2,
@@ -1092,7 +1166,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {727, 241},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SAVE_3,
@@ -1104,7 +1179,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1321, 241},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = EMPTY_SLOT,
@@ -1116,7 +1192,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = LUCIA,
@@ -1128,6 +1205,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {1920, 345},
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = HEALTH_ICON,
@@ -1139,7 +1218,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARMOR_ICON,
@@ -1151,7 +1231,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ATTACK_ICON,
@@ -1163,7 +1244,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SPEED_ICON,
@@ -1175,7 +1257,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = TEXT_SKILL_TREE,
@@ -1187,7 +1270,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = HEALTH_COL,
@@ -1199,7 +1283,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = HEALTH_GRAY,
@@ -1211,7 +1296,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARMOR_COL,
@@ -1223,7 +1309,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ARMOR_GRAY,
@@ -1235,7 +1322,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SPEED_COL,
@@ -1247,7 +1335,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = SPEED_GRAY,
@@ -1259,7 +1348,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ATTACK_COL,
@@ -1271,7 +1361,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
     {
         .id = ATTACK_GRAY,
@@ -1283,7 +1374,8 @@ static const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {80, 265},
-        .origin = {0, 0}
+        .origin = {0, 0},
+        .rect_count = 1
     },
 };
 
