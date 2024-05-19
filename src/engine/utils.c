@@ -29,16 +29,6 @@ inline int is_rect_click(sfFloatRect const *rect, sfVector2f mouse)
         && mouse.y >= rect->top && mouse.y <= rect->top + rect->height;
 }
 
-void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
-{
-    sfText_setString(game->help_text, txt);
-    sfText_setFont(game->help_text, game->font);
-    sfText_setCharacterSize(game->help_text, size);
-    sfText_setFillColor(game->help_text, sfColor_fromRGB(250, 250, 250));
-    sfText_setPosition(game->help_text, pos);
-    sfRenderWindow_drawText(game->window, game->help_text, NULL);
-}
-
 sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
 {
     sfText *text = sfText_create();
@@ -51,4 +41,10 @@ sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
     sfText_setFillColor(text, sfColor_fromRGB(250, 250, 250));
     sfText_setPosition(text, pos);
     return text;
+}
+
+sfText *set_text_const(game_data_t *game, const char *txt,
+    int size, sfVector2f pos)
+{
+    return set_text(game, (char *)txt, size, pos);
 }

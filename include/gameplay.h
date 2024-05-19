@@ -88,6 +88,8 @@ void update_player(game_data_t *game, sfTime time);
 // IS_KEY
 bool is_key_down(game_data_t *game, keybinds_t key);
 bool is_key_pressed(game_data_t *game, keybinds_t key);
+void reset_key_update(game_data_t *game);
+void after_key_update(game_data_t *game);
 
 // MOVEMENT
 void process_key_left(game_data_t *game, sfSprite *sp_map, float scale);

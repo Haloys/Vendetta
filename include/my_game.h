@@ -20,9 +20,14 @@
     #include "state.h"
     #include "navbar.h"
     #include "save.h"
+    #include "map.h"
+    #include "list.h"
     #include "skill_tree.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
+
+    #define FILL_COLOR sfColor_fromRGBA(255, 255, 255, 51)
+    #define OUTLINE_COLOR sfColor_fromRGBA(255, 255, 255, 128)
 
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
@@ -39,11 +44,14 @@ typedef struct player_data_s {
     int armor;
     int attack;
     sfClock *clock;
+    sfClock *anim_clock;
     float pspeed;
     sfVector2f direction;
     sfVector2f position;
     float rotation;
     float target_rot;
+    game_sprite_t const *sprite_data;
+    sfSprite *sprite;
     int current_lvl;
     int current_xp;
     skill_tree_t *skill_tree;
@@ -83,7 +91,6 @@ typedef struct game_data_s {
     int fps;
     sfClock *fps_clock;
     sfClock *time;
-    sfText *help_text;
     float speed;
     sfUint8 *pixels;
     int mouse_x;
@@ -106,12 +113,20 @@ typedef struct game_data_s {
     sfImage *cols_map;
     int key_state;
     int key_change;
-    sfView *view;
+    int key_update;
+    sfView *game_view;
+    sfView *menu_view;
     sfVector2f view_pos;
     float view_zoom;
     float target_zoom;
-    game_sprite_t map;
+    map_config_t map;
+    list_t enemies;
+    sfClock *animation_clock;
 } game_data_t;
+
+
+void text_box(game_data_t *game);
+void npc_dialogues(game_data_t *game);
 
 // Init
 int print_game_help(void);
@@ -133,9 +148,11 @@ int destroy_game_data(game_data_t *game, int code);
 sfSprite *get_sprite(game_data_t *game, sprite_id_t id);
 int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
-void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+sfText *set_text_const(game_data_t *game, const char *txt,
+    int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
+void basic_design(game_data_t *game);
 
 // Settings
 void set_screen_text(game_data_t *game);

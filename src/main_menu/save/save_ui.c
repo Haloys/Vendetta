@@ -38,11 +38,9 @@ void create_validate_button(game_ui_t *game_ui)
     sfRectangleShape_setPosition(game_ui->valid_b,
         (sfVector2f){713, 545});
     sfRectangleShape_setSize(game_ui->valid_b, (sfVector2f){235, 50});
-    sfRectangleShape_setFillColor(game_ui->valid_b,
-        sfColor_fromRGBA(255, 255, 255, 51));
+    sfRectangleShape_setFillColor(game_ui->valid_b, FILL_COLOR);
     sfRectangleShape_setOutlineThickness(game_ui->valid_b, 1.0);
-    sfRectangleShape_setOutlineColor(game_ui->valid_b,
-        sfColor_fromRGBA(255, 255, 255, 127));
+    sfRectangleShape_setOutlineColor(game_ui->valid_b, OUTLINE_COLOR);
 }
 
 void create_cancel_button(game_ui_t *game_ui)
@@ -51,9 +49,7 @@ void create_cancel_button(game_ui_t *game_ui)
     sfRectangleShape_setPosition(game_ui->cancel_b,
         (sfVector2f){971, 544});
     sfRectangleShape_setSize(game_ui->cancel_b, (sfVector2f){235, 50});
-    sfRectangleShape_setFillColor(game_ui->cancel_b,
-        sfColor_fromRGBA(255, 255, 255, 51));
+    sfRectangleShape_setFillColor(game_ui->cancel_b, FILL_COLOR);
     sfRectangleShape_setOutlineThickness(game_ui->cancel_b, 1.0);
-    sfRectangleShape_setOutlineColor(game_ui->cancel_b,
-        sfColor_fromRGBA(255, 255, 255, 127));
+    sfRectangleShape_setOutlineColor(game_ui->cancel_b, OUTLINE_COLOR);
 }

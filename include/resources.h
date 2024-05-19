@@ -74,13 +74,20 @@ static const char *IMAGES[] = {
     "assets/images/inventory/stats.png",
     "assets/images/main_menu/help_dialogues.png",
     "assets/images/maps/map_1.jpg",
+    "assets/images/maps/map_2.jpg",
+    "assets/images/maps/map_3.jpg",
     "assets/images/maps/cols_map_1.png",
+    "assets/images/maps/cols_map_2.png",
+    "assets/images/maps/cols_map_3.png",
     "assets/images/player/hand_spritesheet.png",
+    "assets/images/enemies/easy_idle.png",
+    "assets/images/enemies/easy_shooting.png",
     "assets/images/main_menu/load_save_help.png",
     "assets/images/main_menu/save_1.png",
     "assets/images/main_menu/save_2.png",
     "assets/images/main_menu/save_3.png",
     "assets/images/main_menu/empty_slot.png",
+    "assets/images/dialogues/lucia.png",
     "assets/images/icons/health.png",
     "assets/images/icons/armor.png",
     "assets/images/icons/attack.png",
@@ -162,13 +169,20 @@ typedef enum texture_id_e {
     STATS,
     DIALOGUES,
     MAP_1,
+    MAP_2,
+    MAP_3,
     COLS_MAP_1,
+    COLS_MAP_2,
+    COLS_MAP_3,
     PLAYER_HAND,
+    ENEMY_EZ_IDLE,
+    ENEMY_EZ_SHOOTING,
     LOAD_SAVE_HELP,
     SAVE_1,
     SAVE_2,
     SAVE_3,
     EMPTY_SLOT,
+    LUCIA,
     HEALTH_ICON,
     ARMOR_ICON,
     ATTACK_ICON,
@@ -949,6 +963,30 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0}
     },
     {
+        .id = MAP_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 2590,
+            .height = 2170
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+        {
+        .id = MAP_3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 4060,
+            .height = 2520
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
         .id = COLS_MAP_1,
         .rect = {
             .left = 0,
@@ -961,16 +999,64 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0}
     },
     {
+        .id = COLS_MAP_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 2590,
+            .height = 2170
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = COLS_MAP_3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 4060,
+            .height = 2520
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
         .id = PLAYER_HAND,
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 110,
+            .width = 139,
             .height = 110
         },
         .scale = 0.65,
-        .position = {1920 / 2, 1080 / 2},
+        .position = {0, 0},
         .origin = {55, 55}
+    },
+    {
+        .id = ENEMY_EZ_IDLE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 423,
+            .height = 525
+        },
+        .scale = 0.25,
+        .position = {0, 0},
+        .origin = {262.5, 262.5}
+    },
+        {
+        .id = ENEMY_EZ_SHOOTING,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 423,
+            .height = 525
+        },
+        .scale = 0.25,
+        .position = {0, 0},
+        .origin = {262.5, 262.5}
     },
     {
         .id = LOAD_SAVE_HELP,
@@ -1031,6 +1117,17 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {0, 0},
         .origin = {0, 0}
+    },
+    {
+        .id = LUCIA,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1007,
+            .height = 735
+        },
+        .scale = 1,
+        .position = {1920, 345},
     },
     {
         .id = HEALTH_ICON,
@@ -1256,13 +1353,20 @@ typedef enum sprite_id_e {
     SP_STATS,
     SP_DIALOGUES,
     SP_MAP_1,
+    SP_MAP_2,
+    SP_MAP_3,
     SP_COLS_MAP_1,
+    SP_COLS_MAP_2,
+    SP_COLS_MAP_3,
     SP_PLAYER_HAND,
+    SP_ENEMY_EZ_IDLE,
+    SP_ENEMY_EZ_SHOOTING,
     SP_LOAD_SAVE_HELP,
     SP_SAVE_1,
     SP_SAVE_2,
     SP_SAVE_3,
     SP_EMPTY_SLOT,
+    SP_LUCIA,
     SP_HEALTH_ICON,
     SP_ARMOR_ICON,
     SP_ATTACK_ICON,
@@ -1306,7 +1410,7 @@ typedef struct music_s {
 static const music_t MUSICS[] = {
     {
         .id = M_LOADING,
-        .volume = 70
+        .volume = 20
     }
 };
 

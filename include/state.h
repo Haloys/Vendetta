@@ -25,6 +25,7 @@ typedef enum state_e {
     PLAYING,
     INVENTORY,
     SAVE,
+    NPC_DIALOGUE,
     SKILL_TREE,
 } state_t;
 

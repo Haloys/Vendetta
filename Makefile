@@ -54,8 +54,12 @@ BUILD_DIR   = ./build
 SRC_ENGINE        =   	engine/my_clock.c \
 						engine/animation.c \
 						engine/utils.c \
+						engine/utils_two.c \
 						engine/free_game.c \
 						engine/fade_in_out.c \
+						engine/enemy/enemy.c \
+						engine/enemy/update.c \
+						engine/player/update.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
@@ -98,11 +102,28 @@ SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/key_management.c \
 					gameplay/is_key.c
 
+SRC_INIT	=   	init/game_icon.c \
+					init/map.c \
+					init/player.c \
+					init/view.c \
+					init/enemies.c \
+
+SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
+					npc_dialogues/load_dialogue.c \
+					npc_dialogues/handle_text.c \
+					npc_dialogues/dialogues_event.c \
+
+SRC_UTILS	=   	utils/utils.c \
+					utils/list.c \
+
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
             $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_INIT)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_DIALOGUES)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_SKILL_TREE)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
