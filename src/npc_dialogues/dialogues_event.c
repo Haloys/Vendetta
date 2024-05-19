@@ -92,7 +92,7 @@ static void handle_initial_dialogue(game_data_t *game, dialogue_data_t *data)
 }
 
 static void handle_response_dialogue(game_data_t *game, dialogue_data_t *data,
-    choice_box_t *boxes, dialogue_params_t *params)
+    choice_box_t *boxes, const dialogue_params_t *params)
 {
     choice_select_params_t select_p = {data->response_dialogue,
         boxes, params, game, data->choice_selected};
@@ -108,7 +108,7 @@ static void handle_response_dialogue(game_data_t *game, dialogue_data_t *data,
 }
 
 static void cleanup(dialogue_t **response_dialogue, char ***choice_texts,
-    dialogue_params_t *params)
+    const dialogue_params_t *params)
 {
     if (*response_dialogue && *choice_texts) {
         for (size_t i = 0; i < params->response_count; i++) {
@@ -119,7 +119,7 @@ static void cleanup(dialogue_t **response_dialogue, char ***choice_texts,
     }
 }
 
-void handle_choice(game_data_t *game, dialogue_params_t *params)
+void handle_choice(game_data_t *game, const dialogue_params_t *params)
 {
     static dialogue_t *dialogue = NULL;
     static dialogue_t *response_dialogue = NULL;

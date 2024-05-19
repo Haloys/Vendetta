@@ -120,7 +120,7 @@ static char **load_choice_texts(const char **choice_filenames, size_t count)
 }
 
 static void initialize_boxes(choice_box_t **boxes, char ***choice_texts,
-    dialogue_params_t *params, game_data_t *game)
+    const dialogue_params_t *params, game_data_t *game)
 {
     *choice_texts = load_choice_texts(params->choice_filenames,
         params->response_count);
@@ -137,7 +137,7 @@ static void initialize_boxes(choice_box_t **boxes, char ***choice_texts,
 }
 
 static void initialize_dialogue(dialogue_t **dialogue,
-    dialogue_params_t *params, game_data_t *game)
+    const dialogue_params_t *params, game_data_t *game)
 {
     *dialogue = load_dialogue(params->initial_filename,
         params->character_name, game->font);
