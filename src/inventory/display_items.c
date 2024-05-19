@@ -46,8 +46,6 @@ void display_item_images(game_data_t *game, sfRectangleShape **grid)
             continue;
         asprintf(&qty_txt, "x%d", slot->quantity);
         asprintf(&weight_txt, "%.1fkg", slot->weight);
-        if (qty_txt == NULL || weight_txt == NULL)
-            return;
         pos = sfRectangleShape_getPosition(grid[i]);
         display_inv_text(game, pos, qty_txt, weight_txt);
         sprite = get_sprite(game, slot->item->sprite_id);
