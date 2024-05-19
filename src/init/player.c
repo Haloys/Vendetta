@@ -24,6 +24,8 @@ static int init_map_pos(game_data_t *game)
 static void init_other_values(game_data_t *game)
 {
     game->player->skill_tree = malloc(sizeof(skill_tree_t));
+    if (game->player->skill_tree == NULL)
+        return;
     game->player->skill_tree->armor_lvl = 0;
     game->player->skill_tree->attack_lvl = 0;
     game->player->skill_tree->health_lvl = 0;
@@ -31,6 +33,12 @@ static void init_other_values(game_data_t *game)
     game->player->skill_points = 24;
     game->player->current_lvl = 15;
     game->player->current_xp = 0;
+    for (int i = 0; i < 29; i++) {
+        game->player->inventory->slots[i].item = NULL;
+        game->player->inventory->slots[i].quantity = 0;
+        game->player->inventory->slots[i].weight = 0;
+        game->player->inventory->slots[i].is_selected = false;
+    }
 }
 
 static int init_player_inventory(game_data_t *game)
@@ -38,11 +46,6 @@ static int init_player_inventory(game_data_t *game)
     game->player->inventory = malloc(sizeof(inventory_t));
     if (game->player->inventory == NULL)
         return RET_FAIL;
-    for (int i = 0; i < 29; i++) {
-        game->player->inventory->slots[i].item = NULL;
-        game->player->inventory->slots[i].quantity = 0;
-        game->player->inventory->slots[i].weight = 0;
-    }
     game->player->inventory->total_weight = 0;
     game->player->armor = 10;
     game->player->speed = 10;

@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "my_game.h"
-#include "my.h"
 
 static void set_sound_text(game_data_t *game)
 {

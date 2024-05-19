@@ -5,8 +5,9 @@
 ** Initialize the game
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
-#include "my.h"
 #include "init_game.h"
 #include "map.h"
 #include "utils.h"
@@ -17,14 +18,14 @@ static int init_partie_one(game_data_t *game)
     if (init_player(game) == RET_FAIL || init_menu_view(game) == RET_FAIL
         || init_game_view(game) == RET_FAIL)
         return RET_FAIL;
-    my_putstr("OK !\n");
-    my_putstr("Loading window\n");
+    dprintf(1, "OK !\n");
+    dprintf(1, "Loading window\n");
     game->window =
         sfRenderWindow_create(game->video_mode, game->name,
         sfResize | sfClose, NULL);
     if (game->window == NULL)
         return RET_FAIL;
-    my_putstr("OK !\n");
+    dprintf(1, "OK !\n");
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
     init_enemies(game);
@@ -44,7 +45,7 @@ int init_game(game_data_t *game)
         return destroy_game_data(game, RET_FAIL);
     sfRenderWindow_setFramerateLimit(game->window, WINDOW_FPS);
     icon_loader(game);
-    my_putstr("Start game loop\n");
+    dprintf(1, "Start game loop\n");
     start_game_loop(game);
     return destroy_game_data(game, RET_NONE);
 }

@@ -46,7 +46,7 @@ static void display_item_label(game_data_t *game, sfVector2i pos,
 
 static void display_icons_sprites(game_data_t *game, sfVector2i pos)
 {
-    int base_id = 70;
+    int base_id = SP_HEALTH_ICON;
     sfSprite *sprite = get_sprite(game, base_id);
     sfVector2f pos_sprite = {pos.x + 35, pos.y + 75};
     sfVector2f pos_sprite2 = {pos.x + 120, pos.y + 75};
@@ -132,8 +132,7 @@ static void display_specs(game_data_t *game, sfVector2i pos, int i)
     disp_stats_values(game, pos, item);
 }
 
-void handle_items_hover_label(game_data_t *game,
-    sfRectangleShape **grid)
+void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid)
 {
     sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
     sfFloatRect bounds = {0};

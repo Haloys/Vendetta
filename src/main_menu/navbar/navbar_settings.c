@@ -11,7 +11,6 @@
 #include <string.h>
 
 #include "my_game.h"
-#include "my.h"
 #include "main_menu.h"
 
 static sfVector2f get_text_position(const settings_navbar_element_t

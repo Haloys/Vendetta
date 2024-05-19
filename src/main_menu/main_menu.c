@@ -10,7 +10,6 @@
 #include <time.h>
 
 #include "my_game.h"
-#include "my.h"
 
 void draw_active_navbar_line(game_data_t *game,
     float pos_x, float size_x)

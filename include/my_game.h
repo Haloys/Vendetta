@@ -12,6 +12,7 @@
     #include <SFML/Audio.h>
     #include <SFML/Audio.h>
     #include <SFML/Audio/SoundBuffer.h>
+
     #include <stdbool.h>
 
     #include "resources.h"
@@ -184,6 +185,7 @@ void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 
 // Inventory
 void basic_inventory(game_data_t *game);
+void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid);
 
 // Skill Tree
 void display_skill_tree(game_data_t *game);

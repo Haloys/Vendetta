@@ -10,7 +10,6 @@
 #include <time.h>
 
 #include "my_game.h"
-#include "my.h"
 
 static void draw_rect_reso(game_data_t *game, sfRectangleShape *rect, int i)
 {
