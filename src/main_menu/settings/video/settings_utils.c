@@ -94,6 +94,12 @@ void modify_screen(game_data_t *game)
         game->clicked_rect++;
         game->clicked_rect %= 3;
     }
+    if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_VIDEO) {
+        if (game->clicked_rect == 0)
+            game->clicked_rect = 3;
+        game->clicked_rect--;
+        game->clicked_rect %= 3;
+    }
     if (is_key_pressed(game, MoveLeft) && game->clicked_rect == 0
         && game->state == SETTINGS_VIDEO)
         arrow_l_fps(game);
