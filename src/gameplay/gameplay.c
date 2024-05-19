@@ -9,6 +9,7 @@
 #include "map.h"
 #include "enemies.h"
 #include "player.h"
+#include "gameplay.h"
 
 static void display_enemies(game_data_t *game)
 {

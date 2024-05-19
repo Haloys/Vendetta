@@ -30,6 +30,7 @@ static int init_partie_one(game_data_t *game)
         return RET_FAIL;
     init_enemies(game);
     game->animation_clock = sfClock_create();
+    init_keybinds(game);
     return RET_NONE;
 }
 
