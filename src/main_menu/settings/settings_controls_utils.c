@@ -20,3 +20,12 @@ keycode_t get_pressed_key(int key)
     }
     return sfKeyUnknown;
 }
+
+char *sfKeyCode_toString(sfKeyCode key)
+{
+    switch (key) {
+        case sfKeyA: return "A";
+        case sfKeyB: return "B";
+        default: return "";
+    }
+}
