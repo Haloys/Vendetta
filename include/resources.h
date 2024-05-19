@@ -1039,24 +1039,24 @@ static const game_sprite_t SPRITES[] = {
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 423,
-            .height = 525
+            .width = 89,
+            .height = 110
         },
-        .scale = 0.25,
+        .scale = 1,
         .position = {0, 0},
-        .origin = {262.5, 262.5}
+        .origin = {44.5, 55}
     },
         {
         .id = ENEMY_EZ_SHOOTING,
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 423,
-            .height = 525
+            .width = 89,
+            .height = 110
         },
-        .scale = 0.25,
+        .scale = 1,
         .position = {0, 0},
-        .origin = {262.5, 262.5}
+        .origin = {44.5, 55}
     },
     {
         .id = LOAD_SAVE_HELP,
