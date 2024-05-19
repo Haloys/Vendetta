@@ -49,6 +49,7 @@ enemy_t *create_enemy(game_data_t *game)
     enemy->pspeed = 0;
     enemy->rotation = 0;
     enemy->target_rot = 0;
+    enemy->map_id = MAP_ONE;
     set_enemy_shapes(enemy);
     return enemy;
 }

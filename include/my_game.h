@@ -35,7 +35,8 @@
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
     sfSprite *sprite[SPRITE_COUNT];
-    sfSoundBuffer *sound[SOUND_COUNT];
+    sfSound *sound[SOUND_COUNT];
+    sfSoundBuffer *sound_buff[SOUND_COUNT];
     sfMusic *music[MUSIC_COUNT];
 } game_assets_t;
 

@@ -36,9 +36,10 @@ static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
     *y = coords.y;
 }
 
-static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
+static void window_resize_handler(game_data_t *game, sfSizeEvent *evt)
 {
-    sfView *view = (sfView *)sfRenderWindow_getView(window);
+    sfView *view = game->state == PLAYING ? game->game_view :
+        (sfView *)sfRenderWindow_getView(game->window);
     sfVector2f view_size = sfView_getSize(view);
     float window_ratio = evt->width / (float) evt->height;
     float view_ratio = view_size.x / view_size.y;
@@ -55,7 +56,7 @@ static void window_resize_handler(sfRenderWindow *window, sfSizeEvent *evt)
         pos_y = (1 - size_y) / 2.f;
     }
     sfView_setViewport(view, (sfFloatRect){pos_x, pos_y, size_x, size_y});
-    sfRenderWindow_setView(window, view);
+    sfRenderWindow_setView(game->window, view);
 }
 
 static void process_key_event(game_data_t *game, sfEvent *evt, bool pressed)
@@ -85,7 +86,7 @@ static void process_global_events(game_data_t *game, sfEvent *evt)
 {
     switch (evt->type) {
     case sfEvtResized:
-        window_resize_handler(game->window, &evt->size);
+        window_resize_handler(game, &evt->size);
         break;
     case sfEvtClosed:
         sfRenderWindow_close(game->window);

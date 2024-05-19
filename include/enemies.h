@@ -28,6 +28,7 @@ typedef struct enemy_s {
     float pspeed;
     float rotation;
     float target_rot;
+    map_id_t map_id;
 } enemy_t;
 
 void draw_enemy(game_data_t *game, enemy_t *enemy);
