@@ -128,6 +128,7 @@ typedef struct game_data_s {
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
+void display_minigame(game_data_t *game);
 
 // Init
 int print_game_help(void);
