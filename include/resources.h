@@ -74,7 +74,11 @@ static const char *IMAGES[] = {
     "assets/images/inventory/stats.png",
     "assets/images/main_menu/help_dialogues.png",
     "assets/images/maps/map_1.jpg",
+    "assets/images/maps/map_2.jpg",
+    "assets/images/maps/map_3.jpg",
     "assets/images/maps/cols_map_1.png",
+    "assets/images/maps/cols_map_2.png",
+    "assets/images/maps/cols_map_3.png",
     "assets/images/player/hand_spritesheet.png",
     "assets/images/main_menu/load_save_help.png",
     "assets/images/main_menu/save_1.png",
@@ -149,7 +153,11 @@ typedef enum texture_id_e {
     STATS,
     DIALOGUES,
     MAP_1,
+    MAP_2,
+    MAP_3,
     COLS_MAP_1,
+    COLS_MAP_2,
+    COLS_MAP_3,
     PLAYER_HAND,
     LOAD_SAVE_HELP,
     SAVE_1,
@@ -923,12 +931,60 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0}
     },
     {
+        .id = MAP_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 2590,
+            .height = 2170
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+        {
+        .id = MAP_3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 4060,
+            .height = 2520
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
         .id = COLS_MAP_1,
         .rect = {
             .left = 0,
             .top = 0,
             .width = 3640,
             .height = 2660
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = COLS_MAP_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 2590,
+            .height = 2170
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = COLS_MAP_3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 4060,
+            .height = 2520
         },
         .scale = 1,
         .position = {0, 0},
@@ -1074,7 +1130,11 @@ typedef enum sprite_id_e {
     SP_STATS,
     SP_DIALOGUES,
     SP_MAP_1,
+    SP_MAP_2,
+    SP_MAP_3,
     SP_COLS_MAP_1,
+    SP_COLS_MAP_2,
+    SP_COLS_MAP_3,
     SP_PLAYER_HAND,
     SP_LOAD_SAVE_HELP,
     SP_SAVE_1,
@@ -1111,7 +1171,7 @@ typedef struct music_s {
 static const music_t MUSICS[] = {
     {
         .id = M_LOADING,
-        .volume = 70
+        .volume = 20
     }
 };
 
