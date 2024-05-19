@@ -79,6 +79,7 @@ static void check_and_spend(game_data_t *game, int i)
             game->player->skill_tree->speed_lvl = (i - 6) + 1;
         if (i == 9 || i == 10 || i == 11)
             game->player->skill_tree->attack_lvl = (i - 9) + 1;
+        calculate_player_stats(game);
     }
 }
 
