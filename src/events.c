@@ -5,6 +5,8 @@
 ** Event Handling
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
 #include "gameplay.h"
 
@@ -77,6 +79,7 @@ static void process_mouse_button_pressed(game_data_t *game,
     handle_settings_click(game);
     process_mouse_click_play(game);
     process_mouse_click_save(game);
+    printf("click x: %d, y: %d\n", evt->x, evt->y);
 }
 
 static void process_global_events(game_data_t *game, sfEvent *evt)

@@ -93,11 +93,20 @@ SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/key_management.c \
 					gameplay/is_key.c
 
+SRC_INIT	=   	init/game_icon.c \
+					init/map.c \
+					init/player.c \
+					init/view.c \
+
+SRC_UTILS	=   	utils/utils.c \
+
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
             $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_INIT)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))

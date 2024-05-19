@@ -20,6 +20,7 @@
     #include "state.h"
     #include "navbar.h"
     #include "save.h"
+    #include "map.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -78,7 +79,6 @@ typedef struct game_data_s {
     int fps;
     sfClock *fps_clock;
     sfClock *time;
-    sfText *help_text;
     float speed;
     sfUint8 *pixels;
     int mouse_x;
@@ -103,11 +103,12 @@ typedef struct game_data_s {
     int key_state;
     int key_change;
     int key_update;
-    sfView *view;
+    sfView *game_view;
+    sfView *menu_view;
     sfVector2f view_pos;
     float view_zoom;
     float target_zoom;
-    game_sprite_t map;
+    map_config_t map;
 } game_data_t;
 
 // Init
@@ -130,7 +131,6 @@ int destroy_game_data(game_data_t *game, int code);
 sfSprite *get_sprite(game_data_t *game, sprite_id_t id);
 int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
-void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
 
