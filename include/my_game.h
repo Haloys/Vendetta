@@ -175,6 +175,7 @@ void handle_click_tree(game_data_t *game, sfRectangleShape **grid);
 void add_xp(game_data_t *game, int xp);
 void draw_lines(game_data_t *game, sfRectangleShape ***lines);
 void draw_squares(game_data_t *game, sfRectangleShape ***grid);
+float get_multiplier(int lvl);
 
 int asprintf(char **strp, const char *fmt, ...);
 #endif /* MY_GAME_H */
