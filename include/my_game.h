@@ -24,6 +24,8 @@
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
+    #define HOVER_FILL_COLOR sfColor_fromRGBA(51, 217, 122, 51)
+    #define HOVER_OUTLINE_COLOR sfColor_fromRGBA(51, 217, 122, 128)
     #define FILL_COLOR sfColor_fromRGBA(255, 255, 255, 51)
     #define OUTLINE_COLOR sfColor_fromRGBA(255, 255, 255, 128)
 

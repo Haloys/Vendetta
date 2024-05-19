@@ -17,8 +17,8 @@
 static void update_box_color(sfRectangleShape *box, sfBool mouse_over)
 {
     if (mouse_over) {
-        sfRectangleShape_setFillColor(box, FILL_COLOR);
-        sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
+        sfRectangleShape_setFillColor(box, HOVER_FILL_COLOR);
+        sfRectangleShape_setOutlineColor(box, HOVER_OUTLINE_COLOR);
     } else {
         sfRectangleShape_setFillColor(box, FILL_COLOR);
         sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
