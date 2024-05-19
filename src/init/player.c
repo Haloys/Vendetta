@@ -11,7 +11,6 @@ static int init_map_pos(game_data_t *game)
 {
     sfSprite *sp = get_sprite(game, SP_PLAYER_HAND);
 
-    game->player->clock = sfClock_create();
     if (sp == NULL || game->player->clock == NULL)
         return RET_FAIL;
     game->player->pspeed = PLAYER_MOVE_SPEED;
@@ -38,6 +37,10 @@ static int init_player_inventory(game_data_t *game)
     game->player->health = 10;
     game->player->attack = 10;
     game->player->max_health = 15;
+    game->player->sprite_data = &SPRITES[SP_PLAYER_HAND];
+    game->player->sprite = get_sprite(game, SP_PLAYER_HAND);
+    game->player->clock = sfClock_create();
+    game->player->anim_clock = sfClock_create();
     return RET_NONE;
 }
 

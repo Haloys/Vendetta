@@ -18,4 +18,7 @@ void icon_loader(game_data_t *game);
 int init_game_view(game_data_t *game);
 int init_menu_view(game_data_t *game);
 
+// ENEMIES
+int init_enemies(game_data_t *game);
+
 #endif /* INIT_GAME_H */
