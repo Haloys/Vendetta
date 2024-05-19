@@ -109,6 +109,10 @@ typedef struct game_data_s {
     game_sprite_t map;
 } game_data_t;
 
+
+void text_box(game_data_t *game);
+void npc_dialogues(game_data_t *game);
+
 // Init
 int print_game_help(void);
 int init_game(game_data_t *game);
@@ -132,6 +136,7 @@ int play_sound(game_data_t *game, sound_id_t id);
 void new_set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
+void basic_design(game_data_t *game);
 
 // Settings
 void set_screen_text(game_data_t *game);
