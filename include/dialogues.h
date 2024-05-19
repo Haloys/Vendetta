@@ -93,8 +93,6 @@ void process_dialogue(dialogue_t *dialogue, sfRenderWindow *window,
 dialogue_t *load_dialogue(const char *filename,
     const char *name, sfFont *font);
 
-void npc_dialogues(game_data_t *game);
-
-sfUint32* utf8_to_utf32(const char* utf8str);
+sfUint32 *utf8_to_utf32(const char *utf8str);
 
 #endif /* !DIALOGUES_H_ */
