@@ -24,7 +24,7 @@ int is_file_valid(game_ui_t *game_ui)
 
 void update_valid_button_color(game_data_t *game, game_ui_t *game_ui)
 {
-    game_data_t game;
+    (void)game;
 
     if (is_file_valid(game_ui)) {
         sfRectangleShape_setFillColor(game_ui->valid_b,
