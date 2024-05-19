@@ -11,7 +11,9 @@
 #include "my_game.h"
 #include "my.h"
 
-sfKeyCode get_pressed_key(int key)
+typedef sfKeyCode keycode_t;
+
+keycode_t get_pressed_key(int key)
 {
     for (key = sfKeyA; key <= sfKeyZ; key++) {
         if (sfKeyboard_isKeyPressed(key)) {
