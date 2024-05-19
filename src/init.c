@@ -8,7 +8,6 @@
 #include <stdio.h>
 
 #include "my_game.h"
-#include "my.h"
 #include "init_game.h"
 #include "map.h"
 #include "utils.h"

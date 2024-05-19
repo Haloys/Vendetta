@@ -10,7 +10,6 @@
 #include <time.h>
 
 #include "my_game.h"
-#include "my.h"
 
 void set_screen_text(game_data_t *game)
 {

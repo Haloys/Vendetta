@@ -10,7 +10,6 @@
 #include <time.h>
 
 #include "my_game.h"
-#include "my.h"
 #include "utils.h"
 
 static int invalid_args(void)

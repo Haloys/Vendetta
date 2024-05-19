@@ -6,8 +6,8 @@
 */
 
 #include <stdio.h>
+
 #include "my_game.h"
-#include "my.h"
 
 static void destroy_game_elements(game_data_t *game)
 {

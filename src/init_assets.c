@@ -9,7 +9,6 @@
 
 #include "my_game.h"
 #include "music.h"
-#include "my.h"
 
 static void set_sprite_attribut(sfSprite *sprite, game_sprite_t SPRITE)
 {

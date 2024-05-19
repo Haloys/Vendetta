@@ -9,7 +9,6 @@
     #define STATE_H
 
     #include "my_game.h"
-    #include "my.h"
     #include "main_menu.h"
     #include "gameplay.h"
 
