@@ -6,7 +6,6 @@
 */
 
 #include "my_game.h"
-#include "my.h"
 #include "main_menu.h"
 #include "gameplay.h"
 
@@ -20,6 +19,8 @@ const process_state_t process_state[] = {
     process_playing_gameplay,
     basic_inventory,
     basic_save,
+    npc_dialogues,
+    display_skill_tree,
 };
 
 static void process_loop_update(game_data_t *game)

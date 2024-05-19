@@ -12,7 +12,7 @@
     #include <SFML/Graphics/Sprite.h>
 
     #include "my_clock.h"
-    #include "resources.h"
+    #include "my_game.h"
 
 typedef struct movement_s {
     sfVector2f position;

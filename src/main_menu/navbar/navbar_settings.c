@@ -11,7 +11,6 @@
 #include <string.h>
 
 #include "my_game.h"
-#include "my.h"
 #include "main_menu.h"
 
 static sfVector2f get_text_position(const settings_navbar_element_t
@@ -78,7 +77,7 @@ static void draw_hover_area(game_data_t *game,
 static void draw_text(game_data_t *game,
     const settings_navbar_element_t *element, sfVector2f text_position)
 {
-    sfText *text = set_text(game, element->label, 20, text_position);
+    sfText *text = set_text_const(game, element->label, 20, text_position);
 
     sfRenderWindow_drawText(game->window, text, NULL);
     sfText_destroy(text);
@@ -87,7 +86,7 @@ static void draw_text(game_data_t *game,
 static void draw_settings_element(game_data_t *game,
     const settings_navbar_element_t *element)
 {
-    sfText *text = set_text(game, element->label, 20, element->position);
+    sfText *text = set_text_const(game, element->label, 20, element->position);
     text_draw_info_settings_t draw_info =
         get_text_draw_info(game, element, text);
 

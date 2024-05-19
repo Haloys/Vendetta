@@ -42,3 +42,9 @@ sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
     sfText_setPosition(text, pos);
     return text;
 }
+
+sfText *set_text_const(game_data_t *game, const char *txt,
+    int size, sfVector2f pos)
+{
+    return set_text(game, (char *)txt, size, pos);
+}

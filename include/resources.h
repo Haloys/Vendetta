@@ -87,6 +87,20 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/save_2.png",
     "assets/images/main_menu/save_3.png",
     "assets/images/main_menu/empty_slot.png",
+    "assets/images/dialogues/lucia.png",
+    "assets/images/icons/health.png",
+    "assets/images/icons/armor.png",
+    "assets/images/icons/attack.png",
+    "assets/images/icons/speed.png",
+    "assets/images/skill_tree/text.png",
+    "assets/images/skill_tree/health_color.png",
+    "assets/images/skill_tree/health_gray.png",
+    "assets/images/skill_tree/shield_color.png",
+    "assets/images/skill_tree/shield_gray.png",
+    "assets/images/skill_tree/speed_color.png",
+    "assets/images/skill_tree/speed_gray.png",
+    "assets/images/skill_tree/attack_color.png",
+    "assets/images/skill_tree/attack_gray.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -153,7 +167,7 @@ typedef enum texture_id_e {
     THIRD_BOOK,
     WHISKEY,
     STATS,
-    DIALOGUES,
+    HELP_DIALOGUES,
     MAP_1,
     MAP_2,
     MAP_3,
@@ -167,7 +181,21 @@ typedef enum texture_id_e {
     SAVE_1,
     SAVE_2,
     SAVE_3,
-    EMPTY_SLOT
+    EMPTY_SLOT,
+    LUCIA,
+    HEALTH_ICON,
+    ARMOR_ICON,
+    ATTACK_ICON,
+    SPEED_ICON,
+    TEXT_SKILL_TREE,
+    HEALTH_COL,
+    HEALTH_GRAY,
+    ARMOR_COL,
+    ARMOR_GRAY,
+    SPEED_COL,
+    SPEED_GRAY,
+    ATTACK_COL,
+    ATTACK_GRAY,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -911,7 +939,7 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0}
     },
     {
-        .id = DIALOGUES,
+        .id = HELP_DIALOGUES,
         .rect = {
             .left = 0,
             .top = 0,
@@ -1090,6 +1118,173 @@ static const game_sprite_t SPRITES[] = {
         .position = {0, 0},
         .origin = {0, 0}
     },
+    {
+        .id = LUCIA,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1007,
+            .height = 735
+        },
+        .scale = 1,
+        .position = {1920, 345},
+    },
+    {
+        .id = HEALTH_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 14,
+            .height = 14
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = ARMOR_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 12,
+            .height = 14
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = ATTACK_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 18,
+            .height = 10
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = SPEED_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 11,
+            .height = 15
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0}
+    },
+    {
+        .id = TEXT_SKILL_TREE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1741,
+            .height = 103
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = HEALTH_COL,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 70,
+            .height = 70
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = HEALTH_GRAY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 70,
+            .height = 70
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = ARMOR_COL,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 59,
+            .height = 70
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = ARMOR_GRAY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 59,
+            .height = 70
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = SPEED_COL,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 52,
+            .height = 70
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = SPEED_GRAY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 52,
+            .height = 70
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = ATTACK_COL,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 59,
+            .height = 35
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
+    {
+        .id = ATTACK_GRAY,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 59,
+            .height = 35
+        },
+        .scale = 1,
+        .position = {80, 265},
+        .origin = {0, 0}
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1156,7 +1351,7 @@ typedef enum sprite_id_e {
     SP_THIRD_BOOK,
     SP_WHISKEY,
     SP_STATS,
-    SP_DIALOGUES,
+    SP_HELP_DIALOGUES,
     SP_MAP_1,
     SP_MAP_2,
     SP_MAP_3,
@@ -1171,6 +1366,20 @@ typedef enum sprite_id_e {
     SP_SAVE_2,
     SP_SAVE_3,
     SP_EMPTY_SLOT,
+    SP_LUCIA,
+    SP_HEALTH_ICON,
+    SP_ARMOR_ICON,
+    SP_ATTACK_ICON,
+    SP_SPEED_ICON,
+    SP_TEXT_SKILL_TREE,
+    SP_HEALTH_COL,
+    SP_HEALTH_GRAY,
+    SP_ARMOR_COL,
+    SP_ARMOR_GRAY,
+    SP_SPEED_COL,
+    SP_SPEED_GRAY,
+    SP_ATTACK_COL,
+    SP_ATTACK_GRAY,
 } sprite_id_t;
 
 typedef enum sound_id_e {

@@ -11,7 +11,6 @@
 #include <string.h>
 
 #include "navbar.h"
-#include "my.h"
 
 static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 {
