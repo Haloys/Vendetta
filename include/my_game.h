@@ -12,6 +12,7 @@
     #include <SFML/Audio.h>
     #include <SFML/Audio.h>
     #include <SFML/Audio/SoundBuffer.h>
+
     #include <stdbool.h>
 
     #include "resources.h"
@@ -22,9 +23,12 @@
     #include "save.h"
     #include "map.h"
     #include "list.h"
+    #include "skill_tree.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
+    #define HOVER_FILL_COLOR sfColor_fromRGBA(51, 217, 122, 51)
+    #define HOVER_OUTLINE_COLOR sfColor_fromRGBA(51, 217, 122, 128)
     #define FILL_COLOR sfColor_fromRGBA(255, 255, 255, 51)
     #define OUTLINE_COLOR sfColor_fromRGBA(255, 255, 255, 128)
 
@@ -51,6 +55,10 @@ typedef struct player_data_s {
     float target_rot;
     game_sprite_t const *sprite_data;
     sfSprite *sprite;
+    int current_lvl;
+    int current_xp;
+    skill_tree_t *skill_tree;
+    int skill_points;
 } player_data_t;
 
 typedef struct slider_s {
@@ -122,8 +130,6 @@ typedef struct game_data_s {
     sfClock *animation_clock;
 } game_data_t;
 
-
-void text_box(game_data_t *game);
 void npc_dialogues(game_data_t *game);
 
 // Init
@@ -183,5 +189,16 @@ void draw_everything_control(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
+void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid);
 
+// Skill Tree
+void display_skill_tree(game_data_t *game);
+void display_icons(game_data_t *game);
+void handle_click_tree(game_data_t *game, sfRectangleShape **grid);
+void add_xp(game_data_t *game, int xp);
+void draw_lines(game_data_t *game, sfRectangleShape ***lines);
+void draw_squares(game_data_t *game, sfRectangleShape ***grid);
+float get_multiplier(int lvl);
+
+int asprintf(char **strp, const char *fmt, ...);
 #endif /* MY_GAME_H */

@@ -26,7 +26,7 @@
     #define BOX3_Y 815
 
 typedef struct dialogue_s {
-    char **lines;
+    sfUint32 **lines;
     size_t line_count;
     size_t current_line;
     size_t current_char;
@@ -54,7 +54,7 @@ typedef struct dialogues_params_s {
 typedef struct choice_select_params_s {
     dialogue_t **response_dialogue;
     choice_box_t *boxes;
-    dialogue_params_t *params;
+    const dialogue_params_t *params;
     game_data_t *game;
     bool *choice_selected;
 } choice_select_params_t;
@@ -62,7 +62,7 @@ typedef struct choice_select_params_s {
 typedef struct mouse_click_params_s {
     dialogue_t **response_dialogue;
     choice_box_t *boxes;
-    dialogue_params_t *params;
+    const dialogue_params_t *params;
     game_data_t *game;
     bool *choice_selected;
 } mouse_click_params_t;
@@ -71,7 +71,7 @@ typedef struct dialogue_box_params_s {
     dialogue_t **dialogue;
     choice_box_t **boxes;
     char ***choice_texts;
-    dialogue_params_t *params;
+    const dialogue_params_t *params;
     game_data_t *game;
 } dialogue_box_params_t;
 
@@ -82,14 +82,17 @@ typedef struct dialogue_data_s {
     bool *space_pressed;
 } dialogue_data_t;
 
-dialogue_t *load_dialogue(const char *filename,
-    const char *name, sfFont *font);
+void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p);
+
+void handle_choice(game_data_t *game, const dialogue_params_t *params);
 
 void show_full_text(dialogue_t *dialogue);
 void process_dialogue(dialogue_t *dialogue, sfRenderWindow *window,
     bool *space_pressed);
 
-void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p);
-void draw_choice_box(sfRenderWindow *window, choice_box_t *box);
+dialogue_t *load_dialogue(const char *filename,
+    const char *name, sfFont *font);
+
+sfUint32 *utf8_to_utf32(const char *utf8str);
 
 #endif /* !DIALOGUES_H_ */

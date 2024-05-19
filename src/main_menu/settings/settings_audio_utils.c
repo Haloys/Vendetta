@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+
 #include "my_game.h"
-#include "my.h"
 
 static void change_volume(game_data_t *game, int sound)
 {

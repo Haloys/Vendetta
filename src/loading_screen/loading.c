@@ -6,7 +6,6 @@
 */
 
 #include "my_game.h"
-#include "my.h"
 #include "fade_in_out.h"
 
 static int handle_loading_event(sfRenderWindow *window)

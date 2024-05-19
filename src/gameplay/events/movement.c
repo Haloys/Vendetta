@@ -70,13 +70,6 @@ static void update_player_direction(game_data_t *game)
         direction.x += 1;
     if (is_key_down(game, MoveLeft))
         direction.x -= 1;
-    if (direction.x != 0 || direction.y != 0) {
-        player->target_rot = fmodf(atan2f(direction.y, direction.x)
-            * PI_180, 360);
-        normalize(&direction);
-    } else
-        player->target_rot = lerp_angle(player->rotation, player->target_rot,
-            0.25f);
     player->direction = direction;
 }
 
@@ -85,10 +78,24 @@ static bool is_black_color(sfColor color)
     return color.r == 0 && color.g == 0 && color.b == 0;
 }
 
-void update_player(game_data_t *game, sfTime time)
+static void update_player_direction_t(game_data_t *game)
 {
     player_data_t *player = game->player;
+    sfVector2f direction = {game->mouse_pos.x - player->position.x,
+        game->mouse_pos.y - player->position.y};
+
+    normalize(&direction);
+    player->target_rot = fmodf(atan2f(direction.y, direction.x) * PI_180, 360);
+    if (ABS(player->rotation - player->target_rot) > EPSILON) {
+        player->rotation = lerp_angle(player->rotation, player->target_rot,
+            0.15f);
+    }
+}
+
+void update_player(game_data_t *game, sfTime time)
+{
     float scale = sfTime_asSeconds(time) * game->player->pspeed;
+    player_data_t *player = game->player;
 
     update_player_direction(game);
     if (is_key_down(game, Sprint))
@@ -102,8 +109,5 @@ void update_player(game_data_t *game, sfTime time)
         player->position.y + (player->direction.y * RADAR_SIZE)))))
         player->position.y += player->direction.y;
     set_view(game, player, time);
-    if (ABS(player->rotation - player->target_rot) > EPSILON) {
-        player->rotation = lerp_angle(player->rotation, player->target_rot,
-            0.25f);
-    }
+    update_player_direction_t(game);
 }

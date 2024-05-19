@@ -14,7 +14,8 @@ static void update_spritesheet(player_data_t *player)
     sfIntRect rect = sfSprite_getTextureRect(player->sprite);
 
     if (sfTime_asMilliseconds(time) >= 70) {
-        if (rect.left >= 2780 - player->sprite_data->rect.width)
+        if (rect.left >= player->sprite_data->rect.width
+            * (player->sprite_data->rect_count - 1))
             rect.left = 0;
         else
             rect.left += player->sprite_data->rect.width;

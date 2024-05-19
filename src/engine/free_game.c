@@ -5,8 +5,9 @@
 ** Free game data
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
-#include "my.h"
 
 static void destroy_game_elements(game_data_t *game)
 {
@@ -29,11 +30,11 @@ static void destroy_game_clocks(game_data_t *game)
 
 int destroy_game_data(game_data_t *game, int code)
 {
-    my_putstr("Destroy game data && free elements\n");
+    dprintf(1, "Destroy game data && free elements\n");
     destroy_game_elements(game);
     destroy_game_clocks(game);
     sfRenderWindow_destroy(game->window);
     sfFont_destroy(game->font);
-    my_putstr("OK !\n");
+    dprintf(1, "OK !\n");
     return code;
 }

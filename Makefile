@@ -33,12 +33,8 @@ CFLAGS      = -Wall -Wextra
 
 CPPFLAGS    = -iquote ./include
 
-LDFLAGS     = -L./lib
-
-LDLIBS      = 	-lmy -lcsfml-audio -lcsfml-graphics -lcsfml-system \
+LDLIBS      = 	-lcsfml-audio -lcsfml-graphics -lcsfml-system \
 				-lcsfml-window -lm
-
-LIB_PATH    = ./lib/my
 
 SRC_MAIN    = ./src/main.c \
 
@@ -92,6 +88,11 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_management.c \
 						inventory/display_items.c \
 						inventory/handle_drag_drop.c \
+						inventory/display_labels.c \
+
+SRC_SKILL_TREE	=   	skill_tree/skill_tree.c \
+						skill_tree/display_tree.c \
+						skill_tree/spend_tree.c \
 
 SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/events/movement.c \
@@ -109,6 +110,8 @@ SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \
 					npc_dialogues/handle_text.c \
 					npc_dialogues/dialogues_event.c \
+					npc_dialogues/init_dialogue.c \
+					npc_dialogues/utils.c \
 
 SRC_UTILS	=   	utils/utils.c \
 					utils/list.c \
@@ -121,6 +124,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INIT)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_DIALOGUES)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_SKILL_TREE)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
@@ -138,19 +142,11 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 all: $(BINARY_NAME)
 
-build_lib:
-	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Building library...$(RESET)\n"
-	@$(MAKE) -C $(LIB_PATH) --no-print-directory > /dev/null 2>&1
-
-clean_lib:
-	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Cleaning library...$(RESET)\n"
-	@$(MAKE) fclean -C $(LIB_PATH) > /dev/null 2>&1
-
 re_lib:
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Rebuilding library...$(RESET)\n"
 	@$(MAKE) re -C $(LIB_PATH) > /dev/null 2>&1
 
-$(BINARY_NAME): build_lib $(OBJ)
+$(BINARY_NAME): $(OBJ)
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Linking project...$(RESET)\n"
 	@$(CC) -o $(BINARY_NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Project built successfully$(RESET)\n"
@@ -163,7 +159,7 @@ fclean: clean
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Removing project...$(RESET)\n"
 	@$(RM) $(BINARY_NAME)
 
-c_all: clean_lib fclean
+c_all: fclean
 
 re: fclean all
 
