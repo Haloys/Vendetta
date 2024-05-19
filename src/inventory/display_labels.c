@@ -10,6 +10,7 @@
 
 #include "my_game.h"
 #include "inventory.h"
+#include "gameplay.h"
 
 static void display_values(game_data_t *game, sfText *txt_1, sfText *txt_2)
 {

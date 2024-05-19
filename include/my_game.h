@@ -24,6 +24,7 @@
     #include "map.h"
     #include "list.h"
     #include "skill_tree.h"
+    #include "game_keys.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -126,6 +127,7 @@ typedef struct game_data_s {
     map_config_t map;
     list_t enemies;
     sfClock *animation_clock;
+    sf_to_keybind_t keybinds[KEYBINDS_COUNT];
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
