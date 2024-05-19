@@ -68,7 +68,7 @@ void set_utils_text(game_data_t *game)
 static void modify_parameters(game_data_t *game)
 {
     if (is_key_pressed(game, MoveLeft) && game->clicked_rect == 1
-        && game->state == SETTINGS_VIDEO) {
+        && game->state == SETTINGS_VIDEO && !game->is_fullscreen) {
         if (game->video_mode.width == 1920) {
             game->video_mode = (sfVideoMode){1366, 768, 32};
         }
@@ -91,6 +91,12 @@ void modify_screen(game_data_t *game)
 {
     if (is_key_pressed(game, MoveDown) && game->state == SETTINGS_VIDEO) {
         game->clicked_rect++;
+        game->clicked_rect %= 3;
+    }
+    if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_VIDEO) {
+        if (game->clicked_rect == 0)
+            game->clicked_rect = 3;
+        game->clicked_rect--;
         game->clicked_rect %= 3;
     }
     if (is_key_pressed(game, MoveLeft) && game->clicked_rect == 0
