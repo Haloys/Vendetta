@@ -80,6 +80,7 @@ static const char *IMAGES[] = {
     "assets/images/maps/cols_map_2.png",
     "assets/images/maps/cols_map_3.png",
     "assets/images/player/hand_spritesheet.png",
+    "assets/images/enemies/easy_idle.png",
     "assets/images/main_menu/load_save_help.png",
     "assets/images/main_menu/save_1.png",
     "assets/images/main_menu/save_2.png",
@@ -159,6 +160,7 @@ typedef enum texture_id_e {
     COLS_MAP_2,
     COLS_MAP_3,
     PLAYER_HAND,
+    ENEMY_EZ_IDLE,
     LOAD_SAVE_HELP,
     SAVE_1,
     SAVE_2,
@@ -999,8 +1001,20 @@ static const game_sprite_t SPRITES[] = {
             .height = 110
         },
         .scale = 0.65,
-        .position = {1920 / 2, 1080 / 2},
+        .position = {0, 0},
         .origin = {55, 55}
+    },
+    {
+        .id = ENEMY_EZ_IDLE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 6768,
+            .height = 525
+        },
+        .scale = 0.15,
+        .position = {0, 0},
+        .origin = {262.5, 262.5}
     },
     {
         .id = LOAD_SAVE_HELP,
@@ -1136,6 +1150,7 @@ typedef enum sprite_id_e {
     SP_COLS_MAP_2,
     SP_COLS_MAP_3,
     SP_PLAYER_HAND,
+    SP_ENEMY_EZ_IDLE,
     SP_LOAD_SAVE_HELP,
     SP_SAVE_1,
     SP_SAVE_2,
