@@ -98,6 +98,8 @@ SRC_INIT	=   	init/game_icon.c \
 					init/player.c \
 					init/view.c \
 
+SRC_DIALOGUES =   	dialogues/choice_box.c \
+
 SRC_UTILS	=   	utils/utils.c \
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
@@ -106,6 +108,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INVENTORY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_GAMEPLAY)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INIT)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_DIALOGUES)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
