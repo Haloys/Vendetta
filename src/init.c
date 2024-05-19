@@ -40,6 +40,18 @@ static int init_map_pos(game_data_t *game)
     return RET_NONE;
 }
 
+static void init_other_values(game_data_t *game)
+{
+    game->player->skill_tree = malloc(sizeof(skill_tree_t));
+    game->player->skill_tree->armor_lvl = 0;
+    game->player->skill_tree->attack_lvl = 0;
+    game->player->skill_tree->health_lvl = 0;
+    game->player->skill_tree->speed_lvl = 0;
+    game->player->skill_points = 24;
+    game->player->current_lvl = 15;
+    game->player->current_xp = 0;
+}
+
 static int init_inventory(game_data_t *game)
 {
     game->player = malloc(sizeof(player_data_t));
@@ -58,6 +70,7 @@ static int init_inventory(game_data_t *game)
     game->player->health = 10;
     game->player->attack = 10;
     game->player->max_health = 15;
+    init_other_values(game);
     init_map_pos(game);
     game->map = SPRITES[SP_MAP_1];
     return RET_NONE;
