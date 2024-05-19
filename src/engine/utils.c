@@ -9,12 +9,7 @@
 
 inline int play_sound(game_data_t *game, sound_id_t id)
 {
-    sfSound *sound = sfSound_create();
-
-    if (sound == NULL)
-        return RET_FAIL;
-    sfSound_setBuffer(sound, game->assets.sound[id]);
-    sfSound_play(sound);
+    sfSound_play(game->assets.sound[id]);
     return RET_NONE;
 }
 
