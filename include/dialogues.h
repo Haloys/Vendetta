@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2024
+** Vendetta / Header
+** File description:
+** Dialogues
+*/
+
 #ifndef DIALOGUES_H_
     #define DIALOGUES_H_
 
@@ -75,7 +82,8 @@ typedef struct dialogue_data_s {
     bool *space_pressed;
 } dialogue_data_t;
 
-dialogue_t *load_dialogue(const char *filename, const char *name, sfFont *font);
+dialogue_t *load_dialogue(const char *filename,
+    const char *name, sfFont *font);
 
 void show_full_text(dialogue_t *dialogue);
 void process_dialogue(dialogue_t *dialogue, sfRenderWindow *window,

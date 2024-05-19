@@ -25,11 +25,9 @@ static void create_rectangle_save(sfRectangleShape **rect)
     *rect = sfRectangleShape_create();
     sfRectangleShape_setPosition(*rect, (sfVector2f){427, 421});
     sfRectangleShape_setSize(*rect, (sfVector2f){1000, 80});
-    sfRectangleShape_setFillColor(*rect,
-        sfColor_fromRGBA(255, 255, 255, 51));
+    sfRectangleShape_setFillColor(*rect, FILL_COLOR);
     sfRectangleShape_setOutlineThickness(*rect, 1.0);
-    sfRectangleShape_setOutlineColor(*rect,
-        sfColor_fromRGBA(255, 255, 255, 127));
+    sfRectangleShape_setOutlineColor(*rect, OUTLINE_COLOR);
 }
 
 static void handle_text_entered_event(sfEvent event, char *input,

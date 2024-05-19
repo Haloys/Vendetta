@@ -24,8 +24,8 @@ static choice_box_t create_choice_box(float x, float y, sfFont *font,
         return box;
     sfRectangleShape_setSize(box.box, (sfVector2f){BOX_WIDTH, BOX_HEIGHT});
     sfRectangleShape_setPosition(box.box, (sfVector2f){x, y});
-    sfRectangleShape_setFillColor(box.box, sfColor_fromRGBA(255, 255, 255, 51));
-    sfRectangleShape_setOutlineColor(box.box, sfColor_fromRGBA(255, 255, 255, 128));
+    sfRectangleShape_setFillColor(box.box, FILL_COLOR);
+    sfRectangleShape_setOutlineColor(box.box, OUTLINE_COLOR);
     sfRectangleShape_setOutlineThickness(box.box, 1.0f);
     box.text = sfText_create();
     if (!box.text) {

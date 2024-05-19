@@ -17,15 +17,11 @@
 static void update_box_color(sfRectangleShape *box, sfBool mouse_over)
 {
     if (mouse_over) {
-        sfRectangleShape_setFillColor(box,
-            sfColor_fromRGBA(51, 217, 122, 51));
-        sfRectangleShape_setOutlineColor(box,
-            sfColor_fromRGBA(51, 217, 122, 128));
+        sfRectangleShape_setFillColor(box,FILL_COLOR);
+        sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
     } else {
-        sfRectangleShape_setFillColor(box,
-            sfColor_fromRGBA(255, 255, 255, 51));
-        sfRectangleShape_setOutlineColor(box,
-            sfColor_fromRGBA(255, 255, 255, 128));
+        sfRectangleShape_setFillColor(box, FILL_COLOR);
+        sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
     }
 }
 
@@ -141,15 +137,21 @@ void handle_choice(game_data_t *game, dialogue_params_t *params)
     cleanup(&response_dialogue, &choice_texts, params);
 }
 
-void text_box(game_data_t *game)
+void init_lucia(game_data_t *game)
 {
-    const char *response_filenames[] = {"response1.txt", "response2.txt",
-        "response3.txt"};
-    const char *choice_filenames[] = {"choice1.txt", "choice2.txt",
-        "choice3.txt"};
+    const char *response_filenames[] = {
+        "database/dialogues/lucia/response1.txt",
+        "database/dialogues/lucia/response2.txt",
+        "database/dialogues/lucia/response3.txt"
+    };
+    const char *choice_filenames[] = {
+        "database/dialogues/lucia/choice1.txt",
+        "database/dialogues/lucia/choice2.txt",
+        "database/dialogues/lucia/choice3.txt"
+    };
     dialogue_params_t params = {
-        .character_name = "John Doe",
-        .initial_filename = "dialogues.txt",
+        .character_name = "Lucia :",
+        .initial_filename = "database/dialogues/lucia/dialogues.txt",
         .response_filenames = response_filenames,
         .response_count = 3,
         .choice_filenames = choice_filenames,
@@ -165,5 +167,5 @@ void npc_dialogues(game_data_t *game)
         game->state = PLAYING;
         return;
     }
-    text_box(game);
+    init_lucia(game);
 }

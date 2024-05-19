@@ -24,6 +24,9 @@
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
+    #define FILL_COLOR sfColor_fromRGBA(255, 255, 255, 51)
+    #define OUTLINE_COLOR sfColor_fromRGBA(255, 255, 255, 128)
+
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
     sfSprite *sprite[SPRITE_COUNT];
