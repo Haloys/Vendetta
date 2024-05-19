@@ -19,3 +19,13 @@ bool is_key_pressed(game_data_t *game, keybinds_t key)
 {
     return (1 << key) & game->key_change & game->key_state;
 }
+
+void reset_key_update(game_data_t *game)
+{
+    game->key_update = 0;
+}
+
+void after_key_update(game_data_t *game)
+{
+    game->key_change &= game->key_update;
+}

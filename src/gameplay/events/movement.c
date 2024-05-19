@@ -11,9 +11,9 @@
 #include "my_game.h"
 #include "gameplay.h"
 
-static float get_max_zoom(game_data_t *game, game_sprite_t *map)
+static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
 {
-    sfVector2f center = sfView_getCenter(game->view);
+    sfVector2f center = sfView_getCenter(game->game_view);
 
     return MIN(
         MIN(center.x / (WINDOW_WIDTH / 2),
@@ -23,7 +23,7 @@ static float get_max_zoom(game_data_t *game, game_sprite_t *map)
     );
 }
 
-static void set_zoom(game_data_t *game, game_sprite_t *map, sfTime time)
+static void set_zoom(game_data_t *game, game_sprite_t const *map, sfTime time)
 {
     float dif = 0;
 
@@ -36,7 +36,8 @@ static void set_zoom(game_data_t *game, game_sprite_t *map, sfTime time)
         get_max_zoom(game, map));
     if (ABS(dif) > EPSILON) {
         game->view_zoom += dif;
-        sfView_setSize(game->view, (sfVector2f){WINDOW_WIDTH * game->view_zoom,
+        sfView_setSize(game->game_view,
+            (sfVector2f){WINDOW_WIDTH * game->view_zoom,
             WINDOW_HEIGHT * game->view_zoom});
     }
 }
@@ -45,16 +46,15 @@ static void set_view(game_data_t *game, player_data_t *player, sfTime time)
 {
     sfVector2f size = {0, 0};
 
-    sfRenderWindow_setView(game->window, game->view);
-    set_zoom(game, &game->map, time);
-    size = sfView_getSize(game->view);
+    set_zoom(game, game->map.sp_map, time);
+    size = sfView_getSize(game->game_view);
     if (size.x / 2.f < player->position.x
-        && player->position.x < game->map.rect.width - size.x / 2.f)
+        && player->position.x < game->map.sp_map->rect.width - size.x / 2.f)
         game->view_pos.x += (player->position.x - game->view_pos.x) / 30.f;
     if (size.y / 2.f < player->position.y
-        && player->position.y < game->map.rect.height - size.y / 2.f)
+        && player->position.y < game->map.sp_map->rect.height - size.y / 2.f)
         game->view_pos.y += (player->position.y - game->view_pos.y) / 10.f;
-    sfView_setCenter(game->view, game->view_pos);
+    sfView_setCenter(game->game_view, game->view_pos);
 }
 
 static void update_player_direction(game_data_t *game)
