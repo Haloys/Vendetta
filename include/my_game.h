@@ -21,6 +21,7 @@
     #include "navbar.h"
     #include "save.h"
     #include "map.h"
+    #include "list.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
