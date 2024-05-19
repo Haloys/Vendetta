@@ -12,7 +12,6 @@
 #include <string.h>
 #include <wchar.h>
 
-
 #include "my_game.h"
 #include "dialogues.h"
 

@@ -15,7 +15,7 @@
 
 void draw_help_texts(game_data_t *game)
 {
-    sprite_id_t elements[] = {SP_DIALOGUES};
+    sprite_id_t elements[] = {SP_HELP_DIALOGUES};
     int element_count = 1;
     sfSprite *sprites[element_count];
 
