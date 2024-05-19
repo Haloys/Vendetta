@@ -23,7 +23,7 @@ static void set_enemy_shapes(enemy_t *enemy)
     sfCircleShape_setRadius(enemy->area, 200);
     sfCircleShape_setFillColor(enemy->area, sfTransparent);
     sfCircleShape_setOutlineThickness(enemy->area, 1);
-    sfCircleShape_setOutlineColor(enemy->area, sfRed);
+    sfCircleShape_setOutlineColor(enemy->area, sfBlue);
     sfRectangleShape_setSize(enemy->health_bar, (sfVector2f){100, 10});
     sfRectangleShape_setFillColor(enemy->health_bar, sfRed);
     sfRectangleShape_setOutlineThickness(enemy->health_bar, 1);
