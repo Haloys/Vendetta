@@ -69,10 +69,10 @@ static bool load_lines(dialogue_t *dialogue, FILE *file)
         transform_line(buffer);
         dialogue->line_count++;
         dialogue->lines = realloc(dialogue->lines,
-        dialogue->line_count * sizeof(char *));
+            dialogue->line_count * sizeof(sfUint32*));
         if (!dialogue->lines)
             return false;
-        dialogue->lines[dialogue->line_count - 1] = strdup(buffer);
+        dialogue->lines[dialogue->line_count - 1] = utf8_to_utf32(buffer);
         if (!dialogue->lines[dialogue->line_count - 1])
             return false;
     }

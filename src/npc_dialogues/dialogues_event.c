@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** Vendetta
 ** File description:
-** Text Box
+** Dialogue Event
 */
 
 #include <stdio.h>
@@ -17,8 +17,8 @@
 static void update_box_color(sfRectangleShape *box, sfBool mouse_over)
 {
     if (mouse_over) {
-        sfRectangleShape_setFillColor(box, FILL_COLOR);
-        sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
+        sfRectangleShape_setFillColor(box, HOVER_FILL_COLOR);
+        sfRectangleShape_setOutlineColor(box, HOVER_OUTLINE_COLOR);
     } else {
         sfRectangleShape_setFillColor(box, FILL_COLOR);
         sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
@@ -62,6 +62,12 @@ static void handle_mouse_click(mouse_click_params_t *click_p)
     }
 }
 
+static void draw_choice_box(sfRenderWindow *window, choice_box_t *box)
+{
+    sfRenderWindow_drawRectangleShape(window, box->box, NULL);
+    sfRenderWindow_drawText(window, box->text, NULL);
+}
+
 static void handle_choice_selection(choice_select_params_t *select_p)
 {
     mouse_click_params_t click_p;
@@ -86,7 +92,7 @@ static void handle_initial_dialogue(game_data_t *game, dialogue_data_t *data)
 }
 
 static void handle_response_dialogue(game_data_t *game, dialogue_data_t *data,
-    choice_box_t *boxes, dialogue_params_t *params)
+    choice_box_t *boxes, const dialogue_params_t *params)
 {
     choice_select_params_t select_p = {data->response_dialogue,
         boxes, params, game, data->choice_selected};
@@ -101,8 +107,8 @@ static void handle_response_dialogue(game_data_t *game, dialogue_data_t *data,
             data->space_pressed);
 }
 
-void cleanup(dialogue_t **response_dialogue, char ***choice_texts,
-    dialogue_params_t *params)
+static void cleanup(dialogue_t **response_dialogue, char ***choice_texts,
+    const dialogue_params_t *params)
 {
     if (*response_dialogue && *choice_texts) {
         for (size_t i = 0; i < params->response_count; i++) {
@@ -113,7 +119,7 @@ void cleanup(dialogue_t **response_dialogue, char ***choice_texts,
     }
 }
 
-void handle_choice(game_data_t *game, dialogue_params_t *params)
+void handle_choice(game_data_t *game, const dialogue_params_t *params)
 {
     static dialogue_t *dialogue = NULL;
     static dialogue_t *response_dialogue = NULL;
@@ -135,37 +141,4 @@ void handle_choice(game_data_t *game, dialogue_params_t *params)
     handle_initial_dialogue(game, &dialogue_data);
     handle_response_dialogue(game, &dialogue_data, boxes, params);
     cleanup(&response_dialogue, &choice_texts, params);
-}
-
-void init_lucia(game_data_t *game)
-{
-    const char *response_filenames[] = {
-        "database/dialogues/lucia/response1.txt",
-        "database/dialogues/lucia/response2.txt",
-        "database/dialogues/lucia/response3.txt"
-    };
-    const char *choice_filenames[] = {
-        "database/dialogues/lucia/choice1.txt",
-        "database/dialogues/lucia/choice2.txt",
-        "database/dialogues/lucia/choice3.txt"
-    };
-    dialogue_params_t params = {
-        .character_name = "Lucia :",
-        .initial_filename = "database/dialogues/lucia/dialogues.txt",
-        .response_filenames = response_filenames,
-        .response_count = 3,
-        .choice_filenames = choice_filenames,
-        .sprite_id = SP_LUCIA
-    };
-
-    handle_choice(game, &params);
-}
-
-void npc_dialogues(game_data_t *game)
-{
-    if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
-        game->state = PLAYING;
-        return;
-    }
-    init_lucia(game);
 }

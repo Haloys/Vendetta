@@ -167,7 +167,7 @@ typedef enum texture_id_e {
     THIRD_BOOK,
     WHISKEY,
     STATS,
-    DIALOGUES,
+    HELP_DIALOGUES,
     MAP_1,
     MAP_2,
     MAP_3,
@@ -939,7 +939,7 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0}
     },
     {
-        .id = DIALOGUES,
+        .id = HELP_DIALOGUES,
         .rect = {
             .left = 0,
             .top = 0,
@@ -1351,7 +1351,7 @@ typedef enum sprite_id_e {
     SP_THIRD_BOOK,
     SP_WHISKEY,
     SP_STATS,
-    SP_DIALOGUES,
+    SP_HELP_DIALOGUES,
     SP_MAP_1,
     SP_MAP_2,
     SP_MAP_3,
