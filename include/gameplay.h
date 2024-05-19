@@ -33,6 +33,8 @@
 
     #define EPSILON 0.0001f
 
+typedef sfKeyCode keycode_t;
+
 typedef enum keybinds_e {
     MoveUp,
     MoveRight,

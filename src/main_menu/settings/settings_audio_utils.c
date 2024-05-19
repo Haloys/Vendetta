@@ -21,6 +21,9 @@ static void change_volume(game_data_t *game, int sound)
         if (game->clicked_rect_index == 2)
             game->sa_x += sound;
     }
+    game->sm_x = CLAMP(game->sm_x, 0, 243);
+    game->sg_x = CLAMP(game->sg_x, 0, 243);
+    game->sa_x = CLAMP(game->sa_x, 0, 243);
 }
 
 void modify_sound(game_data_t *game)
@@ -31,16 +34,19 @@ void modify_sound(game_data_t *game)
         game->clicked_rect_index++;
         game->clicked_rect_index %= 3;
     }
-    if (is_key_pressed(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
+    if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_AUDIO) {
+        if (game->clicked_rect_index == 0)
+            game->clicked_rect_index = 3;
+        game->clicked_rect_index--;
+        game->clicked_rect_index %= 3;
+    }
+    if (is_key_down(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
     }
-    if (is_key_pressed(game, MoveRight) && game->state == SETTINGS_AUDIO) {
+    if (is_key_down(game, MoveRight) && game->state == SETTINGS_AUDIO) {
         sound += 5;
     }
     change_volume(game, sound);
-    game->sm_x = CLAMP(game->sm_x, 0, 243);
-    game->sg_x = CLAMP(game->sg_x, 0, 243);
-    game->sa_x = CLAMP(game->sa_x, 0, 243);
 }
 
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i)
