@@ -8,10 +8,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "my_game.h"
+#include "gameplay.h"
 #include "my.h"
-
-typedef sfKeyCode keycode_t;
 
 keycode_t get_pressed_key(int key)
 {
