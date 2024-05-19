@@ -104,6 +104,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/player.c \
 					init/view.c \
 					init/enemies.c \
+					init/keys.c \
 
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \

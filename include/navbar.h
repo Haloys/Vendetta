@@ -34,7 +34,7 @@ typedef struct text_draw_info_settings_s {
     sfColor hover_color;
 } text_draw_info_settings_t;
 
-static const navbar_element_t elements[] = {
+static const navbar_element_t ELEMENTS[] = {
     {"PLAY", SP_ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
     {"SETTINGS", SP_ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS_VIDEO},
     {"HELP", SP_ICON_HELP, {633, 42}, {80, 30}, HELP},

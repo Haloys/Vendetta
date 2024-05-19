@@ -1475,16 +1475,23 @@ typedef enum sprite_id_e {
 } sprite_id_t;
 
 typedef enum sound_id_e {
-    S_HIT,
+    S_PLAYER_PUNCH,
+    S_ENEMY_PISTOL,
 } sound_id_t;
 
 typedef struct sound_s {
     sound_id_t id;
+    float volume;
 } sound_t;
 
 static const sound_t SOUNDS[] = {
     {
-        .id = S_HIT,
+        .id = S_PLAYER_PUNCH,
+        .volume = 20
+    },
+    {
+        .id = S_ENEMY_PISTOL,
+        .volume = 20
     },
 };
 
@@ -1503,7 +1510,7 @@ static const music_t MUSICS[] = {
     {
         .id = M_LOADING,
         .volume = 20
-    }
+    },
 };
 
     #define MUSIC_COUNT (sizeof(MUSICS) / sizeof(music_t))

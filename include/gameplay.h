@@ -10,7 +10,6 @@
 
     #include "my_game.h"
 
-
     #define VIEW_WIDTH WINDOW_WIDTH / 2
     #define VIEW_HEIGHT WINDOW_HEIGHT / 2
 
@@ -33,43 +32,6 @@
 
     #define EPSILON 0.0001f
 
-typedef sfKeyCode keycode_t;
-
-typedef enum keybinds_e {
-    MoveUp,
-    MoveRight,
-    MoveDown,
-    MoveLeft,
-    Reset,
-    Sprint,
-    Echap,
-    KeyPlus,
-    KeyMinus
-} keybinds_t;
-
-typedef struct sf_to_keybind_s {
-    sfKeyCode code;
-    keybinds_t key;
-} sf_to_keybind_t;
-
-static const sf_to_keybind_t KEYBINDS[] = {
-    {sfKeyUp, MoveUp},
-    {sfKeyRight, MoveRight},
-    {sfKeyDown, MoveDown},
-    {sfKeyLeft, MoveLeft},
-    {sfKeyZ, MoveUp},
-    {sfKeyD, MoveRight},
-    {sfKeyS, MoveDown},
-    {sfKeyQ, MoveLeft},
-    {sfKeyLShift, Sprint},
-    {sfKeyR, Reset},
-    {sfKeyEscape, Echap},
-    {sfKeyAdd, KeyPlus},
-    {sfKeySubtract, KeyMinus}
-};
-
-static const int KEYBINDS_COUNT = sizeof(KEYBINDS) / sizeof(sf_to_keybind_t);
-
 void process_playing_gameplay(game_data_t *game);
 
 void process_events(game_data_t *game);
@@ -88,17 +50,10 @@ extern const key_config_s key_config[];
 // UTILS
 sfColor get_pixel_color(sfImage *image, int x, int y);
 
-// KEY MANAGEMENT
-void update_key(game_data_t *game, sfKeyCode code, int state);
+
 void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);
-
-// IS_KEY
-bool is_key_down(game_data_t *game, keybinds_t key);
-bool is_key_pressed(game_data_t *game, keybinds_t key);
-void reset_key_update(game_data_t *game);
-void after_key_update(game_data_t *game);
 
 // MOVEMENT
 void process_key_left(game_data_t *game, sfSprite *sp_map, float scale);

@@ -24,6 +24,7 @@
     #include "map.h"
     #include "list.h"
     #include "skill_tree.h"
+    #include "game_keys.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -35,7 +36,8 @@
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
     sfSprite *sprite[SPRITE_COUNT];
-    sfSoundBuffer *sound[SOUND_COUNT];
+    sfSound *sound[SOUND_COUNT];
+    sfSoundBuffer *sound_buff[SOUND_COUNT];
     sfMusic *music[MUSIC_COUNT];
 } game_assets_t;
 
@@ -128,6 +130,7 @@ typedef struct game_data_s {
     map_config_t map;
     list_t enemies;
     sfClock *animation_clock;
+    sf_to_keybind_t keybinds[KEYBINDS_COUNT];
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);

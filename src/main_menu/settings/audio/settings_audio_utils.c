@@ -10,6 +10,7 @@
 #include <time.h>
 
 #include "my_game.h"
+#include "gameplay.h"
 
 static void change_volume(game_data_t *game, int sound)
 {
