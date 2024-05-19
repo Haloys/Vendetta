@@ -14,6 +14,7 @@ static const char *MUSIC_L[] = {
 
 static const char *SOUND_L[] = {
     "assets/sounds/player/punch.ogg",
+    "assets/sounds/enemies/pistol.ogg",
 };
 
 #endif /* !MUSIC_H_ */
