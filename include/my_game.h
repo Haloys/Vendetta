@@ -40,11 +40,14 @@ typedef struct player_data_s {
     int armor;
     int attack;
     sfClock *clock;
+    sfClock *anim_clock;
     float pspeed;
     sfVector2f direction;
     sfVector2f position;
     float rotation;
     float target_rot;
+    game_sprite_t const *sprite_data;
+    sfSprite *sprite;
 } player_data_t;
 
 typedef struct slider_s {
@@ -110,6 +113,8 @@ typedef struct game_data_s {
     float view_zoom;
     float target_zoom;
     map_config_t map;
+    list_t enemies;
+    sfClock *animation_clock;
 } game_data_t;
 
 // Init

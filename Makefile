@@ -56,6 +56,9 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/utils.c \
 						engine/free_game.c \
 						engine/fade_in_out.c \
+						engine/enemy/enemy.c \
+						engine/enemy/update.c \
+						engine/player/update.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
@@ -97,8 +100,10 @@ SRC_INIT	=   	init/game_icon.c \
 					init/map.c \
 					init/player.c \
 					init/view.c \
+					init/enemies.c \
 
 SRC_UTILS	=   	utils/utils.c \
+					utils/list.c \
 
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \

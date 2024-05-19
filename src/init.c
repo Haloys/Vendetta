@@ -27,6 +27,8 @@ static int init_partie_one(game_data_t *game)
     my_putstr("OK !\n");
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
+    init_enemies(game);
+    game->animation_clock = sfClock_create();
     return RET_NONE;
 }
 
