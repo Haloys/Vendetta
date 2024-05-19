@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** Vendetta
 ** File description:
-** Dialogue
+** Handle Text
 */
 
 #include <stdio.h>
@@ -10,6 +10,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <wchar.h>
+
 
 #include "my_game.h"
 #include "dialogues.h"
@@ -18,7 +20,8 @@ void show_full_text(dialogue_t *dialogue)
 {
     if (dialogue->finished || dialogue->current_line >= dialogue->line_count)
         return;
-    dialogue->current_char = strlen(dialogue->lines[dialogue->current_line]);
+    dialogue->current_char =
+        wcslen((wchar_t *)dialogue->lines[dialogue->current_line]);
 }
 
 static void update_dialogue(dialogue_t *dialogue)
@@ -37,14 +40,15 @@ static void update_dialogue(dialogue_t *dialogue)
 
 static void draw_dialogue(sfRenderWindow *window, dialogue_t *dialogue)
 {
-    char display_text[MAX_DIALOGUE_LENGTH];
+    sfUint32 display_text[MAX_DIALOGUE_LENGTH];
 
     if (dialogue->current_line >= dialogue->line_count)
         return;
-    strncpy(display_text, dialogue->lines[dialogue->current_line],
-        dialogue->current_char);
+    for (size_t i = 0; i < dialogue->current_char; i++) {
+        display_text[i] = dialogue->lines[dialogue->current_line][i];
+    }
     display_text[dialogue->current_char] = '\0';
-    sfText_setString(dialogue->text, display_text);
+    sfText_setUnicodeString(dialogue->text, display_text);
     sfRenderWindow_drawText(window, dialogue->name_text, NULL);
     sfRenderWindow_drawText(window, dialogue->text, NULL);
 }
@@ -52,7 +56,7 @@ static void draw_dialogue(sfRenderWindow *window, dialogue_t *dialogue)
 static void next_line(dialogue_t *dialogue)
 {
     if (dialogue->current_char <
-        strlen(dialogue->lines[dialogue->current_line])) {
+            wcslen((wchar_t *)dialogue->lines[dialogue->current_line])) {
         show_full_text(dialogue);
         return;
     }
@@ -66,8 +70,8 @@ static void next_line(dialogue_t *dialogue)
 
 static void handle_dialogue_line(dialogue_t *dialogue)
 {
-    if (dialogue->current_char
-        < strlen(dialogue->lines[dialogue->current_line])) {
+    if (dialogue->current_char <
+            wcslen((wchar_t *)dialogue->lines[dialogue->current_line])) {
         show_full_text(dialogue);
     } else {
         next_line(dialogue);

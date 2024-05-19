@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** Vendetta
 ** File description:
-** Text Box
+** Choice Box
 */
 
 #include <stdio.h>
@@ -10,23 +10,34 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "my_game.h"
 #include "dialogues.h"
 
-static choice_box_t create_choice_box(float x, float y, sfFont *font,
-    const char *text)
+static sfRectangleShape *create_box(float x, float y)
+{
+    sfRectangleShape *box = sfRectangleShape_create();
+
+    if (!box)
+        return NULL;
+    sfRectangleShape_setSize(box, (sfVector2f){BOX_WIDTH, BOX_HEIGHT});
+    sfRectangleShape_setPosition(box, (sfVector2f){x, y});
+    sfRectangleShape_setFillColor(box, FILL_COLOR);
+    sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
+    sfRectangleShape_setOutlineThickness(box, 1.0f);
+    return box;
+}
+
+static choice_box_t create_choice_box(float x, float y,
+    sfFont *font, const char *text)
 {
     choice_box_t box;
+    sfUint32 *utf32text;
 
-    box.box = sfRectangleShape_create();
+    box.box = create_box(x, y);
     if (!box.box)
         return box;
-    sfRectangleShape_setSize(box.box, (sfVector2f){BOX_WIDTH, BOX_HEIGHT});
-    sfRectangleShape_setPosition(box.box, (sfVector2f){x, y});
-    sfRectangleShape_setFillColor(box.box, FILL_COLOR);
-    sfRectangleShape_setOutlineColor(box.box, OUTLINE_COLOR);
-    sfRectangleShape_setOutlineThickness(box.box, 1.0f);
     box.text = sfText_create();
     if (!box.text) {
         sfRectangleShape_destroy(box.box);
@@ -35,7 +46,11 @@ static choice_box_t create_choice_box(float x, float y, sfFont *font,
     sfText_setFont(box.text, font);
     sfText_setCharacterSize(box.text, TEXT_FONT_SIZE);
     sfText_setPosition(box.text, (sfVector2f){x + 30, y + 30});
-    sfText_setString(box.text, text);
+    utf32text = utf8_to_utf32(text);
+    if (utf32text) {
+        sfText_setUnicodeString(box.text, utf32text);
+        free(utf32text);
+    }
     return box;
 }
 
@@ -141,10 +156,4 @@ void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p)
         if (!*box_p->boxes)
             return;
     }
-}
-
-void draw_choice_box(sfRenderWindow *window, choice_box_t *box)
-{
-    sfRenderWindow_drawRectangleShape(window, box->box, NULL);
-    sfRenderWindow_drawText(window, box->text, NULL);
 }
