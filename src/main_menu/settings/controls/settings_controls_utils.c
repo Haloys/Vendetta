@@ -11,3 +11,12 @@
 #include "my_game.h"
 #include "my.h"
 
+sfKeyCode get_pressed_key(int key)
+{
+    for (key = sfKeyA; key <= sfKeyZ; key++) {
+        if (sfKeyboard_isKeyPressed(key)) {
+            return (sfKeyCode)key;
+        }
+    }
+    return sfKeyUnknown;
+}
