@@ -24,8 +24,7 @@ static void display_inv_text(game_data_t *game, sfVector2f pos,
     sfText_destroy(wght_sp);
 }
 
-static void handle_sprite_selected(game_data_t *game, sfSprite *sprite,
-    bool is_selected)
+static void handle_sprite_selected(sfSprite *sprite, bool is_selected)
 {
     sfColor color = sfSprite_getColor(sprite);
 
@@ -54,7 +53,7 @@ void display_item_images(game_data_t *game, sfRectangleShape **grid)
             display_inv_text(game, pos, qty_txt, weight_txt);
             sprite = get_sprite(game, slot->item->sprite_id);
             sfSprite_setPosition(sprite, (sfVector2f){pos.x + 25, pos.y + 35});
-            handle_sprite_selected(game, sprite, slot->is_selected);
+            handle_sprite_selected(sprite, slot->is_selected);
             sfRenderWindow_drawSprite(game->window, sprite, NULL);
         }
     }
