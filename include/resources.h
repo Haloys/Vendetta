@@ -1475,16 +1475,18 @@ typedef enum sprite_id_e {
 } sprite_id_t;
 
 typedef enum sound_id_e {
-    S_HIT,
+    S_PLAYER_PUNCH,
 } sound_id_t;
 
 typedef struct sound_s {
     sound_id_t id;
+    float volume;
 } sound_t;
 
 static const sound_t SOUNDS[] = {
     {
-        .id = S_HIT,
+        .id = S_PLAYER_PUNCH,
+        .volume = 20
     },
 };
 
