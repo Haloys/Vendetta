@@ -33,12 +33,8 @@ CFLAGS      = -Wall -Wextra
 
 CPPFLAGS    = -iquote ./include
 
-LDFLAGS     = -L./lib
-
-LDLIBS      = 	-lmy -lcsfml-audio -lcsfml-graphics -lcsfml-system \
+LDLIBS      = 	-lcsfml-audio -lcsfml-graphics -lcsfml-system \
 				-lcsfml-window -lm
-
-LIB_PATH    = ./lib/my
 
 SRC_MAIN    = ./src/main.c \
 
@@ -142,19 +138,11 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 all: $(BINARY_NAME)
 
-build_lib:
-	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Building library...$(RESET)\n"
-	@$(MAKE) -C $(LIB_PATH) --no-print-directory > /dev/null 2>&1
-
-clean_lib:
-	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Cleaning library...$(RESET)\n"
-	@$(MAKE) fclean -C $(LIB_PATH) > /dev/null 2>&1
-
 re_lib:
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Rebuilding library...$(RESET)\n"
 	@$(MAKE) re -C $(LIB_PATH) > /dev/null 2>&1
 
-$(BINARY_NAME): build_lib $(OBJ)
+$(BINARY_NAME): $(OBJ)
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Linking project...$(RESET)\n"
 	@$(CC) -o $(BINARY_NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Project built successfully$(RESET)\n"
@@ -167,7 +155,7 @@ fclean: clean
 	@printf "$(GREEN)[OK]$(RESET) $(BLUE)Removing project...$(RESET)\n"
 	@$(RM) $(BINARY_NAME)
 
-c_all: clean_lib fclean
+c_all: fclean
 
 re: fclean all
 
