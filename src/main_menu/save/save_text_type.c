@@ -95,7 +95,7 @@ static void handle_game_ui(game_data_t *game, game_ui_t *game_ui)
             handle_save_evt(game, event, game_ui);
         update_valid_button_color(game, game_ui);
         sfRenderWindow_clear(game->window, sfBlack);
-        basic_menu(game);
+        basic_design(game);
         draw_load_save_texts(game);
         sfRenderWindow_drawRectangleShape(game->window, game_ui->rect, NULL);
         sfRenderWindow_drawRectangleShape(game->window, game_ui->valid_b,
