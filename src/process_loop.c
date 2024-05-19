@@ -20,6 +20,7 @@ const process_state_t process_state[] = {
     process_playing_gameplay,
     basic_inventory,
     basic_save,
+    display_skill_tree,
 };
 
 static void process_loop_update(game_data_t *game)
