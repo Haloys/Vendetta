@@ -23,8 +23,10 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game)
         enemy->position.y += sin(angle) * enemy->speed;
         enemy->rotation = (angle * 180 / PI) + 90;
         enemy->sprite = get_sprite(game, SP_ENEMY_EZ_SHOOTING);
+        enemy->sprite_data = &SPRITES[SP_ENEMY_EZ_SHOOTING];
     } else {
         enemy->sprite = get_sprite(game, SP_ENEMY_EZ_IDLE);
+        enemy->sprite_data = &SPRITES[SP_ENEMY_EZ_IDLE];
     }
 }
 

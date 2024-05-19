@@ -1102,7 +1102,7 @@ static const game_sprite_t SPRITES[] = {
         .scale = 0.65,
         .position = {0, 0},
         .origin = {55, 55},
-        .rect_count = 1
+        .rect_count = 20
     },
     {
         .id = ENEMY_EZ_IDLE,
@@ -1115,7 +1115,7 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {0, 0},
         .origin = {44.5, 55},
-        .rect_count = 1
+        .rect_count = 16
     },
         {
         .id = ENEMY_EZ_SHOOTING,
@@ -1128,7 +1128,7 @@ static const game_sprite_t SPRITES[] = {
         .scale = 1,
         .position = {0, 0},
         .origin = {44.5, 55},
-        .rect_count = 1
+        .rect_count = 8
     },
     {
         .id = LOAD_SAVE_HELP,
