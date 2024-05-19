@@ -33,7 +33,7 @@ int my_printf_flag_x_cap(va_list *ap, int precision)
     int count = 0;
 
     if (precision == 1)
-        count += my_putstr("0X");
+        count += dprintf(1, "0X");
     count += convert_x_cap(nb, 0);
     return count;
 }

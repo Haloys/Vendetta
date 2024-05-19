@@ -85,9 +85,9 @@ int my_printf_flag_a(va_list *ap, int precision)
     }
     last = set_one(&nb);
     nb -= 1;
-    my_putstr("0x1.");
+    dprintf(1, "0x1.");
     count = convert_a(nb, 0, precision);
-    my_putstr("p+");
+    dprintf(1, "p+");
     count += my_put_nbr(last, 0);
     return count + 6;
 }

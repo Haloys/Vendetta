@@ -19,7 +19,7 @@ int print_game_help(void)
     if (file == NULL)
         return RET_FAIL;
     while (getline(&line, &len, file) != -1)
-        my_putstr(line);
+        dprintf(1, "%s", line);
     free(line);
     fclose(file);
     return RET_NONE;

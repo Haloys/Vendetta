@@ -33,7 +33,7 @@ int my_printf_flag_x(va_list *ap, int precision)
     int count = 0;
 
     if (precision == 1)
-        count += my_putstr("0x");
+        count += dprintf(1, "0x");
     count += convert_x(nb, 0);
     return count;
 }

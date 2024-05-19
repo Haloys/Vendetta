@@ -15,8 +15,8 @@
 
 static int invalid_args(void)
 {
-    my_putstr("./my_rpg\n");
-    my_putstr("retry with -h\n");
+    dprintf(1, "./my_rpg\n");
+    dprintf(1, "retry with -h\n");
     return RET_FAIL;
 }
 
@@ -34,7 +34,7 @@ static int start_game(void)
         .fps = 60,
     };
 
-    change_game_mode(&game, PLAYING);
+    change_game_mode(&game, INVENTORY);
     srand(time(NULL));
     return init_game(&game);
 }
@@ -58,7 +58,7 @@ int main(int ac, char **av, char **env)
 {
     if (handle_env(env) == RET_FAIL)
         return RET_FAIL;
-    if (ac == 2 && my_strcmp(av[1], "-h") == 0)
+    if (ac == 2 && strcmp(av[1], "-h") == 0)
         return print_game_help();
     else if (ac != 1)
         return invalid_args();
