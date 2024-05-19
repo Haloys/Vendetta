@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <time.h>
 #include "gameplay.h"
-#include "my.h"
 
 keycode_t get_pressed_key(int key)
 {
