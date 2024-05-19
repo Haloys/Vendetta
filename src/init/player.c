@@ -21,6 +21,18 @@ static int init_map_pos(game_data_t *game)
     return RET_NONE;
 }
 
+static void init_other_values(game_data_t *game)
+{
+    game->player->skill_tree = malloc(sizeof(skill_tree_t));
+    game->player->skill_tree->armor_lvl = 0;
+    game->player->skill_tree->attack_lvl = 0;
+    game->player->skill_tree->health_lvl = 0;
+    game->player->skill_tree->speed_lvl = 0;
+    game->player->skill_points = 24;
+    game->player->current_lvl = 15;
+    game->player->current_xp = 0;
+}
+
 static int init_player_inventory(game_data_t *game)
 {
     game->player->inventory = malloc(sizeof(inventory_t));
@@ -41,6 +53,7 @@ static int init_player_inventory(game_data_t *game)
     game->player->sprite = get_sprite(game, SP_PLAYER_HAND);
     game->player->clock = sfClock_create();
     game->player->anim_clock = sfClock_create();
+    init_other_values(game);
     return RET_NONE;
 }
 

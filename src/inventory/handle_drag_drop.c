@@ -30,6 +30,7 @@ static void select_sprite(game_data_t *game, int *is_dragging,
             *is_dragging = i;
             *sprite = get_sprite(game,
                 game->player->inventory->slots[i].item->sprite_id);
+                game->player->inventory->slots[i].is_selected = true;
         }
     }
 }
@@ -47,6 +48,7 @@ static void move_sprite(game_data_t *game, int is_dragging,
             calculate_player_stats(game);
             update_inventory_weight(game);
         }
+        game->player->inventory->slots[is_dragging].is_selected = false;
     }
 }
 

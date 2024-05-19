@@ -68,22 +68,26 @@ static void use_item(game_data_t *game, int slot_id)
 
 void calculate_player_stats(game_data_t *game)
 {
+    skill_tree_t *tree = game->player->skill_tree;
+    inventory_slot_t *slot = NULL;
+
     game->player->armor = 10;
     game->player->speed = 10;
     game->player->max_health = 15;
     game->player->attack = 10;
     for (size_t i = 25; i < 29; i++) {
-        if (game->player->inventory->slots[i].item != NULL) {
-            game->player->armor +=
-            game->player->inventory->slots[i].item->armor;
-            game->player->speed +=
-            game->player->inventory->slots[i].item->speed;
-            game->player->max_health +=
-            game->player->inventory->slots[i].item->health;
-            game->player->attack +=
-            game->player->inventory->slots[i].item->damage;
+        slot = &game->player->inventory->slots[i];
+        if (slot->item != NULL) {
+            game->player->armor += slot->item->armor;
+            game->player->speed += slot->item->speed;
+            game->player->max_health += slot->item->health;
+            game->player->attack += slot->item->damage;
         }
     }
+    game->player->armor *= get_multiplier(tree->armor_lvl);
+    game->player->speed *= get_multiplier(tree->speed_lvl);
+    game->player->max_health *= get_multiplier(tree->health_lvl);
+    game->player->attack *= get_multiplier(tree->attack_lvl);
 }
 
 void use_or_trash(game_data_t *game, int slot_id, int item_id)

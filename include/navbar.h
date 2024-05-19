@@ -24,7 +24,7 @@ typedef struct navbar_element_s {
 } navbar_element_t;
 
 typedef struct settings_navbar_element_s {
-    const char *label;
+    char *label;
     sfVector2f position;
     sfVector2f size;
 } settings_navbar_element_t;

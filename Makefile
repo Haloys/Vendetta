@@ -90,6 +90,11 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/inventory_management.c \
 						inventory/display_items.c \
 						inventory/handle_drag_drop.c \
+						inventory/display_labels.c \
+
+SRC_SKILL_TREE	=   	skill_tree/skill_tree.c \
+						skill_tree/display_tree.c \
+						skill_tree/spend_tree.c \
 
 SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/events/movement.c \
@@ -119,6 +124,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_INIT)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_DIALOGUES)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_SKILL_TREE)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))

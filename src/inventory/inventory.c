@@ -169,6 +169,7 @@ void basic_inventory(game_data_t *game)
     draw_statistics(game);
     draw_equipment_slots(game, &grid);
     display_item_images(game, grid);
+    handle_items_hover_label(game, grid);
     handle_drag_and_drop(game, grid);
     destroy_grid(&grid);
     free(grid);

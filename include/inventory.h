@@ -20,6 +20,10 @@
     #define BORDER sfColor_fromRGBA(255, 255, 255, 125)
     #define BORDER_HOVER sfColor_fromRGB(51, 217, 122)
 
+    #define GET_SENTENCE(x) (x ? "YES" : "NO")
+
+    #define INVENTORY_SLOT_COUNT_ALL 31
+
 typedef struct game_data_s game_data_t;
 
 typedef enum item_type_s {
@@ -51,6 +55,7 @@ typedef struct inventory_slot_s {
     item_t *item;
     int quantity;
     float weight;
+    bool is_selected;
 } inventory_slot_t;
 
 typedef struct inventory_s {
