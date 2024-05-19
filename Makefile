@@ -99,6 +99,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/view.c \
 
 SRC_DIALOGUES =   	dialogues/choice_box.c \
+					dialogues/load_dialogue.c \
 
 SRC_UTILS	=   	utils/utils.c \
 
