@@ -114,10 +114,6 @@ typedef struct game_data_s {
     map_config_t map;
 } game_data_t;
 
-
-void text_box(game_data_t *game);
-void npc_dialogues(game_data_t *game);
-
 // Init
 int print_game_help(void);
 int init_game(game_data_t *game);

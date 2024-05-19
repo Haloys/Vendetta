@@ -103,6 +103,8 @@ SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \
 					npc_dialogues/handle_text.c \
 					npc_dialogues/dialogues_event.c \
+					npc_dialogues/init_dialogue.c \
+					npc_dialogues/utils.c \
 
 SRC_UTILS	=   	utils/utils.c \
 

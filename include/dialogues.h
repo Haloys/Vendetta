@@ -26,7 +26,7 @@
     #define BOX3_Y 815
 
 typedef struct dialogue_s {
-    char **lines;
+    sfUint32 **lines;
     size_t line_count;
     size_t current_line;
     size_t current_char;
@@ -82,14 +82,19 @@ typedef struct dialogue_data_s {
     bool *space_pressed;
 } dialogue_data_t;
 
-dialogue_t *load_dialogue(const char *filename,
-    const char *name, sfFont *font);
+void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p);
+
+void handle_choice(game_data_t *game, dialogue_params_t *params);
 
 void show_full_text(dialogue_t *dialogue);
 void process_dialogue(dialogue_t *dialogue, sfRenderWindow *window,
     bool *space_pressed);
 
-void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p);
-void draw_choice_box(sfRenderWindow *window, choice_box_t *box);
+dialogue_t *load_dialogue(const char *filename,
+    const char *name, sfFont *font);
+
+void npc_dialogues(game_data_t *game);
+
+sfUint32* utf8_to_utf32(const char* utf8str);
 
 #endif /* !DIALOGUES_H_ */
