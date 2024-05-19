@@ -43,13 +43,8 @@ sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos)
     return text;
 }
 
-void basic_design(game_data_t *game)
+sfText *set_text_const(game_data_t *game, const char *txt,
+    int size, sfVector2f pos)
 {
-    sprite_id_t elements[] = {SP_MAIN_BG, SP_VENDETTA_MENU};
-    size_t element_count = 2;
-
-    for (size_t i = 0; i < element_count; i++) {
-        sfRenderWindow_drawSprite(game->window,
-            get_sprite(game, elements[i]), NULL);
-    }
+    return set_text(game, (char *)txt, size, pos);
 }

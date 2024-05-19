@@ -17,7 +17,7 @@
 static void update_box_color(sfRectangleShape *box, sfBool mouse_over)
 {
     if (mouse_over) {
-        sfRectangleShape_setFillColor(box,FILL_COLOR);
+        sfRectangleShape_setFillColor(box, FILL_COLOR);
         sfRectangleShape_setOutlineColor(box, OUTLINE_COLOR);
     } else {
         sfRectangleShape_setFillColor(box, FILL_COLOR);
@@ -155,7 +155,7 @@ void init_lucia(game_data_t *game)
         .response_filenames = response_filenames,
         .response_count = 3,
         .choice_filenames = choice_filenames,
-        .sprite_id = SP_VENDETTA_MENU
+        .sprite_id = SP_LUCIA
     };
 
     handle_choice(game, &params);

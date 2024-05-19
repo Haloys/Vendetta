@@ -139,6 +139,8 @@ sfSprite *get_sprite(game_data_t *game, sprite_id_t id);
 int is_rect_click(sfFloatRect const *rect, sfVector2f mouse);
 int play_sound(game_data_t *game, sound_id_t id);
 sfText *set_text(game_data_t *game, char *txt, int size, sfVector2f pos);
+sfText *set_text_const(game_data_t *game, const char *txt,
+    int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
 void basic_design(game_data_t *game);
 

@@ -54,6 +54,7 @@ BUILD_DIR   = ./build
 SRC_ENGINE        =   	engine/my_clock.c \
 						engine/animation.c \
 						engine/utils.c \
+						engine/utils_two.c \
 						engine/free_game.c \
 						engine/fade_in_out.c \
 
