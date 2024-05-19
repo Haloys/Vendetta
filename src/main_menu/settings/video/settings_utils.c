@@ -69,7 +69,7 @@ void set_utils_text(game_data_t *game)
 static void modify_parameters(game_data_t *game)
 {
     if (is_key_pressed(game, MoveLeft) && game->clicked_rect == 1
-        && game->state == SETTINGS_VIDEO) {
+        && game->state == SETTINGS_VIDEO && !game->is_fullscreen) {
         if (game->video_mode.width == 1920) {
             game->video_mode = (sfVideoMode){1366, 768, 32};
         }
