@@ -18,6 +18,7 @@
 
     #define ZOOM_SPEED 1.01f
     #define ZOOM_MIN 0.5f
+    #define ZOOM_MAX 2.5f
 
     #define MIN(a, b) (b < a ? b : a)
     #define MAX(a, b) (b > a ? b : a)
@@ -48,10 +49,5 @@ void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);
 
-// MOVEMENT
-void process_key_left(game_data_t *game, sfSprite *sp_map, float scale);
-void process_key_right(game_data_t *game, sfSprite *sp_map, float scale);
-void process_key_up(game_data_t *game, sfSprite *sp_map, float scale);
-void process_key_down(game_data_t *game, sfSprite *sp_map, float scale);
 
 #endif /* GAMEPLAY_H */

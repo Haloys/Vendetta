@@ -13,7 +13,7 @@
 
 static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
 {
-    sfVector2f center = sfView_getCenter(game->game_view);
+    sfVector2f center = game->player->position;
 
     return MIN(
         MIN(center.x / (WINDOW_WIDTH / 2),
@@ -23,37 +23,67 @@ static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
     );
 }
 
-static void set_zoom(game_data_t *game, game_sprite_t const *map, sfTime time)
+static void change_zoom_key(game_data_t *game, sfTime time, min_max_t *zoom)
 {
-    float dif = 0;
-
-    if (is_key_down(game, KeyPlus))
+    if (game->target_zoom < zoom->max && is_key_down(game, KeyPlus))
         game->target_zoom *= 1 + ZOOM_SPEED * sfTime_asSeconds(time);
-    if (is_key_down(game, KeyMinus))
+    if (game->target_zoom > zoom->min && is_key_down(game, KeyMinus))
         game->target_zoom *= 1 - ZOOM_SPEED * sfTime_asSeconds(time);
-    dif = (game->target_zoom - game->view_zoom) / 10.f;
-    game->target_zoom = CLAMP(game->target_zoom, ZOOM_MIN,
-        get_max_zoom(game, map));
-    if (ABS(dif) > EPSILON) {
-        game->view_zoom += dif;
-        sfView_setSize(game->game_view,
-            (sfVector2f){WINDOW_WIDTH * game->view_zoom,
-            WINDOW_HEIGHT * game->view_zoom});
+}
+
+static void check_custom_zone(player_data_t *player, min_max_t *zoom,
+    sfVector2f *position)
+{
+    if (player->position.x >= 1433 && player->position.x <= 1635
+        && player->position.y >= 1503 && player->position.y <= 1705) {
+        zoom->min = 0.3;
+        zoom->max = 0.3;
+        position->x = 1530;
+        position->y = 1600;
     }
 }
 
-static void set_view(game_data_t *game, player_data_t *player, sfTime time)
+static int update_zoom_one(game_data_t *game, min_max_t *zoom,
+    sfVector2f *size, sfVector2f *position)
 {
-    sfVector2f size = {0, 0};
+    game_sprite_t const *map = game->map.sp_map;
+    float diff = 0;
 
-    set_zoom(game, game->map.sp_map, time);
-    size = sfView_getSize(game->game_view);
-    if (size.x / 2.f < player->position.x
-        && player->position.x < game->map.sp_map->rect.width - size.x / 2.f)
-        game->view_pos.x += (player->position.x - game->view_pos.x) / 30.f;
-    if (size.y / 2.f < player->position.y
-        && player->position.y < game->map.sp_map->rect.height - size.y / 2.f)
-        game->view_pos.y += (player->position.y - game->view_pos.y) / 10.f;
+    diff = CLAMP(MIN(game->target_zoom, get_max_zoom(game, map)),
+        zoom->min, zoom->max) - game->view_zoom;
+    if (fabsf(diff) > EPSILON) {
+        game->view_zoom += diff / 10.f;
+        size->x = WINDOW_WIDTH * game->view_zoom;
+        size->y = WINDOW_HEIGHT * game->view_zoom;
+        sfView_setSize(game->game_view, *size);
+    } else {
+        *size = sfView_getSize(game->game_view);
+    }
+    sfView_setCenter(game->game_view, game->player->position);
+    position->x -= size->x / 2.f;
+    position->y -= size->y / 2.f;
+    return diff;
+}
+
+static void set_view(game_data_t *game, sfTime time)
+{
+    game_sprite_t const *map = game->map.sp_map;
+    sfVector2f position = game->player->position;
+    min_max_t zoom = {ZOOM_MIN, ZOOM_MAX};
+    sfVector2f size;
+    float diff = 0;
+
+    change_zoom_key(game, time, &zoom);
+    check_custom_zone(game->player, &zoom, &position);
+    diff = update_zoom_one(game, &zoom, &size, &position);
+    diff = (CLAMP(position.x, 10.f, map->rect.width - size.x - 10)
+        + size.x / 2.f) - game->view_pos.x;
+    if (fabsf(diff) > EPSILON)
+        game->view_pos.x += diff / 20.f;
+    diff = (CLAMP(position.y, 10.f, map->rect.height - size.y - 10)
+        + size.y / 2.f) - game->view_pos.y;
+    if (fabsf(diff) > EPSILON)
+        game->view_pos.y += diff / 10.f;
     sfView_setCenter(game->game_view, game->view_pos);
 }
 
@@ -100,6 +130,7 @@ void update_player(game_data_t *game, sfTime time)
     update_player_direction(game);
     if (is_key_down(game, Sprint))
         scale *= SPRINT_MUL;
+    normalize(&game->player->direction);
     player->direction.x *= scale;
     player->direction.y *= scale;
     if (!(is_black_color(get_pixel_color(game->cols_map, player->position.x
@@ -108,6 +139,6 @@ void update_player(game_data_t *game, sfTime time)
     if (!(is_black_color(get_pixel_color(game->cols_map, player->position.x,
         player->position.y + (player->direction.y * RADAR_SIZE)))))
         player->position.y += player->direction.y;
-    set_view(game, player, time);
+    set_view(game, time);
     update_player_direction_t(game);
 }
