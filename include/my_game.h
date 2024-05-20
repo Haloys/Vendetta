@@ -208,5 +208,13 @@ void draw_lines(game_data_t *game, sfRectangleShape ***lines);
 void draw_squares(game_data_t *game, sfRectangleShape ***grid);
 float get_multiplier(int lvl);
 
+// Items utils
+void display_first_book(game_data_t *game);
+void display_second_book(game_data_t *game);
+void display_third_book(game_data_t *game);
+void first_book_callback(game_data_t *game);
+void second_book_callback(game_data_t *game);
+void third_book_callback(game_data_t *game);
+
 int asprintf(char **strp, const char *fmt, ...);
 #endif /* MY_GAME_H */
