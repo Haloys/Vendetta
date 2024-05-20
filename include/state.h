@@ -25,6 +25,7 @@ typedef enum state_e {
     SAVE,
     NPC_DIALOGUE,
     SKILL_TREE,
+    PAUSE,
 } state_t;
 
 typedef void (*process_state_t)(game_data_t *game);

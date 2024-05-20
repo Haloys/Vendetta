@@ -20,17 +20,17 @@ void draw_enemy(game_data_t *game, enemy_t *enemy)
 
 static void update_spritesheet(enemy_t *enemy, sfTime time)
 {
-    sfIntRect rect = sfSprite_getTextureRect(enemy->sprite);
+    sfIntRect rect = {0};
 
-    if (sfTime_asMilliseconds(time) >= 70) {
+    if (sfTime_asMilliseconds(time) % 6 == 0) {
+        rect = sfSprite_getTextureRect(enemy->sprite);
         if (rect.left >= enemy->sprite_data->rect.width
             * (enemy->sprite_data->rect_count - 1))
             rect.left = 0;
         else
             rect.left += enemy->sprite_data->rect.width;
-        sfClock_restart(enemy->clock);
+        sfSprite_setTextureRect(enemy->sprite, rect);
     }
-    sfSprite_setTextureRect(enemy->sprite, rect);
 }
 
 void update_enemy(game_data_t *game, enemy_t *enemy)

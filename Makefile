@@ -56,6 +56,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/enemy/enemy.c \
 						engine/enemy/update.c \
 						engine/player/update.c \
+						engine/npc/npc.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
@@ -104,6 +105,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/view.c \
 					init/enemies.c \
 					init/keys.c \
+					init/npcs.c \
 
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \
