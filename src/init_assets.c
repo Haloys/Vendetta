@@ -26,14 +26,14 @@ static int load_textures(game_assets_t *assets)
         dprintf(1, "Loading texture: %s\n", IMAGES[i]);
         assets->texture[i] = sfTexture_createFromFile(IMAGES[i], NULL);
         if (assets->texture[i] == NULL)
-            return RET_FAIL;
+            continue;
         dprintf(1, "OK !\n");
     }
     for (size_t i = 0; i < SPRITE_COUNT; ++i) {
         dprintf(1, "Loading sprite with id: %d\n", SPRITES[i].id);
         sprite = sfSprite_create();
         if (sprite == NULL)
-            return RET_FAIL;
+            continue;
         sfSprite_setTexture(sprite, assets->texture[SPRITES[i].id], sfTrue);
         set_sprite_attribut(sprite, SPRITES[i]);
         assets->sprite[i] = sprite;
@@ -45,13 +45,20 @@ static int load_textures(game_assets_t *assets)
 static int load_sounds(game_assets_t *assets)
 {
     sfSoundBuffer *sound_buffer = NULL;
+    sfSound *sound = NULL;
 
     for (size_t i = 0; i < SOUND_COUNT; ++i) {
         dprintf(1, "Loading sound: %s\n", SOUND_L[i]);
         sound_buffer = sfSoundBuffer_createFromFile(SOUND_L[i]);
         if (sound_buffer == NULL)
-            return RET_FAIL;
-        assets->sound[i] = sound_buffer;
+            continue;
+        assets->sound_buff[i] = sound_buffer;
+        sound = sfSound_create();
+        if (sound == NULL)
+            continue;
+        sfSound_setBuffer(sound, sound_buffer);
+        sfSound_setVolume(sound, SOUNDS[i].volume);
+        assets->sound[i] = sound;
         dprintf(1, "OK !\n");
     }
     return RET_NONE;
@@ -65,7 +72,7 @@ static int load_musics(game_assets_t *assets)
         dprintf(1, "Loading music: %s\n", MUSIC_L[i]);
         music = sfMusic_createFromFile(MUSIC_L[i]);
         if (music == NULL)
-            return RET_FAIL;
+            continue;
         assets->music[i] = music;
         dprintf(1, "OK !\n");
     }

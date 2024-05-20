@@ -16,7 +16,9 @@ static void destroy_game_elements(game_data_t *game)
     for (size_t i = 0; i < SPRITE_COUNT; ++i)
         sfSprite_destroy(game->assets.sprite[i]);
     for (size_t i = 0; i < SOUND_COUNT; ++i)
-        sfSoundBuffer_destroy(game->assets.sound[i]);
+        sfSound_destroy(game->assets.sound[i]);
+    for (size_t i = 0; i < SOUND_COUNT; ++i)
+        sfSoundBuffer_destroy(game->assets.sound_buff[i]);
     for (size_t i = 0; i < MUSIC_COUNT; ++i)
         sfMusic_destroy(game->assets.music[i]);
 }

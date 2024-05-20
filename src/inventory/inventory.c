@@ -165,9 +165,12 @@ void basic_inventory(game_data_t *game)
 {
     sfRectangleShape **grid = malloc(31 * sizeof(sfRectangleShape *));
 
+    game->last_state = INVENTORY;
     if (grid == NULL)
         return;
     draw_title_and_progbar(game);
+    draw_navbar(game);
+    draw_active_navbar_line(game, 315.0f, 300.0f);
     draw_inventory_grid(game, &grid);
     draw_action_buttons(game, &grid);
     draw_statistics(game);
