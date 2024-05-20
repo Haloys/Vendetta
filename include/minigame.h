@@ -25,13 +25,13 @@
     #define PROGRESS_FILL_COLOR sfColor_fromRGBA(0, 128, 255, 200)
     #define PROGRESS_OUTLINE_COLOR sfColor_fromRGBA(0, 0, 0, 255)
 
-typedef struct minigame_s {
+typedef struct sequence_click_s {
     int numbers[NUM_SQUARES];
     int current_number;
     bool squares_clicked[NUM_SQUARES];
     sfClock *clock;
     bool game_won;
-} minigame_t;
+} sequence_click_t;
 
 typedef struct barhit_s {
     sfRectangleShape *outer_rect;
@@ -45,7 +45,7 @@ typedef struct barhit_s {
 
 void draw_sequence_progress_bar(game_data_t *game, sfTime elapsed);
 
-bool display_sequence_click(game_data_t *game);
-bool another_game(game_data_t *game);
+void display_sequence_click(game_data_t *game);
+void display_barhit(game_data_t *game);
 
 #endif /* MINIGAME_H */

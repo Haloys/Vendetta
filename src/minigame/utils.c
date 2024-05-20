@@ -18,7 +18,7 @@ void setup_progress_shapes(game_data_t *game, sfTime elapsed,
     sfVector2f progress_bar_pos;
     float progress = elapsed.microseconds / 1000000.0 / 13.0;
 
-    if (game->minigame.game_won)
+    if (game->sequence.game_won)
         progress = 1.0;
     progress_size = (sfVector2f){PROGRESS_WIDTH * progress, PROGRESS_HEIGHT};
     progress_bar_pos = (sfVector2f){(WINDOW_WIDTH - PROGRESS_WIDTH) / 2,

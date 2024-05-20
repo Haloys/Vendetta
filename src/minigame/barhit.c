@@ -112,7 +112,7 @@ static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
     return false;
 }
 
-bool another_game(game_data_t *game)
+void display_barhit(game_data_t *game)
 {
     static barhit_t barhit;
     static int initialized = 0;
@@ -123,8 +123,5 @@ bool another_game(game_data_t *game)
         sfClock_restart(game->clock);
         initialized = 1;
     }
-    if (update_and_draw_barhit(game, &barhit)) {
-        return true;
-    }
-    return false;
+    update_and_draw_barhit(game, &barhit);
 }
