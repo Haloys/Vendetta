@@ -14,16 +14,20 @@
     #define RECT_HEIGHT 360
     #define SQUARE_SIZE 150
     #define NUM_SQUARES 14
+    #define PROGRESS_WIDTH 600
+    #define PROGRESS_HEIGHT 20
+
+    #define PROGRESS_FILL_COLOR sfColor_fromRGBA(0, 128, 255, 200)
+    #define PROGRESS_OUTLINE_COLOR sfColor_fromRGBA(0, 0, 0, 255)
 
 typedef struct minigame_s {
     int numbers[NUM_SQUARES];
     int current_number;
     bool squares_clicked[NUM_SQUARES];
     sfClock *clock;
-    bool game_over;
-    bool show_message;
-    sfClock *message_clock;
 } minigame_t;
+
+void draw_progress_bar(game_data_t *game, sfTime elapsed);
 
 bool display_sequence_click(game_data_t *game);
 

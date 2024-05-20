@@ -33,7 +33,7 @@ static int start_game(void)
         .fps = 60,
     };
 
-    change_game_mode(&game, INVENTORY);
+    change_game_mode(&game, MINIGAME);
     srand(time(NULL));
     return init_game(&game);
 }
