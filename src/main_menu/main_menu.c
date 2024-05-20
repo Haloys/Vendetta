@@ -115,6 +115,7 @@ static void draw_empty_slots(game_data_t *game)
 
 void basic_play(game_data_t *game)
 {
+    game->last_state = MAIN_MENU;
     basic_menu(game);
     draw_active_navbar_line(game, 80.0f, 210.0f);
     draw_load_save_button(game);

@@ -27,15 +27,15 @@ void handle_hover(sfRectangleShape* square, sfVector2i mouse_pos)
 sfRectangleShape *create_rectangle(game_data_t *game, sfVector2f pos,
     int sizex, int sizey)
 {
-    sfRectangleShape *rectangle = sfRectangleShape_create();
+    sfRectangleShape *rect = sfRectangleShape_create();
 
-    sfRectangleShape_setPosition(rectangle, pos);
-    sfRectangleShape_setSize(rectangle, (sfVector2f){sizex, sizey});
-    sfRectangleShape_setFillColor(rectangle, SQUARE_BG);
-    sfRectangleShape_setOutlineThickness(rectangle, 2);
-    handle_hover(rectangle, sfMouse_getPositionRenderWindow(game->window));
-    sfRenderWindow_drawRectangleShape(game->window, rectangle, NULL);
-    return rectangle;
+    sfRectangleShape_setPosition(rect, pos);
+    sfRectangleShape_setSize(rect, (sfVector2f){sizex, sizey});
+    sfRectangleShape_setFillColor(rect, SQUARE_BG);
+    sfRectangleShape_setOutlineThickness(rect, 2);
+    handle_hover(rect, (sfVector2i){game->mouse_pos.x, game->mouse_pos.y});
+    sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
+    return rect;
 }
 
 int is_valid_weight(game_data_t *game, float added_weight)
