@@ -5,6 +5,8 @@
 ** Main
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
 #include "map.h"
 #include "gameplay.h"
