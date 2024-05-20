@@ -98,7 +98,6 @@ typedef struct game_data_s {
     sfClock *fps_clock;
     sfClock *time;
     float speed;
-    sfUint8 *pixels;
     int mouse_x;
     int mouse_y;
     bool is_fullscreen;
