@@ -166,6 +166,10 @@ void basic_inventory(game_data_t *game)
 {
     sfRectangleShape **grid = malloc(31 * sizeof(sfRectangleShape *));
 
+    if (is_key_pressed(game, sfKeyI) || is_key_pressed(game, sfKeyEscape)) {
+        game->state = PLAYING;
+        return;
+    }
     game->last_state = INVENTORY;
     if (grid == NULL)
         return;

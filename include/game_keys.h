@@ -10,7 +10,7 @@
 
     #include <SFML/Graphics.h>
 
-    #define KEYBINDS_COUNT 14
+    #define KEYBINDS_COUNT 15
 
 typedef enum keybinds_e {
     MoveUp,
