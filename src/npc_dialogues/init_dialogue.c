@@ -13,11 +13,12 @@
 
 #include "my_game.h"
 #include "setup_dialogues.h"
+#include "utils.h"
 
 void npc_dialogues(game_data_t *game)
 {
     if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
-        game->state = PLAYING;
+        change_game_mode(game, PLAYING);
         return;
     }
     handle_choice(game, &DIALOGUES[0]);

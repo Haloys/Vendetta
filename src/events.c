@@ -9,12 +9,14 @@
 
 #include "my_game.h"
 #include "gameplay.h"
+#include "utils.h"
 
 static void process_mouse_click_play(game_data_t *game)
 {
     for (int i = 0; i < 3; i++) {
         if (game->state == MAIN_MENU && game->hover_slot_array[i]) {
-            game->state = PLAYING;
+            change_game_mode(game, PLAYING);
+            game->player->is_playing = true;
             break;
         }
     }
@@ -23,7 +25,7 @@ static void process_mouse_click_play(game_data_t *game)
 static void process_mouse_click_save(game_data_t *game)
 {
     if (game->hover_save_button) {
-        game->state = SAVE;
+        change_game_mode(game, SAVE);
     }
 }
 

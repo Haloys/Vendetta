@@ -21,6 +21,8 @@ const process_state_t process_state[] = {
     basic_save,
     npc_dialogues,
     display_skill_tree,
+    display_sequence_click,
+    display_barhit,
     display_first_book,
     display_second_book,
     display_third_book,
@@ -31,6 +33,7 @@ static void process_loop_update(game_data_t *game)
     for (size_t i = 0; i < STATE_COUNT; ++i) {
         if (game->state == i) {
             process_state[i](game);
+            break;
         }
     }
 }
