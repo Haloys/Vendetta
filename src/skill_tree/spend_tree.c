@@ -87,7 +87,7 @@ static void check_and_spend(game_data_t *game, int i)
 
 void handle_click_tree(game_data_t *game, sfRectangleShape **grid)
 {
-    sfVector2i mouse = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f mouse = game->mouse_pos;
     sfFloatRect rect;
 
     for (int i = 0; i < 12; i++) {
