@@ -113,6 +113,7 @@ SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 
 SRC_MINIGAME =   	minigame/sequence_click.c \
 					minigame/utils.c \
+					minigame/barhit.c \
 
 SRC_UTILS	=   	utils/utils.c \
 					utils/list.c \
