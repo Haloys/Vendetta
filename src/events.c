@@ -13,7 +13,7 @@
 static void process_mouse_click_play(game_data_t *game)
 {
     for (int i = 0; i < 3; i++) {
-        if (game->hover_slot_array[i]) {
+        if (game->state == MAIN_MENU && game->hover_slot_array[i]) {
             game->state = PLAYING;
             break;
         }
@@ -75,9 +75,9 @@ static void process_mouse_button_pressed(game_data_t *game,
     sfMouseButtonEvent *evt)
 {
     remap_event_coords(game->window, &evt->x, &evt->y);
+    process_mouse_click_play(game);
     handle_navbar_click(game, *evt);
     handle_settings_click(game);
-    process_mouse_click_play(game);
     process_mouse_click_save(game);
     printf("click x: %d, y: %d\n", evt->x, evt->y);
 }
