@@ -170,6 +170,18 @@ static void draw_bg_control(game_data_t *game)
     }
 }
 
+bool is_key_already_bound(keycode_t key)
+{
+    int nbr_keys = sizeof(key_config) / sizeof(key_config[0]);
+
+    for (int i = 0; i < nbr_keys; ++i) {
+        if (key_config[i].key == key) {
+            return true;
+        }
+    }
+    return false;
+}
+
 char *key_to_string(keycode_t key)
 {
     static const int key_count = sizeof(key_mapping) / sizeof(key_mapping[0]);
@@ -193,7 +205,7 @@ keycode_t get_pressed_key(void)
     return sfKeyUnknown;
 }
 
-static void update_keybinding(int index, sfKeyCode new_key)
+static void update_keybinding(int index, keycode_t new_key)
 {
     if (key_config[index].key != new_key) {
         key_config[index].key = new_key;
@@ -204,12 +216,17 @@ static void update_keybinding(int index, sfKeyCode new_key)
 static void handle_key_rebinding(game_data_t *game)
 {
     static int rebinding = -1;
-    sfKeyCode new_key = get_pressed_key();
+    keycode_t new_key = get_pressed_key();
 
     if (new_key != sfKeyUnknown && new_key != sfKeyUp &&
-        new_key != sfKeyDown) {
+        new_key != sfKeyDown && rebinding == -1) {
         rebinding = game->clicked_control;
-        update_keybinding(rebinding, new_key);
+    }
+    if (rebinding != -1) {
+        if (!is_key_already_bound(new_key) ||
+            key_config[rebinding].key == new_key) {
+            update_keybinding(rebinding, new_key);
+        }
         rebinding = -1;
     }
     set_control_text(game);
