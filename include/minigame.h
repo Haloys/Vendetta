@@ -25,6 +25,7 @@ typedef struct minigame_s {
     int current_number;
     bool squares_clicked[NUM_SQUARES];
     sfClock *clock;
+    bool game_won;
 } minigame_t;
 
 void draw_sequence_progress_bar(game_data_t *game, sfTime elapsed);

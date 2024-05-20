@@ -131,6 +131,7 @@ static void reset_minigame(game_data_t *game)
         game->minigame.squares_clicked[i] = false;
     }
     game->minigame.current_number = 0;
+    game->minigame.game_won = false;
     sfClock_restart(game->minigame.clock);
 }
 
@@ -145,6 +146,7 @@ static void initialize_minigame(game_data_t *game)
         shuffle_numbers(game->minigame.numbers, NUM_SQUARES);
         game->minigame.current_number = 1;
         game->minigame.clock = sfClock_create();
+        game->minigame.game_won = false;
     }
 }
 
@@ -155,13 +157,15 @@ bool display_sequence_click(game_data_t *game)
     basic_design(game);
     initialize_minigame(game);
     elapsed = sfClock_getElapsedTime(game->minigame.clock);
-    if (elapsed.microseconds / 1000000.0 > 13.0 &&
+    if (elapsed.microseconds / 1000000.0 > 13.0 && !game->minigame.game_won &&
         game->minigame.current_number != NUM_SQUARES + 1)
             reset_minigame(game);
     draw_rect_with_squares(game);
     draw_sequence_progress_bar(game, elapsed);
     handle_click(game);
-    if (game->minigame.current_number == NUM_SQUARES + 1)
+    if (game->minigame.current_number == NUM_SQUARES + 1) {
+        game->minigame.game_won = true;
         return true;
+    }
     return false;
 }
