@@ -67,12 +67,13 @@ static void handle_key_load_save(sfEvent event,
 
 static void handle_mouse_load_save(game_data_t *game, game_ui_t *game_ui)
 {
+    set_mouse_pos(game);
     handle_valid_button_click(game, game_ui);
     handle_cancel_button_click(game, game_ui);
 }
 
-static void handle_save_evt(game_data_t *game, sfEvent event,
-    game_ui_t *game_ui)
+static void handle_save_evt(game_data_t *game,
+    sfEvent event, game_ui_t *game_ui)
 {
     if (event.type == sfEvtTextEntered)
         handle_text_entered_event(event, game_ui->input,
@@ -81,6 +82,10 @@ static void handle_save_evt(game_data_t *game, sfEvent event,
         handle_mouse_load_save(game, game_ui);
     if (event.type == sfEvtKeyPressed)
         handle_key_load_save(event, game_ui->input, game_ui);
+    if (event.type == sfEvtClosed) {
+        sfRenderWindow_close(game->window);
+        exit(84);
+    }
 }
 
 static void handle_game_ui(game_data_t *game, game_ui_t *game_ui)
