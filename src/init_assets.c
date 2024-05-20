@@ -92,11 +92,27 @@ static int load_font(game_data_t *game)
     return RET_NONE;
 }
 
+static int load_shaders(game_assets_t *assets)
+{
+    sfShader *shader = NULL;
+
+    for (size_t i = 0; i < SHADER_COUNT; ++i) {
+        dprintf(1, "Loading shader: %s\n", SHADERS_PATHS[i]);
+        shader = sfShader_createFromFile(NULL, NULL, SHADERS_PATHS[i]);
+        if (shader == NULL)
+            continue;
+        assets->shaders[i] = shader;
+        dprintf(1, "OK !\n");
+    }
+    return RET_NONE;
+}
+
 int init_assets(game_data_t *game)
 {
     load_font(game);
     load_textures(&game->assets);
     load_sounds(&game->assets);
     load_musics(&game->assets);
+    load_shaders(&game->assets);
     return 0;
 }

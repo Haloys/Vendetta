@@ -1515,4 +1515,24 @@ static const music_t MUSICS[] = {
 
     #define MUSIC_COUNT (sizeof(MUSICS) / sizeof(music_t))
 
+static const char *SHADERS_PATHS[] = {
+    "shaders/test.frag",
+};
+
+    #define SHADER_COUNT (sizeof(SHADERS_PATHS) / sizeof(char *))
+
+typedef enum shader_id_e {
+    SH_MAIN_DARKNESS,
+} shader_id_t;
+
+typedef struct shader_s {
+    shader_id_t id;
+} shader_t;
+
+static const shader_t SHADERS[] = {
+    {
+        .id = SH_MAIN_DARKNESS
+    },
+};
+
 #endif /* RESOURCES_H */
