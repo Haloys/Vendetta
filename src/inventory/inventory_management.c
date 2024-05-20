@@ -12,6 +12,7 @@
 #include "my_game.h"
 #include "inventory.h"
 #include "items.h"
+#include "utils.h"
 
 static int insert_existing_item(game_data_t *game, char *name, int qty, int i)
 {
