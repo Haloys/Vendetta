@@ -42,7 +42,7 @@ static void start_game_loop(game_data_t *game)
 
 static int save_data(game_data_t *game)
 {
-    FILE *file = fopen("database/save.flav", "w");
+    FILE *file = fopen("database/player.ven", "w");
 
     printf("Saving data\n");
     if (file == NULL)
@@ -60,7 +60,7 @@ static int save_data(game_data_t *game)
 
 static int open_save(game_data_t *game)
 {
-    FILE *file = fopen("save.flav", "r");
+    FILE *file = fopen("player.ven", "r");
 
     if (file == NULL)
         return RET_FAIL;
