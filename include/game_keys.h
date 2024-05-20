@@ -22,7 +22,8 @@ typedef enum keybinds_e {
     Echap,
     KeyPlus,
     KeyMinus,
-    Interact
+    Interact,
+    Inventory
 } keybinds_t;
 
 typedef struct sf_to_keybind_s {

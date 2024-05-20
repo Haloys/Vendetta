@@ -11,6 +11,7 @@
 #include "player.h"
 #include "gameplay.h"
 #include "game_npc.h"
+#include "utils.h"
 
 static void display_enemies(game_data_t *game)
 {
@@ -77,6 +78,14 @@ static void apply_shader(game_data_t *game)
     sfTexture_destroy(texture);
 }
 
+static void check_gameplay_keys(game_data_t *game)
+{
+    if (is_key_pressed(game, Inventory))
+        change_game_mode(game, INVENTORY);
+    if (is_key_pressed(game, Echap))
+        change_game_mode(game, PAUSE);
+}
+
 void process_playing_gameplay(game_data_t *game)
 {
     sfTime time = sfClock_getElapsedTime(game->player->clock);
@@ -89,6 +98,7 @@ void process_playing_gameplay(game_data_t *game)
     sfRenderWindow_setView(game->window, game->game_view);
     sfClock_restart(game->player->clock);
     update_player(game, time);
+    check_gameplay_keys(game);
     display_map(game);
     display_player(game);
     display_enemies(game);
