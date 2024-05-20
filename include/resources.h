@@ -101,6 +101,10 @@ static const char *IMAGES[] = {
     "assets/images/skill_tree/speed_gray.png",
     "assets/images/skill_tree/attack_color.png",
     "assets/images/skill_tree/attack_gray.png",
+    "assets/images/main_menu/home.png",
+    "assets/images/main_menu/icon_settings_2.png",
+    "assets/images/main_menu/inventory.png",
+    "assets/images/main_menu/skill.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -196,6 +200,10 @@ typedef enum texture_id_e {
     SPEED_GRAY,
     ATTACK_COL,
     ATTACK_GRAY,
+    HOME_ICON,
+    SETTINGS_2,
+    INVENTORY_ICON,
+    SKILL_ICON,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1377,6 +1385,58 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+    {
+        .id = HOME_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 25,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {1205, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = SETTINGS_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 22,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {940, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = INVENTORY_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 26,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {351, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = SKILL_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 25,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {657, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1472,6 +1532,10 @@ typedef enum sprite_id_e {
     SP_SPEED_GRAY,
     SP_ATTACK_COL,
     SP_ATTACK_GRAY,
+    SP_HOME_ICON,
+    SP_SETTINGS_2,
+    SP_INVENTORY_ICON,
+    SP_SKILL_ICON,
 } sprite_id_t;
 
 typedef enum sound_id_e {

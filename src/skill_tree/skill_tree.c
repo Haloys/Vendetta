@@ -85,9 +85,12 @@ void display_skill_tree(game_data_t *game)
     sfRectangleShape **grid = malloc(sizeof(sfRectangleShape *) * 12);
     sfRectangleShape **lines = malloc(sizeof(sfRectangleShape *) * 8);
 
+    game->last_state = SKILL_TREE;
     if (grid == NULL || lines == NULL)
         return;
     draw_base_design(game);
+    draw_navbar(game);
+    draw_active_navbar_line(game, 625.0f, 280.0f);
     draw_progress_bar(game);
     draw_squares(game, &grid);
     draw_lines(game, &lines);

@@ -129,6 +129,7 @@ typedef struct game_data_s {
     list_t enemies;
     sfClock *animation_clock;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
+    state_t last_state;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
