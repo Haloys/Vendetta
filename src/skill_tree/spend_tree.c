@@ -69,8 +69,9 @@ static void check_and_spend(game_data_t *game, int i)
 {
     int how_much_to_spend = calc_spending(game, i);
 
+    if (how_much_to_spend == 0)
+        return;
     if (game->player->skill_points >= how_much_to_spend) {
-        game->player->skill_points -= how_much_to_spend;
         if (i == 0 || i == 1 || i == 2)
             game->player->skill_tree->health_lvl = i + 1;
         if (i == 3 || i == 4 || i == 5)
@@ -79,13 +80,14 @@ static void check_and_spend(game_data_t *game, int i)
             game->player->skill_tree->speed_lvl = (i - 6) + 1;
         if (i == 9 || i == 10 || i == 11)
             game->player->skill_tree->attack_lvl = (i - 9) + 1;
+        game->player->skill_points -= how_much_to_spend;
         calculate_player_stats(game);
     }
 }
 
 void handle_click_tree(game_data_t *game, sfRectangleShape **grid)
 {
-    sfVector2i mouse = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f mouse = game->mouse_pos;
     sfFloatRect rect;
 
     for (int i = 0; i < 12; i++) {

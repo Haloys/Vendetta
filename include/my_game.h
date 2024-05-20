@@ -25,6 +25,7 @@
     #include "list.h"
     #include "skill_tree.h"
     #include "minigame.h"
+    #include "game_keys.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -36,8 +37,10 @@
 typedef struct game_assets_s {
     sfTexture *texture[IMAGE_COUNT];
     sfSprite *sprite[SPRITE_COUNT];
-    sfSoundBuffer *sound[SOUND_COUNT];
+    sfSound *sound[SOUND_COUNT];
+    sfSoundBuffer *sound_buff[SOUND_COUNT];
     sfMusic *music[MUSIC_COUNT];
+    sfShader *shaders[SHADER_COUNT];
 } game_assets_t;
 
 typedef struct player_data_s {
@@ -62,6 +65,11 @@ typedef struct player_data_s {
     int skill_points;
 } player_data_t;
 
+typedef struct {
+    float min;
+    float max;
+} min_max_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -75,7 +83,6 @@ typedef struct game_data_s {
     sfClock *fps_clock;
     sfClock *time;
     float speed;
-    sfUint8 *pixels;
     int mouse_x;
     int mouse_y;
     bool is_fullscreen;
@@ -92,6 +99,7 @@ typedef struct game_data_s {
     int sa_x;
     int clicked_rect_index;
     int clicked_rect;
+    int clicked_control;
     sfImage *cols_map;
     int key_state;
     int key_change;
@@ -103,8 +111,11 @@ typedef struct game_data_s {
     float target_zoom;
     map_config_t map;
     list_t enemies;
+    list_t npcs;
     sfClock *animation_clock;
     sequence_click_t sequence;
+    sf_to_keybind_t keybinds[KEYBINDS_COUNT];
+    state_t last_state;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
@@ -152,6 +163,7 @@ void modify_sound(game_data_t *game);
 void draw_reso_rectangle(game_data_t *game);
 void modify_screen(game_data_t *game);
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
+void draw_everything_control(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);

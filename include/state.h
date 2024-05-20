@@ -10,7 +10,6 @@
 
     #include "my_game.h"
     #include "main_menu.h"
-    #include "gameplay.h"
 
     #define STATE_COUNT sizeof(process_state) / sizeof(process_state[0])
 
@@ -28,6 +27,7 @@ typedef enum state_e {
     SKILL_TREE,
     SEQUENCE_CLICK,
     BARHIT,
+    PAUSE,
 } state_t;
 
 typedef void (*process_state_t)(game_data_t *game);

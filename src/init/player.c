@@ -6,6 +6,7 @@
 */
 
 #include "my_game.h"
+#include "gameplay.h"
 
 static int init_map_pos(game_data_t *game)
 {

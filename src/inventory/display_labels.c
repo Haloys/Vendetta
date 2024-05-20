@@ -19,7 +19,7 @@ static void display_values(game_data_t *game, sfText *txt_1, sfText *txt_2)
     sfText_destroy(txt_2);
 }
 
-static void display_item_label(game_data_t *game, sfVector2i pos,
+static void display_item_label(game_data_t *game, sfVector2f pos,
     int i)
 {
     sfRectangleShape *bg = sfRectangleShape_create();
@@ -44,7 +44,7 @@ static void display_item_label(game_data_t *game, sfVector2i pos,
     sfRectangleShape_destroy(bg);
 }
 
-static void display_icons_sprites(game_data_t *game, sfVector2i pos)
+static void display_icons_sprites(game_data_t *game, sfVector2f pos)
 {
     int base_id = SP_HEALTH_ICON;
     sfSprite *sprite = get_sprite(game, base_id);
@@ -67,21 +67,23 @@ static void display_icons_sprites(game_data_t *game, sfVector2i pos)
     }
 }
 
-static void disp_stat_values_2(game_data_t *game, sfVector2i pos, item_t *item)
+static void disp_stat_values_2(game_data_t *game, sfVector2f pos, item_t *item)
 {
-    char *speed = malloc(5);
-    char *damage = malloc(5);
+    char *speed = NULL;
+    char *damage = NULL;
     sfText *d_txt = NULL;
     sfText *s_txt = NULL;
 
     if (item->speed >= 0)
-        sprintf(speed, "+ %d", item->speed);
+        asprintf(&speed, "+ %d", item->speed);
     else
-        sprintf(speed, "- %d", ABS(item->speed));
+        asprintf(&speed, "- %d", item->speed * -1);
     if (item->damage >= 0)
-        sprintf(damage, "+ %d", item->damage);
+        asprintf(&damage, "+ %d", item->damage);
     else
-        sprintf(damage, "- %d", ABS(item->damage));
+        asprintf(&damage, "- %d", item->damage * -1);
+    if (speed == NULL || damage == NULL)
+        return;
     d_txt = set_text(game, damage, 14, (sfVector2f){pos.x + 150, pos.y + 73});
     s_txt = set_text(game, speed, 14, (sfVector2f){pos.x + 150, pos.y + 103});
     display_values(game, d_txt, s_txt);
@@ -89,21 +91,21 @@ static void disp_stat_values_2(game_data_t *game, sfVector2i pos, item_t *item)
     free(damage);
 }
 
-static void disp_stats_values(game_data_t *game, sfVector2i pos, item_t *item)
+static void disp_stats_values(game_data_t *game, sfVector2f pos, item_t *item)
 {
-    char *health = malloc(5);
-    char *armor = malloc(5);
+    char *health = NULL;
+    char *armor = NULL;
     sfText *h_txt = NULL;
     sfText *a_txt = NULL;
 
     if (item->health >= 0)
-        sprintf(health, "+ %d", item->health);
+        asprintf(&health, "+ %d", item->health);
     else
-        sprintf(health, "- %d", item->health);
+        asprintf(&health, "- %d", item->health);
     if (item->armor >= 0)
-        sprintf(armor, "+ %d", item->armor);
+        asprintf(&armor, "+ %d", item->armor);
     else
-        sprintf(armor, "- %d", item->armor);
+        asprintf(&armor, "- %d", item->armor);
     h_txt = set_text(game, health, 14, (sfVector2f){pos.x + 60, pos.y + 73});
     a_txt = set_text(game, armor, 14, (sfVector2f){pos.x + 60, pos.y + 103});
     display_values(game, h_txt, a_txt);
@@ -112,7 +114,7 @@ static void disp_stats_values(game_data_t *game, sfVector2i pos, item_t *item)
     free(armor);
 }
 
-static void display_specs(game_data_t *game, sfVector2i pos, int i)
+static void display_specs(game_data_t *game, sfVector2f pos, int i)
 {
     item_t *item = game->player->inventory->slots[i].item;
     sfText *is_usable_txt = set_text(game, GET_SENTENCE(item->is_usable), 14,
@@ -134,7 +136,7 @@ static void display_specs(game_data_t *game, sfVector2i pos, int i)
 
 void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid)
 {
-    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f mouse_pos = game->mouse_pos;
     sfFloatRect bounds = {0};
 
     for (size_t i = 0; i < 29; i++) {

@@ -21,7 +21,7 @@ static void select_sprite(game_data_t *game, int *is_dragging,
     sfSprite **sprite, sfRectangleShape **grid)
 {
     sfFloatRect rect = {0};
-    sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f pos = game->mouse_pos;
 
     for (size_t i = 0; i < 29; i++) {
         rect = sfRectangleShape_getGlobalBounds(grid[i]);
@@ -38,7 +38,7 @@ static void select_sprite(game_data_t *game, int *is_dragging,
 static void move_sprite(game_data_t *game, int is_dragging,
     sfRectangleShape **grid)
 {
-    sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f pos = game->mouse_pos;
     sfFloatRect rect = {0};
 
     for (size_t i = 0; i < 31; i++) {
@@ -54,7 +54,7 @@ static void move_sprite(game_data_t *game, int is_dragging,
 
 void handle_drag_and_drop(game_data_t *game, sfRectangleShape **grid)
 {
-    sfVector2i pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f pos = game->mouse_pos;
     static int is_dragging = -1;
     static sfSprite *sprite = NULL;
 

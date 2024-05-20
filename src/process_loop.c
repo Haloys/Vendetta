@@ -13,7 +13,7 @@ const process_state_t process_state[] = {
     launch_loading,
     basic_play,
     basic_settings,
-    draw_settings_navbar,
+    draw_everything_control,
     draw_everything_sound,
     basic_help,
     process_playing_gameplay,

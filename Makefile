@@ -56,6 +56,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/enemy/enemy.c \
 						engine/enemy/update.c \
 						engine/player/update.c \
+						engine/npc/npc.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
@@ -70,12 +71,13 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/help/help_menu.c \
 				main_menu/navbar/navbar.c \
 				main_menu/navbar/navbar_settings.c \
-				main_menu/settings/settings_fps.c \
-				main_menu/settings/settings_screen.c \
-				main_menu/settings/settings_utils.c \
-				main_menu/settings/settings_resolution.c \
-				main_menu/settings/settings_audio.c \
-				main_menu/settings/settings_audio_utils.c \
+				main_menu/settings/video/settings_fps.c \
+				main_menu/settings/video/settings_screen.c \
+				main_menu/settings/video/settings_utils.c \
+				main_menu/settings/video/settings_resolution.c \
+				main_menu/settings/audio/settings_audio.c \
+				main_menu/settings/audio/settings_audio_utils.c \
+				main_menu/settings/controls/settings_controls.c \
 				main_menu/save/save_ui.c \
 				main_menu/save/save_text_type.c \
 				main_menu/save/valid_save.c \
@@ -103,6 +105,8 @@ SRC_INIT	=   	init/game_icon.c \
 					init/player.c \
 					init/view.c \
 					init/enemies.c \
+					init/keys.c \
+					init/npcs.c \
 
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \

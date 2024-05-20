@@ -34,11 +34,19 @@ typedef struct text_draw_info_settings_s {
     sfColor hover_color;
 } text_draw_info_settings_t;
 
-static const navbar_element_t elements[] = {
+static const navbar_element_t HOME_ELEMENTS[] = {
     {"PLAY", SP_ICON_PLAY, {159, 42}, {80, 30}, MAIN_MENU},
     {"SETTINGS", SP_ICON_SETTINGS, {367, 42}, {155, 30}, SETTINGS_VIDEO},
     {"HELP", SP_ICON_HELP, {633, 42}, {80, 30}, HELP},
     {"QUIT", SP_ICON_QUIT, {827, 42}, {80, 30}, MAIN_MENU}
+};
+
+static const navbar_element_t GAME_ELEMENTS[] = {
+    {"RESUME", SP_ICON_PLAY, {159, 42}, {120, 30}, PLAYING},
+    {"INVENTORY", SP_INVENTORY_ICON, {405, 42}, {175, 30}, INVENTORY},
+    {"SKILL TREE", SP_SKILL_ICON, {710, 42}, {175, 30}, SKILL_TREE},
+    {"SETTINGS", SP_SETTINGS_2, {990, 42}, {140, 30}, SETTINGS_VIDEO},
+    {"HOME", SP_HOME_ICON, {1255, 42}, {90, 30}, MAIN_MENU}
 };
 
 void handle_settings_click(game_data_t *game);

@@ -10,6 +10,7 @@
 #include <time.h>
 
 #include "my_game.h"
+#include "gameplay.h"
 
 static void change_volume(game_data_t *game, int sound)
 {
@@ -31,10 +32,10 @@ void modify_sound(game_data_t *game)
         game->clicked_rect_index++;
         game->clicked_rect_index %= 3;
     }
-    if (is_key_pressed(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
+    if (is_key_down(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
     }
-    if (is_key_pressed(game, MoveRight) && game->state == SETTINGS_AUDIO) {
+    if (is_key_down(game, MoveRight) && game->state == SETTINGS_AUDIO) {
         sound += 5;
     }
     change_volume(game, sound);

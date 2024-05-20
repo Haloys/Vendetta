@@ -60,11 +60,14 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
     sfMouseButtonEvent mouse_event)
 {
     const navbar_element_t *elem;
+    const navbar_element_t *elements;
+    size_t navbar_element_count = game->last_state == MAIN_MENU ? 4 : 5;
 
+    elements = game->last_state == MAIN_MENU ? HOME_ELEMENTS : GAME_ELEMENTS;
     if (!game->is_navbar_visible) {
         return NULL;
     }
-    for (size_t i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
+    for (size_t i = 0; i < navbar_element_count; i++) {
         elem = &elements[i];
         if (mouse_event.x >= elem->position.x &&
             mouse_event.x <= elem->position.x + elem->size.x &&
@@ -94,8 +97,17 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
 
 void draw_navbar(game_data_t *game)
 {
-    int navbar_element_count = sizeof(elements) / sizeof(navbar_element_t);
+    navbar_element_t *elements = NULL;
+    int navbar_element_count = 0;
 
+    if (game->last_state == MAIN_MENU) {
+        elements = (navbar_element_t *)HOME_ELEMENTS;
+        navbar_element_count = 4;
+    }
+    if (game->last_state == INVENTORY || game->last_state == SKILL_TREE) {
+        elements = (navbar_element_t *)GAME_ELEMENTS;
+        navbar_element_count = 5;
+    }
     game->is_navbar_visible = true;
     for (int i = 0; i < navbar_element_count; i++) {
         draw_navbar_element(game, &elements[i], i);
