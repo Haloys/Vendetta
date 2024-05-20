@@ -24,6 +24,7 @@
     #include "map.h"
     #include "list.h"
     #include "skill_tree.h"
+    #include "minigame.h"
     #include "game_keys.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
@@ -64,27 +65,6 @@ typedef struct player_data_s {
     int skill_points;
 } player_data_t;
 
-typedef struct slider_s {
-    sfRectangleShape *bg_music;
-    sfCircleShape *thumb_music;
-    sfRectangleShape *bg_global;
-    sfCircleShape *thumb_global;
-    sfRectangleShape *bg_ambient;
-    sfCircleShape *thumb_ambient;
-    float min_music;
-    float max_music;
-    float min_global;
-    float max_global;
-    float min_ambient;
-    float max_ambient;
-    sfVector2f pos_music;
-    sfVector2f pos_global;
-    sfVector2f pos_ambient;
-    float value_music;
-    float value_global;
-    float value_ambient;
-} slider_t;
-
 typedef struct {
     float min;
     float max;
@@ -120,7 +100,6 @@ typedef struct game_data_s {
     int clicked_rect_index;
     int clicked_rect;
     int clicked_control;
-    slider_t slider;
     sfImage *cols_map;
     int key_state;
     int key_change;
@@ -134,6 +113,7 @@ typedef struct game_data_s {
     list_t enemies;
     list_t npcs;
     sfClock *animation_clock;
+    sequence_click_t sequence;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
 } game_data_t;
@@ -176,16 +156,6 @@ void set_reso(game_data_t *game);
 void set_utils_text(game_data_t *game);
 void arrow_l_fps(game_data_t *game);
 void draw_everything_sound(game_data_t *game);
-void init_slider_music(slider_t *slider, sfVector2f position,
-    float min, float max);
-void init_slider_global(slider_t *slider, sfVector2f position,
-    float min, float max);
-void init_slider_ambient(slider_t *slider, sfVector2f position,
-    float min, float max);
-void update_slider_ambient(game_data_t *const game, slider_t *slider);
-void update_slider_music(game_data_t *const game, slider_t *slider);
-void update_slider_global(game_data_t *const game, slider_t *slider);
-void draw_slider(slider_t *sl, game_data_t *game);
 void draw_bg_rectangle(game_data_t *game);
 void handle_click_sound(game_data_t *game, sfVector2f click_pos);
 void handle_events_sound(game_data_t *game);

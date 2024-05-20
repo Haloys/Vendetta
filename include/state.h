@@ -25,6 +25,8 @@ typedef enum state_e {
     SAVE,
     NPC_DIALOGUE,
     SKILL_TREE,
+    SEQUENCE_CLICK,
+    BARHIT,
     PAUSE,
 } state_t;
 

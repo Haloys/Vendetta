@@ -115,6 +115,10 @@ SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/init_dialogue.c \
 					npc_dialogues/utils.c \
 
+SRC_MINIGAME =   	minigame/sequence_click.c \
+					minigame/utils.c \
+					minigame/barhit.c \
+
 SRC_UTILS	=   	utils/utils.c \
 					utils/list.c \
 
@@ -127,6 +131,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_DIALOGUES)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_SKILL_TREE)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_MINIGAME)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
