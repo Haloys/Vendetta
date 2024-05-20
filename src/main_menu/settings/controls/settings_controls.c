@@ -170,7 +170,7 @@ static void draw_bg_control(game_data_t *game)
     }
 }
 
-char *sfKeyToString(sfKeyCode key)
+char *sfKeyToString(keycode_t key)
 {
     static const int key_count = sizeof(key_mapping) / sizeof(key_mapping[0]);
 
