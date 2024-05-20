@@ -24,6 +24,7 @@
     #include "map.h"
     #include "list.h"
     #include "skill_tree.h"
+    #include "minigame.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -125,10 +126,10 @@ typedef struct game_data_s {
     map_config_t map;
     list_t enemies;
     sfClock *animation_clock;
+    minigame_t minigame;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
-void display_minigame(game_data_t *game);
 
 // Init
 int print_game_help(void);
