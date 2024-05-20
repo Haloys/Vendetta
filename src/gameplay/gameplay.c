@@ -31,7 +31,7 @@ static void display_npcs(game_data_t *game)
     element_t *tmp = game->npcs.start.next;
 
     for (int i = 0; i < game->npcs.length; ++i) {
-        if (game->map.id == ((npc_t *)tmp->data)->map_id) {
+        if (game->map.id == ((npc_t *)tmp->data)->config->map_id) {
             update_npc(game, (npc_t *)tmp->data);
             draw_npc(game, (npc_t *)tmp->data);
         }
