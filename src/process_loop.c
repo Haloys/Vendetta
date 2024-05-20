@@ -23,6 +23,9 @@ const process_state_t process_state[] = {
     display_skill_tree,
     display_sequence_click,
     display_barhit,
+    display_first_book,
+    display_second_book,
+    display_third_book,
 };
 
 static void process_loop_update(game_data_t *game)

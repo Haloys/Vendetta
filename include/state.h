@@ -27,6 +27,9 @@ typedef enum state_e {
     SKILL_TREE,
     SEQUENCE_CLICK,
     BARHIT,
+    BOOK_1,
+    BOOK_2,
+    BOOK_3,
     PAUSE,
 } state_t;
 

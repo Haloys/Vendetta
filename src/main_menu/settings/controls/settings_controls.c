@@ -235,7 +235,10 @@ static void handle_key_rebinding(game_data_t *game)
 void draw_everything_control(game_data_t *game)
 {
     basic_menu(game);
-    draw_active_navbar_line(game, 290.0f, 270.0f);
+    if (game->last_state == MAIN_MENU)
+        draw_active_navbar_line(game, 290.0f, 270.0f);
+    else
+        draw_active_navbar_line(game, 905.0f, 262.0f);
     draw_settings_navbar(game);
     modify_control(game);
     handle_key_rebinding(game);

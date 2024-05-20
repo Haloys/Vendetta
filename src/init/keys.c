@@ -26,6 +26,7 @@ static void set_default_keys(sf_to_keybind_t *keybinds)
     keybinds[12] = (sf_to_keybind_t){sfKeySubtract, KeyMinus};
     keybinds[13] = (sf_to_keybind_t){sfKeyE, Interact};
     keybinds[14] = (sf_to_keybind_t){sfKeyI, Inventory};
+    keybinds[15] = (sf_to_keybind_t){sfKeySpace, Space};
 }
 
 int init_keybinds(game_data_t *game)
