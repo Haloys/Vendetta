@@ -10,7 +10,6 @@
 
 #include "my_game.h"
 #include "inventory.h"
-#include "gameplay.h"
 
 static void display_values(game_data_t *game, sfText *txt_1, sfText *txt_2)
 {
@@ -20,7 +19,7 @@ static void display_values(game_data_t *game, sfText *txt_1, sfText *txt_2)
     sfText_destroy(txt_2);
 }
 
-static void display_item_label(game_data_t *game, sfVector2i pos,
+static void display_item_label(game_data_t *game, sfVector2f pos,
     int i)
 {
     sfRectangleShape *bg = sfRectangleShape_create();
@@ -45,7 +44,7 @@ static void display_item_label(game_data_t *game, sfVector2i pos,
     sfRectangleShape_destroy(bg);
 }
 
-static void display_icons_sprites(game_data_t *game, sfVector2i pos)
+static void display_icons_sprites(game_data_t *game, sfVector2f pos)
 {
     int base_id = SP_HEALTH_ICON;
     sfSprite *sprite = get_sprite(game, base_id);
@@ -68,7 +67,7 @@ static void display_icons_sprites(game_data_t *game, sfVector2i pos)
     }
 }
 
-static void disp_stat_values_2(game_data_t *game, sfVector2i pos, item_t *item)
+static void disp_stat_values_2(game_data_t *game, sfVector2f pos, item_t *item)
 {
     char *speed = NULL;
     char *damage = NULL;
@@ -92,7 +91,7 @@ static void disp_stat_values_2(game_data_t *game, sfVector2i pos, item_t *item)
     free(damage);
 }
 
-static void disp_stats_values(game_data_t *game, sfVector2i pos, item_t *item)
+static void disp_stats_values(game_data_t *game, sfVector2f pos, item_t *item)
 {
     char *health = NULL;
     char *armor = NULL;
@@ -115,7 +114,7 @@ static void disp_stats_values(game_data_t *game, sfVector2i pos, item_t *item)
     free(armor);
 }
 
-static void display_specs(game_data_t *game, sfVector2i pos, int i)
+static void display_specs(game_data_t *game, sfVector2f pos, int i)
 {
     item_t *item = game->player->inventory->slots[i].item;
     sfText *is_usable_txt = set_text(game, GET_SENTENCE(item->is_usable), 14,
@@ -137,7 +136,7 @@ static void display_specs(game_data_t *game, sfVector2i pos, int i)
 
 void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid)
 {
-    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f mouse_pos = game->mouse_pos;
     sfFloatRect bounds = {0};
 
     for (size_t i = 0; i < 29; i++) {

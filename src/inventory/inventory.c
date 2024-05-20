@@ -14,7 +14,7 @@
 static void draw_inventory_grid(game_data_t *game, sfRectangleShape ***grid)
 {
     sfVector2f pos = {220, 280};
-    sfVector2i mouse_pos = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f mouse_pos = game->mouse_pos;
 
     for (size_t i = 0; i < HEIGHT; i++) {
         for (size_t j = 0; j < WIDTH; j++) {
@@ -24,7 +24,8 @@ static void draw_inventory_grid(game_data_t *game, sfRectangleShape ***grid)
             sfRectangleShape_setSize((*grid)[i * WIDTH + j], (sfVector2f) {
                 SIZE, SIZE
             });
-            handle_hover((*grid)[i * WIDTH + j], mouse_pos);
+            handle_hover((*grid)[i * WIDTH + j], (sfVector2i){mouse_pos.x,
+                mouse_pos.y});
             sfRectangleShape_setOutlineThickness((*grid)[i * WIDTH + j], 2);
             sfRectangleShape_setFillColor((*grid)[i * WIDTH + j], SQUARE_BG);
             sfRenderWindow_drawRectangleShape(game->window,
@@ -165,9 +166,12 @@ void basic_inventory(game_data_t *game)
 {
     sfRectangleShape **grid = malloc(31 * sizeof(sfRectangleShape *));
 
+    game->last_state = INVENTORY;
     if (grid == NULL)
         return;
     draw_title_and_progbar(game);
+    draw_navbar(game);
+    draw_active_navbar_line(game, 315.0f, 300.0f);
     draw_inventory_grid(game, &grid);
     draw_action_buttons(game, &grid);
     draw_statistics(game);

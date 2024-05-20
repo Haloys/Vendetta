@@ -80,6 +80,7 @@ static const char *IMAGES[] = {
     "assets/images/maps/cols_map_2.png",
     "assets/images/maps/cols_map_3.png",
     "assets/images/player/hand_spritesheet.png",
+    "assets/images/npcs/one.png",
     "assets/images/enemies/easy_idle.png",
     "assets/images/enemies/easy_shooting.png",
     "assets/images/main_menu/load_save_help.png",
@@ -101,6 +102,10 @@ static const char *IMAGES[] = {
     "assets/images/skill_tree/speed_gray.png",
     "assets/images/skill_tree/attack_color.png",
     "assets/images/skill_tree/attack_gray.png",
+    "assets/images/main_menu/home.png",
+    "assets/images/main_menu/icon_settings_2.png",
+    "assets/images/main_menu/inventory.png",
+    "assets/images/main_menu/skill.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -175,6 +180,7 @@ typedef enum texture_id_e {
     COLS_MAP_2,
     COLS_MAP_3,
     PLAYER_HAND,
+    NPC_ONE,
     ENEMY_EZ_IDLE,
     ENEMY_EZ_SHOOTING,
     LOAD_SAVE_HELP,
@@ -196,6 +202,10 @@ typedef enum texture_id_e {
     SPEED_GRAY,
     ATTACK_COL,
     ATTACK_GRAY,
+    HOME_ICON,
+    SETTINGS_2,
+    INVENTORY_ICON,
+    SKILL_ICON,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1105,6 +1115,19 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 20
     },
     {
+        .id = NPC_ONE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 128,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {64, 55},
+        .rect_count = 3
+    },
+    {
         .id = ENEMY_EZ_IDLE,
         .rect = {
             .left = 0,
@@ -1377,6 +1400,58 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+    {
+        .id = HOME_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 25,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {1205, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = SETTINGS_2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 22,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {940, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = INVENTORY_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 26,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {351, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = SKILL_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 25,
+            .height = 22
+        },
+        .scale = 1,
+        .position = {657, 51},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1451,6 +1526,7 @@ typedef enum sprite_id_e {
     SP_COLS_MAP_2,
     SP_COLS_MAP_3,
     SP_PLAYER_HAND,
+    SP_NPC_ONE,
     SP_ENEMY_EZ_IDLE,
     SP_ENEMY_EZ_SHOOTING,
     SP_LOAD_SAVE_HELP,
@@ -1472,6 +1548,10 @@ typedef enum sprite_id_e {
     SP_SPEED_GRAY,
     SP_ATTACK_COL,
     SP_ATTACK_GRAY,
+    SP_HOME_ICON,
+    SP_SETTINGS_2,
+    SP_INVENTORY_ICON,
+    SP_SKILL_ICON,
 } sprite_id_t;
 
 typedef enum sound_id_e {
@@ -1514,5 +1594,25 @@ static const music_t MUSICS[] = {
 };
 
     #define MUSIC_COUNT (sizeof(MUSICS) / sizeof(music_t))
+
+static const char *SHADERS_PATHS[] = {
+    "shaders/darkness.frag",
+};
+
+    #define SHADER_COUNT (sizeof(SHADERS_PATHS) / sizeof(char *))
+
+typedef enum shader_id_e {
+    SH_MAIN_DARKNESS,
+} shader_id_t;
+
+typedef struct shader_s {
+    shader_id_t id;
+} shader_t;
+
+static const shader_t SHADERS[] = {
+    {
+        .id = SH_MAIN_DARKNESS
+    },
+};
 
 #endif /* RESOURCES_H */
