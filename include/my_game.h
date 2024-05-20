@@ -119,6 +119,7 @@ typedef struct game_data_s {
     int sa_x;
     int clicked_rect_index;
     int clicked_rect;
+    int clicked_control;
     slider_t slider;
     sfImage *cols_map;
     int key_state;
@@ -192,6 +193,7 @@ void modify_sound(game_data_t *game);
 void draw_reso_rectangle(game_data_t *game);
 void modify_screen(game_data_t *game);
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
+void draw_everything_control(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
