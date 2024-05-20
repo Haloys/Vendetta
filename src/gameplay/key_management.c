@@ -16,9 +16,9 @@ void update_key(game_data_t *game, sfKeyCode code, int state)
     int new_state = 0;
 
     for (int i = 0; i < KEYBINDS_COUNT; ++i) {
-        if (KEYBINDS[i].code == code) {
-            mask = 1 << KEYBINDS[i].key;
-            new_state = state << KEYBINDS[i].key;
+        if (game->keybinds[i].code == code) {
+            mask = 1 << game->keybinds[i].key;
+            new_state = state << game->keybinds[i].key;
             game->key_change = (game->key_change & ~mask)
                 | ((game->key_state & mask) ^ new_state);
             game->key_state = (game->key_state & ~mask) | new_state;

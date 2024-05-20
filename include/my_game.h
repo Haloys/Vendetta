@@ -24,6 +24,7 @@
     #include "map.h"
     #include "list.h"
     #include "skill_tree.h"
+    #include "game_keys.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -38,6 +39,7 @@ typedef struct game_assets_s {
     sfSound *sound[SOUND_COUNT];
     sfSoundBuffer *sound_buff[SOUND_COUNT];
     sfMusic *music[MUSIC_COUNT];
+    sfShader *shaders[SHADER_COUNT];
 } game_assets_t;
 
 typedef struct player_data_s {
@@ -126,6 +128,7 @@ typedef struct game_data_s {
     map_config_t map;
     list_t enemies;
     sfClock *animation_clock;
+    sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
 } game_data_t;
 
