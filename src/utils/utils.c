@@ -5,6 +5,8 @@
 ** Initialize the game
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
 
 void change_game_mode(game_data_t *game, state_t new_mode)
