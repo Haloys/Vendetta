@@ -11,7 +11,7 @@
 
 #include "gameplay.h"
 
-key_config_s key_config[] = {
+key_config_t key_config[] = {
     {
         .name = "Forward",
         .key_name = "Z",
@@ -64,7 +64,7 @@ key_config_s key_config[] = {
     }
 };
 
-static const key_mapping_t keyMappings[] = {
+static const key_mapping_t key_mapping[] = {
     {sfKeyA, "A"}, {sfKeyB, "B"}, {sfKeyC, "C"}, {sfKeyD, "D"}, {sfKeyE, "E"},
     {sfKeyF, "F"}, {sfKeyG, "G"}, {sfKeyH, "H"}, {sfKeyI, "I"}, {sfKeyJ, "J"},
     {sfKeyK, "K"}, {sfKeyL, "L"}, {sfKeyM, "M"}, {sfKeyN, "N"}, {sfKeyO, "O"},
@@ -108,7 +108,7 @@ static void set_control_text(game_data_t *game)
     sfText *text1;
     sfText *text2;
     int nbr_text = sizeof(key_config) / sizeof(key_config[0]);
-    key_config_s *keys = key_config;
+    key_config_t *keys = key_config;
 
     for (int i = 0; i < nbr_text; i++) {
         text1 = set_text(game, keys[i].name, 22, text_pos1);
@@ -170,12 +170,13 @@ static void draw_bg_control(game_data_t *game)
     }
 }
 
-char *sfKeyToString(sfKeyCode key) {
-    static const int key_count = sizeof(keyMappings) / sizeof(keyMappings[0]);
+char *sfKeyToString(sfKeyCode key)
+{
+    static const int key_count = sizeof(key_mapping) / sizeof(key_mapping[0]);
 
     for (int i = 0; i < key_count; ++i) {
-        if (keyMappings[i].code == key) {
-            return keyMappings[i].name;
+        if (key_mapping[i].code == key) {
+            return key_mapping[i].name;
         }
     }
     return "Unknown";

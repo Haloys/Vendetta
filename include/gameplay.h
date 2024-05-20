@@ -40,13 +40,13 @@ void process_playing_event(game_data_t *game, sfEvent *evt);
 
 void process_player_movement(game_data_t *game, sfKeyEvent *key);
 
-typedef struct key_config_t {
+typedef struct key_config_s {
     char *name;
     char *key_name;
     sfKeyCode key;
-} key_config_s;
+} key_config_t;
 
-extern key_config_s key_config[];
+extern key_config_t key_config[];
 
 typedef struct {
     sfKeyCode code;
