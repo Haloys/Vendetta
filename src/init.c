@@ -29,6 +29,7 @@ static int init_partie_one(game_data_t *game)
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
     init_enemies(game);
+    init_npcs(game);
     game->animation_clock = sfClock_create();
     init_keybinds(game);
     return RET_NONE;

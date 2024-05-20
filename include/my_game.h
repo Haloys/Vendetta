@@ -131,6 +131,7 @@ typedef struct game_data_s {
     float target_zoom;
     map_config_t map;
     list_t enemies;
+    list_t npcs;
     sfClock *animation_clock;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;

@@ -10,6 +10,7 @@
 #include "enemies.h"
 #include "player.h"
 #include "gameplay.h"
+#include "game_npc.h"
 
 static void display_enemies(game_data_t *game)
 {
@@ -19,6 +20,19 @@ static void display_enemies(game_data_t *game)
         if (game->map.id == ((enemy_t *)tmp->data)->map_id) {
             update_enemy(game, (enemy_t *)tmp->data);
             draw_enemy(game, (enemy_t *)tmp->data);
+        }
+        tmp = tmp->next;
+    }
+}
+
+static void display_npcs(game_data_t *game)
+{
+    element_t *tmp = game->npcs.start.next;
+
+    for (int i = 0; i < game->npcs.length; ++i) {
+        if (game->map.id == ((npc_t *)tmp->data)->map_id) {
+            update_npc(game, (npc_t *)tmp->data);
+            draw_npc(game, (npc_t *)tmp->data);
         }
         tmp = tmp->next;
     }
@@ -78,5 +92,6 @@ void process_playing_gameplay(game_data_t *game)
     display_map(game);
     display_player(game);
     display_enemies(game);
+    display_npcs(game);
     apply_shader(game);
 }
