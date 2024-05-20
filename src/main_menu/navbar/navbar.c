@@ -64,8 +64,8 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
     if (!game->is_navbar_visible) {
         return NULL;
     }
-    for (size_t i = 0; i < sizeof(ELEMENTS) / sizeof(ELEMENTS[0]); i++) {
-        elem = &ELEMENTS[i];
+    for (size_t i = 0; i < sizeof(elements) / sizeof(elements[0]); i++) {
+        elem = &elements[i];
         if (mouse_event.x >= elem->position.x &&
             mouse_event.x <= elem->position.x + elem->size.x &&
             mouse_event.y >= elem->position.y &&
@@ -94,11 +94,11 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
 
 void draw_navbar(game_data_t *game)
 {
-    int navbar_element_count = sizeof(ELEMENTS) / sizeof(navbar_element_t);
+    int navbar_element_count = sizeof(elements) / sizeof(navbar_element_t);
 
     game->is_navbar_visible = true;
     for (int i = 0; i < navbar_element_count; i++) {
-        draw_navbar_element(game, &ELEMENTS[i], i);
+        draw_navbar_element(game, &elements[i], i);
     }
     draw_navbar_line(game, 80.0f, 1294.0f);
 }

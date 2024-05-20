@@ -70,21 +70,19 @@ static void display_icons_sprites(game_data_t *game, sfVector2i pos)
 
 static void disp_stat_values_2(game_data_t *game, sfVector2i pos, item_t *item)
 {
-    char *speed = NULL;
-    char *damage = NULL;
+    char *speed = malloc(5);
+    char *damage = malloc(5);
     sfText *d_txt = NULL;
     sfText *s_txt = NULL;
 
     if (item->speed >= 0)
-        asprintf(&speed, "+ %d", item->speed);
+        sprintf(speed, "+ %d", item->speed);
     else
-        asprintf(&speed, "- %d", item->speed * -1);
+        sprintf(speed, "- %d", ABS(item->speed));
     if (item->damage >= 0)
-        asprintf(&damage, "+ %d", item->damage);
+        sprintf(damage, "+ %d", item->damage);
     else
-        asprintf(&damage, "- %d", item->damage * -1);
-    if (speed == NULL || damage == NULL)
-        return;
+        sprintf(damage, "- %d", ABS(item->damage));
     d_txt = set_text(game, damage, 14, (sfVector2f){pos.x + 150, pos.y + 73});
     s_txt = set_text(game, speed, 14, (sfVector2f){pos.x + 150, pos.y + 103});
     display_values(game, d_txt, s_txt);
@@ -94,19 +92,19 @@ static void disp_stat_values_2(game_data_t *game, sfVector2i pos, item_t *item)
 
 static void disp_stats_values(game_data_t *game, sfVector2i pos, item_t *item)
 {
-    char *health = NULL;
-    char *armor = NULL;
+    char *health = malloc(5);
+    char *armor = malloc(5);
     sfText *h_txt = NULL;
     sfText *a_txt = NULL;
 
     if (item->health >= 0)
-        asprintf(&health, "+ %d", item->health);
+        sprintf(health, "+ %d", item->health);
     else
-        asprintf(&health, "- %d", item->health);
+        sprintf(health, "- %d", item->health);
     if (item->armor >= 0)
-        asprintf(&armor, "+ %d", item->armor);
+        sprintf(armor, "+ %d", item->armor);
     else
-        asprintf(&armor, "- %d", item->armor);
+        sprintf(armor, "- %d", item->armor);
     h_txt = set_text(game, health, 14, (sfVector2f){pos.x + 60, pos.y + 73});
     a_txt = set_text(game, armor, 14, (sfVector2f){pos.x + 60, pos.y + 103});
     display_values(game, h_txt, a_txt);
