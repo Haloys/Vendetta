@@ -65,7 +65,8 @@ static int init_player_inventory(game_data_t *game, player_data_t *player)
 int init_player(game_data_t *game)
 {
     game->player = malloc(sizeof(player_data_t));
-    if (game->player == NULL || init_player_inventory(game, game->player) == RET_FAIL)
+    if (game->player == NULL
+        || init_player_inventory(game, game->player) == RET_FAIL)
         return RET_FAIL;
     init_map_pos(game);
     return RET_NONE;
