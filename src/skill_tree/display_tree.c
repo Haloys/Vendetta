@@ -23,7 +23,7 @@ static void mod_col(skill_tree_t *tree, sfRectangleShape *square, int val)
         sfRectangleShape_setOutlineColor(square, GREEN);
 }
 
-static void handle_hover_tree(sfRectangleShape *square, sfVector2i mouse,
+static void handle_hover_tree(sfRectangleShape *square, sfVector2f mouse,
     int val)
 {
     sfFloatRect rect = sfRectangleShape_getGlobalBounds(square);
@@ -47,7 +47,7 @@ static void handle_hover_tree(sfRectangleShape *square, sfVector2i mouse,
 void draw_squares(game_data_t *game, sfRectangleShape ***grid)
 {
     sfVector2f pos = {205, 415};
-    sfVector2i mouse = sfMouse_getPositionRenderWindow(game->window);
+    sfVector2f mouse = game->mouse_pos;
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 3; j++) {
