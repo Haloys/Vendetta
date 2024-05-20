@@ -10,6 +10,7 @@
 
 #include "my_game.h"
 #include "inventory.h"
+#include "utils.h"
 
 static void draw_inventory_grid(game_data_t *game, sfRectangleShape ***grid)
 {
@@ -166,8 +167,8 @@ void basic_inventory(game_data_t *game)
 {
     sfRectangleShape **grid = malloc(31 * sizeof(sfRectangleShape *));
 
-    if (is_key_pressed(game, sfKeyI) || is_key_pressed(game, sfKeyEscape)) {
-        game->state = PLAYING;
+    if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap)) {
+        change_game_mode(game, PLAYING);
         return;
     }
     game->last_state = INVENTORY;

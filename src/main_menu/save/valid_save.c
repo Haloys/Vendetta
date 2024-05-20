@@ -5,12 +5,13 @@
 ** Valid Save
 */
 
-#include "my_game.h"
-#include "save.h"
-
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
+#include "my_game.h"
+#include "save.h"
+#include "utils.h"
 
 int is_file_valid(game_ui_t *game_ui)
 {
@@ -43,7 +44,7 @@ void handle_valid_button_click(game_data_t *game, game_ui_t *game_ui)
         game->mouse_pos.y)) {
         printf("Text entered: %s\n", game_ui->input);
         if (is_file_valid(game_ui)) {
-            game->state = MAIN_MENU;
+            change_game_mode(game, MAIN_MENU);
             game->validation_count++;
             game->is_sprite_displayed = true;
         }
@@ -57,6 +58,6 @@ void handle_cancel_button_click(game_data_t *game, game_ui_t *game_ui)
 
     if (sfFloatRect_contains(&cancel_bounds,
         game->mouse_pos.x, game->mouse_pos.y)) {
-        game->state = MAIN_MENU;
+        change_game_mode(game, MAIN_MENU);
     }
 }

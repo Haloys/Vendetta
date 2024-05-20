@@ -12,6 +12,7 @@
 
 #include "my_game.h"
 #include "main_menu.h"
+#include "utils.h"
 
 static sfVector2f get_text_position(const settings_navbar_element_t
     *element, sfText *text)
@@ -125,13 +126,13 @@ void handle_settings_click(game_data_t *game)
     if (clicked_element_index != -1) {
         switch (clicked_element_index) {
         case 0:
-            game->state = SETTINGS_VIDEO;
+            change_game_mode(game, SETTINGS_VIDEO);
             break;
         case 1:
-            game->state = SETTINGS_CONTROLS;
+            change_game_mode(game, SETTINGS_CONTROLS);
             break;
         case 2:
-            game->state = SETTINGS_AUDIO;
+            change_game_mode(game, SETTINGS_AUDIO);
             break;
         }
     }

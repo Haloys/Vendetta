@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include "navbar.h"
+#include "utils.h"
 
 static void draw_navbar_line(game_data_t *game, float pos_x, float size_x)
 {
@@ -90,7 +91,7 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
         if (strcmp(clicked_element->label, "QUIT") == 0) {
             sfRenderWindow_close(game->window);
         } else {
-            game->state = clicked_element->target_state;
+            change_game_mode(game, clicked_element->target_state);
         }
     }
 }

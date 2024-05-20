@@ -26,6 +26,7 @@ static int start_game(void)
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
+        .last_state = LOADING_SCREEN,
         .speed = 1.0f,
         .sg_x = 243,
         .sm_x = 243,
