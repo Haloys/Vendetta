@@ -14,13 +14,15 @@
 void setup_progress_shapes(game_data_t *game, sfTime elapsed,
     sfRectangleShape **progress_bar, sfRectangleShape **progress_fill)
 {
+    sfVector2f progress_size;
+    sfVector2f progress_bar_pos;
     float progress = elapsed.microseconds / 1000000.0 / 13.0;
-    sfVector2f progress_size = {PROGRESS_WIDTH * progress, PROGRESS_HEIGHT};
-    sfVector2f progress_bar_pos = {(WINDOW_WIDTH - PROGRESS_WIDTH) / 2,
-        (WINDOW_HEIGHT - RECT_HEIGHT) / 2 + RECT_HEIGHT + 20};
 
     if (game->minigame.game_won)
         progress = 1.0;
+    progress_size = (sfVector2f){PROGRESS_WIDTH * progress, PROGRESS_HEIGHT};
+    progress_bar_pos = (sfVector2f){(WINDOW_WIDTH - PROGRESS_WIDTH) / 2,
+        (WINDOW_HEIGHT - RECT_HEIGHT) / 2 + RECT_HEIGHT + 20};
     *progress_bar = sfRectangleShape_create();
     *progress_fill = sfRectangleShape_create();
     sfRectangleShape_setSize(*progress_bar, (sfVector2f){PROGRESS_WIDTH,
