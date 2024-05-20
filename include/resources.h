@@ -1580,7 +1580,7 @@ static const music_t MUSICS[] = {
     #define MUSIC_COUNT (sizeof(MUSICS) / sizeof(music_t))
 
 static const char *SHADERS_PATHS[] = {
-    "shaders/test.frag",
+    "shaders/darkness.frag",
 };
 
     #define SHADER_COUNT (sizeof(SHADERS_PATHS) / sizeof(char *))

@@ -4,7 +4,7 @@ nopush/*
 
 # Current Project
 my_rpg
-database/highest_score
+*.ven
 
 # Object files
 *.o

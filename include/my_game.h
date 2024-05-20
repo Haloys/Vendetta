@@ -85,6 +85,11 @@ typedef struct slider_s {
     float value_ambient;
 } slider_t;
 
+typedef struct {
+    float min;
+    float max;
+} min_max_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -98,7 +103,6 @@ typedef struct game_data_s {
     sfClock *fps_clock;
     sfClock *time;
     float speed;
-    sfUint8 *pixels;
     int mouse_x;
     int mouse_y;
     bool is_fullscreen;
