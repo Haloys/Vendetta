@@ -64,7 +64,7 @@ key_config_s key_config[] = {
     }
 };
 
-static const KeyMapping keyMappings[] = {
+static const key_mapping_t keyMappings[] = {
     {sfKeyA, "A"}, {sfKeyB, "B"}, {sfKeyC, "C"}, {sfKeyD, "D"}, {sfKeyE, "E"},
     {sfKeyF, "F"}, {sfKeyG, "G"}, {sfKeyH, "H"}, {sfKeyI, "I"}, {sfKeyJ, "J"},
     {sfKeyK, "K"}, {sfKeyL, "L"}, {sfKeyM, "M"}, {sfKeyN, "N"}, {sfKeyO, "O"},
@@ -101,7 +101,7 @@ static const KeyMapping keyMappings[] = {
     {sfKeyPause, "Pause"}
 };
 
-static void set_control_text(game_data_t *game, int rebinding)
+static void set_control_text(game_data_t *game)
 {
     sfVector2f text_pos1 = {132, 272};
     sfVector2f text_pos2 = {598, 272};
@@ -112,11 +112,7 @@ static void set_control_text(game_data_t *game, int rebinding)
 
     for (int i = 0; i < nbr_text; i++) {
         text1 = set_text(game, keys[i].name, 22, text_pos1);
-        if (rebinding == i) {
-            text2 = set_text(game, "...", 22, text_pos2);
-        } else {
-            text2 = set_text(game, keys[i].key_name, 22, text_pos2);
-        }
+        text2 = set_text(game, keys[i].key_name, 22, text_pos2);
         sfRenderWindow_drawText(game->window, text1, NULL);
         sfRenderWindow_drawText(game->window, text2, NULL);
         sfText_destroy(text1);
@@ -175,9 +171,9 @@ static void draw_bg_control(game_data_t *game)
 }
 
 char *sfKeyToString(sfKeyCode key) {
-    static const int keyCount = sizeof(keyMappings) / sizeof(keyMappings[0]);
+    static const int key_count = sizeof(keyMappings) / sizeof(keyMappings[0]);
 
-    for (int i = 0; i < keyCount; ++i) {
+    for (int i = 0; i < key_count; ++i) {
         if (keyMappings[i].code == key) {
             return keyMappings[i].name;
         }
@@ -215,7 +211,7 @@ static void handle_key_rebinding(game_data_t *game)
         update_keybinding(rebinding, new_key);
         rebinding = -1;
     }
-    set_control_text(game, rebinding);
+    set_control_text(game);
 }
 
 void draw_everything_control(game_data_t *game)

@@ -40,7 +40,7 @@ void process_playing_event(game_data_t *game, sfEvent *evt);
 
 void process_player_movement(game_data_t *game, sfKeyEvent *key);
 
-typedef struct key_config_s {
+typedef struct key_config_t {
     char *name;
     char *key_name;
     sfKeyCode key;
@@ -50,8 +50,8 @@ extern key_config_s key_config[];
 
 typedef struct {
     sfKeyCode code;
-    const char* name;
-} KeyMapping;
+    char *name;
+} key_mapping_t;
 
 // UTILS
 sfColor get_pixel_color(sfImage *image, int x, int y);
