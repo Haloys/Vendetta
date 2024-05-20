@@ -126,6 +126,7 @@ typedef struct game_data_s {
     map_config_t map;
     list_t enemies;
     sfClock *animation_clock;
+    state_t last_state;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
