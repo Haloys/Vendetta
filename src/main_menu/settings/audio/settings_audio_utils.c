@@ -24,10 +24,8 @@ static void change_volume(game_data_t *game, int sound)
     }
 }
 
-void modify_sound(game_data_t *game)
+static void handle_movement_sound(game_data_t *game)
 {
-    int sound = 0;
-
     if (is_key_pressed(game, MoveDown) && game->state == SETTINGS_AUDIO) {
         game->settings.clicked_rect_index++;
         game->settings.clicked_rect_index %= 3;
@@ -38,6 +36,13 @@ void modify_sound(game_data_t *game)
             game->settings.clicked_rect_index = 2;
         game->settings.clicked_rect_index %= 3;
     }
+}
+
+void modify_sound(game_data_t *game)
+{
+    int sound = 0;
+
+    handle_movement_sound(game);
     if (is_key_down(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
     }
