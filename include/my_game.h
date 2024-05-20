@@ -63,6 +63,7 @@ typedef struct player_data_s {
     int current_xp;
     skill_tree_t *skill_tree;
     int skill_points;
+    bool is_playing;
 } player_data_t;
 
 typedef struct {

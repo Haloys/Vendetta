@@ -7,6 +7,7 @@
 
 #include "my_game.h"
 #include "fade_in_out.h"
+#include "utils.h"
 
 static int handle_loading_event(sfRenderWindow *window)
 {
@@ -104,7 +105,7 @@ static void page_show(game_data_t *game, sfClock *clock, int page, int *ret)
             start_load_third(game, game->window, clock, ret);
             break;
         case 4:
-            game->state = MAIN_MENU;
+            change_game_mode(game, MAIN_MENU);
             break;
     }
 }
@@ -126,7 +127,7 @@ static bool process_page(game_data_t *game, int page, int *ret)
     do {
         do_check(game->window, ret);
         if (*ret == 1) {
-            game->state = MAIN_MENU;
+            change_game_mode(game, MAIN_MENU);
             sfClock_destroy(clock);
             return true;
         }

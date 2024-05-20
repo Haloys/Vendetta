@@ -30,6 +30,7 @@ static void process_loop_update(game_data_t *game)
     for (size_t i = 0; i < STATE_COUNT; ++i) {
         if (game->state == i) {
             process_state[i](game);
+            break;
         }
     }
 }
