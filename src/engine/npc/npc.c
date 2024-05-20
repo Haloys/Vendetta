@@ -17,9 +17,9 @@
 void draw_npc(game_data_t *game, npc_t *npc)
 {
     sfSprite_setPosition(npc->sprite, npc->position);
-    sfText_setPosition(npc->text, (sfVector2f){npc->position.x - 200,
+    sfText_setPosition(npc->text, (sfVector2f){npc->position.x - 100,
         npc->position.y - 100});
-    sfText_setPosition(npc->interact, (sfVector2f){npc->position.x - 200,
+    sfText_setPosition(npc->interact, (sfVector2f){npc->position.x - 100,
         npc->position.y - 150});
     sfRenderWindow_drawSprite(game->window, npc->sprite, NULL);
     sfRenderWindow_drawText(game->window, npc->text, NULL);
@@ -27,7 +27,7 @@ void draw_npc(game_data_t *game, npc_t *npc)
 
 int npc_callback(game_data_t *game, npc_t *npc)
 {
-    printf("Interacting with %s\n", npc->name);
+    printf("Interacting with %s\n", npc->config->name);
     change_game_mode(game, NPC_DIALOGUE);
     return 0;
 }
@@ -62,6 +62,6 @@ void update_npc(game_data_t *game, npc_t *npc)
         sfSprite_setRotation(npc->sprite, npc->rotation);
         sfRenderWindow_drawText(game->window, npc->interact, NULL);
         if (is_key_pressed(game, Interact))
-            npc->callback_interact(game, npc);
+            npc->config->callback_interact(game, npc);
     }
 }
