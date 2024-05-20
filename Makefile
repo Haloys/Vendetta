@@ -108,6 +108,9 @@ SRC_INIT	=   	init/game_icon.c \
 					init/keys.c \
 					init/npcs.c \
 
+SRC_ITEMS   =   	items/display_books.c \
+					items/books_callbacks.c \
+
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \
 					npc_dialogues/handle_text.c \
@@ -132,6 +135,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_UTILS)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_SKILL_TREE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_MINIGAME)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_ITEMS)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))

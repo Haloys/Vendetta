@@ -8,6 +8,7 @@
 #ifndef ITEMS_H_
     #define ITEMS_H_
     #include "inventory.h"
+    #include "my_game.h"
 
 
 static const item_t ITEMS[] = {
@@ -153,7 +154,7 @@ static const item_t ITEMS[] = {
         .armor = 0,
         .health = 0,
         .speed = 0,
-        .effect = NULL
+        .effect = first_book_callback
     },
     {
         .name = "goldcoin",
@@ -473,7 +474,7 @@ static const item_t ITEMS[] = {
         .armor = 0,
         .health = 0,
         .speed = 0,
-        .effect = NULL
+        .effect = second_book_callback
     },
     {
         .name = "shoes",
@@ -553,7 +554,7 @@ static const item_t ITEMS[] = {
         .armor = 0,
         .health = 0,
         .speed = 0,
-        .effect = NULL
+        .effect = third_book_callback
     },
     {
         .name = "whiskey",

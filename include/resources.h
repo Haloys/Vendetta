@@ -106,6 +106,9 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/icon_settings_2.png",
     "assets/images/main_menu/inventory.png",
     "assets/images/main_menu/skill.png",
+    "assets/images/books/book_1.jpg",
+    "assets/images/books/book_2.jpg",
+    "assets/images/books/book_3.jpg",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -206,6 +209,9 @@ typedef enum texture_id_e {
     SETTINGS_2,
     INVENTORY_ICON,
     SKILL_ICON,
+    BOOK1,
+    BOOK2,
+    BOOK3,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1452,6 +1458,45 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+    {
+        .id = BOOK1,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1920,
+            .height = 1080
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = BOOK2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1920,
+            .height = 1080
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = BOOK3,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1920,
+            .height = 1080
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1552,11 +1597,17 @@ typedef enum sprite_id_e {
     SP_SETTINGS_2,
     SP_INVENTORY_ICON,
     SP_SKILL_ICON,
+    SP_BOOK1,
+    SP_BOOK2,
+    SP_BOOK3,
 } sprite_id_t;
 
 typedef enum sound_id_e {
     S_PLAYER_PUNCH,
     S_ENEMY_PISTOL,
+    S_FIRST_BOOK,
+    S_SECOND_BOOK,
+    S_THIRD_BOOK,
 } sound_id_t;
 
 typedef struct sound_s {
@@ -1572,6 +1623,18 @@ static const sound_t SOUNDS[] = {
     {
         .id = S_ENEMY_PISTOL,
         .volume = 20
+    },
+    {
+        .id = S_FIRST_BOOK,
+        .volume = 50
+    },
+    {
+        .id = S_SECOND_BOOK,
+        .volume = 50
+    },
+    {
+        .id = S_THIRD_BOOK,
+        .volume = 50
     },
 };
 
