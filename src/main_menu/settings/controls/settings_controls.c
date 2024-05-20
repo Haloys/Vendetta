@@ -170,7 +170,7 @@ static void draw_bg_control(game_data_t *game)
     }
 }
 
-char *sfKeyToString(keycode_t key)
+char *key_to_string(keycode_t key)
 {
     static const int key_count = sizeof(key_mapping) / sizeof(key_mapping[0]);
 
@@ -197,7 +197,7 @@ static void update_keybinding(int index, sfKeyCode new_key)
 {
     if (key_config[index].key != new_key) {
         key_config[index].key = new_key;
-        key_config[index].key_name = sfKeyToString(new_key);
+        key_config[index].key_name = key_to_string(new_key);
     }
 }
 
