@@ -159,7 +159,7 @@ bool display_sequence_click(game_data_t *game)
         game->minigame.current_number != NUM_SQUARES + 1)
             reset_minigame(game);
     draw_rect_with_squares(game);
-    draw_progress_bar(game, elapsed);
+    draw_sequence_progress_bar(game, elapsed);
     handle_click(game);
     if (game->minigame.current_number == NUM_SQUARES + 1)
         return true;

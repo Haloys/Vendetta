@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void draw_progress_bar(game_data_t *game, sfTime elapsed)
+void draw_sequence_progress_bar(game_data_t *game, sfTime elapsed)
 {
     sfRectangleShape *progress_bar = sfRectangleShape_create();
     sfRectangleShape *progress_fill = sfRectangleShape_create();

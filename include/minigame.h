@@ -27,7 +27,7 @@ typedef struct minigame_s {
     sfClock *clock;
 } minigame_t;
 
-void draw_progress_bar(game_data_t *game, sfTime elapsed);
+void draw_sequence_progress_bar(game_data_t *game, sfTime elapsed);
 
 bool display_sequence_click(game_data_t *game);
 
