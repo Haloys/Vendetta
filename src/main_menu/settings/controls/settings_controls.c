@@ -182,10 +182,10 @@ char *sfKeyToString(sfKeyCode key)
     return "Unknown";
 }
 
-sfKeyCode get_pressed_key()
+keycode_t get_pressed_key(void)
 {
-    for (sfKeyCode key = sfKeyA; key <= sfKeyPause;
-        key = (sfKeyCode)(key + 1)) {
+    for (keycode_t key = sfKeyA; key <= sfKeyPause;
+        key = (keycode_t)(key + 1)) {
         if (sfKeyboard_isKeyPressed(key)) {
             return key;
         }

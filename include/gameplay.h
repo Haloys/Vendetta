@@ -53,6 +53,8 @@ typedef struct {
     char *name;
 } key_mapping_t;
 
+typedef sfKeyCode keycode_t;
+
 // UTILS
 sfColor get_pixel_color(sfImage *image, int x, int y);
 
