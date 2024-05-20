@@ -35,7 +35,7 @@ static void draw_global_sound(game_data_t *game)
 {
     sfRectangleShape *line = sfRectangleShape_create();
     sfVector2f line_pos = {427, 285};
-    sfVector2f line_size = {game->sg_x, 5};
+    sfVector2f line_size = {game->settings.sg_x, 5};
 
     sfRectangleShape_setPosition(line, line_pos);
     sfRectangleShape_setSize(line, line_size);
@@ -48,7 +48,7 @@ static void draw_music_sound(game_data_t *game)
 {
     sfRectangleShape *line = sfRectangleShape_create();
     sfVector2f line_pos = {427, 346};
-    sfVector2f line_size = {game->sm_x, 5};
+    sfVector2f line_size = {game->settings.sm_x, 5};
 
     sfRectangleShape_setPosition(line, line_pos);
     sfRectangleShape_setSize(line, line_size);
@@ -61,7 +61,7 @@ static void draw_ambient_sound(game_data_t *game)
 {
     sfRectangleShape *line = sfRectangleShape_create();
     sfVector2f line_pos = {427, 407};
-    sfVector2f line_size = {game->sa_x, 5};
+    sfVector2f line_size = {game->settings.sa_x, 5};
 
     sfRectangleShape_setPosition(line, line_pos);
     sfRectangleShape_setSize(line, line_size);

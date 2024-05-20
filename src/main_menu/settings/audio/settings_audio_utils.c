@@ -15,12 +15,12 @@
 static void change_volume(game_data_t *game, int sound)
 {
     if (sound != 0) {
-        if (game->clicked_rect_index == 0)
-            game->sg_x += sound;
-        if (game->clicked_rect_index == 1)
-            game->sm_x += sound;
-        if (game->clicked_rect_index == 2)
-            game->sa_x += sound;
+        if (game->settings.clicked_rect_index == 0)
+            game->settings.sg_x += sound;
+        if (game->settings.clicked_rect_index == 1)
+            game->settings.sm_x += sound;
+        if (game->settings.clicked_rect_index == 2)
+            game->settings.sa_x += sound;
     }
 }
 
@@ -29,8 +29,14 @@ void modify_sound(game_data_t *game)
     int sound = 0;
 
     if (is_key_pressed(game, MoveDown) && game->state == SETTINGS_AUDIO) {
-        game->clicked_rect_index++;
-        game->clicked_rect_index %= 3;
+        game->settings.clicked_rect_index++;
+        game->settings.clicked_rect_index %= 3;
+    }
+    if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_AUDIO) {
+        game->settings.clicked_rect_index--;
+        if (game->settings.clicked_rect_index < 0)
+            game->settings.clicked_rect_index = 2;
+        game->settings.clicked_rect_index %= 3;
     }
     if (is_key_down(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
@@ -39,14 +45,14 @@ void modify_sound(game_data_t *game)
         sound += 5;
     }
     change_volume(game, sound);
-    game->sm_x = CLAMP(game->sm_x, 0, 243);
-    game->sg_x = CLAMP(game->sg_x, 0, 243);
-    game->sa_x = CLAMP(game->sa_x, 0, 243);
+    game->settings.sm_x = CLAMP(game->settings.sm_x, 0, 243);
+    game->settings.sg_x = CLAMP(game->settings.sg_x, 0, 243);
+    game->settings.sa_x = CLAMP(game->settings.sa_x, 0, 243);
 }
 
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i)
 {
-    if (i == game->clicked_rect_index) {
+    if (i == game->settings.clicked_rect_index) {
         sfRectangleShape_setFillColor(rect,
             sfColor_fromRGBA(255, 255, 255, 20));
         sfRectangleShape_setOutlineThickness(rect, 2);

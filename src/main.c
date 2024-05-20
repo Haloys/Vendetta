@@ -28,9 +28,9 @@ static int start_game(void)
         .fps_clock = sfClock_create(),
         .last_state = LOADING_SCREEN,
         .speed = 1.0f,
-        .sg_x = 243,
-        .sm_x = 243,
-        .sa_x = 243,
+        .settings.sg_x = 243,
+        .settings.sm_x = 243,
+        .settings.sa_x = 243,
         .fps = 60,
     };
 

@@ -125,21 +125,21 @@ static void set_control_text(game_data_t *game)
 void modify_control(game_data_t *game)
 {
     if (is_key_pressed(game, MoveDown) && game->state == SETTINGS_CONTROLS) {
-        game->clicked_control++;
-        game->clicked_control %= 10;
+        game->settings.clicked_control++;
+        game->settings.clicked_control %= 10;
     }
     if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_CONTROLS) {
-        if (game->clicked_control == 0)
-            game->clicked_control = 10;
-        game->clicked_control--;
-        game->clicked_control %= 10;
+        if (game->settings.clicked_control == 0)
+            game->settings.clicked_control = 10;
+        game->settings.clicked_control--;
+        game->settings.clicked_control %= 10;
     }
 }
 
 static void draw_tools_control(game_data_t *game, sfRectangleShape *rect,
     int i)
 {
-    if (i == game->clicked_control) {
+    if (i == game->settings.clicked_control) {
         sfRectangleShape_setFillColor(rect,
             sfColor_fromRGBA(255, 255, 255, 20));
         sfRectangleShape_setOutlineThickness(rect, 2);
@@ -220,7 +220,7 @@ static void handle_key_rebinding(game_data_t *game)
 
     if (new_key != sfKeyUnknown && new_key != sfKeyUp &&
         new_key != sfKeyDown && rebinding == -1) {
-        rebinding = game->clicked_control;
+        rebinding = game->settings.clicked_control;
     }
     if (rebinding != -1) {
         if (!is_key_already_bound(new_key) ||
