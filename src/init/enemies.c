@@ -20,6 +20,9 @@ static void set_enemy_shapes(enemy_t *enemy)
 {
     enemy->health_bar = sfRectangleShape_create();
     enemy->area = sfCircleShape_create();
+
+    if (enemy->health_bar == NULL || enemy->area == NULL)
+        return;
     sfCircleShape_setRadius(enemy->area, 200);
     sfCircleShape_setFillColor(enemy->area, sfTransparent);
     sfCircleShape_setOutlineThickness(enemy->area, 1);
