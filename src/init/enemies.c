@@ -40,7 +40,7 @@ enemy_t *create_enemy(game_data_t *game)
         return NULL;
     enemy->sprite = get_sprite(game, SP_ENEMY_EZ_IDLE);
     enemy->sprite_data = &SPRITES[SP_ENEMY_EZ_IDLE];
-    enemy->position = (sfVector2f){1860, 1815};
+    enemy->position = (sfVector2f){2000, 2060};
     enemy->direction = (sfVector2f){0, 0};
     enemy->health = 100;
     enemy->speed = 1.3;

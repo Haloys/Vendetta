@@ -57,6 +57,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/enemy/update.c \
 						engine/player/update.c \
 						engine/npc/npc.c \
+						engine/item.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
@@ -66,6 +67,8 @@ SRC_FILES            =   	help.c \
 							events.c \
 
 SRC_UI    =   	loading_screen/loading.c \
+				loading_screen/ending.c \
+				loading_screen/read_file_ending.c \
 				main_menu/main_menu.c \
 				main_menu/hover_main_menu.c \
 				main_menu/help/help_menu.c \
@@ -100,7 +103,8 @@ SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/events/movement.c \
 					gameplay/utils.c \
 					gameplay/key_management.c \
-					gameplay/is_key.c
+					gameplay/is_key.c \
+					gameplay/shader.c \
 
 SRC_INIT	=   	init/game_icon.c \
 					init/map.c \
@@ -109,6 +113,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/enemies.c \
 					init/keys.c \
 					init/npcs.c \
+					init/items.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \

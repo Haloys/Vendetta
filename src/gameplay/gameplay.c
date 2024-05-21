@@ -14,6 +14,18 @@
 #include "gameplay.h"
 #include "game_npc.h"
 #include "utils.h"
+#include "entity.h"
+
+void display_entities(game_data_t *game)
+{
+    element_t *tmp = game->entities.start.next;
+
+    for (int i = 0; i < game->entities.length; ++i) {
+        if (game->map.id == ((item_entity_t *)tmp->data)->config->map_id)
+            draw_entity(game, (item_entity_t *)tmp->data);
+        tmp = tmp->next;
+    }
+}
 
 static void display_enemies(game_data_t *game)
 {
@@ -56,30 +68,6 @@ static void display_map(game_data_t *game)
     sfRenderWindow_drawSprite(game->window, sp_map, NULL);
 }
 
-static void apply_shader(game_data_t *game)
-{
-    sfVector2u resolution = sfRenderWindow_getSize(game->window);
-    sfTexture *texture = sfTexture_create(WINDOW_WIDTH, WINDOW_HEIGHT);
-    sfSprite *sprite = sfSprite_create();
-    sfShader *shader = game->assets.shaders[SH_MAIN_DARKNESS];
-    sfRenderStates states = { .blendMode = sfBlendAlpha, .shader = shader,
-        .texture = texture, .transform = sfTransform_Identity };
-
-    if (shader == NULL || texture == NULL || sprite == NULL)
-        return;
-    sfSprite_setTexture(sprite, texture, sfTrue);
-    sfSprite_setPosition(sprite, game->view_pos);
-    sfSprite_setOrigin(sprite, (sfVector2f){WINDOW_WIDTH / 2,
-        WINDOW_HEIGHT / 2});
-    sfShader_setVec2Uniform(shader, "resolution",
-        (sfVector2f){resolution.x, resolution.y});
-    sfShader_setFloatUniform(shader, "time",
-        sfTime_asSeconds(sfClock_getElapsedTime(game->clock)));
-    sfRenderWindow_drawSprite(game->window, sprite, &states);
-    sfSprite_destroy(sprite);
-    sfTexture_destroy(texture);
-}
-
 static void check_gameplay_keys(game_data_t *game)
 {
     if (is_key_pressed(game, Inventory))
@@ -88,6 +76,14 @@ static void check_gameplay_keys(game_data_t *game)
         change_game_mode(game, PAUSE);
     if (is_key_pressed(game, Interact))
         game->is_passive = !game->is_passive;
+}
+
+static void change_map_if_needed(game_data_t *game)
+{
+    map_id_t map_id = game->map.id;
+
+    if (is_in_portal(game))
+        set_map(game, (map_id + 1) % 3);
 }
 
 void process_playing_gameplay(game_data_t *game)
@@ -107,6 +103,8 @@ void process_playing_gameplay(game_data_t *game)
     display_player(game);
     display_enemies(game);
     display_npcs(game);
+    display_entities(game);
     apply_shader(game);
     display_overlay(game);
+    change_map_if_needed(game);
 }

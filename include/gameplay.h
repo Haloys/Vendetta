@@ -62,5 +62,6 @@ void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);
 
+void apply_shader(game_data_t *game);
 
 #endif /* GAMEPLAY_H */
