@@ -10,7 +10,7 @@
 
     #include <SFML/Graphics.h>
 
-    #define KEYBINDS_COUNT 16
+    #define KEYBINDS_COUNT 17
 
 typedef enum keybinds_e {
     ArrowUp,
@@ -28,7 +28,8 @@ typedef enum keybinds_e {
     KeyMinus,
     Interact,
     Inventory,
-    Space
+    Space,
+    Hostile
 } keybinds_t;
 
 typedef struct sf_to_keybind_s {

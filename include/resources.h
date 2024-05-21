@@ -80,7 +80,6 @@ static const char *IMAGES[] = {
     "assets/images/maps/cols_map_2.png",
     "assets/images/maps/cols_map_3.png",
     "assets/images/player/hand_spritesheet.png",
-    "assets/images/npcs/one.png",
     "assets/images/enemies/easy_idle.png",
     "assets/images/enemies/easy_shooting.png",
     "assets/images/main_menu/load_save_help.png",
@@ -118,12 +117,21 @@ static const char *IMAGES[] = {
     "assets/images/player/gun_spritesheet.png",
     "assets/images/player/knife_spritesheet.png",
     "assets/images/player/rifle_spritesheet.png",
-    "assets/images/player/shotgun_spritesheet.png",
+    "assets/images/player/shotgun_sprite.png",
     "assets/images/main_menu/chest.png",
     "assets/images/main_menu/sword.png",
     "assets/images/main_menu/potion.png",
     "assets/images/main_menu/key.png",
-    "assets/images/npcs/npc_woman.png",
+    "assets/images/npcs/black_npc_pic.png",
+    "assets/images/npcs/black_npc.png",
+    "assets/images/npcs/green_npc_pic.png",
+    "assets/images/npcs/green_npc.png",
+    "assets/images/npcs/red_npc_pic.png",
+    "assets/images/npcs/red_npc.png",
+    "assets/images/npcs/white_npc_pic.png",
+    "assets/images/npcs/white_npc.png",
+    "assets/images/npcs/yellow_npc_pic.png",
+    "assets/images/npcs/yellow_npc.png",
     "assets/images/icons/objective.png",
 };
 
@@ -199,7 +207,6 @@ typedef enum texture_id_e {
     COLS_MAP_2,
     COLS_MAP_3,
     PLAYER_HAND,
-    NPC_ONE,
     ENEMY_EZ_IDLE,
     ENEMY_EZ_SHOOTING,
     LOAD_SAVE_HELP,
@@ -242,7 +249,16 @@ typedef enum texture_id_e {
     SWORD_ICON,
     POTION_ICON,
     KEY_ICON,
-    NPC_WOMAN,
+    BLACK_NPC_PIC,
+    BLACK_NPC,
+    GREEN_NPC_PIC,
+    GREEN_NPC,
+    RED_NPC_PIC,
+    RED_NPC,
+    WHITE_NPC_PIC,
+    WHITE_NPC,
+    YELLOW_NPC_PIC,
+    YELLOW_NPC,
     OBJECTIVE,
 } texture_id_t;
 
@@ -1153,19 +1169,6 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 20
     },
     {
-        .id = NPC_ONE,
-        .rect = {
-            .left = 0,
-            .top = 0,
-            .width = 128,
-            .height = 110
-        },
-        .scale = 0.65,
-        .position = {0, 0},
-        .origin = {64, 55},
-        .rect_count = 3
-    },
-    {
         .id = ENEMY_EZ_IDLE,
         .rect = {
             .left = 0,
@@ -1712,17 +1715,134 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 1
     },
     {
-        .id = NPC_WOMAN,
+        .id = BLACK_NPC_PIC,
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 1007,
-            .height = 735
+            .width = 385,
+            .height = 751
         },
         .scale = 1,
-        .position = {903, 300},
+        .position = {1451, 329},
         .origin = {0, 0},
         .rect_count = 1
+    },
+    {
+        .id = BLACK_NPC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 139,
+            .height = 110
+        },
+        .scale = 0.65,
+        .position = {0, 0},
+        .origin = {69.5, 55},
+        .rect_count = 20
+    },
+    {
+        .id = GREEN_NPC_PIC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 366,
+            .height = 751
+        },
+        .scale = 1,
+        .position = {1451, 329},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = GREEN_NPC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 139,
+            .height = 110
+        },
+        .scale = 0.65,
+        .position = {0, 0},
+        .origin = {69.5, 55},
+        .rect_count = 20
+    },
+    {
+        .id = RED_NPC_PIC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 375,
+            .height = 772
+        },
+        .scale = 1,
+        .position = {1451, 308},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = RED_NPC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 139,
+            .height = 110
+        },
+        .scale = 0.65,
+        .position = {0, 0},
+        .origin = {69.5, 55},
+        .rect_count = 20
+    },
+    {
+        .id = WHITE_NPC_PIC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 669,
+            .height = 718
+        },
+        .scale = 1,
+        .position = {1212, 363},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = WHITE_NPC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 139,
+            .height = 110
+        },
+        .scale = 0.65,
+        .position = {0, 0},
+        .origin = {69.5, 55},
+        .rect_count = 20
+    },
+    {
+        .id = YELLOW_NPC_PIC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 366,
+            .height = 751
+        },
+        .scale = 1,
+        .position = {1435, 329},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = YELLOW_NPC,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 139,
+            .height = 110
+        },
+        .scale = 0.65,
+        .position = {0, 0},
+        .origin = {69.5, 55},
+        .rect_count = 20
     },
     {
         .id = OBJECTIVE,
@@ -1811,7 +1931,6 @@ typedef enum sprite_id_e {
     SP_COLS_MAP_2,
     SP_COLS_MAP_3,
     SP_PLAYER_HAND,
-    SP_NPC_ONE,
     SP_ENEMY_EZ_IDLE,
     SP_ENEMY_EZ_SHOOTING,
     SP_LOAD_SAVE_HELP,
@@ -1854,7 +1973,16 @@ typedef enum sprite_id_e {
     SP_SWORD_ICON,
     SP_POTION_ICON,
     SP_KEY_ICON,
-    SP_NPC_WOMAN,
+    SP_BLACK_NPC_PIC,
+    SP_BLACK_NPC,
+    SP_GREEN_NPC_PIC,
+    SP_GREEN_NPC,
+    SP_RED_NPC_PIC,
+    SP_RED_NPC,
+    SP_WHITE_NPC_PIC,
+    SP_WHITE_NPC,
+    SP_YELLOW_NPC_PIC,
+    SP_YELLOW_NPC,
     SP_OBJECTIVE,
 } sprite_id_t;
 
@@ -1891,15 +2019,15 @@ static const sound_t SOUNDS[] = {
     },
     {
         .id = S_FIRST_BOOK,
-        .volume = 50
+        .volume = 100
     },
     {
         .id = S_SECOND_BOOK,
-        .volume = 50
+        .volume = 100
     },
     {
         .id = S_THIRD_BOOK,
-        .volume = 50
+        .volume = 100
     },
     {
         .id = S_CHEST,

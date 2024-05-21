@@ -70,11 +70,11 @@ static void display_map(game_data_t *game)
 
 static void check_gameplay_keys(game_data_t *game)
 {
-    if (is_key_pressed(game, Inventory))
+    if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap))
         change_game_mode(game, INVENTORY);
     if (is_key_pressed(game, Echap))
         change_game_mode(game, PAUSE);
-    if (is_key_pressed(game, Interact))
+    if (is_key_pressed(game, Hostile))
         game->is_passive = !game->is_passive;
 }
 
@@ -82,8 +82,10 @@ static void change_map_if_needed(game_data_t *game)
 {
     map_id_t map_id = game->map.id;
 
-    if (is_in_portal(game))
+    if (is_in_portal(game, &game->map.portal))
         set_map(game, (map_id + 1) % 3);
+    if (is_in_portal(game, &game->map.back_portal))
+        set_backmap(game, (map_id - 1) % 3);
 }
 
 void process_playing_gameplay(game_data_t *game)

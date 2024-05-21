@@ -21,5 +21,5 @@ void npc_dialogues(game_data_t *game)
         change_game_mode(game, PLAYING);
         return;
     }
-    handle_choice(game, &DIALOGUES[0]);
+    handle_choice(game, &DIALOGUES[game->player->npc_id]);
 }
