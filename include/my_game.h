@@ -107,9 +107,9 @@ typedef struct game_data_s {
     player_data_t *player;
     settings_t settings;
     sfImage *cols_map;
-    int key_state;
-    int key_change;
-    int key_update;
+    long key_state;
+    long key_change;
+    long key_update;
     bool is_passive;
     sfView *game_view;
     sfView *menu_view;
@@ -198,4 +198,5 @@ void second_book_callback(game_data_t *game);
 void third_book_callback(game_data_t *game);
 
 int asprintf(char **strp, const char *fmt, ...);
+
 #endif /* MY_GAME_H */

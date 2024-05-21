@@ -10,7 +10,7 @@
 
     #include <SFML/Graphics.h>
 
-    #define KEYBINDS_COUNT 16
+    #define KEYBINDS_COUNT 17
 
 typedef enum keybinds_e {
     ArrowUp,
@@ -28,7 +28,8 @@ typedef enum keybinds_e {
     KeyMinus,
     Interact,
     Inventory,
-    Space
+    Space,
+    TestF13
 } keybinds_t;
 
 typedef struct sf_to_keybind_s {
@@ -42,7 +43,7 @@ bool is_key_pressed(game_data_t *game, keybinds_t key);
 void reset_key_update(game_data_t *game);
 void after_key_update(game_data_t *game);
 
-void update_key(game_data_t *game, sfKeyCode code, int state);
+void update_key(game_data_t *game, sfKeyCode code, bool state);
 
 
 #endif /* GAME_KEYS_H */
