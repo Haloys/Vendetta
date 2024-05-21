@@ -130,25 +130,21 @@ static void draw_dialogue_utils(game_data_t *game,
     sfText_destroy(help_prompt);
 }
 
-void handle_choice(game_data_t *game, const dialogue_params_t *params)
+void handle_choice(game_data_t *game, const dialogue_params_t *params,
+    dialogue_state_t *state)
 {
-    static dialogue_t *dialogue = NULL;
-    static dialogue_t *response_dialogue = NULL;
-    static choice_box_t *boxes = NULL;
-    static bool space_pressed = false;
-    static bool choice_selected = false;
-    static char **choice_texts = NULL;
-    dialogue_data_t dialogue_data = {&dialogue, &response_dialogue,
-        &choice_selected, &space_pressed};
-    dialogue_box_params_t box_p = {&dialogue, &boxes, &choice_texts,
-        params, game};
+    dialogue_data_t dialogue_data = {&state->dialogue,
+        &state->response_dialogue, &state->choice_selected,
+            &state->space_pressed};
+    dialogue_box_params_t box_p = {&state->dialogue, &state->boxes,
+        &state->choice_texts, params, game};
 
     initialize_dialogue_and_boxes(&box_p);
-    if (!dialogue || !boxes)
+    if (!state->dialogue || !state->boxes)
         return;
     basic_design(game);
     draw_dialogue_utils(game, params);
     handle_initial_dialogue(game, &dialogue_data);
-    handle_response_dialogue(game, &dialogue_data, boxes, params);
-    cleanup(&response_dialogue, &choice_texts, params);
+    handle_response_dialogue(game, &dialogue_data, state->boxes, params);
+    cleanup(&state->response_dialogue, &state->choice_texts, params);
 }
