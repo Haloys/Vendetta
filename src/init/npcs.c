@@ -43,7 +43,7 @@ const npc_config_t npc_config[] = {
     },
     {
         .name = "HALOYS",
-        .sprite = SP_NPC_ONE,
+        .sprite = SP_BLACK_NPC,
         .default_position = {453, 1500},
         .default_direction = {0, 0},
         .default_rotation = 0,
@@ -53,7 +53,7 @@ const npc_config_t npc_config[] = {
     },
     {
         .name = "NPC 3",
-        .sprite = SP_NPC_ONE,
+        .sprite = SP_YELLOW_NPC,
         .default_position = {1047, 352},
         .default_direction = {0, 0},
         .default_rotation = 0,
@@ -110,8 +110,8 @@ static npc_t *create_npc(game_data_t *game, npc_config_t *config)
     if (npc == NULL)
         return NULL;
     npc->config = config;
-    npc->sprite = get_sprite(game, SP_NPC_ONE);
-    npc->sprite_data = &SPRITES[SP_NPC_ONE];
+    npc->sprite = get_sprite(game, config->sprite);
+    npc->sprite_data = &SPRITES[config->sprite];
     npc->position = config->default_position;
     npc->direction = config->default_direction;
     npc->rotation = config->default_rotation;
