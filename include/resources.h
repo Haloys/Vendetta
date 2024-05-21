@@ -1671,12 +1671,12 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 1
     },
     {
-        .id = POTION_ICON,
+        .id = SWORD_ICON,
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 32,
-            .height = 32
+            .width = 33,
+            .height = 33
         },
         .scale = 1,
         .position = {0, 0},
@@ -1684,12 +1684,12 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 1
     },
     {
-        .id = SWORD_ICON,
+        .id = POTION_ICON,
         .rect = {
             .left = 0,
             .top = 0,
-            .width = 33,
-            .height = 33
+            .width = 32,
+            .height = 32
         },
         .scale = 1,
         .position = {0, 0},
