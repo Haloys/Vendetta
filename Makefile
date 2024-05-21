@@ -58,6 +58,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/player/update.c \
 						engine/npc/npc.c \
 						engine/item.c \
+						engine/bullet/update.c \
 
 SRC_FILES            =   	help.c \
 							init.c \

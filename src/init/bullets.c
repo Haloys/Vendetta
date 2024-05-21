@@ -10,10 +10,24 @@
 
 static void free_bullet(bullet_t *bullet)
 {
-    sfSprite_destroy(bullet->sprite);
-    sfTexture_destroy(bullet->texture);
     sfClock_destroy(bullet->clock);
     free(bullet);
+}
+
+bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
+    float rotation)
+{
+    bullet_t *bullet = malloc(sizeof(bullet_t));
+
+    if (bullet == NULL)
+        return NULL;
+    bullet->sprite = get_sprite(game, SP_BULLET);
+    sfSprite_setPosition(bullet->sprite, *pos);
+    bullet->clock = sfClock_create();
+    bullet->rotation = rotation;
+    bullet->direction = *dir;
+    bullet->position = *pos;
+    return bullet;
 }
 
 int init_bullets(game_data_t *game)

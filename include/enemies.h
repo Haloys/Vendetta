@@ -25,31 +25,38 @@ typedef struct enemy_s {
     int armor;
     int max_health;
     sfClock *clock;
-    float pspeed;
     float rotation;
+    float disp_rotation;
     float target_rot;
     map_id_t map_id;
 } enemy_t;
 
+    #define BULLET_SPEED 5
 
 typedef struct bullet_t {
     sfSprite *sprite;
-    sfTexture *texture;
     sfVector2f position;
     sfVector2f direction;
     int damage;
     int speed;
     sfClock *clock;
-    float pspeed;
     float rotation;
     float target_rot;
 } bullet_t;
 
+
+// ENEMIES
 void draw_enemy(game_data_t *game, enemy_t *enemy);
 void update_enemy(game_data_t *game, enemy_t *enemy);
 
 
 void update_enemy_pos_sprite(enemy_t *enemy);
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game);
+
+// BULLETS
+void update_bullet(game_data_t *game, bullet_t *bullet);
+
+bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
+    float rotation);
 
 #endif /* ENEMIES_H */

@@ -19,11 +19,19 @@
 void display_bullets(game_data_t *game)
 {
     element_t *tmp = game->bullets.start.next;
+    bullet_t *bullet = NULL;
 
     for (int i = 0; i < game->bullets.length; ++i) {
-        sfRenderWindow_drawSprite(game->window,
-            ((bullet_t *)tmp->data)->sprite, NULL);
         tmp = tmp->next;
+        bullet = (bullet_t *)tmp->prev->data;
+        update_bullet(game, bullet);
+        if (is_black_color(get_pixel_color(game->cols_map, bullet->position.x,
+            bullet->position.y))) {
+            list_remove_element(&game->bullets, tmp->prev);
+            continue;
+        }
+        sfRenderWindow_drawSprite(game->window,
+            bullet->sprite, NULL);
     }
 }
 
