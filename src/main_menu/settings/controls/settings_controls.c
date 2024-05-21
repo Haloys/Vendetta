@@ -131,13 +131,13 @@ void modify_control(game_data_t *game)
 {
     if (is_key_pressed(game, ArrowDown) && game->state == SETTINGS_CONTROLS) {
         game->settings.clicked_control++;
-        game->settings.clicked_control %= 10;
+        game->settings.clicked_control %= 11;
     }
     if (is_key_pressed(game, ArrowUp) && game->state == SETTINGS_CONTROLS) {
         if (game->settings.clicked_control == 0)
-            game->settings.clicked_control = 10;
+            game->settings.clicked_control = 11;
         game->settings.clicked_control--;
-        game->settings.clicked_control %= 10;
+        game->settings.clicked_control %= 11;
     }
 }
 
