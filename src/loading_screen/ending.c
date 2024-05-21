@@ -55,7 +55,7 @@ static void free_and_reload_credits(ending_screen_t *ending)
         &ending->line_count);
     ending->y_offset = 600;
     ending->state = 2;
-    ending->ending_speed = 1.0f;
+    ending->ending_speed = 0.4f;
 }
 
 static void check_end_wait_time(ending_screen_t *ending, game_data_t *game)
@@ -88,7 +88,7 @@ static void handle_display_state(ending_screen_t *ending,
 
 void display_ending_screen(game_data_t *game)
 {
-    static ending_screen_t ending = {NULL, 0, 600, 0, 0, 40.0f};
+    static ending_screen_t ending = {NULL, 0, 600, 0, 0, 5.0f};
     credits_data_t data = {
         .credits = ending.credits,
         .line_count = ending.line_count,
