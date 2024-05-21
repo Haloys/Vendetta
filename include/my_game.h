@@ -117,6 +117,7 @@ typedef struct game_data_s {
     sfView *menu_view;
     sfVector2f view_pos;
     float view_zoom;
+    bool is_first;
     float target_zoom;
     map_config_t map;
     list_t enemies;
