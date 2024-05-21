@@ -43,10 +43,10 @@ void modify_sound(game_data_t *game)
     int sound = 0;
 
     handle_movement_sound(game);
-    if (is_key_down(game, MoveLeft) && game->state == SETTINGS_AUDIO) {
+    if (is_key_down(game, ArrowLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
     }
-    if (is_key_down(game, MoveRight) && game->state == SETTINGS_AUDIO) {
+    if (is_key_down(game, ArrowRight) && game->state == SETTINGS_AUDIO) {
         sound += 5;
     }
     change_volume(game, sound);
