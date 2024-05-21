@@ -61,6 +61,11 @@ key_config_t key_config[] = {
         .name = "Reset",
         .key_name = "R",
         .key = Reset
+    },
+    {
+        .name = "Change Mode",
+        .key_name = "W",
+        .key = Hostile
     }
 };
 
@@ -141,7 +146,7 @@ static void draw_bg_control(game_data_t *game)
     sfRectangleShape *rect;
     sfVector2f rectangle_pos = {106, 260};
     sfVector2f rectangle_size = {664, 52};
-    int nbr_rect = 10;
+    int nbr_rect = 11;
 
     for (int i = 0; i < nbr_rect; i++) {
         rect = sfRectangleShape_create();
