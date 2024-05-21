@@ -12,9 +12,17 @@
 
 const item_config_t item_config[] = {
     {
-        .name = "Key",
+        .name = "Key A",
         .sprite = SP_KEYA,
         .default_position = {1728, 1784},
+        .default_rotation = 0,
+        .map_id = MAP_ONE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Key B",
+        .sprite = SP_KEYB,
+        .default_position = {811, 620},
         .default_rotation = 0,
         .map_id = MAP_ONE,
         .callback_interact = NULL
@@ -25,7 +33,6 @@ static void free_item(item_entity_t *item)
 {
     free(item);
 }
-
 
 static item_entity_t *create_item(game_data_t *game, item_config_t *config)
 {
