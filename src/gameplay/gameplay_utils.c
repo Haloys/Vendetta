@@ -51,4 +51,6 @@ void display_overlay(game_data_t *game)
     sfRenderWindow_drawText(game->window, passiv, NULL);
     sfText_destroy(passiv);
     draw_overlay(game, relativepos);
+    display_notifications(game, &game->notifications);
+    update_notifications(&game->notifications);
 }
