@@ -29,7 +29,7 @@ static const dialogue_params_t DIALOGUES[] = {
         .response_filenames = lucia_response_filenames,
         .response_count = 3,
         .choice_filenames = lucia_choice_filenames,
-        .sprite_id = SP_NPC_WOMAN,
+        .sprite_id = SP_RED_NPC_PIC,
     },
 };
 
