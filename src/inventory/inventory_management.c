@@ -143,9 +143,9 @@ void insert_item_in_inventory(game_data_t *game, char *item_name, int qty)
         is_valid_weight(game,
         get_item_by_name(item_name)->weight * qty) == 1) {
             slot->item = get_item_by_name(item_name);
-            slot->quantity = 1;
-            slot->weight = slot->item->weight;
-            count--;
+            slot->quantity = slot->item->is_stackable == true ? qty : 1;
+            slot->weight = slot->item->weight * slot->quantity;
+            count = slot->item->is_stackable == true ? count - qty : count - 1;
             update_inventory_weight(game);
             continue;
         }

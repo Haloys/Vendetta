@@ -70,10 +70,8 @@ static void display_map(game_data_t *game)
 
 static void check_gameplay_keys(game_data_t *game)
 {
-    if (is_key_pressed(game, Inventory))
+    if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap))
         change_game_mode(game, INVENTORY);
-    if (is_key_pressed(game, Echap))
-        change_game_mode(game, PAUSE);
     if (is_key_pressed(game, Interact))
         game->is_passive = !game->is_passive;
 }

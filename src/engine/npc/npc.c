@@ -27,13 +27,6 @@ void draw_npc(game_data_t *game, npc_t *npc)
     sfRenderWindow_drawSprite(game->window, npc->sprite, NULL);
 }
 
-int npc_callback(game_data_t *game, npc_t *npc)
-{
-    printf("Interacting with %s\n", npc->config->name);
-    change_game_mode(game, NPC_DIALOGUE);
-    return 0;
-}
-
 static void npc_update_animation(npc_t *npc, sfTime time)
 {
     sfIntRect rect = {0};
@@ -60,7 +53,8 @@ void update_npc(game_data_t *game, npc_t *npc)
 
     npc_update_animation(npc, time);
     if (distance < 130 && distance > 20) {
-        npc->rotation = (angle * 180 / PI);
+        npc->rotation = (angle * 180 / PI) + npc->config->rotation_offset;
+        sfSprite_setRotation(npc->sprite, npc->rotation);
         sfRenderWindow_drawText(game->window, npc->text, NULL);
         sfRenderWindow_drawRectangleShape(game->window, npc->square, NULL);
         sfRenderWindow_drawText(game->window, npc->keybind_text, NULL);
