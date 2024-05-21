@@ -66,6 +66,7 @@ SRC_FILES            =   	help.c \
 							events.c \
 
 SRC_UI    =   	loading_screen/loading.c \
+				loading_screen/ending.c \
 				main_menu/main_menu.c \
 				main_menu/hover_main_menu.c \
 				main_menu/help/help_menu.c \
