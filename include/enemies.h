@@ -31,6 +31,20 @@ typedef struct enemy_s {
     map_id_t map_id;
 } enemy_t;
 
+
+typedef struct bullet_t {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f position;
+    sfVector2f direction;
+    int damage;
+    int speed;
+    sfClock *clock;
+    float pspeed;
+    float rotation;
+    float target_rot;
+} bullet_t;
+
 void draw_enemy(game_data_t *game, enemy_t *enemy);
 void update_enemy(game_data_t *game, enemy_t *enemy);
 

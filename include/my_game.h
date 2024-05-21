@@ -124,6 +124,7 @@ typedef struct game_data_s {
     sequence_click_t sequence;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
+    list_t bullets;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);

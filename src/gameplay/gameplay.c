@@ -16,6 +16,17 @@
 #include "utils.h"
 #include "entity.h"
 
+void display_bullets(game_data_t *game)
+{
+    element_t *tmp = game->bullets.start.next;
+
+    for (int i = 0; i < game->bullets.length; ++i) {
+        sfRenderWindow_drawSprite(game->window,
+            ((bullet_t *)tmp->data)->sprite, NULL);
+        tmp = tmp->next;
+    }
+}
+
 void display_entities(game_data_t *game)
 {
     element_t *tmp = game->entities.start.next;
@@ -106,6 +117,7 @@ void process_playing_gameplay(game_data_t *game)
     display_enemies(game);
     display_npcs(game);
     display_entities(game);
+    display_bullets(game);
     apply_shader(game);
     display_overlay(game);
     change_map_if_needed(game);

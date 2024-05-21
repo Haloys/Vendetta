@@ -114,6 +114,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/keys.c \
 					init/npcs.c \
 					init/items.c \
+					init/bullets.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
