@@ -11,9 +11,9 @@
     #include <SFML/Audio.h>
 
 static const char *IMAGES[] = {
-    "assets/images/loading_screen/bg_load1.png",
-    "assets/images/loading_screen/bg_load2.png",
-    "assets/images/loading_screen/bg_load3.png",
+    "assets/images/loading_screen/bg_load1.jpg",
+    "assets/images/loading_screen/bg_load2.jpg",
+    "assets/images/loading_screen/bg_load3.jpg",
     "assets/images/loading_screen/flavibot.png",
     "assets/images/loading_screen/ora.png",
     "assets/images/loading_screen/tryade.png",
@@ -23,7 +23,7 @@ static const char *IMAGES[] = {
     "assets/images/loading_screen/dev_3.png",
     "assets/images/loading_screen/dev_4.png",
     "assets/images/loading_screen/vendetta_t.png",
-    "assets/images/main_menu/menu_bg.png",
+    "assets/images/main_menu/menu_bg.jpg",
     "assets/images/main_menu/vendetta_t.png",
     "assets/images/main_menu/icon_play.png",
     "assets/images/main_menu/icon_settings.png",
@@ -73,9 +73,9 @@ static const char *IMAGES[] = {
     "assets/images/inventory/items/whiskey.png",
     "assets/images/inventory/stats.png",
     "assets/images/main_menu/help_dialogues.png",
-    "assets/images/maps/map_1.jpg",
-    "assets/images/maps/map_2.jpg",
-    "assets/images/maps/map_3.jpg",
+    "assets/images/maps/map_1.png",
+    "assets/images/maps/map_2.png",
+    "assets/images/maps/map_3.png",
     "assets/images/maps/cols_map_1.png",
     "assets/images/maps/cols_map_2.png",
     "assets/images/maps/cols_map_3.png",
@@ -88,7 +88,6 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/save_2.png",
     "assets/images/main_menu/save_3.png",
     "assets/images/main_menu/empty_slot.png",
-    "assets/images/dialogues/lucia.png",
     "assets/images/icons/health.png",
     "assets/images/icons/armor.png",
     "assets/images/icons/attack.png",
@@ -110,6 +109,16 @@ static const char *IMAGES[] = {
     "assets/images/books/book_2.jpg",
     "assets/images/books/book_3.jpg",
     "assets/images/icons/health2.png",
+    "assets/images/enemies/boss_idle.png",
+    "assets/images/enemies/boss_shooting.png",
+    "assets/images/enemies/hard_idle.png",
+    "assets/images/enemies/hard_shooting.png",
+    "assets/images/enemies/medium_idle.png",
+    "assets/images/enemies/medium_shooting.png",
+    "assets/images/player/gun_spritesheet.png",
+    "assets/images/player/knife_spritesheet.png",
+    "assets/images/player/rifle_spritesheet.png",
+    "assets/images/player/shotgun_spritesheet.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -192,7 +201,6 @@ typedef enum texture_id_e {
     SAVE_2,
     SAVE_3,
     EMPTY_SLOT,
-    LUCIA,
     HEALTH_ICON,
     ARMOR_ICON,
     ATTACK_ICON,
@@ -214,6 +222,16 @@ typedef enum texture_id_e {
     BOOK2,
     BOOK3,
     HEALTH2,
+    BOSS_IDLE,
+    BOSS_SHOOTING,
+    HARD_IDLE,
+    HARD_SHOOTING,
+    MEDIUM_IDLE,
+    MEDIUM_SHOOTING,
+    PLAYER_GUN,
+    PLAYER_KNIFE,
+    PLAYER_RIFLE,
+    PLAYER_SHOTGUN,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1227,19 +1245,6 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 1
     },
     {
-        .id = LUCIA,
-        .rect = {
-            .left = 0,
-            .top = 0,
-            .width = 1007,
-            .height = 735
-        },
-        .scale = 1,
-        .position = {1920, 345},
-        .origin = {0, 0},
-        .rect_count = 1
-    },
-    {
         .id = HEALTH_ICON,
         .rect = {
             .left = 0,
@@ -1512,6 +1517,135 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+        .id = BOSS_IDLE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 89,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {44.5, 55},
+        .rect_count = 16
+    },
+    {
+        .id = BOSS_SHOOTING,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 89,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {44.5, 55},
+        .rect_count = 8
+    },
+    {
+        .id = HARD_IDLE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 89,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {44.5, 55},
+        .rect_count = 16
+    },
+    {
+        .id = HARD_SHOOTING,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 89,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {44.5, 55},
+        .rect_count = 8
+    },
+    {
+        .id = MEDIUM_IDLE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 89,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {44.5, 55},
+        .rect_count = 16
+    },
+    {
+        .id = MEDIUM_SHOOTING,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 89,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {44.5, 55},
+        .rect_count = 8
+    },
+    {
+        .id = PLAYER_GUN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 128,
+            .height = 108
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {64, 54},
+        .rect_count = 3
+    },
+    {
+        .id = PLAYER_KNIFE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 139,
+            .height = 110
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {69.5, 55},
+        .rect_count = 20
+    },
+    {
+        .id = PLAYER_RIFLE,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 156,
+            .height = 103
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {78, 51.5},
+        .rect_count = 3
+    },
+    {
+        .id = PLAYER_SHOTGUN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 156,
+            .height = 103
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {68, 51.5},
+        .rect_count = 3
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1594,7 +1728,6 @@ typedef enum sprite_id_e {
     SP_SAVE_2,
     SP_SAVE_3,
     SP_EMPTY_SLOT,
-    SP_LUCIA,
     SP_HEALTH_ICON,
     SP_ARMOR_ICON,
     SP_ATTACK_ICON,
@@ -1616,6 +1749,16 @@ typedef enum sprite_id_e {
     SP_BOOK2,
     SP_BOOK3,
     SP_HEALTH2,
+    SP_BOSS_IDLE,
+    SP_BOSS_SHOOTING,
+    SP_HARD_IDLE,
+    SP_HARD_SHOOTING,
+    SP_MEDIUM_IDLE,
+    SP_MEDIUM_SHOOTING,
+    SP_PLAYER_GUN,
+    SP_PLAYER_KNIFE,
+    SP_PLAYER_RIFLE,
+    SP_PLAYER_SHOTGUN,
 } sprite_id_t;
 
 typedef enum sound_id_e {
@@ -1624,6 +1767,15 @@ typedef enum sound_id_e {
     S_FIRST_BOOK,
     S_SECOND_BOOK,
     S_THIRD_BOOK,
+    S_CHEST,
+    S_CLICK_SOUND,
+    S_FOOTSTEPS,
+    S_KNIFE,
+    S_MINIGUN,
+    S_MISSILE,
+    S_PUNCH,
+    S_RIFLE,
+    S_SHOTGUN,
 } sound_id_t;
 
 typedef struct sound_s {
@@ -1652,12 +1804,51 @@ static const sound_t SOUNDS[] = {
         .id = S_THIRD_BOOK,
         .volume = 50
     },
+    {
+        .id = S_CHEST,
+        .volume = 50
+    },
+    {
+        .id = S_CLICK_SOUND,
+        .volume = 50
+    },
+    {
+        .id = S_FOOTSTEPS,
+        .volume = 50
+    },
+    {
+        .id = S_KNIFE,
+        .volume = 50
+    },
+    {
+        .id = S_MINIGUN,
+        .volume = 50
+    },
+    {
+        .id = S_MISSILE,
+        .volume = 50
+    },
+    {
+        .id = S_PUNCH,
+        .volume = 50
+    },
+    {
+        .id = S_RIFLE,
+        .volume = 50
+    },
+    {
+        .id = S_SHOTGUN,
+        .volume = 50
+    },
 };
 
     #define SOUND_COUNT (sizeof(SOUNDS) / sizeof(sound_t))
 
 typedef enum music_id_e {
     M_LOADING,
+    M_FIRST_MAP,
+    M_SECOND_MAP,
+    M_THIRD_MAP,
 } music_id_t;
 
 typedef struct music_s {
@@ -1668,6 +1859,18 @@ typedef struct music_s {
 static const music_t MUSICS[] = {
     {
         .id = M_LOADING,
+        .volume = 20
+    },
+    {
+        .id = M_FIRST_MAP,
+        .volume = 20
+    },
+    {
+        .id = M_SECOND_MAP,
+        .volume = 20
+    },
+    {
+        .id = M_THIRD_MAP,
         .volume = 20
     },
 };
