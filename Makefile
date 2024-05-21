@@ -57,6 +57,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/enemy/update.c \
 						engine/player/update.c \
 						engine/npc/npc.c \
+						engine/item.c \
 
 SRC_FILES            =   	help.c \
 							init.c \
@@ -111,6 +112,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/enemies.c \
 					init/keys.c \
 					init/npcs.c \
+					init/items.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
