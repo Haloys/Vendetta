@@ -128,8 +128,6 @@ void swap_items(game_data_t *game, int dest, int src)
     *slot_bis = tmp;
 }
 
-
-
 void insert_item_in_inventory(game_data_t *game, char *item_name, int qty)
 {
     inventory_slot_t *slot = NULL;
