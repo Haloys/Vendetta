@@ -64,4 +64,7 @@ void update_player(game_data_t *game, sfTime time);
 
 void apply_shader(game_data_t *game);
 
+bool is_black_color(sfColor color);
+
+
 #endif /* GAMEPLAY_H */
