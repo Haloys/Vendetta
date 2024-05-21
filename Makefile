@@ -134,6 +134,9 @@ SRC_MINIGAME =   	minigame/sequence_click.c \
 SRC_UTILS	=   	utils/utils.c \
 					utils/list.c \
 
+SRC_NOTIFICATIONS =   	notifications/notifications.c \
+						notifications/notifications_list.c \
+
 SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
             $(addprefix $(SRC_DIR)/,$(SRC_FILES)) \
             $(addprefix $(SRC_DIR)/,$(SRC_UI)) \
@@ -145,6 +148,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_SKILL_TREE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_MINIGAME)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_ITEMS)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_NOTIFICATIONS)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
