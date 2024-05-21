@@ -12,74 +12,59 @@
 
 const npc_config_t npc_config[] = {
     {
-        .name = "NPC 1",
-        .sprite = SP_NPC_ONE,
+        .name = "Mike",
+        .sprite = SP_YELLOW_NPC,
         .default_position = {2325, 1812},
         .default_direction = {0, 0},
+        .rotation_offset = 90,
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .text = "Hey!",
-        .callback_interact = npc_callback
+        .text = "Psst",
+        .callback_interact = first_npc_callback
     },
     {
-        .name = "NPC 2",
-        .sprite = SP_NPC_ONE,
+        .name = "Sasha",
+        .sprite = SP_WHITE_NPC,
         .default_position = {1922, 655},
         .default_direction = {0, 0},
+        .rotation_offset = 90,
         .default_rotation = 0,
         .map_id = MAP_ONE,
         .text = "Hey!",
-        .callback_interact = npc_callback
+        .callback_interact = second_npc_callback
     },
     {
-        .name = "NPC 3",
-        .sprite = SP_NPC_ONE,
-        .default_position = {2325, 1812},
+        .name = "Trevor",
+        .sprite = SP_GREEN_NPC,
+        .default_position = {802, 733},
         .default_direction = {0, 0},
+        .rotation_offset = 90,
         .default_rotation = 0,
-        .map_id = MAP_ONE,
-        .text = "Hey!",
-        .callback_interact = npc_callback
+        .map_id = MAP_TWO,
+        .text = "Burp",
+        .callback_interact = third_npc_callback
     },
     {
-        .name = "HALOYS",
-        .sprite = SP_BLACK_NPC,
-        .default_position = {453, 1500},
-        .default_direction = {0, 0},
-        .default_rotation = 0,
-        .map_id = MAP_ONE,
-        .text = "Hello, I'm HALOYS, I'am poor and I need money",
-        .callback_interact = npc_callback
-    },
-    {
-        .name = "NPC 3",
+        .name = "Oleksandra",
         .sprite = SP_YELLOW_NPC,
         .default_position = {1047, 352},
         .default_direction = {0, 0},
+        .rotation_offset = 90,
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .text = "Hello, I'm NPC 3",
-        .callback_interact = npc_callback
+        .text = "Yo !",
+        .callback_interact = fourth_npc_callback
     },
     {
-        .name = "NPC 3",
-        .sprite = SP_NPC_ONE,
-        .default_position = {802, 733},
-        .default_direction = {0, 0},
-        .default_rotation = 0,
-        .map_id = MAP_TWO,
-        .text = "Hello, I'm NPC 3",
-        .callback_interact = npc_callback
-    },
-    {
-        .name = "NPC 3",
-        .sprite = SP_NPC_ONE,
+        .name = "Marcus",
+        .sprite = SP_RED_NPC,
         .default_position = {1331, 1635},
         .default_direction = {0, 0},
+        .rotation_offset = 90,
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .text = "Hello, I'm NPC 3",
-        .callback_interact = npc_callback
+        .text = "Flee",
+        .callback_interact = fifth_npc_callback
     }
 };
 
