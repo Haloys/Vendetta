@@ -44,24 +44,12 @@ const map_config_t map_config[] = {
     }
 };
 
-bool is_in_portal(game_data_t *game)
+bool is_in_portal(game_data_t *game, rect_t *portal)
 {
-    map_config_t map = game->map;
     sfVector2f pos = game->player->position;
 
-    if (pos.x >= map.portal.x && pos.x <= map.portal.w
-        && pos.y >= map.portal.y && pos.y <= map.portal.h)
-        return true;
-    return false;
-}
-
-bool is_in_backportal(game_data_t *game)
-{
-    map_config_t map = game->map;
-    sfVector2f pos = game->player->position;
-
-    if (pos.x >= map.back_portal.x && pos.x <= map.back_portal.w
-        && pos.y >= map.back_portal.y && pos.y <= map.back_portal.h)
+    if (pos.x >= portal->x && pos.x <= portal->w
+        && pos.y >= portal->y && pos.y <= portal->h)
         return true;
     return false;
 }
