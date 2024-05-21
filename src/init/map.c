@@ -63,12 +63,12 @@ int set_map(game_data_t *game, map_id_t map_id)
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
     printf("Setting map %d\n", map_id);
+    sfMusic_stop(game->assets.music[game->map.music]);
     game->map = map;
     game->map.sp_map = &SPRITES[map.map];
     game->player->position = map.spawn_pos;
     game->view_pos = map.spawn_pos;
     sfView_setCenter(game->game_view, game->player->position);
-    sfMusic_stop(*(game->assets.music));
     start_music(&game->assets, map.music);
     if (sp_cols_map == NULL)
         return RET_FAIL;
