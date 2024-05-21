@@ -18,8 +18,7 @@ const npc_config_t npc_config[] = {
         .default_direction = {0, 0},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .text = "Hello, I'm NPC 1",
-        .interact = "Press E to interact",
+        .text = "Hey!",
         .callback_interact = npc_callback
     },
     {
@@ -30,7 +29,6 @@ const npc_config_t npc_config[] = {
         .default_rotation = 0,
         .map_id = MAP_ONE,
         .text = "Hello, I'm HALOYS, I'am poor and I need money",
-        .interact = "Press E to interact",
         .callback_interact = npc_callback
     },
     {
@@ -41,7 +39,6 @@ const npc_config_t npc_config[] = {
         .default_rotation = 0,
         .map_id = MAP_TWO,
         .text = "Hello, I'm NPC 3",
-        .interact = "Press E to interact",
         .callback_interact = npc_callback
     }
 };
@@ -49,7 +46,6 @@ const npc_config_t npc_config[] = {
 static void free_npc(npc_t *npc)
 {
     free(npc->text);
-    free(npc->interact);
     free(npc);
 }
 
@@ -57,10 +53,14 @@ static void npc_create_text(game_data_t *game, npc_t *npc)
 {
     sfText_setString(npc->text, npc->config->text);
     sfText_setFont(npc->text, game->font);
-    sfText_setCharacterSize(npc->text, 30);
-    sfText_setString(npc->interact, npc->config->interact);
-    sfText_setFont(npc->interact, game->font);
-    sfText_setCharacterSize(npc->interact, 30);
+    sfText_setCharacterSize(npc->text, 22);
+    sfText_setString(npc->keybind_text, npc->key);
+    sfText_setFont(npc->keybind_text, game->font);
+    sfText_setCharacterSize(npc->keybind_text, 22);
+    sfRectangleShape_setSize(npc->square, (sfVector2f){40, 40});
+    sfRectangleShape_setFillColor(npc->square, FILL_COLOR);
+    sfRectangleShape_setOutlineThickness(npc->square, 2);
+    sfRectangleShape_setOutlineColor(npc->square, BORDER_HOVER);
 }
 
 static npc_t *create_npc(game_data_t *game, npc_config_t *config)
@@ -77,8 +77,10 @@ static npc_t *create_npc(game_data_t *game, npc_config_t *config)
     npc->rotation = config->default_rotation;
     npc->clock = NULL;
     npc->text = sfText_create();
-    npc->interact = sfText_create();
-    if (npc->text == NULL || npc->interact == NULL)
+    npc->keybind_text = sfText_create();
+    npc->square = sfRectangleShape_create();
+    strcpy(npc->key, "E");
+    if (npc->text == NULL || npc->square == NULL || npc->keybind_text == NULL)
         return NULL;
     npc_create_text(game, npc);
     return npc;

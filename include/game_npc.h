@@ -16,10 +16,12 @@ typedef struct npc_s {
     sfTexture *texture;
     sfClock *clock;
     sfText *text;
-    sfText *interact;
+    sfText *keybind_text;
+    sfRectangleShape *square;
     sfVector2f position;
     sfVector2f direction;
     float rotation;
+    char key[32];
     struct npc_config_s *config;
 } npc_t;
 
@@ -31,7 +33,6 @@ typedef struct npc_config_s {
     float default_rotation;
     map_id_t map_id;
     char *text;
-    char *interact;
     int (*callback_interact)(game_data_t *game, struct npc_s *npc);
 } npc_config_t;
 
