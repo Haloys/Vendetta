@@ -26,6 +26,7 @@ static int start_game(void)
         .video_mode = { WINDOW_WIDTH, WINDOW_HEIGHT, 32 },
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
+        .state = LOADING_SCREEN,
         .last_state = LOADING_SCREEN,
         .speed = 1.0f,
         .settings.sg_x = 243,
@@ -35,7 +36,6 @@ static int start_game(void)
         .is_passive = true,
     };
 
-    change_game_mode(&game, MAIN_MENU);
     srand(time(NULL));
     return init_game(&game);
 }

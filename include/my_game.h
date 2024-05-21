@@ -26,6 +26,7 @@
     #include "skill_tree.h"
     #include "minigame.h"
     #include "game_keys.h"
+    #include "ending_screen.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
