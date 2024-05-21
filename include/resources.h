@@ -234,7 +234,6 @@ typedef enum texture_id_e {
     PLAYER_KNIFE,
     PLAYER_RIFLE,
     PLAYER_SHOTGUN,
-    PLAYER_SHOTGUN,
     CHEST_ICON,
     SWORD_ICON,
     POTION_ICON,
