@@ -17,6 +17,7 @@ typedef struct {
     float y_offset;
     int state;
     time_t end_wait_time;
+    float ending_speed;
 } ending_screen_t;
 
 typedef struct {
@@ -27,5 +28,6 @@ typedef struct {
 } credits_data_t;
 
 void display_ending_screen(game_data_t *game);
+char **load_credits(const char *filename, size_t *line_count);
 
 #endif /* !ENDING_SCREEN_H */

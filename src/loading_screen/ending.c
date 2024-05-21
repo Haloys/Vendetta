@@ -10,67 +10,9 @@
 #include "utils.h"
 #include "ending_screen.h"
 
+#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
-
-static char *read_line(FILE *file)
-{
-    char buffer[256];
-
-    if (!fgets(buffer, sizeof(buffer), file)) {
-        return NULL;
-    }
-    return strdup(buffer);
-}
-
-static FILE *open_file(const char *filename)
-{
-    FILE *file = fopen(filename, "r");
-
-    return file;
-}
-
-static char **read_and_store_lines(FILE *file, char **lines, size_t *count)
-{
-    char *line = NULL;
-    char **temp = NULL;
-
-    while (1) {
-        line = read_line(file);
-        if (!line)
-            break;
-        temp = realloc(lines, sizeof(char *) * (*count + 1));
-        if (!temp) {
-            free(line);
-            break;
-        }
-        lines = temp;
-        lines[*count] = line;
-        (*count)++;
-    }
-    return lines;
-}
-
-static char **cleanup_and_return(FILE *file, char **lines,
-    size_t count, size_t *line_count)
-{
-    fclose(file);
-    *line_count = count;
-    return lines;
-}
-
-static char **load_credits(const char *filename, size_t *line_count)
-{
-    FILE *file = NULL;
-    char **lines = NULL;
-    size_t count = 0;
-
-    file = open_file(filename);
-    if (!file)
-        return NULL;
-    lines = read_and_store_lines(file, lines, &count);
-    return cleanup_and_return(file, lines, count, line_count);
-}
 
 static void free_credits(char **credits, size_t line_count)
 {
@@ -97,28 +39,56 @@ static void display_credits(sfRenderWindow *window, credits_data_t *data)
 
 static void update_credits_position(ending_screen_t *ending)
 {
-    ending->y_offset -= 4.5f;
+    ending->y_offset -= ending->ending_speed;
     if (ending->y_offset + (float)ending->line_count * 40 < 0) {
-        ending->state = 1;
-        ending->end_wait_time = time(NULL) + 2;
+        ending->state = (ending->state == 0) ? 1 : 3;
+        if (ending->state == 1) {
+            ending->end_wait_time = time(NULL);
+        }
     }
+}
+
+static void free_and_reload_credits(ending_screen_t *ending)
+{
+    free_credits(ending->credits, ending->line_count);
+    ending->credits = load_credits("database/credits/additional_credits.txt",
+        &ending->line_count);
+    ending->y_offset = 600;
+    ending->state = 2;
+    ending->ending_speed = 1.0f;
 }
 
 static void check_end_wait_time(ending_screen_t *ending, game_data_t *game)
 {
     if (time(NULL) >= ending->end_wait_time) {
-        change_game_mode(game, MAIN_MENU);
-        free_credits(ending->credits, ending->line_count);
-        ending->credits = NULL;
-        ending->line_count = 0;
-        ending->y_offset = 600;
-        ending->state = 0;
+        if (ending->state == 1) {
+            printf("Segmentation Fault (core dumped)\n");
+            sfRenderWindow_close(game->window);
+            sleep(5);
+            free_and_reload_credits(ending);
+            game->window = sfRenderWindow_create(game->video_mode, game->name,
+                sfResize | sfClose, NULL);
+        }
+        if (ending->state == 3)
+            change_game_mode(game, MAIN_MENU);
+    }
+}
+
+static void handle_display_state(ending_screen_t *ending,
+    game_data_t *game, credits_data_t *data)
+{
+    if (ending->state == 0 || ending->state == 2) {
+        basic_design(game);
+        display_credits(game->window, data);
+        update_credits_position(ending);
+    } else if (ending->state == 1 || ending->state == 3) {
+        check_end_wait_time(ending, game);
     }
 }
 
 void display_ending_screen(game_data_t *game)
 {
-    static ending_screen_t ending = {NULL, 0, 600, 0, 0};
+    static ending_screen_t ending = {NULL, 0, 600, 0, 0, 40.0f};
     credits_data_t data = {
         .credits = ending.credits,
         .line_count = ending.line_count,
@@ -132,10 +102,5 @@ void display_ending_screen(game_data_t *game)
         if (!ending.credits)
             return;
     }
-    if (ending.state == 0) {
-        basic_design(game);
-        display_credits(game->window, &data);
-        update_credits_position(&ending);
-    } else if (ending.state == 1)
-        check_end_wait_time(&ending, game);
+    handle_display_state(&ending, game, &data);
 }
