@@ -27,6 +27,7 @@
     #include "minigame.h"
     #include "game_keys.h"
     #include "ending_screen.h"
+    #include "notifications.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -125,6 +126,7 @@ typedef struct game_data_s {
     sequence_click_t sequence;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
+    notification_list_t notifications;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);

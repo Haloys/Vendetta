@@ -82,9 +82,19 @@ typedef struct dialogue_data_s {
     bool *space_pressed;
 } dialogue_data_t;
 
+typedef struct dialogue_state_s {
+    dialogue_t *dialogue;
+    dialogue_t *response_dialogue;
+    choice_box_t *boxes;
+    bool space_pressed;
+    bool choice_selected;
+    char **choice_texts;
+} dialogue_state_t;
+
 void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p);
 
-void handle_choice(game_data_t *game, const dialogue_params_t *params);
+void handle_choice(game_data_t *game, const dialogue_params_t *params,
+    dialogue_state_t *state);
 
 void show_full_text(dialogue_t *dialogue);
 void process_dialogue(dialogue_t *dialogue, sfRenderWindow *window,
@@ -94,5 +104,8 @@ dialogue_t *load_dialogue(const char *filename,
     const char *name, sfFont *font);
 
 sfUint32 *utf8_to_utf32(const char *utf8str);
+
+void reset_dialogue_state(dialogue_state_t *state,
+    const dialogue_params_t *params);
 
 #endif /* !DIALOGUES_H_ */
