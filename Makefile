@@ -126,6 +126,7 @@ SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/dialogues_event.c \
 					npc_dialogues/init_dialogue.c \
 					npc_dialogues/utils.c \
+					npc_dialogues/reset_dialogues.c \
 
 SRC_MINIGAME =   	minigame/sequence_click.c \
 					minigame/utils.c \
