@@ -25,6 +25,7 @@ typedef struct map_config_s {
     map_id_t id;
     rect_t portal;
     rect_t back_portal;
+    music_id_t music;
 } map_config_t;
 
 

@@ -72,7 +72,9 @@ static void check_gameplay_keys(game_data_t *game)
 {
     if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap))
         change_game_mode(game, INVENTORY);
-    if (is_key_pressed(game, Interact))
+    if (is_key_pressed(game, Echap))
+        change_game_mode(game, PAUSE);
+    if (is_key_pressed(game, Hostile))
         game->is_passive = !game->is_passive;
 }
 
