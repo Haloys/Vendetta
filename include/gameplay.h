@@ -58,7 +58,6 @@ typedef sfKeyCode keycode_t;
 // UTILS
 sfColor get_pixel_color(sfImage *image, int x, int y);
 
-
 void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);

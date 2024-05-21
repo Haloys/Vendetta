@@ -136,23 +136,6 @@ void modify_control(game_data_t *game)
     }
 }
 
-static void draw_tools_control(game_data_t *game, sfRectangleShape *rect,
-    int i)
-{
-    if (i == game->settings.clicked_control) {
-        sfRectangleShape_setFillColor(rect,
-            sfColor_fromRGBA(255, 255, 255, 20));
-        sfRectangleShape_setOutlineThickness(rect, 2);
-        sfRectangleShape_setOutlineColor(rect,
-            sfColor_fromRGB(51, 217, 122));
-    } else {
-        sfRectangleShape_setFillColor(rect,
-            sfColor_fromRGBA(255, 255, 255, 0));
-    }
-    sfRenderWindow_drawRectangleShape(game->window, rect, NULL);
-    sfRectangleShape_destroy(rect);
-}
-
 static void draw_bg_control(game_data_t *game)
 {
     sfRectangleShape *rect;
@@ -205,6 +188,15 @@ keycode_t get_pressed_key(void)
     return sfKeyUnknown;
 }
 
+static void check_keybinding(game_data_t *game, int i, keybinds_t action,
+    keycode_t new_key)
+{
+        if (game->keybinds[i].key == action) {
+            game->keybinds[i].code = new_key;
+            return;
+        }
+}
+
 static void update_keybinding(int index, keycode_t new_key, game_data_t *game)
 {
     keybinds_t action = key_config[index].key;
@@ -213,10 +205,7 @@ static void update_keybinding(int index, keycode_t new_key, game_data_t *game)
         key_config[index].key = (keybinds_t)new_key;
         key_config[index].key_name = key_to_string(new_key);
         for (int i = 0; i < 16; ++i) {
-            if (game->keybinds[i].key == action) {
-                game->keybinds[i].code = new_key;
-                break;
-            }
+            check_keybinding(game, i, action, new_key);
         }
     }
 }

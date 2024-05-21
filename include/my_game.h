@@ -169,6 +169,7 @@ void draw_reso_rectangle(game_data_t *game);
 void modify_screen(game_data_t *game);
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 void draw_everything_control(game_data_t *game);
+void draw_tools_control(game_data_t *game, sfRectangleShape *rect, int i);
 
 // Inventory
 void basic_inventory(game_data_t *game);
