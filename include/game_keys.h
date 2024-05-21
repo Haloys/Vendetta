@@ -13,6 +13,10 @@
     #define KEYBINDS_COUNT 16
 
 typedef enum keybinds_e {
+    ArrowUp,
+    ArrowRight,
+    ArrowDown,
+    ArrowLeft,
     MoveUp,
     MoveRight,
     MoveDown,

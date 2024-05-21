@@ -124,11 +124,11 @@ static void set_control_text(game_data_t *game)
 
 void modify_control(game_data_t *game)
 {
-    if (is_key_pressed(game, MoveDown) && game->state == SETTINGS_CONTROLS) {
+    if (is_key_pressed(game, ArrowDown) && game->state == SETTINGS_CONTROLS) {
         game->settings.clicked_control++;
         game->settings.clicked_control %= 10;
     }
-    if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_CONTROLS) {
+    if (is_key_pressed(game, ArrowUp) && game->state == SETTINGS_CONTROLS) {
         if (game->settings.clicked_control == 0)
             game->settings.clicked_control = 10;
         game->settings.clicked_control--;
@@ -179,8 +179,7 @@ char *key_to_string(keycode_t key)
 
 keycode_t get_pressed_key(void)
 {
-    for (keycode_t key = sfKeyA; key <= sfKeyPause;
-        key = (sfKeyCode)(key + 1)) {
+    for (keycode_t key = sfKeyA; key <= sfKeyPause; (keycode_t)++key) {
         if (sfKeyboard_isKeyPressed(key)) {
             return key;
         }
@@ -191,10 +190,10 @@ keycode_t get_pressed_key(void)
 static void check_keybinding(game_data_t *game, int i, keybinds_t action,
     keycode_t new_key)
 {
-        if (game->keybinds[i].key == action) {
-            game->keybinds[i].code = new_key;
-            return;
-        }
+    if (game->keybinds[i].key == action) {
+        game->keybinds[i].code = new_key;
+        return;
+    }
 }
 
 static void update_keybinding(int index, keycode_t new_key, game_data_t *game)
