@@ -109,6 +109,7 @@ typedef struct game_data_s {
     int key_state;
     int key_change;
     int key_update;
+    bool is_passive;
     sfView *game_view;
     sfView *menu_view;
     sfVector2f view_pos;

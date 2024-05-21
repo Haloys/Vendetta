@@ -5,6 +5,8 @@
 ** Process gameplay loop
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
 #include "map.h"
 #include "enemies.h"
@@ -78,12 +80,46 @@ static void apply_shader(game_data_t *game)
     sfTexture_destroy(texture);
 }
 
+static void display_overlay(game_data_t *game)
+{
+    sfVector2f relativepos = {game->view_pos.x + WINDOW_WIDTH / 2,
+        game->view_pos.y - WINDOW_HEIGHT / 2};
+    sfText *passiv;
+    sfSprite *sp_health = get_sprite(game, SP_HEALTH2);
+    sfText *health;
+    char buffer[10];
+
+    relativepos.y += 30;
+    if (game->is_passive) {
+        relativepos.x -= 240;
+        passiv = set_text(game, "PASSIVE MODE [W]", 22, relativepos);
+    } else {
+        relativepos.x -= 240;
+        passiv = set_text(game, "HOSTILE MODE [W]", 22, relativepos);
+    }
+    sfRenderWindow_drawText(game->window, passiv, NULL);
+    sprintf(buffer, "%d", game->player->health);
+    relativepos.y += 40;
+    relativepos.x += 120;
+    sfSprite_setPosition(sp_health, relativepos);
+    relativepos.x += 50;
+    relativepos.y -= 5;
+    health = set_text(game, buffer, 30, relativepos);
+    sfText_setStyle(health, sfTextBold);
+    sfRenderWindow_drawText(game->window, health, NULL);
+    sfRenderWindow_drawSprite(game->window, sp_health, NULL);
+    sfText_destroy(passiv);
+    sfText_destroy(health);
+}
+
 static void check_gameplay_keys(game_data_t *game)
 {
     if (is_key_pressed(game, Inventory))
         change_game_mode(game, INVENTORY);
     if (is_key_pressed(game, Echap))
         change_game_mode(game, PAUSE);
+    if (is_key_pressed(game, Interact))
+        game->is_passive = !game->is_passive;
 }
 
 void process_playing_gameplay(game_data_t *game)
@@ -104,4 +140,5 @@ void process_playing_gameplay(game_data_t *game)
     display_enemies(game);
     display_npcs(game);
     apply_shader(game);
+    display_overlay(game);
 }

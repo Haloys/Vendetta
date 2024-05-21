@@ -204,7 +204,7 @@ static void update_keybinding(int index, keycode_t new_key, game_data_t *game)
     if ((keycode_t)action != new_key) {
         key_config[index].key = (keybinds_t)new_key;
         key_config[index].key_name = key_to_string(new_key);
-        for (int i = 0; i < 16; ++i) {
+        for (int i = 0; i < 10; ++i) {
             check_keybinding(game, i, action, new_key);
         }
     }
