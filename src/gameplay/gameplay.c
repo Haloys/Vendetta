@@ -14,6 +14,18 @@
 #include "gameplay.h"
 #include "game_npc.h"
 #include "utils.h"
+#include "entity.h"
+
+void display_entities(game_data_t *game)
+{
+    element_t *tmp = game->entities.start.next;
+
+    for (int i = 0; i < game->entities.length; ++i) {
+        if (game->map.id == ((item_entity_t *)tmp->data)->config->map_id)
+            draw_entity(game, (item_entity_t *)tmp->data);
+        tmp = tmp->next;
+    }
+}
 
 static void display_enemies(game_data_t *game)
 {
@@ -107,6 +119,7 @@ void process_playing_gameplay(game_data_t *game)
     display_player(game);
     display_enemies(game);
     display_npcs(game);
+    display_entities(game);
     apply_shader(game);
     display_overlay(game);
 }

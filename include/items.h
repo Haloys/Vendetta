@@ -7,6 +7,7 @@
 
 #ifndef ITEMS_H_
     #define ITEMS_H_
+
     #include "inventory.h"
     #include "my_game.h"
 
@@ -573,5 +574,7 @@ static const item_t ITEMS[] = {
         .effect = NULL
     }
 };
+
     #define ITEM_COUNT sizeof(ITEMS) / sizeof(item_t)
+
 #endif /* !ITEMS_H_ */
