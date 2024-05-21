@@ -119,6 +119,7 @@ typedef struct game_data_s {
     map_config_t map;
     list_t enemies;
     list_t npcs;
+    list_t entities;
     sfClock *animation_clock;
     sequence_click_t sequence;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
