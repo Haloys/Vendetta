@@ -15,52 +15,52 @@ key_config_t key_config[] = {
     {
         .name = "Forward",
         .key_name = "Z",
-        .key = sfKeyZ
+        .key = MoveUp
     },
     {
         .name = "Backward",
         .key_name = "S",
-        .key = sfKeyS
+        .key = MoveDown
     },
     {
         .name = "Left",
         .key_name = "Q",
-        .key = sfKeyQ
+        .key = MoveLeft
     },
     {
         .name = "Right",
         .key_name = "D",
-        .key = sfKeyD
+        .key = MoveRight
     },
     {
         .name = "Open inventory",
         .key_name = "I",
-        .key = sfKeyI
+        .key = Inventory
     },
     {
-        .name = "Toggle hostile mode",
-        .key_name = "W",
-        .key = sfKeyW
+        .name = "Zoom In",
+        .key_name = "+",
+        .key = KeyPlus
+    },
+    {
+        .name = "Zoom Out",
+        .key_name = "-",
+        .key = KeyMinus
     },
     {
         .name = "Interact",
         .key_name = "E",
-        .key = sfKeyE
+        .key = Interact
     },
     {
-        .name = "Open skill tree",
-        .key_name = "Y",
-        .key = sfKeyY
+        .name = "Sprint",
+        .key_name = "Left Shift",
+        .key = Sprint
     },
     {
-        .name = "Heal",
-        .key_name = "A",
-        .key = sfKeyA
-    },
-    {
-        .name = "Pause",
-        .key_name = "P",
-        .key = sfKeyP
+        .name = "Reset",
+        .key_name = "R",
+        .key = Reset
     }
 };
 
@@ -175,7 +175,7 @@ bool is_key_already_bound(keycode_t key)
     int nbr_keys = sizeof(key_config) / sizeof(key_config[0]);
 
     for (int i = 0; i < nbr_keys; ++i) {
-        if (key_config[i].key == key) {
+        if (key_config[i].key == (keybinds_t)key) {
             return true;
         }
     }
@@ -188,7 +188,7 @@ char *key_to_string(keycode_t key)
 
     for (int i = 0; i < key_count; ++i) {
         if (key_mapping[i].code == key) {
-            return key_mapping[i].name;
+            return (char *)key_mapping[i].name;
         }
     }
     return "Unknown";
@@ -197,7 +197,7 @@ char *key_to_string(keycode_t key)
 keycode_t get_pressed_key(void)
 {
     for (keycode_t key = sfKeyA; key <= sfKeyPause;
-        key = (keycode_t)(key + 1)) {
+        key = (sfKeyCode)(key + 1)) {
         if (sfKeyboard_isKeyPressed(key)) {
             return key;
         }
@@ -205,11 +205,19 @@ keycode_t get_pressed_key(void)
     return sfKeyUnknown;
 }
 
-static void update_keybinding(int index, keycode_t new_key)
+static void update_keybinding(int index, keycode_t new_key, game_data_t *game)
 {
-    if (key_config[index].key != new_key) {
-        key_config[index].key = new_key;
+    keybinds_t action = key_config[index].key;
+
+    if ((keycode_t)action != new_key) {
+        key_config[index].key = (keybinds_t)new_key;
         key_config[index].key_name = key_to_string(new_key);
+        for (int i = 0; i < 16; ++i) {
+            if (game->keybinds[i].key == action) {
+                game->keybinds[i].code = new_key;
+                break;
+            }
+        }
     }
 }
 
@@ -224,8 +232,8 @@ static void handle_key_rebinding(game_data_t *game)
     }
     if (rebinding != -1) {
         if (!is_key_already_bound(new_key) ||
-            key_config[rebinding].key == new_key) {
-            update_keybinding(rebinding, new_key);
+            key_config[rebinding].key == (keybinds_t)new_key) {
+            update_keybinding(rebinding, new_key, game);
         }
         rebinding = -1;
     }

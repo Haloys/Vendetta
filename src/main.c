@@ -34,7 +34,7 @@ static int start_game(void)
         .fps = 60,
     };
 
-    change_game_mode(&game, LOADING_SCREEN);
+    change_game_mode(&game, MAIN_MENU);
     srand(time(NULL));
     return init_game(&game);
 }
