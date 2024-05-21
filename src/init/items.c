@@ -59,6 +59,54 @@ const item_config_t item_config[] = {
         .map_id = MAP_ONE,
         .callback_interact = NULL
     },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
+        .default_position = {500, 748},
+        .default_rotation = 0,
+        .map_id = MAP_TWO,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
+        .default_position = {1332, 636},
+        .default_rotation = 0,
+        .map_id = MAP_TWO,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
+        .default_position = {1917, 846},
+        .default_rotation = 0,
+        .map_id = MAP_TWO,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Sword",
+        .sprite = SP_SWORD_ICON,
+        .default_position = {2063, 1713},
+        .default_rotation = 0,
+        .map_id = MAP_TWO,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Potion",
+        .sprite = SP_POTION_ICON,
+        .default_position = {801, 1753},
+        .default_rotation = 0,
+        .map_id = MAP_TWO,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Oxycodone",
+        .sprite = SP_OXY,
+        .default_position = {820, 687},
+        .default_rotation = 0,
+        .map_id = MAP_TWO,
+        .callback_interact = NULL
+    },
 };
 
 static void free_item(item_entity_t *item)
