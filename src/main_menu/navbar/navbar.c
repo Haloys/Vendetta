@@ -64,10 +64,10 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
     const navbar_element_t *elements;
     size_t navbar_element_count = game->last_state == MAIN_MENU ? 4 : 5;
 
-    elements = game->last_state == MAIN_MENU ? HOME_ELEMENTS : GAME_ELEMENTS;
     if (!game->is_navbar_visible) {
         return NULL;
     }
+    elements = game->last_state == MAIN_MENU ? HOME_ELEMENTS : GAME_ELEMENTS;
     for (size_t i = 0; i < navbar_element_count; i++) {
         elem = &elements[i];
         if (mouse_event.x >= elem->position.x &&
