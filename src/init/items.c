@@ -107,6 +107,70 @@ const item_config_t item_config[] = {
         .map_id = MAP_TWO,
         .callback_interact = NULL
     },
+    {
+        .name = "Sword",
+        .sprite = SP_SWORD_ICON,
+        .default_position = {1106, 1106},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Sword",
+        .sprite = SP_SWORD_ICON,
+        .default_position = {499, 36},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
+        .default_position = {1948, 353},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
+        .default_position = {1893, 1182},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
+        .default_position = {3447, 1070},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Key A",
+        .sprite = SP_KEYA,
+        .default_position = {1369, 618},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Key B",
+        .sprite = SP_KEYB,
+        .default_position = {2296, 1284},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
+    {
+        .name = "Potion",
+        .sprite = SP_POTION_ICON,
+        .default_position = {2250, 1909},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = NULL
+    },
 };
 
 static void free_item(item_entity_t *item)
