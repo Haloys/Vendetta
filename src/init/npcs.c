@@ -70,6 +70,16 @@ const npc_config_t npc_config[] = {
         .map_id = MAP_TWO,
         .text = "Hello, I'm NPC 3",
         .callback_interact = npc_callback
+    },
+    {
+        .name = "NPC 3",
+        .sprite = SP_NPC_ONE,
+        .default_position = {1331, 1635},
+        .default_direction = {0, 0},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .text = "Hello, I'm NPC 3",
+        .callback_interact = npc_callback
     }
 };
 
