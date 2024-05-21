@@ -32,6 +32,7 @@ static int start_game(void)
         .settings.sm_x = 243,
         .settings.sa_x = 243,
         .fps = 60,
+        .is_passive = true,
     };
 
     change_game_mode(&game, MAIN_MENU);
