@@ -44,7 +44,7 @@ key_config_t key_config[] = {
     },
     {
         .name = "Zoom Out",
-        .key_name = "Suibtract",
+        .key_name = "Substract",
         .key = KeyMinus
     },
     {
@@ -189,9 +189,8 @@ keycode_t get_pressed_key(void)
 static bool is_key_already_bound(game_data_t *game, sfKeyCode key)
 {
     for (int i = 0; i < KEYBINDS_COUNT; ++i) {
-        if (game->keybinds[i].code == key) {
+        if (game->keybinds[i].code == key)
             return true;
-        }
     }
     return false;
 }
