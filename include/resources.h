@@ -118,6 +118,10 @@ static const char *IMAGES[] = {
     "assets/images/player/knife_spritesheet.png",
     "assets/images/player/rifle_spritesheet.png",
     "assets/images/player/shotgun_spritesheet.png",
+    "assets/images/main_menu/chest.png",
+    "assets/images/main_menu/sword.png",
+    "assets/images/main_menu/potion.png",
+    "assets/images/main_menu/key.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -230,6 +234,11 @@ typedef enum texture_id_e {
     PLAYER_KNIFE,
     PLAYER_RIFLE,
     PLAYER_SHOTGUN,
+    PLAYER_SHOTGUN,
+    CHEST_ICON,
+    SWORD_ICON,
+    POTION_ICON,
+    KEY_ICON,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1146,7 +1155,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 128,
             .height = 110
         },
-        .scale = 1,
+        .scale = 0.65,
         .position = {0, 0},
         .origin = {64, 55},
         .rect_count = 3
@@ -1632,6 +1641,58 @@ static const game_sprite_t SPRITES[] = {
         .origin = {68, 51.5},
         .rect_count = 3
     },
+    {
+        .id = CHEST_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 33,
+            .height = 33
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = POTION_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 32,
+            .height = 32
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = SWORD_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 33,
+            .height = 33
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
+        .id = KEY_ICON,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 31,
+            .height = 15
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1744,6 +1805,10 @@ typedef enum sprite_id_e {
     SP_PLAYER_KNIFE,
     SP_PLAYER_RIFLE,
     SP_PLAYER_SHOTGUN,
+    SP_CHEST_ICON,
+    SP_SWORD_ICON,
+    SP_POTION_ICON,
+    SP_KEY_ICON,
 } sprite_id_t;
 
 typedef enum sound_id_e {
