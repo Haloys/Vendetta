@@ -102,6 +102,14 @@ static void check_gameplay_keys(game_data_t *game)
         game->is_passive = !game->is_passive;
 }
 
+static void change_map_if_needed(game_data_t *game)
+{
+    map_id_t map_id = game->map.id;
+
+    if (is_in_portal(game))
+        set_map(game, (map_id + 1) % 3);
+}
+
 void process_playing_gameplay(game_data_t *game)
 {
     sfTime time = sfClock_getElapsedTime(game->player->clock);
@@ -122,4 +130,5 @@ void process_playing_gameplay(game_data_t *game)
     display_entities(game);
     apply_shader(game);
     display_overlay(game);
+    change_map_if_needed(game);
 }
