@@ -39,12 +39,12 @@ key_config_t key_config[] = {
     },
     {
         .name = "Zoom In",
-        .key_name = "+",
+        .key_name = "Add",
         .key = KeyPlus
     },
     {
         .name = "Zoom Out",
-        .key_name = "-",
+        .key_name = "Suibtract",
         .key = KeyMinus
     },
     {
@@ -153,79 +153,58 @@ static void draw_bg_control(game_data_t *game)
     }
 }
 
-bool is_key_already_bound(keycode_t key)
+char *key_to_string(sfKeyCode key)
 {
-    int nbr_keys = sizeof(key_config) / sizeof(key_config[0]);
+    static const int key_count = sizeof(key_mapping) / sizeof(key_mapping[0]);
 
-    for (int i = 0; i < nbr_keys; ++i) {
-        if (key_config[i].key == (keybinds_t)key) {
+    for (int i = 0; i < key_count; ++i) {
+        if (key_mapping[i].code == key)
+            return (char *)key_mapping[i].name;
+    }
+    return "Unknown";
+}
+
+void settings_update_key(game_data_t *game, sfKeyCode code)
+{
+    for (int i = 0; i < KEYBINDS_COUNT; ++i) {
+        if (game->keybinds[i].key
+            == key_config[game->settings.clicked_control].key) {
+            game->keybinds[i].code = code;
+            key_config[game->settings.clicked_control].key_name =
+                key_to_string(code);
+            return;
+        }
+    }
+}
+
+keycode_t get_pressed_key(void)
+{
+    for (sfKeyCode key = sfKeyA; key <= sfKeyPause; (sfKeyCode)++key) {
+        if (sfKeyboard_isKeyPressed(key))
+            return key;
+    }
+    return sfKeyUnknown;
+}
+
+static bool is_key_already_bound(game_data_t *game, sfKeyCode key)
+{
+    for (int i = 0; i < KEYBINDS_COUNT; ++i) {
+        if (game->keybinds[i].code == key) {
             return true;
         }
     }
     return false;
 }
 
-char *key_to_string(keycode_t key)
-{
-    static const int key_count = sizeof(key_mapping) / sizeof(key_mapping[0]);
-
-    for (int i = 0; i < key_count; ++i) {
-        if (key_mapping[i].code == key) {
-            return (char *)key_mapping[i].name;
-        }
-    }
-    return "Unknown";
-}
-
-keycode_t get_pressed_key(void)
-{
-    for (keycode_t key = sfKeyA; key <= sfKeyPause; (keycode_t)++key) {
-        if (sfKeyboard_isKeyPressed(key)) {
-            return key;
-        }
-    }
-    return sfKeyUnknown;
-}
-
-static void check_keybinding(game_data_t *game, int i, keybinds_t action,
-    keycode_t new_key)
-{
-    if (game->keybinds[i].key == action) {
-        game->keybinds[i].code = new_key;
-        return;
-    }
-}
-
-static void update_keybinding(int index, keycode_t new_key, game_data_t *game)
-{
-    keybinds_t action = key_config[index].key;
-
-    if ((keycode_t)action != new_key) {
-        key_config[index].key = (keybinds_t)new_key;
-        key_config[index].key_name = key_to_string(new_key);
-        for (int i = 0; i < 16; ++i) {
-            check_keybinding(game, i, action, new_key);
-        }
-    }
-}
-
 static void handle_key_rebinding(game_data_t *game)
 {
-    static int rebinding = -1;
-    keycode_t new_key = get_pressed_key();
+    sfKeyCode new_key = get_pressed_key();
 
-    if (new_key != sfKeyUnknown && new_key != sfKeyUp &&
-        new_key != sfKeyDown && rebinding == -1) {
-        rebinding = game->settings.clicked_control;
+    if (new_key != sfKeyUnknown && new_key != sfKeyUp
+        && new_key != sfKeyDown) {
+        if (!is_key_already_bound(game, new_key))
+            settings_update_key(game, new_key);
     }
-    if (rebinding != -1) {
-        if (!is_key_already_bound(new_key) ||
-            key_config[rebinding].key == (keybinds_t)new_key) {
-            update_keybinding(rebinding, new_key, game);
-        }
-        rebinding = -1;
-    }
-    set_control_text(game);
 }
 
 void draw_everything_control(game_data_t *game)
@@ -238,5 +217,6 @@ void draw_everything_control(game_data_t *game)
     draw_settings_navbar(game);
     modify_control(game);
     handle_key_rebinding(game);
+    set_control_text(game);
     draw_bg_control(game);
 }
