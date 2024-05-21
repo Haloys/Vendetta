@@ -151,6 +151,7 @@ sfText *set_text_const(game_data_t *game, const char *txt,
     int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
 void basic_design(game_data_t *game);
+void display_overlay(game_data_t *game);
 
 // Settings
 void set_screen_text(game_data_t *game);

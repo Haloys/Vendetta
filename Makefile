@@ -96,6 +96,7 @@ SRC_SKILL_TREE	=   	skill_tree/skill_tree.c \
 						skill_tree/spend_tree.c \
 
 SRC_GAMEPLAY	=	gameplay/gameplay.c \
+					gameplay/gameplay_utils.c \
 					gameplay/events/movement.c \
 					gameplay/utils.c \
 					gameplay/key_management.c \
