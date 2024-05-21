@@ -72,6 +72,16 @@ typedef struct {
     float max;
 } min_max_t;
 
+typedef struct {
+    int sg_x;
+    int sm_x;
+    int sa_x;
+    int clicked_rect_index;
+    int clicked_rect;
+    int clicked_control;
+    bool is_fullscreen;
+} settings_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -87,7 +97,6 @@ typedef struct game_data_s {
     float speed;
     int mouse_x;
     int mouse_y;
-    bool is_fullscreen;
     bool hover_save_button;
     bool hover_array[4];
     bool hover_slot_array[3];
@@ -96,16 +105,12 @@ typedef struct game_data_s {
     bool is_sprite_displayed;
     sfVector2f mouse_pos;
     player_data_t *player;
-    int sg_x;
-    int sm_x;
-    int sa_x;
-    int clicked_rect_index;
-    int clicked_rect;
-    int clicked_control;
+    settings_t settings;
     sfImage *cols_map;
     int key_state;
     int key_change;
     int key_update;
+    bool is_passive;
     sfView *game_view;
     sfView *menu_view;
     sfVector2f view_pos;
@@ -147,6 +152,7 @@ sfText *set_text_const(game_data_t *game, const char *txt,
     int size, sfVector2f pos);
 void start_music(game_assets_t *assets, music_id_t id);
 void basic_design(game_data_t *game);
+void display_overlay(game_data_t *game);
 
 // Settings
 void set_screen_text(game_data_t *game);
@@ -166,6 +172,7 @@ void draw_reso_rectangle(game_data_t *game);
 void modify_screen(game_data_t *game);
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 void draw_everything_control(game_data_t *game);
+void draw_tools_control(game_data_t *game, sfRectangleShape *rect, int i);
 
 // Inventory
 void basic_inventory(game_data_t *game);

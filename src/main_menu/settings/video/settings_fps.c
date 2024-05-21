@@ -34,31 +34,3 @@ void set_fps_text(game_data_t *game)
     sfRenderWindow_drawText(game->window, text, NULL);
     sfText_destroy(text);
 }
-
-void arrow_r_fps(game_data_t *game)
-{
-    if (game->fps == 30)
-        game->fps = 60;
-    if (game->fps == 60)
-        game->fps = 90;
-    if (game->fps == 90)
-        game->fps = 120;
-    if (game->fps == 120)
-        game->fps = 144;
-    if (game->fps == 144)
-        game->fps = 30;
-}
-
-void arrow_l_fps(game_data_t *game)
-{
-    if (game->fps == 30)
-        game->fps = 144;
-    if (game->fps == 60)
-        game->fps = 30;
-    if (game->fps == 90)
-        game->fps = 60;
-    if (game->fps == 120)
-        game->fps = 90;
-    if (game->fps == 144)
-        game->fps = 120;
-}

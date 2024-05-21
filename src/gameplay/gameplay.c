@@ -5,6 +5,8 @@
 ** Process gameplay loop
 */
 
+#include <stdio.h>
+
 #include "my_game.h"
 #include "map.h"
 #include "enemies.h"
@@ -84,6 +86,8 @@ static void check_gameplay_keys(game_data_t *game)
         change_game_mode(game, INVENTORY);
     if (is_key_pressed(game, Echap))
         change_game_mode(game, PAUSE);
+    if (is_key_pressed(game, Interact))
+        game->is_passive = !game->is_passive;
 }
 
 void process_playing_gameplay(game_data_t *game)
@@ -104,4 +108,5 @@ void process_playing_gameplay(game_data_t *game)
     display_enemies(game);
     display_npcs(game);
     apply_shader(game);
+    display_overlay(game);
 }

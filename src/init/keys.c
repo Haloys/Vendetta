@@ -11,10 +11,10 @@
 
 static void set_default_keys(sf_to_keybind_t *keybinds)
 {
-    keybinds[0] = (sf_to_keybind_t){sfKeyUp, MoveUp};
-    keybinds[1] = (sf_to_keybind_t){sfKeyRight, MoveRight};
-    keybinds[2] = (sf_to_keybind_t){sfKeyDown, MoveDown};
-    keybinds[3] = (sf_to_keybind_t){sfKeyLeft, MoveLeft};
+    keybinds[0] = (sf_to_keybind_t){sfKeyUp, ArrowUp};
+    keybinds[1] = (sf_to_keybind_t){sfKeyRight, ArrowRight};
+    keybinds[2] = (sf_to_keybind_t){sfKeyDown, ArrowDown};
+    keybinds[3] = (sf_to_keybind_t){sfKeyLeft, ArrowLeft};
     keybinds[4] = (sf_to_keybind_t){sfKeyZ, MoveUp};
     keybinds[5] = (sf_to_keybind_t){sfKeyD, MoveRight};
     keybinds[6] = (sf_to_keybind_t){sfKeyS, MoveDown};

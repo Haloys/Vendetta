@@ -43,7 +43,7 @@ void process_player_movement(game_data_t *game, sfKeyEvent *key);
 typedef struct key_config_s {
     char *name;
     char *key_name;
-    sfKeyCode key;
+    keybinds_t key;
 } key_config_t;
 
 extern key_config_t key_config[];
@@ -57,7 +57,6 @@ typedef sfKeyCode keycode_t;
 
 // UTILS
 sfColor get_pixel_color(sfImage *image, int x, int y);
-
 
 void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
