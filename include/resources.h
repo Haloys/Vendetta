@@ -119,6 +119,7 @@ static const char *IMAGES[] = {
     "assets/images/player/knife_spritesheet.png",
     "assets/images/player/rifle_spritesheet.png",
     "assets/images/player/shotgun_spritesheet.png",
+    "assets/images/npcs/npc_woman.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -232,6 +233,7 @@ typedef enum texture_id_e {
     PLAYER_KNIFE,
     PLAYER_RIFLE,
     PLAYER_SHOTGUN,
+    NPC_WOMAN,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1647,6 +1649,19 @@ static const game_sprite_t SPRITES[] = {
         .origin = {68, 51.5},
         .rect_count = 3
     },
+    {
+        .id = NPC_WOMAN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1007,
+            .height = 735
+        },
+        .scale = 1,
+        .position = {903, 300},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1760,6 +1775,7 @@ typedef enum sprite_id_e {
     SP_PLAYER_KNIFE,
     SP_PLAYER_RIFLE,
     SP_PLAYER_SHOTGUN,
+    SP_NPC_WOMAN,
 } sprite_id_t;
 
 typedef enum sound_id_e {
