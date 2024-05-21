@@ -118,6 +118,18 @@ static void cleanup(dialogue_t **response_dialogue, char ***choice_texts,
     }
 }
 
+static void draw_dialogue_utils(game_data_t *game,
+    const dialogue_params_t *params)
+{
+    sfText *help_prompt = set_text(game,
+    "Press SPACE to continue\n\nPress ESC to exit", 20, (sfVector2f){20, 20});
+
+    sfRenderWindow_drawSprite(game->window,
+    get_sprite(game, params->sprite_id), NULL);
+    sfRenderWindow_drawText(game->window, help_prompt, NULL);
+    sfText_destroy(help_prompt);
+}
+
 void handle_choice(game_data_t *game, const dialogue_params_t *params)
 {
     static dialogue_t *dialogue = NULL;
@@ -135,8 +147,7 @@ void handle_choice(game_data_t *game, const dialogue_params_t *params)
     if (!dialogue || !boxes)
         return;
     basic_design(game);
-    sfRenderWindow_drawSprite(game->window, get_sprite(game,
-        params->sprite_id), NULL);
+    draw_dialogue_utils(game, params);
     handle_initial_dialogue(game, &dialogue_data);
     handle_response_dialogue(game, &dialogue_data, boxes, params);
     cleanup(&response_dialogue, &choice_texts, params);

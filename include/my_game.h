@@ -65,6 +65,7 @@ typedef struct player_data_s {
     skill_tree_t *skill_tree;
     int skill_points;
     bool is_playing;
+    int npc_id;
 } player_data_t;
 
 typedef struct {
@@ -179,6 +180,9 @@ char *key_to_string(sfKeyCode key);
 // Inventory
 void basic_inventory(game_data_t *game);
 void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid);
+int remove_item_from_inventory_by_name(game_data_t *game, char *item_name);
+int get_item_quantity(game_data_t *game, char *item_name);
+char *get_equiped_weapon(game_data_t *game);
 
 // Skill Tree
 void display_skill_tree(game_data_t *game);
@@ -198,4 +202,5 @@ void second_book_callback(game_data_t *game);
 void third_book_callback(game_data_t *game);
 
 int asprintf(char **strp, const char *fmt, ...);
+
 #endif /* MY_GAME_H */
