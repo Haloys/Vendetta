@@ -105,7 +105,7 @@ void trigger_notification(game_data_t *game, int dialog_index)
     notification_t *current = NULL;
     const notification_params_t *params = NULL;
 
-    if (dialog_index < 0 || dialog_index >= sizeof(NOTIFICATION) /
+    if (dialog_index < 0 || (size_t)dialog_index >= sizeof(NOTIFICATION) /
         sizeof(NOTIFICATION[0]))
         return;
     params = &NOTIFICATION[dialog_index];
