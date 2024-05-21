@@ -28,13 +28,13 @@ static int start_game(void)
         .fps_clock = sfClock_create(),
         .last_state = LOADING_SCREEN,
         .speed = 1.0f,
-        .sg_x = 243,
-        .sm_x = 243,
-        .sa_x = 243,
+        .settings.sg_x = 243,
+        .settings.sm_x = 243,
+        .settings.sa_x = 243,
         .fps = 60,
     };
 
-    change_game_mode(&game, LOADING_SCREEN);
+    change_game_mode(&game, MAIN_MENU);
     srand(time(NULL));
     return init_game(&game);
 }
