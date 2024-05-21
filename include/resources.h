@@ -1517,6 +1517,7 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+    {
         .id = BOSS_IDLE,
         .rect = {
             .left = 0,
