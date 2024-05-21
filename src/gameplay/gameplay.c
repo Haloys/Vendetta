@@ -84,6 +84,8 @@ static void change_map_if_needed(game_data_t *game)
 
     if (is_in_portal(game))
         set_map(game, (map_id + 1) % 3);
+    if (is_in_backportal(game))
+        set_backmap(game, (map_id - 1) % 3);
 }
 
 void process_playing_gameplay(game_data_t *game)
