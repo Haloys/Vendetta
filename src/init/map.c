@@ -54,6 +54,8 @@ int set_map(game_data_t *game, map_id_t map_id)
     map_config_t map = map_config[map_id];
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
+    if (game->map.id != map_id)
+        trigger_notification(game, 1);
     printf("Setting map %d\n", map_id);
     game->map = map;
     game->map.sp_map = &SPRITES[map.map];
