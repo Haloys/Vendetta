@@ -57,6 +57,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/enemy/update.c \
 						engine/player/update.c \
 						engine/npc/npc.c \
+						engine/npc/npc_callbacks.c \
 						engine/item.c \
 
 SRC_FILES            =   	help.c \
@@ -93,6 +94,7 @@ SRC_INVENTORY    =   	inventory/inventory.c \
 						inventory/display_items.c \
 						inventory/handle_drag_drop.c \
 						inventory/display_labels.c \
+						inventory/inventory_utils_items.c \
 
 SRC_SKILL_TREE	=   	skill_tree/skill_tree.c \
 						skill_tree/display_tree.c \
