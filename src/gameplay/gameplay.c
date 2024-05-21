@@ -68,30 +68,6 @@ static void display_map(game_data_t *game)
     sfRenderWindow_drawSprite(game->window, sp_map, NULL);
 }
 
-static void apply_shader(game_data_t *game)
-{
-    sfVector2u resolution = sfRenderWindow_getSize(game->window);
-    sfTexture *texture = sfTexture_create(WINDOW_WIDTH, WINDOW_HEIGHT);
-    sfSprite *sprite = sfSprite_create();
-    sfShader *shader = game->assets.shaders[SH_MAIN_DARKNESS];
-    sfRenderStates states = { .blendMode = sfBlendAlpha, .shader = shader,
-        .texture = texture, .transform = sfTransform_Identity };
-
-    if (shader == NULL || texture == NULL || sprite == NULL)
-        return;
-    sfSprite_setTexture(sprite, texture, sfTrue);
-    sfSprite_setPosition(sprite, game->view_pos);
-    sfSprite_setOrigin(sprite, (sfVector2f){WINDOW_WIDTH / 2,
-        WINDOW_HEIGHT / 2});
-    sfShader_setVec2Uniform(shader, "resolution",
-        (sfVector2f){resolution.x, resolution.y});
-    sfShader_setFloatUniform(shader, "time",
-        sfTime_asSeconds(sfClock_getElapsedTime(game->clock)));
-    sfRenderWindow_drawSprite(game->window, sprite, &states);
-    sfSprite_destroy(sprite);
-    sfTexture_destroy(texture);
-}
-
 static void check_gameplay_keys(game_data_t *game)
 {
     if (is_key_pressed(game, Inventory))
