@@ -108,6 +108,7 @@ static const char *IMAGES[] = {
     "assets/images/books/book_1.jpg",
     "assets/images/books/book_2.jpg",
     "assets/images/books/book_3.jpg",
+    "assets/images/icons/health2.png",
     "assets/images/enemies/boss_idle.png",
     "assets/images/enemies/boss_shooting.png",
     "assets/images/enemies/hard_idle.png",
@@ -122,6 +123,7 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/sword.png",
     "assets/images/main_menu/potion.png",
     "assets/images/main_menu/key.png",
+    "assets/images/npcs/npc_woman.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -224,6 +226,7 @@ typedef enum texture_id_e {
     BOOK1,
     BOOK2,
     BOOK3,
+    HEALTH2,
     BOSS_IDLE,
     BOSS_SHOOTING,
     HARD_IDLE,
@@ -238,6 +241,7 @@ typedef enum texture_id_e {
     SWORD_ICON,
     POTION_ICON,
     KEY_ICON,
+    NPC_WOMAN,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1511,6 +1515,19 @@ static const game_sprite_t SPRITES[] = {
         .rect_count = 1
     },
     {
+        .id = HEALTH2,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 30,
+            .height = 30
+        },
+        .scale = 1,
+        .position = {0, 0},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
+    {
         .id = BOSS_IDLE,
         .rect = {
             .left = 0,
@@ -1692,6 +1709,19 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+    {
+        .id = NPC_WOMAN,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 1007,
+            .height = 735
+        },
+        .scale = 1,
+        .position = {903, 300},
+        .origin = {0, 0},
+        .rect_count = 1
+    },
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -1794,6 +1824,7 @@ typedef enum sprite_id_e {
     SP_BOOK1,
     SP_BOOK2,
     SP_BOOK3,
+    SP_HEALTH2,
     SP_BOSS_IDLE,
     SP_BOSS_SHOOTING,
     SP_HARD_IDLE,
@@ -1808,6 +1839,7 @@ typedef enum sprite_id_e {
     SP_SWORD_ICON,
     SP_POTION_ICON,
     SP_KEY_ICON,
+    SP_NPC_WOMAN,
 } sprite_id_t;
 
 typedef enum sound_id_e {

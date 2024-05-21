@@ -10,6 +10,7 @@
 #include <time.h>
 
 #include "my_game.h"
+#include "gameplay.h"
 
 static void draw_rect_reso(game_data_t *game, sfRectangleShape *rect, int i)
 {
@@ -67,7 +68,7 @@ void set_utils_text(game_data_t *game)
 
 static void modify_parameters(game_data_t *game)
 {
-    if (is_key_pressed(game, MoveLeft) && game->settings.clicked_rect == 1
+    if (is_key_pressed(game, ArrowLeft) && game->settings.clicked_rect == 1
         && game->state == SETTINGS_VIDEO && !game->settings.is_fullscreen) {
         if (game->video_mode.width == 1920) {
             game->video_mode = (sfVideoMode){1366, 768, 32};
@@ -82,25 +83,29 @@ static void modify_parameters(game_data_t *game)
             game->video_mode.width, game->video_mode.height
         });
     }
-    if (is_key_pressed(game, MoveLeft) && game->settings.clicked_rect == 2
+    if (is_key_pressed(game, ArrowLeft) && game->settings.clicked_rect == 2
         && game->state == SETTINGS_VIDEO)
         set_reso(game);
 }
 
 void modify_screen(game_data_t *game)
 {
-    if (is_key_pressed(game, MoveDown) && game->state == SETTINGS_VIDEO) {
+    if (is_key_pressed(game, ArrowDown) && game->state == SETTINGS_VIDEO) {
         game->settings.clicked_rect++;
         game->settings.clicked_rect %= 3;
     }
-    if (is_key_pressed(game, MoveUp) && game->state == SETTINGS_VIDEO) {
+    if (is_key_pressed(game, ArrowUp) && game->state == SETTINGS_VIDEO) {
         game->settings.clicked_rect--;
         if (game->settings.clicked_rect < 0)
             game->settings.clicked_rect = 2;
         game->settings.clicked_rect %= 3;
     }
-    if (is_key_pressed(game, MoveLeft) && game->settings.clicked_rect == 0
+    if (is_key_pressed(game, ArrowLeft) && game->settings.clicked_rect == 0
         && game->state == SETTINGS_VIDEO)
-        arrow_l_fps(game);
+            game->fps -= 30;
+    if (is_key_pressed(game, ArrowRight) && game->settings.clicked_rect == 0
+        && game->state == SETTINGS_VIDEO)
+            game->fps += 30;
+    game->fps = CLAMP(game->fps, 30, 120);
     modify_parameters(game);
 }
