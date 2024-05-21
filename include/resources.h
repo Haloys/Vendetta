@@ -2003,15 +2003,15 @@ static const sound_t SOUNDS[] = {
     },
     {
         .id = S_FIRST_BOOK,
-        .volume = 50
+        .volume = 100
     },
     {
         .id = S_SECOND_BOOK,
-        .volume = 50
+        .volume = 100
     },
     {
         .id = S_THIRD_BOOK,
-        .volume = 50
+        .volume = 100
     },
     {
         .id = S_CHEST,
