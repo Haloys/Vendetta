@@ -18,6 +18,7 @@ typedef struct {
     int state;
     time_t end_wait_time;
     float ending_speed;
+    sfClock *clock;
 } ending_screen_t;
 
 typedef struct {

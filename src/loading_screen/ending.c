@@ -39,7 +39,11 @@ static void display_credits(sfRenderWindow *window, credits_data_t *data)
 
 static void update_credits_position(ending_screen_t *ending)
 {
-    ending->y_offset -= ending->ending_speed;
+    sfTime elapsed = sfClock_getElapsedTime(ending->clock);
+    float delta = sfTime_asSeconds(elapsed);
+
+    ending->y_offset -= ending->ending_speed * delta;
+    sfClock_restart(ending->clock);
     if (ending->y_offset + (float)ending->line_count * 40 < 0) {
         ending->state = (ending->state == 0) ? 1 : 3;
         if (ending->state == 1) {
@@ -55,7 +59,8 @@ static void free_and_reload_credits(ending_screen_t *ending)
         &ending->line_count);
     ending->y_offset = 600;
     ending->state = 2;
-    ending->ending_speed = 0.4f;
+    ending->ending_speed = 70.0f;
+    sfClock_restart(ending->clock);
 }
 
 static void check_end_wait_time(ending_screen_t *ending, game_data_t *game)
@@ -88,7 +93,7 @@ static void handle_display_state(ending_screen_t *ending,
 
 void display_ending_screen(game_data_t *game)
 {
-    static ending_screen_t ending = {NULL, 0, 600, 0, 0, 5.0f};
+    static ending_screen_t ending = {NULL, 0, 600, 0, 0, 70.0f, NULL};
     credits_data_t data = {
         .credits = ending.credits,
         .line_count = ending.line_count,
@@ -101,6 +106,7 @@ void display_ending_screen(game_data_t *game)
             &ending.line_count);
         if (!ending.credits)
             return;
+        ending.clock = sfClock_create();
     }
     handle_display_state(&ending, game, &data);
 }
