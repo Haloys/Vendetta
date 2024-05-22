@@ -110,6 +110,7 @@ SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/is_key.c \
 					gameplay/shader.c \
 					gameplay/display.c \
+					gameplay/game_over/game_over.c \
 
 SRC_INIT	=   	init/game_icon.c \
 					init/map.c \
