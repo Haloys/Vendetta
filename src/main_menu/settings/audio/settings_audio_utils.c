@@ -63,6 +63,7 @@ void update_music_volumes(game_data_t *game)
     for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
         MUSICS[i].volume = CLAMP(global_volume + music_volume * SCALE_FACTOR,
             0, 243);
+        dprintf(1, "Music %d : Volume %.2f\n", MUSICS[i].id, MUSICS[i].volume);
     }
 }
 
