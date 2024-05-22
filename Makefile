@@ -128,6 +128,7 @@ SRC_SAVES   =		saves/save_global_settings.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
+					items/items_key_callbacks.c \
 
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \

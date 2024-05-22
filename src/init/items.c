@@ -18,7 +18,7 @@ const item_config_t item_config[] = {
         .default_position = {1728, 1784},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_a
     },
     {
         .name = "Key B",
@@ -26,7 +26,7 @@ const item_config_t item_config[] = {
         .default_position = {811, 620},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_b
     },
     {
         .name = "Key C",
@@ -34,12 +34,12 @@ const item_config_t item_config[] = {
         .default_position = {2596, 597},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_c
     },
     {
-        .name = "Sword",
+        .name = "Knife",
         .sprite = SP_SWORD_ICON,
-        .default_position = {1038, 1308},
+        .default_position = {1070, 1316},
         .default_rotation = 0,
         .map_id = MAP_ONE,
         .callback_interact = NULL
@@ -53,9 +53,9 @@ const item_config_t item_config[] = {
         .callback_interact = NULL
     },
     {
-        .name = "Potion",
+        .name = "Bandage",
         .sprite = SP_POTION_ICON,
-        .default_position = {1413, 1211},
+        .default_position = {1383, 1192},
         .default_rotation = 0,
         .map_id = MAP_ONE,
         .callback_interact = NULL
@@ -85,7 +85,7 @@ const item_config_t item_config[] = {
         .callback_interact = NULL
     },
     {
-        .name = "Sword",
+        .name = "Pistol",
         .sprite = SP_SWORD_ICON,
         .default_position = {2063, 1713},
         .default_rotation = 0,
@@ -93,7 +93,7 @@ const item_config_t item_config[] = {
         .callback_interact = NULL
     },
     {
-        .name = "Potion",
+        .name = "Aidkit",
         .sprite = SP_POTION_ICON,
         .default_position = {801, 1753},
         .default_rotation = 0,
@@ -101,15 +101,7 @@ const item_config_t item_config[] = {
         .callback_interact = NULL
     },
     {
-        .name = "Oxycodone",
-        .sprite = SP_OXY,
-        .default_position = {820, 687},
-        .default_rotation = 0,
-        .map_id = MAP_TWO,
-        .callback_interact = NULL
-    },
-    {
-        .name = "Sword",
+        .name = "Rifle",
         .sprite = SP_SWORD_ICON,
         .default_position = {1106, 1106},
         .default_rotation = 0,
@@ -117,7 +109,7 @@ const item_config_t item_config[] = {
         .callback_interact = NULL
     },
     {
-        .name = "Sword",
+        .name = "Shotgun",
         .sprite = SP_SWORD_ICON,
         .default_position = {499, 36},
         .default_rotation = 0,
@@ -154,7 +146,7 @@ const item_config_t item_config[] = {
         .default_position = {1369, 618},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_a
     },
     {
         .name = "Key B",
@@ -162,12 +154,20 @@ const item_config_t item_config[] = {
         .default_position = {2296, 1284},
         .default_rotation = 0,
         .map_id = MAP_THREE,
+        .callback_interact = callback_interact_key_b
+    },
+    {
+        .name = "Aidkit",
+        .sprite = SP_POTION_ICON,
+        .default_position = {2250, 1909},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
         .callback_interact = NULL
     },
     {
-        .name = "Potion",
+        .name = "Aidkit",
         .sprite = SP_POTION_ICON,
-        .default_position = {2250, 1909},
+        .default_position = {405, 959},
         .default_rotation = 0,
         .map_id = MAP_THREE,
         .callback_interact = NULL
