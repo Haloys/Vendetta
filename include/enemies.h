@@ -31,7 +31,9 @@ typedef struct enemy_s {
     map_id_t map_id;
 } enemy_t;
 
-    #define BULLET_SPEED 5
+    #define BULLET_SLOW_SPEED 5
+    #define BULLET_MEDIUM_SPEED 10
+    #define BULLET_FAST_SPEED 15
 
 typedef struct bullet_t {
     sfSprite *sprite;
