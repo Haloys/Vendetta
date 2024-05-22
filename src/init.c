@@ -90,7 +90,7 @@ int init_game(game_data_t *game)
 {
     if (init_partie_one(game) == RET_FAIL)
         return destroy_game_data(game, RET_FAIL);
-    sfRenderWindow_setFramerateLimit(game->window, WINDOW_FPS);
+    sfRenderWindow_setFramerateLimit(game->window, game->fps);
     icon_loader(game);
     open_save(game);
     dprintf(1, "Start game loop\n");
