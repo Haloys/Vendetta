@@ -27,7 +27,7 @@ static int start_game(void)
         .clock = sfClock_create(),
         .fps_clock = sfClock_create(),
         .state = MAIN_MENU,
-        .last_state = LOADING_SCREEN,
+        .last_state = MAIN_MENU,
         .speed = 1.0f,
         .settings.sg_x = 243,
         .settings.sm_x = 243,

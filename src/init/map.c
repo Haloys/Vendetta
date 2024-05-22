@@ -21,7 +21,14 @@ const map_config_t map_config[] = {
         .id = MAP_ONE,
         .portal = {3537, 1375, 3626, 1628},
         .back_portal = {0, 0, 0, 0},
-        .music = M_FIRST_MAP
+        .music = M_FIRST_MAP,
+        .door_count = 4,
+        .doors = {
+            {{.x = 0, .y = 0, .w = 0, .h = 0}},
+            {{.x = 0, .y = 0, .w = 0, .h = 0}},
+            {{.x = 0, .y = 0, .w = 0, .h = 0}},
+            {{.x = 0, .y = 0, .w = 0, .h = 0}}
+        }
     },
     {
         .map = SP_MAP_2,
