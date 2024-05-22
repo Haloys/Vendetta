@@ -116,6 +116,7 @@ void draw_everything_sound(game_data_t *game)
     draw_settings_navbar(game);
     set_sound_text(game);
     modify_sound(game);
+    update_music_volumes(game);
     draw_bg_rectangle(game);
     draw_bg_line(game);
     draw_global_sound(game);

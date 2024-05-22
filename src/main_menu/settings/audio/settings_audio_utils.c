@@ -55,6 +55,17 @@ void modify_sound(game_data_t *game)
     game->settings.sa_x = CLAMP(game->settings.sa_x, 0, 243);
 }
 
+void update_music_volumes(game_data_t *game)
+{
+    int global_volume = game->settings.sg_x;
+    int music_volume = game->settings.sm_x;
+
+    for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
+        MUSICS[i].volume = CLAMP(global_volume + music_volume * SCALE_FACTOR,
+            0, 243);
+    }
+}
+
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i)
 {
     if (i == game->settings.clicked_rect_index) {

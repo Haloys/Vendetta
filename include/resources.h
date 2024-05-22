@@ -7,6 +7,9 @@
 
 #ifndef RESOURCES_H
     #define RESOURCES_H
+    #define MAX_VOLUME 20
+    #define MAX_SETTING_VALUE 243
+    #define SCALE_FACTOR ((float)MAX_VOLUME / MAX_SETTING_VALUE)
 
     #include <SFML/Audio.h>
 
@@ -2081,7 +2084,7 @@ typedef struct music_s {
     float volume;
 } music_t;
 
-static const music_t MUSICS[] = {
+static music_t MUSICS[] = {
     {
         .id = M_LOADING,
         .volume = 20

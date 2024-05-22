@@ -179,6 +179,7 @@ void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 void draw_everything_control(game_data_t *game);
 void draw_tools_control(game_data_t *game, sfRectangleShape *rect, int i);
 char *key_to_string(sfKeyCode key);
+void update_music_volumes(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
