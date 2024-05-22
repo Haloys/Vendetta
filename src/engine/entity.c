@@ -26,7 +26,7 @@ bool is_inside_circle_area(sfVector2f *pos, sfVector2f pos2, float min_radius,
     return false;
 }
 
-bool can_collide(game_data_t *game, sfVector2f *pos,
+bool will_collide_wall(game_data_t *game, sfVector2f *pos,
     sfVector2f *dir)
 {
     sfVector2f pos_f = {pos->x, pos->y};

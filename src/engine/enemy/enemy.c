@@ -36,7 +36,7 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy, sfTime time)
     }
     if (fmodf(sfTime_asMilliseconds(time), 50) == 0) {
         printf("Enemy trying shoot\n");
-        if (!can_collide(game, &enemy->position, &enemy->direction))
+        if (!will_collide_wall(game, &enemy->position, &enemy->direction))
             list_add_element(&game->bullets, create_bullet(game,
                 &enemy->position, &enemy->direction, enemy->rotation));
     }
