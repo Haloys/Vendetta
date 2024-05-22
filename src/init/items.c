@@ -9,6 +9,7 @@
 
 #include "my_game.h"
 #include "entity.h"
+#include "math.h"
 
 const item_config_t item_config[] = {
     {
@@ -178,6 +179,42 @@ static void free_item(item_entity_t *item)
     free(item);
 }
 
+static void item_create_visuals(game_data_t *game, item_entity_t *item)
+{
+    item->keybind_text = sfText_create();
+    sfText_setFont(item->keybind_text, game->font);
+    sfText_setCharacterSize(item->keybind_text, 22);
+    strcpy(item->key, "E");
+    sfText_setString(item->keybind_text, item->key);
+    item->square = sfRectangleShape_create();
+    sfRectangleShape_setSize(item->square, (sfVector2f){40, 40});
+    sfRectangleShape_setFillColor(item->square, FILL_COLOR);
+    sfRectangleShape_setOutlineThickness(item->square, 2);
+    sfRectangleShape_setOutlineColor(item->square, BORDER_HOVER);
+}
+
+static void draw_item(game_data_t *game, item_entity_t *item)
+{
+    sfVector2f player_pos = game->player->position;
+    float distance = sqrt(pow(player_pos.x - item->position.x, 2) +
+        pow(player_pos.y - item->position.y, 2));
+
+    sfSprite_setPosition(item->sprite, item->position);
+    sfRenderWindow_drawSprite(game->window, item->sprite, NULL);
+    sfSprite_setRotation(item->sprite, item->rotation);
+    if (distance < 130) {
+        sfText_setPosition(item->keybind_text, (sfVector2f)
+            {item->position.x + 18, item->position.y - 43});
+        sfRectangleShape_setPosition(item->square, (sfVector2f)
+            {item->position.x + 7, item->position.y - 50});
+        sfRenderWindow_drawRectangleShape(game->window, item->square, NULL);
+        sfRenderWindow_drawText(game->window, item->keybind_text, NULL);
+        if (is_key_pressed(game, Interact)) {
+            item->config->callback_interact(game, item);
+        }
+    }
+}
+
 static item_entity_t *create_item(game_data_t *game, item_config_t *config)
 {
     item_entity_t *item = malloc(sizeof(item_entity_t));
@@ -189,6 +226,7 @@ static item_entity_t *create_item(game_data_t *game, item_config_t *config)
     item->sprite = get_sprite(game, item->config->sprite);
     item->position = config->default_position;
     item->rotation = config->default_rotation;
+    item_create_visuals(game, item);
     return item;
 }
 
@@ -204,4 +242,18 @@ int init_items(game_data_t *game)
         list_add_element(&game->entities, item);
     }
     return RET_NONE;
+}
+
+void display_items(game_data_t *game)
+{
+    element_t *current = game->entities.start.next;
+    item_entity_t *item = NULL;
+
+    while (current != &game->entities.end) {
+        item = (item_entity_t *)current->data;
+        if (game->map.id == item->config->map_id) {
+            draw_item(game, item);
+        }
+        current = current->next;
+    }
 }
