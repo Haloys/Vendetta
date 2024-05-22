@@ -5,6 +5,7 @@ nopush/*
 # Current Project
 my_rpg
 *.ven
+!database/path_finding/*.ven
 
 # Object files
 *.o
