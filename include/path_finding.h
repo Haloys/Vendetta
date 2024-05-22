@@ -15,13 +15,17 @@
     #define MAX_LINKS 4
 
 typedef struct path_link_s {
-    int node_a;
-    int node_b;
+    int to;
+    int parent;
+    bool visited;
+    bool valid;
+    int cound;
     float distance;
     sfRectangleShape *line;
 } path_link_t;
 
 typedef struct path_node_s {
+    int id;
     sfCircleShape *circle;
     sfVector2f position;
     float radius;
