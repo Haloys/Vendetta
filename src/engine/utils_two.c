@@ -7,6 +7,7 @@
 
 #include "my_game.h"
 #include "list.h"
+#include "entity.h"
 
 void basic_design(game_data_t *game)
 {
@@ -35,4 +36,17 @@ int list_remove_element_by_id(list_t *list, int id)
         current = current->next;
     }
     return RET_FAIL;
+}
+
+void remove_item_from_list(game_data_t *game, item_entity_t *item)
+{
+    element_t *current = game->entities.start.next;
+
+    while (current != &game->entities.end) {
+        if (current->data == item) {
+            list_remove_element_by_id(&game->entities, current->id);
+            break;
+        }
+        current = current->next;
+    }
 }

@@ -42,6 +42,17 @@ bool is_inside_circle_area(sfVector2f *pos, sfVector2f pos2, float min_radius,
 bool will_collide_wall(game_data_t *game, sfVector2f *pos,
     sfVector2f *dir);
 int list_remove_element_by_id(list_t *list, int id);
+void remove_item_from_list(game_data_t *game, item_entity_t *item);
 void display_items(game_data_t *game);
+
+int callback_interact_key_a(game_data_t *game, item_entity_t *item);
+int callback_interact_key_b(game_data_t *game, item_entity_t *item);
+int callback_interact_key_c(game_data_t *game, item_entity_t *item);
+int callback_interact_knife(game_data_t *game, item_entity_t *item);
+int callback_interact_bandage(game_data_t *game, item_entity_t *item);
+int callback_interact_pistol(game_data_t *game, item_entity_t *item);
+int callback_interact_aidkit(game_data_t *game, item_entity_t *item);
+int callback_interact_rifle(game_data_t *game, item_entity_t *item);
+int callback_interact_shotgun(game_data_t *game, item_entity_t *item);
 
 #endif /* !ENTITY_H_ */
