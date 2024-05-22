@@ -15,6 +15,7 @@
     #define MAX_LINKS 4
 
 typedef struct path_link_s {
+    int id;
     int node_a;
     int node_b;
     float distance;
@@ -22,6 +23,7 @@ typedef struct path_link_s {
 } path_link_t;
 
 typedef struct path_node_s {
+    int id;
     sfCircleShape *circle;
     sfVector2f position;
     float radius;
