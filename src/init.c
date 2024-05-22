@@ -25,9 +25,9 @@ static int init_partie_one(game_data_t *game)
         sfResize | sfClose, NULL);
     if (game->window == NULL)
         return RET_FAIL;
-    dprintf(1, "OK !\n");
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
+    set_map(game, MAP_ONE);
     init_enemies(game);
     init_npcs(game);
     init_items(game);
