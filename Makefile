@@ -122,6 +122,9 @@ SRC_INIT	=   	init/game_icon.c \
 					init/bullets.c \
 					init/path_finding.c \
 
+SRC_SAVES   =		saves/save_global_settings.c \
+					saves/load_global_settings.c \
+
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
 
@@ -155,6 +158,7 @@ SRC =         $(addprefix $(SRC_DIR)/,$(SRC_ENGINE)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_MINIGAME)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_ITEMS)) \
 			$(addprefix $(SRC_DIR)/,$(SRC_NOTIFICATIONS)) \
+			$(addprefix $(SRC_DIR)/,$(SRC_SAVES)) \
 
 OBJ =		$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 			$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))

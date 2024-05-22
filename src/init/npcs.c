@@ -46,7 +46,7 @@ const npc_config_t npc_config[] = {
     },
     {
         .name = "Oleksandra",
-        .sprite = SP_YELLOW_NPC,
+        .sprite = SP_BLACK_NPC,
         .default_position = {1047, 352},
         .default_direction = {0, 0},
         .rotation_offset = 90,
@@ -79,7 +79,6 @@ static void npc_create_text(game_data_t *game, npc_t *npc)
     sfText_setString(npc->text, npc->config->text);
     sfText_setFont(npc->text, game->font);
     sfText_setCharacterSize(npc->text, 22);
-    sfText_setString(npc->keybind_text, npc->key);
     sfText_setFont(npc->keybind_text, game->font);
     sfText_setCharacterSize(npc->keybind_text, 22);
     sfRectangleShape_setSize(npc->square, (sfVector2f){40, 40});
@@ -104,7 +103,6 @@ static npc_t *create_npc(game_data_t *game, npc_config_t *config)
     npc->text = sfText_create();
     npc->keybind_text = sfText_create();
     npc->square = sfRectangleShape_create();
-    strcpy(npc->key, "E");
     if (npc->text == NULL || npc->square == NULL || npc->keybind_text == NULL)
         return NULL;
     npc_create_text(game, npc);

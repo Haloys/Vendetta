@@ -211,4 +211,6 @@ void third_book_callback(game_data_t *game);
 
 int asprintf(char **strp, const char *fmt, ...);
 
+char *key_to_string(sfKeyCode key);
+
 #endif /* MY_GAME_H */
