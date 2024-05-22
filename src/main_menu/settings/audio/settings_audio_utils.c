@@ -38,6 +38,19 @@ static void handle_movement_sound(game_data_t *game)
     }
 }
 
+void update_music_volumes(game_data_t *game)
+{
+    int global_volume = game->settings.sg_x * SCALE_FACTOR;
+    int music_volume = game->settings.sm_x * SCALE_FACTOR;
+
+    for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
+        MUSICS[i].volume = CLAMP(music_volume + global_volume, 0, 243);
+        if (game->settings.sg_x == 0 || game->settings.sm_x == 0)
+            MUSICS[i].volume = 0;
+        sfMusic_setVolume(game->assets.music[MUSICS[i].id], MUSICS[i].volume);
+    }
+}
+
 void modify_sound(game_data_t *game)
 {
     int sound = 0;
@@ -45,26 +58,16 @@ void modify_sound(game_data_t *game)
     handle_movement_sound(game);
     if (is_key_down(game, ArrowLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
+        update_music_volumes(game);
     }
     if (is_key_down(game, ArrowRight) && game->state == SETTINGS_AUDIO) {
         sound += 5;
+        update_music_volumes(game);
     }
     change_volume(game, sound);
     game->settings.sm_x = CLAMP(game->settings.sm_x, 0, 243);
     game->settings.sg_x = CLAMP(game->settings.sg_x, 0, 243);
     game->settings.sa_x = CLAMP(game->settings.sa_x, 0, 243);
-}
-
-void update_music_volumes(game_data_t *game)
-{
-    int global_volume = game->settings.sg_x;
-    int music_volume = game->settings.sm_x;
-
-    for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
-        MUSICS[i].volume = CLAMP(global_volume + music_volume * SCALE_FACTOR,
-            0, 243);
-        dprintf(1, "Music %d : Volume %.2f\n", MUSICS[i].id, MUSICS[i].volume);
-    }
 }
 
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i)
