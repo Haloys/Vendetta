@@ -120,6 +120,7 @@ SRC_INIT	=   	init/game_icon.c \
 					init/npcs.c \
 					init/items.c \
 					init/bullets.c \
+					init/path_finding.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \

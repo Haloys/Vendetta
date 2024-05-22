@@ -28,6 +28,7 @@
     #include "game_keys.h"
     #include "ending_screen.h"
     #include "notifications.h"
+    #include "path_finding.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -128,6 +129,8 @@ typedef struct game_data_s {
     state_t last_state;
     list_t bullets;
     notification_list_t notifications;
+    path_node_t points[MAX_POINTS];
+    int points_count;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
