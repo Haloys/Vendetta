@@ -27,7 +27,6 @@ static int init_partie_one(game_data_t *game)
         return RET_FAIL;
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
-    set_map(game, MAP_ONE);
     init_enemies(game);
     init_npcs(game);
     init_items(game);

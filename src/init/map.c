@@ -65,16 +65,13 @@ int set_map(game_data_t *game, map_id_t map_id)
     if (game->map.id != map_id)
         trigger_notification(game, 1);
     printf("Setting map %d\n", map_id);
-    if (game->is_first == false) {
-        sfMusic_stop(game->assets.music[game->map.music]);
-        game->map = map;
-        game->map.sp_map = &SPRITES[map.map];
-        game->player->position = map.spawn_pos;
-        game->view_pos = map.spawn_pos;
-        sfView_setCenter(game->game_view, game->player->position);
-        start_music(&game->assets, map.music);
-        game->is_first = false;
-    }
+    sfMusic_stop(game->assets.music[game->map.music]);
+    game->map = map;
+    game->map.sp_map = &SPRITES[map.map];
+    game->player->position = map.spawn_pos;
+    game->view_pos = map.spawn_pos;
+    sfView_setCenter(game->game_view, game->player->position);
+    start_music(&game->assets, map.music);
     if (sp_cols_map == NULL)
         return RET_FAIL;
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
