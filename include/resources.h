@@ -767,7 +767,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 60,
             .height = 60
         },
-        .scale = 1,
+        .scale = 0.8,
         .position = {0, 0},
         .origin = {0, 0},
         .rect_count = 1
@@ -780,7 +780,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 60,
             .height = 60
         },
-        .scale = 1,
+        .scale = 0.8,
         .position = {0, 0},
         .origin = {0, 0},
         .rect_count = 1
@@ -793,7 +793,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 60,
             .height = 60
         },
-        .scale = 1,
+        .scale = 0.8,
         .position = {0, 0},
         .origin = {0, 0},
         .rect_count = 1
@@ -1702,7 +1702,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 32,
             .height = 32
         },
-        .scale = 1,
+        .scale = 1.2,
         .position = {0, 0},
         .origin = {0, 0},
         .rect_count = 1
