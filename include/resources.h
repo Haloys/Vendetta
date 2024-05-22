@@ -134,6 +134,7 @@ static const char *IMAGES[] = {
     "assets/images/npcs/yellow_npc.png",
     "assets/images/icons/objective.png",
     "assets/images/misc/bullet.png",
+    "assets/images/main_menu/dead.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -262,6 +263,7 @@ typedef enum texture_id_e {
     YELLOW_NPC,
     OBJECTIVE,
     BULLET,
+    DEAD,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1872,6 +1874,19 @@ static const game_sprite_t SPRITES[] = {
         .origin = {0, 0},
         .rect_count = 1
     },
+    {
+        .id = DEAD,
+        .rect = {
+            .left = 0,
+            .top = 0,
+            .width = 722,
+            .height = 173
+        },
+        .scale = 1,
+        .position = {599, 200},
+        .origin = {0, 0},
+        .rect_count = 1
+    }
 };
 
     #define SPRITE_COUNT (sizeof(SPRITES) / sizeof(game_sprite_t))
@@ -2000,6 +2015,7 @@ typedef enum sprite_id_e {
     SP_YELLOW_NPC,
     SP_OBJECTIVE,
     SP_BULLET,
+    SP_DEAD,
 } sprite_id_t;
 
 typedef enum sound_id_e {
