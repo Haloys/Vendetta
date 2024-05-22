@@ -17,6 +17,9 @@ typedef struct item_entity_s {
     sfVector2f position;
     float rotation;
     struct item_config_s *config;
+    sfText *keybind_text;
+    sfRectangleShape *square;
+    char key[20];
 } item_entity_t;
 
 typedef struct item_config_s {
@@ -38,5 +41,7 @@ bool is_inside_circle_area(sfVector2f *pos, sfVector2f pos2, float min_radius,
     float max_radius);
 bool will_collide_wall(game_data_t *game, sfVector2f *pos,
     sfVector2f *dir);
+int list_remove_element_by_id(list_t *list, int id);
+void display_items(game_data_t *game);
 
 #endif /* !ENTITY_H_ */
