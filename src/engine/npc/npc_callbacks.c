@@ -47,10 +47,10 @@ int third_npc_callback(game_data_t *game, npc_t *npc)
 
 int fourth_npc_callback(game_data_t *game, npc_t *npc)
 {
+    game->player->npc_id = 3;
     printf("Interacting with %s\n", npc->config->name);
     insert_item_in_inventory(game, "second_book", 1);
     insert_item_in_inventory(game, "keyc", 1);
-    game->player->npc_id = 3;
     change_game_mode(game, NPC_DIALOGUE);
     return 0;
 }
