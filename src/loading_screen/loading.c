@@ -105,6 +105,7 @@ static void page_show(game_data_t *game, sfClock *clock, int page, int *ret)
             start_load_third(game, game->window, clock, ret);
             break;
         case 4:
+            sfMusic_stop(game->assets.music[M_LOADING]);
             change_game_mode(game, MAIN_MENU);
             break;
     }
@@ -128,6 +129,7 @@ static bool process_page(game_data_t *game, int page, int *ret)
         do_check(game->window, ret);
         if (*ret == 1) {
             change_game_mode(game, MAIN_MENU);
+            sfMusic_stop(game->assets.music[M_LOADING]);
             sfClock_destroy(clock);
             return true;
         }

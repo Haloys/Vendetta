@@ -11,6 +11,7 @@
     #include "my_game.h"
 
 void update_player_engine(player_data_t *player);
+void update_player_skin(game_data_t *game);
 
 
 #endif /* PLAYER_H */

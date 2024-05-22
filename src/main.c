@@ -34,6 +34,7 @@ static int start_game(void)
         .settings.sa_x = 243,
         .fps = 60,
         .is_passive = true,
+        .is_first = true,
         .clicked = false,
     };
 
