@@ -76,6 +76,7 @@ static void display_gameplay(game_data_t *game)
     display_npcs(game);
     display_entities(game);
     display_bullets(game);
+    display_paths(game);
     apply_shader(game);
     display_overlay(game);
     display_notifications(game, &game->notifications);
