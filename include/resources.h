@@ -122,8 +122,6 @@ static const char *IMAGES[] = {
     "assets/images/main_menu/sword.png",
     "assets/images/main_menu/potion.png",
     "assets/images/main_menu/key.png",
-    "assets/images/npcs/npc_woman.png",
-    "assets/images/misc/bullet.png",
     "assets/images/npcs/black_npc_pic.png",
     "assets/images/npcs/black_npc.png",
     "assets/images/npcs/green_npc_pic.png",
@@ -135,6 +133,7 @@ static const char *IMAGES[] = {
     "assets/images/npcs/yellow_npc_pic.png",
     "assets/images/npcs/yellow_npc.png",
     "assets/images/icons/objective.png",
+    "assets/images/misc/bullet.png",
 };
 
     #define IMAGE_COUNT (sizeof(IMAGES) / sizeof(char *))
@@ -251,8 +250,6 @@ typedef enum texture_id_e {
     SWORD_ICON,
     POTION_ICON,
     KEY_ICON,
-    NPC_WOMAN,
-    BULLET,
     BLACK_NPC_PIC,
     BLACK_NPC,
     GREEN_NPC_PIC,
@@ -264,6 +261,7 @@ typedef enum texture_id_e {
     YELLOW_NPC_PIC,
     YELLOW_NPC,
     OBJECTIVE,
+    BULLET,
 } texture_id_t;
 
 typedef struct game_sprite_s {
@@ -1990,8 +1988,6 @@ typedef enum sprite_id_e {
     SP_SWORD_ICON,
     SP_POTION_ICON,
     SP_KEY_ICON,
-    SP_NPC_WOMAN,
-    SP_BULLET,
     SP_BLACK_NPC_PIC,
     SP_BLACK_NPC,
     SP_GREEN_NPC_PIC,
@@ -2003,6 +1999,7 @@ typedef enum sprite_id_e {
     SP_YELLOW_NPC_PIC,
     SP_YELLOW_NPC,
     SP_OBJECTIVE,
+    SP_BULLET,
 } sprite_id_t;
 
 typedef enum sound_id_e {
