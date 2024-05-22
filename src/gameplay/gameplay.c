@@ -28,6 +28,7 @@ void display_bullets(game_data_t *game)
         if (is_black_color(get_pixel_color(game->cols_map, bullet->position.x,
             bullet->position.y))) {
             list_remove_element(&game->bullets, tmp->prev);
+            --i;
             continue;
         }
         sfRenderWindow_drawSprite(game->window,
