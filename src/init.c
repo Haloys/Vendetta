@@ -36,7 +36,6 @@ static int init_partie_one(game_data_t *game)
         sfResize | sfClose, NULL);
     if (game->window == NULL)
         return RET_FAIL;
-    dprintf(1, "OK !\n");
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
     game->animation_clock = sfClock_create();

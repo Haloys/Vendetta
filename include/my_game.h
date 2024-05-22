@@ -118,6 +118,7 @@ typedef struct game_data_s {
     sfView *menu_view;
     sfVector2f view_pos;
     float view_zoom;
+    bool is_first;
     float target_zoom;
     map_config_t map;
     list_t enemies;
@@ -182,6 +183,7 @@ void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 void draw_everything_control(game_data_t *game);
 void draw_tools_control(game_data_t *game, sfRectangleShape *rect, int i);
 char *key_to_string(sfKeyCode key);
+void update_music_volumes(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
