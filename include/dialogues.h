@@ -91,6 +91,8 @@ typedef struct dialogue_state_s {
     char **choice_texts;
 } dialogue_state_t;
 
+void npc_dialogues(game_data_t *game);
+
 void initialize_dialogue_and_boxes(dialogue_box_params_t *box_p);
 
 void handle_choice(game_data_t *game, const dialogue_params_t *params,

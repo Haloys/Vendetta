@@ -28,6 +28,7 @@
     #include "game_keys.h"
     #include "ending_screen.h"
     #include "notifications.h"
+    #include "dialogues.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -130,7 +131,7 @@ typedef struct game_data_s {
     notification_list_t notifications;
 } game_data_t;
 
-void npc_dialogues(game_data_t *game);
+void display_game_over(game_data_t *game);
 
 // Init
 int print_game_help(void);
