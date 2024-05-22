@@ -59,10 +59,6 @@ static int init_player_inventory(game_data_t *game, player_data_t *player)
     player->clock = sfClock_create();
     player->anim_clock = sfClock_create();
     init_other_values(player);
-    insert_item_in_inventory(game, "knife", 1);
-    insert_item_in_inventory(game, "pistol", 1);
-    insert_item_in_inventory(game, "shotgun", 1);
-    insert_item_in_inventory(game, "rifle", 1);
     return RET_NONE;
 }
 
