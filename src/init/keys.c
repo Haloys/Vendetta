@@ -27,7 +27,8 @@ static void set_default_keys(sf_to_keybind_t *keybinds)
     keybinds[13] = (sf_to_keybind_t){sfKeyE, Interact};
     keybinds[14] = (sf_to_keybind_t){sfKeyI, Inventory};
     keybinds[15] = (sf_to_keybind_t){sfKeySpace, Space};
-    keybinds[16] = (sf_to_keybind_t){sfKeyW, Hostile};
+    keybinds[16] = (sf_to_keybind_t){sfKeyP, TestF13};
+    keybinds[17] = (sf_to_keybind_t){sfKeyW, Hostile};
 }
 
 int init_keybinds(game_data_t *game)

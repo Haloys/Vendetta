@@ -19,3 +19,11 @@ void change_game_mode(game_data_t *game, state_t new_mode)
         game->state = new_mode;
     }
 }
+
+bool is_rect(int x, int y, rect_t *rect)
+{
+    if (x >= rect->x && x <= rect->x + rect->w && y >= rect->y &&
+        y <= rect->y + rect->h)
+        return true;
+    return false;
+}

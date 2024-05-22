@@ -103,7 +103,7 @@ static void update_player_direction(game_data_t *game)
     player->direction = direction;
 }
 
-static bool is_black_color(sfColor color)
+bool is_black_color(sfColor color)
 {
     return color.r == 0 && color.g == 0 && color.b == 0;
 }

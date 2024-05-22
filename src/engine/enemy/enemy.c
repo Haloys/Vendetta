@@ -6,10 +6,13 @@
 */
 
 #include <math.h>
+#include <stdio.h>
 
 #include "my_game.h"
 #include "gameplay.h"
 #include "enemies.h"
+#include "entity.h"
+#include "utils.h"
 
 void draw_enemy(game_data_t *game, enemy_t *enemy)
 {
@@ -18,7 +21,7 @@ void draw_enemy(game_data_t *game, enemy_t *enemy)
     sfRenderWindow_drawRectangleShape(game->window, enemy->health_bar, NULL);
 }
 
-static void update_spritesheet(enemy_t *enemy, sfTime time)
+static void update_spritesheet(game_data_t *game, enemy_t *enemy, sfTime time)
 {
     sfIntRect rect = {0};
 
@@ -31,6 +34,12 @@ static void update_spritesheet(enemy_t *enemy, sfTime time)
             rect.left += enemy->sprite_data->rect.width;
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
+    if (fmodf(sfTime_asMilliseconds(time), 50) == 0) {
+        printf("Enemy trying shoot\n");
+        if (!will_collide_wall(game, &enemy->position, &enemy->direction))
+            list_add_element(&game->bullets, create_bullet(game,
+                &enemy->position, &enemy->direction, enemy->rotation));
+    }
 }
 
 void update_enemy(game_data_t *game, enemy_t *enemy)
@@ -39,5 +48,5 @@ void update_enemy(game_data_t *game, enemy_t *enemy)
 
     update_enemy_pos_diretion(enemy, game);
     update_enemy_pos_sprite(enemy);
-    update_spritesheet(enemy, time);
+    update_spritesheet(game, enemy, time);
 }

@@ -33,6 +33,8 @@
 
     #define EPSILON 0.0001f
 
+    #define PLAYER_HITBOX 20
+
 void process_playing_gameplay(game_data_t *game);
 
 void process_events(game_data_t *game);
@@ -63,5 +65,14 @@ float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);
 
 void apply_shader(game_data_t *game);
+
+bool is_black_color(sfColor color);
+
+
+void display_bullets(game_data_t *game);
+void display_entities(game_data_t *game);
+void display_enemies(game_data_t *game);
+void display_npcs(game_data_t *game);
+void display_paths(game_data_t *game);
 
 #endif /* GAMEPLAY_H */

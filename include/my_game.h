@@ -28,6 +28,7 @@
     #include "game_keys.h"
     #include "ending_screen.h"
     #include "notifications.h"
+    #include "path_finding.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -109,9 +110,9 @@ typedef struct game_data_s {
     player_data_t *player;
     settings_t settings;
     sfImage *cols_map;
-    int key_state;
-    int key_change;
-    int key_update;
+    long key_state;
+    long key_change;
+    long key_update;
     bool is_passive;
     sfView *game_view;
     sfView *menu_view;
@@ -127,7 +128,10 @@ typedef struct game_data_s {
     sequence_click_t sequence;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
+    list_t bullets;
     notification_list_t notifications;
+    path_node_t points[MAX_POINTS];
+    int points_count;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
