@@ -18,6 +18,8 @@ void draw_npc(game_data_t *game, npc_t *npc)
 {
     sfSprite_setRotation(npc->sprite, npc->rotation);
     sfSprite_setPosition(npc->sprite, npc->position);
+    strcpy(npc->key, key_to_string(game->keybinds[Interact].code));
+    sfText_setString(npc->keybind_text, npc->key);
     sfText_setPosition(npc->text, (sfVector2f){npc->position.x - 20,
         npc->position.y - 70});
     sfRectangleShape_setPosition(npc->square,

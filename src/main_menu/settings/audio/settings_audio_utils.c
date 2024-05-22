@@ -12,6 +12,11 @@
 #include "my_game.h"
 #include "gameplay.h"
 
+static float calculate_global_sound(game_data_t *game)
+{
+    return game->settings.sg_x / (float)MAX_VOLUME;
+}
+
 static void change_volume(game_data_t *game, int sound)
 {
     if (sound != 0) {
@@ -38,6 +43,26 @@ static void handle_movement_sound(game_data_t *game)
     }
 }
 
+void update_music_volumes(game_data_t *game)
+{
+    float global_volume = calculate_global_sound(game);
+    int music_volume = game->settings.sm_x;
+    int ambiant_volume = game->settings.sa_x;
+
+    for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
+        MUSICS[i].volume = CLAMP(music_volume * global_volume, 0, 243);
+        if (game->settings.sg_x == 0 || game->settings.sm_x == 0)
+            MUSICS[i].volume = 0;
+        sfMusic_setVolume(game->assets.music[MUSICS[i].id], MUSICS[i].volume);
+    }
+    for (size_t j = 0; j < sizeof(SOUNDS) / sizeof(SOUNDS[0]); j++) {
+        SOUNDS[j].volume = CLAMP(ambiant_volume * global_volume, 0, 243);
+        if (game->settings.sg_x == 0 || game->settings.sa_x == 0)
+            SOUNDS[j].volume = 0;
+        sfSound_setVolume(game->assets.sound[SOUNDS[j].id], SOUNDS[j].volume);
+    }
+}
+
 void modify_sound(game_data_t *game)
 {
     int sound = 0;
@@ -45,9 +70,11 @@ void modify_sound(game_data_t *game)
     handle_movement_sound(game);
     if (is_key_down(game, ArrowLeft) && game->state == SETTINGS_AUDIO) {
         sound -= 5;
+        update_music_volumes(game);
     }
     if (is_key_down(game, ArrowRight) && game->state == SETTINGS_AUDIO) {
         sound += 5;
+        update_music_volumes(game);
     }
     change_volume(game, sound);
     game->settings.sm_x = CLAMP(game->settings.sm_x, 0, 243);

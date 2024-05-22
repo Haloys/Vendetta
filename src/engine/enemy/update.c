@@ -9,6 +9,7 @@
 
 #include "gameplay.h"
 #include "enemies.h"
+#include "entity.h"
 
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game)
 {
@@ -20,7 +21,7 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game)
 
     enemy->direction = (sfVector2f){cos(angle), sin(angle)};
     enemy->rotation = (angle * 180 / PI) + 90;
-    if (distance < 200 && distance > 50) {
+    if ((distance < 200 && distance > 50)) {
         enemy->position.x += enemy->direction.x * enemy->speed;
         enemy->position.y += enemy->direction.y * enemy->speed;
         enemy->disp_rotation = enemy->rotation;

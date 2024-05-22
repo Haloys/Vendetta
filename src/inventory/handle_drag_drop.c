@@ -7,6 +7,7 @@
 
 #include "inventory.h"
 #include "my_game.h"
+#include "player.h"
 
 static void compare_actions(game_data_t *game, int i, int is_dragging)
 {
@@ -50,6 +51,7 @@ static void move_sprite(game_data_t *game, int is_dragging,
         }
         game->player->inventory->slots[is_dragging].is_selected = false;
         game->player->inventory->slots[0].is_selected = false;
+        update_player_skin(game);
     }
 }
 

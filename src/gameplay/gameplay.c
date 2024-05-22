@@ -20,8 +20,6 @@ static void check_gameplay_keys(game_data_t *game)
 {
     if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap))
         change_game_mode(game, INVENTORY);
-    if (is_key_pressed(game, Echap))
-        change_game_mode(game, PAUSE);
     if (is_key_pressed(game, Hostile))
         game->is_passive = !game->is_passive;
 }
@@ -76,6 +74,7 @@ static void display_gameplay(game_data_t *game)
     display_npcs(game);
     display_entities(game);
     display_bullets(game);
+    display_paths(game);
     apply_shader(game);
     display_overlay(game);
     display_notifications(game, &game->notifications);

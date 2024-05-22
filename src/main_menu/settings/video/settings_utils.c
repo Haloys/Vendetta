@@ -92,6 +92,10 @@ static void modify_parameters(game_data_t *game)
         && game->state == SETTINGS_VIDEO) {
         set_reso(game);
     }
+    if ((is_key_pressed(game, ArrowLeft) || is_key_pressed(game, ArrowRight))
+        && game->settings.clicked_rect == 0
+        && game->state == SETTINGS_VIDEO)
+        sfRenderWindow_setFramerateLimit(game->window, game->fps);
 }
 
 void modify_screen(game_data_t *game)

@@ -29,6 +29,7 @@
     #include "ending_screen.h"
     #include "notifications.h"
     #include "dialogues.h"
+    #include "path_finding.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -118,6 +119,7 @@ typedef struct game_data_s {
     sfView *menu_view;
     sfVector2f view_pos;
     float view_zoom;
+    bool is_first;
     float target_zoom;
     map_config_t map;
     list_t enemies;
@@ -129,6 +131,8 @@ typedef struct game_data_s {
     state_t last_state;
     list_t bullets;
     notification_list_t notifications;
+    path_node_t points[MAX_POINTS];
+    int points_count;
 } game_data_t;
 
 void display_game_over(game_data_t *game);
@@ -180,6 +184,7 @@ void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 void draw_everything_control(game_data_t *game);
 void draw_tools_control(game_data_t *game, sfRectangleShape *rect, int i);
 char *key_to_string(sfKeyCode key);
+void update_music_volumes(game_data_t *game);
 
 // Inventory
 void basic_inventory(game_data_t *game);
@@ -206,5 +211,7 @@ void second_book_callback(game_data_t *game);
 void third_book_callback(game_data_t *game);
 
 int asprintf(char **strp, const char *fmt, ...);
+
+char *key_to_string(sfKeyCode key);
 
 #endif /* MY_GAME_H */

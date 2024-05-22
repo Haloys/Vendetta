@@ -7,6 +7,8 @@
 
 #ifndef RESOURCES_H
     #define RESOURCES_H
+    #define MAX_VOLUME 243
+    #define SCALE_FACTOR 1.0f
 
     #include <SFML/Audio.h>
 
@@ -1622,7 +1624,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 128,
             .height = 108
         },
-        .scale = 1,
+        .scale = 0.65,
         .position = {0, 0},
         .origin = {64, 54},
         .rect_count = 3
@@ -1635,7 +1637,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 139,
             .height = 110
         },
-        .scale = 1,
+        .scale = 0.65,
         .position = {0, 0},
         .origin = {69.5, 55},
         .rect_count = 20
@@ -1648,7 +1650,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 156,
             .height = 103
         },
-        .scale = 1,
+        .scale = 0.65,
         .position = {0, 0},
         .origin = {78, 51.5},
         .rect_count = 3
@@ -1661,7 +1663,7 @@ static const game_sprite_t SPRITES[] = {
             .width = 156,
             .height = 103
         },
-        .scale = 1,
+        .scale = 0.65,
         .position = {0, 0},
         .origin = {68, 51.5},
         .rect_count = 3
@@ -2040,7 +2042,7 @@ typedef struct sound_s {
     float volume;
 } sound_t;
 
-static const sound_t SOUNDS[] = {
+static sound_t SOUNDS[] = {
     {
         .id = S_PLAYER_PUNCH,
         .volume = 20
@@ -2113,7 +2115,7 @@ typedef struct music_s {
     float volume;
 } music_t;
 
-static const music_t MUSICS[] = {
+static music_t MUSICS[] = {
     {
         .id = M_LOADING,
         .volume = 20
