@@ -20,7 +20,8 @@ const map_config_t map_config[] = {
         .sp_map = NULL,
         .id = MAP_ONE,
         .portal = {3537, 1375, 3626, 1628},
-        .back_portal = {0, 0, 0, 0}
+        .back_portal = {0, 0, 0, 0},
+        .music = M_FIRST_MAP
     },
     {
         .map = SP_MAP_2,
@@ -30,7 +31,8 @@ const map_config_t map_config[] = {
         .sp_map = NULL,
         .id = MAP_TWO,
         .portal = {1677, 1237, 1750, 1351},
-        .back_portal = {1418, 2102, 1711, 2157}
+        .back_portal = {1418, 2102, 1711, 2157},
+        .music = M_SECOND_MAP
     },
     {
         .map = SP_MAP_3,
@@ -40,7 +42,8 @@ const map_config_t map_config[] = {
         .sp_map = NULL,
         .id = MAP_THREE,
         .portal = {2989, 1139, 3100, 1259},
-        .back_portal = {687, 2445, 1138, 2507}
+        .back_portal = {687, 2445, 1138, 2507},
+        .music = M_THIRD_MAP
     }
 };
 
@@ -59,12 +62,16 @@ int set_map(game_data_t *game, map_id_t map_id)
     map_config_t map = map_config[map_id];
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
+    if (game->map.id != map_id)
+        trigger_notification(game, 1);
     printf("Setting map %d\n", map_id);
+    sfMusic_stop(game->assets.music[game->map.music]);
     game->map = map;
     game->map.sp_map = &SPRITES[map.map];
     game->player->position = map.spawn_pos;
     game->view_pos = map.spawn_pos;
     sfView_setCenter(game->game_view, game->player->position);
+    start_music(&game->assets, map.music);
     if (sp_cols_map == NULL)
         return RET_FAIL;
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
@@ -79,11 +86,13 @@ int set_backmap(game_data_t *game, map_id_t map_id)
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
     printf("Setting map %d\n", map_id);
+    sfMusic_stop(game->assets.music[game->map.music]);
     game->map = map;
     game->map.sp_map = &SPRITES[map.map];
     game->player->position = map.spawn_pos_back;
     game->view_pos = map.spawn_pos_back;
     sfView_setCenter(game->game_view, game->player->position);
+    start_music(&game->assets, map.music);
     if (sp_cols_map == NULL)
         return RET_FAIL;
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));

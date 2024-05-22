@@ -17,6 +17,7 @@ static void process_mouse_click_play(game_data_t *game)
         if (game->state == MAIN_MENU && game->hover_slot_array[i]) {
             change_game_mode(game, PLAYING);
             game->player->is_playing = true;
+            game->is_navbar_visible = false;
             break;
         }
     }

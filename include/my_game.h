@@ -27,6 +27,7 @@
     #include "minigame.h"
     #include "game_keys.h"
     #include "ending_screen.h"
+    #include "notifications.h"
 
     #define ICON_PATH "assets/images/game_icon/icon.png"
 
@@ -65,6 +66,7 @@ typedef struct player_data_s {
     skill_tree_t *skill_tree;
     int skill_points;
     bool is_playing;
+    int npc_id;
 } player_data_t;
 
 typedef struct {
@@ -125,6 +127,7 @@ typedef struct game_data_s {
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
     list_t bullets;
+    notification_list_t notifications;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
@@ -175,10 +178,14 @@ void modify_screen(game_data_t *game);
 void draw_tools(game_data_t *game, sfRectangleShape *rect, int i);
 void draw_everything_control(game_data_t *game);
 void draw_tools_control(game_data_t *game, sfRectangleShape *rect, int i);
+char *key_to_string(sfKeyCode key);
 
 // Inventory
 void basic_inventory(game_data_t *game);
 void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid);
+int remove_item_from_inventory_by_name(game_data_t *game, char *item_name);
+int get_item_quantity(game_data_t *game, char *item_name);
+char *get_equiped_weapon(game_data_t *game);
 
 // Skill Tree
 void display_skill_tree(game_data_t *game);

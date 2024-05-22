@@ -89,11 +89,11 @@ static void display_map(game_data_t *game)
 
 static void check_gameplay_keys(game_data_t *game)
 {
-    if (is_key_pressed(game, Inventory))
+    if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap))
         change_game_mode(game, INVENTORY);
     if (is_key_pressed(game, Echap))
         change_game_mode(game, PAUSE);
-    if (is_key_pressed(game, Interact))
+    if (is_key_pressed(game, Hostile))
         game->is_passive = !game->is_passive;
 }
 
@@ -107,7 +107,7 @@ static void change_map_if_needed(game_data_t *game)
         set_backmap(game, (map_id - 1) % 3);
 }
 
-void process_playing_gameplay(game_data_t *game)
+static void update_gameplay(game_data_t *game)
 {
     sfTime time = sfClock_getElapsedTime(game->player->clock);
     map_id_t map_id = game->map.id;
@@ -120,6 +120,12 @@ void process_playing_gameplay(game_data_t *game)
     sfClock_restart(game->player->clock);
     update_player(game, time);
     check_gameplay_keys(game);
+    update_notifications(&game->notifications);
+    change_map_if_needed(game);
+}
+
+static void display_gameplay(game_data_t *game)
+{
     display_map(game);
     display_player(game);
     display_enemies(game);
@@ -128,5 +134,11 @@ void process_playing_gameplay(game_data_t *game)
     display_bullets(game);
     apply_shader(game);
     display_overlay(game);
-    change_map_if_needed(game);
+    display_notifications(game, &game->notifications);
+}
+
+void process_playing_gameplay(game_data_t *game)
+{
+    update_gameplay(game);
+    display_gameplay(game);
 }

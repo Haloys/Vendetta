@@ -114,5 +114,6 @@ int init_assets(game_data_t *game)
     load_sounds(&game->assets);
     load_musics(&game->assets);
     load_shaders(&game->assets);
+    init_notification_list(&game->notifications);
     return 0;
 }

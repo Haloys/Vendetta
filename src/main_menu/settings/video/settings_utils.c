@@ -66,26 +66,32 @@ void set_utils_text(game_data_t *game)
     draw_reso_rectangle(game);
 }
 
+static void change_reso(game_data_t *game)
+{
+    if (game->video_mode.width == 1920) {
+        game->video_mode = (sfVideoMode){1366, 768, 32};
+    } else if (game->video_mode.width == 1600) {
+        game->video_mode = (sfVideoMode){1920, 1080, 32};
+    } else {
+        game->video_mode = (sfVideoMode){1600, 900, 32};
+    }
+}
+
 static void modify_parameters(game_data_t *game)
 {
-    if (is_key_pressed(game, ArrowLeft) && game->settings.clicked_rect == 1
-        && game->state == SETTINGS_VIDEO && !game->settings.is_fullscreen) {
-        if (game->video_mode.width == 1920) {
-            game->video_mode = (sfVideoMode){1366, 768, 32};
-        }
-        if (game->video_mode.width == 1600) {
-            game->video_mode = (sfVideoMode){1920, 1080, 32};
-        }
-        if (game->video_mode.width == 1366) {
-            game->video_mode = (sfVideoMode){1600, 900, 32};
-        }
-        sfRenderWindow_setSize(game->window, (sfVector2u) {
+    if ((is_key_pressed(game, ArrowLeft) || is_key_pressed(game, ArrowRight))
+        && game->settings.clicked_rect == 1 && game->state == SETTINGS_VIDEO
+        && !game->settings.is_fullscreen) {
+        change_reso(game);
+        sfRenderWindow_setSize(game->window, (sfVector2u){
             game->video_mode.width, game->video_mode.height
         });
     }
-    if (is_key_pressed(game, ArrowLeft) && game->settings.clicked_rect == 2
-        && game->state == SETTINGS_VIDEO)
+    if ((is_key_pressed(game, ArrowLeft) || is_key_pressed(game, ArrowRight))
+        && game->settings.clicked_rect == 2
+        && game->state == SETTINGS_VIDEO) {
         set_reso(game);
+    }
 }
 
 void modify_screen(game_data_t *game)
