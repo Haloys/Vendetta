@@ -24,10 +24,10 @@ const map_config_t map_config[] = {
         .music = M_FIRST_MAP,
         .door_count = 4,
         .doors = {
-            {{.x = 0, .y = 0, .w = 0, .h = 0}},
-            {{.x = 0, .y = 0, .w = 0, .h = 0}},
-            {{.x = 0, .y = 0, .w = 0, .h = 0}},
-            {{.x = 0, .y = 0, .w = 0, .h = 0}}
+            {{.x = 1730, .y = 1634, .w = 1837, .h = 1659}},
+            {{.x = 2144, .y = 890, .w = 2123, .h = 992}},
+            {{.x = 1073, .y = 852, .w = 1092, .h = 751}},
+            {{.x = 2911, .y = 1385, .w = 2895, .h = 1628}}
         }
     },
     {
@@ -39,7 +39,11 @@ const map_config_t map_config[] = {
         .id = MAP_TWO,
         .portal = {1677, 1237, 1750, 1351},
         .back_portal = {1418, 2102, 1711, 2157},
-        .music = M_SECOND_MAP
+        .music = M_SECOND_MAP,
+        .door_count = 1,
+        .doors = {
+            {{.x = 1775, .y = 1345, .w = 1795, .h = 1240}},
+        }
     },
     {
         .map = SP_MAP_3,
@@ -50,7 +54,13 @@ const map_config_t map_config[] = {
         .id = MAP_THREE,
         .portal = {2989, 1139, 3100, 1259},
         .back_portal = {687, 2445, 1138, 2507},
-        .music = M_THIRD_MAP
+        .music = M_THIRD_MAP,
+        .door_count = 3,
+        .doors = {
+            {{.x = 2071, .y = 960, .w = 2055, .h = 1064}},
+            {{.x = 2086, .y = 1494, .w = 2185, .h = 1515}},
+            {{.x = 2993, .y = 1076, .w = 3097, .h = 1093}}
+        }
     }
 };
 
