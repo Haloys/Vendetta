@@ -99,7 +99,7 @@ static void handle_clicks(game_data_t *game, game_over_elems_t *elems)
     }
 }
 
-static void display_game_over(game_data_t *game)
+void display_game_over(game_data_t *game)
 {
     game_over_elems_t elems;
 
