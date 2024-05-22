@@ -41,7 +41,6 @@ typedef struct bullet_t {
     sfVector2f direction;
     int damage;
     int speed;
-    sfClock *clock;
     float rotation;
     float target_rot;
 } bullet_t;
