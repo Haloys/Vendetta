@@ -48,8 +48,8 @@ enemy_t *create_enemy(game_data_t *game)
     enemy->armor = 0;
     enemy->max_health = 100;
     enemy->clock = sfClock_create();
-    enemy->pspeed = 0;
     enemy->rotation = 0;
+    enemy->disp_rotation = 0;
     enemy->target_rot = 0;
     enemy->map_id = MAP_ONE;
     set_enemy_shapes(enemy);

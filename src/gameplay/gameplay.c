@@ -16,58 +16,6 @@
 #include "utils.h"
 #include "entity.h"
 
-void display_entities(game_data_t *game)
-{
-    element_t *tmp = game->entities.start.next;
-
-    for (int i = 0; i < game->entities.length; ++i) {
-        if (game->map.id == ((item_entity_t *)tmp->data)->config->map_id)
-            draw_entity(game, (item_entity_t *)tmp->data);
-        tmp = tmp->next;
-    }
-}
-
-static void display_enemies(game_data_t *game)
-{
-    element_t *tmp = game->enemies.start.next;
-
-    for (int i = 0; i < game->enemies.length; ++i) {
-        if (game->map.id == ((enemy_t *)tmp->data)->map_id) {
-            update_enemy(game, (enemy_t *)tmp->data);
-            draw_enemy(game, (enemy_t *)tmp->data);
-        }
-        tmp = tmp->next;
-    }
-}
-
-static void display_npcs(game_data_t *game)
-{
-    element_t *tmp = game->npcs.start.next;
-
-    for (int i = 0; i < game->npcs.length; ++i) {
-        if (game->map.id == ((npc_t *)tmp->data)->config->map_id) {
-            update_npc(game, (npc_t *)tmp->data);
-            draw_npc(game, (npc_t *)tmp->data);
-        }
-        tmp = tmp->next;
-    }
-}
-
-static void display_player(game_data_t *game)
-{
-    update_player_engine(game->player);
-    sfRenderWindow_drawSprite(game->window, game->player->sprite, NULL);
-}
-
-static void display_map(game_data_t *game)
-{
-    sfSprite *sp_map = get_sprite(game, game->map.map);
-
-    if (sp_map == NULL)
-        return;
-    sfRenderWindow_drawSprite(game->window, sp_map, NULL);
-}
-
 static void check_gameplay_keys(game_data_t *game)
 {
     if (is_key_pressed(game, Inventory) || is_key_pressed(game, Echap))
@@ -103,6 +51,21 @@ static void update_gameplay(game_data_t *game)
     change_map_if_needed(game);
 }
 
+static void display_player(game_data_t *game)
+{
+    update_player_engine(game->player);
+    sfRenderWindow_drawSprite(game->window, game->player->sprite, NULL);
+}
+
+static void display_map(game_data_t *game)
+{
+    sfSprite *sp_map = get_sprite(game, game->map.map);
+
+    if (sp_map == NULL)
+        return;
+    sfRenderWindow_drawSprite(game->window, sp_map, NULL);
+}
+
 static void display_gameplay(game_data_t *game)
 {
     display_map(game);
@@ -110,6 +73,8 @@ static void display_gameplay(game_data_t *game)
     display_enemies(game);
     display_npcs(game);
     display_entities(game);
+    display_bullets(game);
+    display_paths(game);
     apply_shader(game);
     display_overlay(game);
     display_notifications(game, &game->notifications);

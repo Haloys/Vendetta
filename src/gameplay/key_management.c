@@ -10,10 +10,10 @@
 #include "my_game.h"
 #include "gameplay.h"
 
-void update_key(game_data_t *game, sfKeyCode code, int state)
+void update_key(game_data_t *game, sfKeyCode code, bool state)
 {
-    int mask = 0;
-    int new_state = 0;
+    long mask = 0;
+    long new_state = 0;
 
     for (int i = 0; i < KEYBINDS_COUNT; ++i) {
         if (game->keybinds[i].code == code) {

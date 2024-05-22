@@ -11,6 +11,17 @@
 #include "init_game.h"
 #include "map.h"
 #include "utils.h"
+#include "path_finding.h"
+
+static void init_parts(game_data_t *game)
+{
+    init_enemies(game);
+    init_bullets(game);
+    init_npcs(game);
+    init_items(game);
+    init_keybinds(game);
+    init_path_finding(game);
+}
 
 static int load_window(game_data_t *game)
 {
@@ -35,13 +46,10 @@ static int init_partie_one(game_data_t *game)
     dprintf(1, "OK !\n");
     if (load_window(game) == RET_FAIL)
         return RET_FAIL;
-    dprintf(1, "OK !\n");
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
-    init_enemies(game);
-    init_npcs(game);
-    init_items(game);
     game->animation_clock = sfClock_create();
+    init_parts(game);
     return RET_NONE;
 }
 

@@ -9,6 +9,7 @@
 
 #include "gameplay.h"
 #include "enemies.h"
+#include "entity.h"
 
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game)
 {
@@ -18,10 +19,12 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game)
     float distance = sqrt(pow(player_pos.x - pos.x, 2) +
         pow(player_pos.y - pos.y, 2));
 
-    if (distance < 200 && distance > 50) {
-        enemy->position.x += cos(angle) * enemy->speed;
-        enemy->position.y += sin(angle) * enemy->speed;
-        enemy->rotation = (angle * 180 / PI) + 90;
+    enemy->direction = (sfVector2f){cos(angle), sin(angle)};
+    enemy->rotation = (angle * 180 / PI) + 90;
+    if ((distance < 200 && distance > 50)) {
+        enemy->position.x += enemy->direction.x * enemy->speed;
+        enemy->position.y += enemy->direction.y * enemy->speed;
+        enemy->disp_rotation = enemy->rotation;
         enemy->sprite = get_sprite(game, SP_ENEMY_EZ_SHOOTING);
         enemy->sprite_data = &SPRITES[SP_ENEMY_EZ_SHOOTING];
     } else {
@@ -35,7 +38,7 @@ void update_enemy_pos_sprite(enemy_t *enemy)
     sfSprite_setPosition(enemy->sprite, enemy->position);
     sfCircleShape_setPosition(enemy->area, enemy->position);
     sfCircleShape_setOrigin(enemy->area, (sfVector2f){200, 200});
-    sfSprite_setRotation(enemy->sprite, enemy->rotation);
+    sfSprite_setRotation(enemy->sprite, enemy->disp_rotation);
     sfRectangleShape_setPosition(enemy->health_bar,
         (sfVector2f){enemy->position.x - 50, enemy->position.y - 50});
 }
