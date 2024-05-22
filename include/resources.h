@@ -2011,7 +2011,7 @@ typedef struct sound_s {
     float volume;
 } sound_t;
 
-static const sound_t SOUNDS[] = {
+static sound_t SOUNDS[] = {
     {
         .id = S_PLAYER_PUNCH,
         .volume = 20

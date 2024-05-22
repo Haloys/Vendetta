@@ -42,12 +42,19 @@ void update_music_volumes(game_data_t *game)
 {
     int global_volume = game->settings.sg_x * SCALE_FACTOR;
     int music_volume = game->settings.sm_x * SCALE_FACTOR;
+    int ambiant_volume = game->settings.sa_x * SCALE_FACTOR;
 
     for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
         MUSICS[i].volume = CLAMP(music_volume + global_volume, 0, 243);
         if (game->settings.sg_x == 0 || game->settings.sm_x == 0)
             MUSICS[i].volume = 0;
         sfMusic_setVolume(game->assets.music[MUSICS[i].id], MUSICS[i].volume);
+    }
+    for (size_t j = 0; j < sizeof(SOUNDS) / sizeof(SOUNDS[0]); j++) {
+        SOUNDS[j].volume = CLAMP(ambiant_volume + global_volume, 0, 243);
+        if (game->settings.sg_x == 0 || game->settings.sa_x == 0)
+            SOUNDS[j].volume = 0;
+        sfSound_setVolume(game->assets.sound[SOUNDS[j].id], SOUNDS[j].volume);
     }
 }
 
