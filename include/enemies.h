@@ -56,6 +56,7 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game);
 
 // BULLETS
 void update_bullet(game_data_t *game, bullet_t *bullet);
+bool bullet_touched_entity(game_data_t *game, bullet_t *bullet);
 
 bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
     float rotation);

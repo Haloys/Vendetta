@@ -20,15 +20,15 @@ void display_bullets(game_data_t *game)
 {
     element_t *tmp = game->bullets.start.next;
     bullet_t *bullet = NULL;
+    int saved_len = game->bullets.length;
 
-    for (int i = 0; i < game->bullets.length; ++i) {
+    for (int i = 0; i < saved_len; ++i) {
         tmp = tmp->next;
         bullet = (bullet_t *)tmp->prev->data;
         update_bullet(game, bullet);
         if (is_black_color(get_pixel_color(game->cols_map, bullet->position.x,
-            bullet->position.y))) {
+            bullet->position.y)) || bullet_touched_entity(game, bullet)) {
             list_remove_element(&game->bullets, tmp->prev);
-            --i;
             continue;
         }
         sfRenderWindow_drawSprite(game->window,

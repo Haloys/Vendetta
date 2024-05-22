@@ -33,6 +33,8 @@
 
     #define EPSILON 0.0001f
 
+    #define PLAYER_HITBOX 20
+
 void process_playing_gameplay(game_data_t *game);
 
 void process_events(game_data_t *game);

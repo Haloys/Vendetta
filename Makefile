@@ -56,6 +56,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/enemy/enemy.c \
 						engine/enemy/update.c \
 						engine/player/update.c \
+						engine/entity.c \
 						engine/npc/npc.c \
 						engine/npc/npc_callbacks.c \
 						engine/item.c \

@@ -33,6 +33,6 @@ extern const item_config_t item_config[];
     #define ENTITY_COUNT (sizeof(item_config) / sizeof(item_config[0]))
 
 void draw_entity(game_data_t *game, item_entity_t *entity);
-
+rect_t get_hitbox_rect(sfVector2f *pos, int size);
 
 #endif /* !ENTITY_H_ */

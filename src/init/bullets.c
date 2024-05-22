@@ -25,6 +25,9 @@ bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
     bullet->rotation = rotation;
     bullet->direction = *dir;
     bullet->position = *pos;
+    bullet->damage = 1;
+    for (int i = 0; i < 6; ++i)
+        update_bullet(game, bullet);
     return bullet;
 }
 
