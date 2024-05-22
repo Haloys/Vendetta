@@ -83,7 +83,7 @@ static void draw_bg_line(game_data_t *game)
             line_pos.y += 61;
         sfRectangleShape_setPosition(line, line_pos);
         sfRectangleShape_setSize(line, line_size);
-        sfRectangleShape_setFillColor(line, sfColor_fromRGB(180, 180, 180));
+        sfRectangleShape_setFillColor(line, SQUARE_BG);
         sfRenderWindow_drawRectangleShape(game->window, line, NULL);
         sfRectangleShape_destroy(line);
     }
