@@ -7,9 +7,8 @@
 
 #ifndef RESOURCES_H
     #define RESOURCES_H
-    #define MAX_VOLUME 20
-    #define MAX_SETTING_VALUE 243
-    #define SCALE_FACTOR ((float)MAX_VOLUME / MAX_SETTING_VALUE)
+    #define MAX_VOLUME 243
+    #define SCALE_FACTOR 1.0f
 
     #include <SFML/Audio.h>
 

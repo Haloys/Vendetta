@@ -44,4 +44,3 @@ bool will_collide_wall(game_data_t *game, sfVector2f *pos,
     }
     return false;
 }
-
