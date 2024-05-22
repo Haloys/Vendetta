@@ -14,6 +14,17 @@
 #include <stdio.h>
 #include <string.h>
 
+static void basic_game_over(game_data_t *game)
+{
+    sprite_id_t elements[] = {SP_DEAD};
+    size_t element_count = 1;
+
+    for (size_t i = 0; i < element_count; i++) {
+        sfRenderWindow_drawSprite(game->window,
+            get_sprite(game, elements[i]), NULL);
+    }
+}
+
 static sfRectangleShape *create_rect(sfVector2f size, sfVector2f pos,
     sfColor fill, sfColor outline)
 {
@@ -31,22 +42,25 @@ static sfRectangleShape *create_rect(sfVector2f size, sfVector2f pos,
 
 static void create_game_over_elems(game_data_t *game, game_over_elems_t *elems)
 {
-    sfVector2f btn_size = {400, 50};
-    sfVector2f quit_pos = {game->video_mode.width / 2 - 200,
-        game->video_mode.height / 2 + 50};
-    sfVector2f respawn_pos = {game->video_mode.width / 2 - 200,
-        game->video_mode.height / 2 - 50};
-    sfVector2f quit_txt_pos = {quit_pos.x + btn_size.x / 2 - 35,
-        quit_pos.y + btn_size.y / 2 - 20};
-    sfVector2f respawn_txt_pos = {respawn_pos.x + btn_size.x / 2 - 70,
-        respawn_pos.y + btn_size.y / 2 - 20};
+    sfVector2f b_si = {350, 60};
+    float space = 50;
+    sfVector2f q_pos = {game->video_mode.width / 2 - b_si.x - space / 2,
+        game->video_mode.height / 2 - b_si.y / 2};
+    sfVector2f r_pos = {game->video_mode.width / 2 + space / 2,
+        game->video_mode.height / 2 - b_si.y / 2};
+    sfVector2f qt_pos = {q_pos.x + b_si.x / 2, q_pos.y + b_si.y / 2};
+    sfVector2f rt_pos = {r_pos.x + b_si.x / 2, r_pos.y + b_si.y / 2};
 
-    elems->respawn_btn = create_rect(btn_size, respawn_pos,
-        FILL_COLOR, OUTLINE_COLOR);
-    elems->quit_btn = create_rect(btn_size, quit_pos,
-        FILL_COLOR, OUTLINE_COLOR);
-    elems->quit_txt = set_text(game, "QUIT", 30, quit_txt_pos);
-    elems->respawn_txt = set_text(game, "RESPAWN", 30, respawn_txt_pos);
+    elems->respawn_btn = create_rect(b_si, r_pos, FILL_COLOR, OUTLINE_COLOR);
+    elems->quit_btn = create_rect(b_si, q_pos, FILL_COLOR, OUTLINE_COLOR);
+    elems->quit_txt = set_text(game, "QUIT", 30, qt_pos);
+    elems->respawn_txt = set_text(game, "RESPAWN", 30, rt_pos);
+    sfText_setOrigin(elems->quit_txt, (sfVector2f)
+        {sfText_getLocalBounds(elems->quit_txt).width / 2,
+            sfText_getLocalBounds(elems->quit_txt).height / 2 + 5});
+    sfText_setOrigin(elems->respawn_txt, (sfVector2f)
+        {sfText_getLocalBounds(elems->respawn_txt).width / 2,
+            sfText_getLocalBounds(elems->respawn_txt).height / 2 + 5});
 }
 
 static void set_btn_hover(sfRectangleShape *btn, bool hover)
@@ -104,6 +118,7 @@ void display_game_over(game_data_t *game)
     game_over_elems_t elems;
 
     basic_design(game);
+    basic_game_over(game);
     create_game_over_elems(game, &elems);
     handle_game_over_hover(game, &elems);
     sfRenderWindow_drawRectangleShape(game->window, elems.quit_btn, NULL);
