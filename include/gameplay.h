@@ -69,4 +69,9 @@ void apply_shader(game_data_t *game);
 bool is_black_color(sfColor color);
 
 
+void display_bullets(game_data_t *game);
+void display_entities(game_data_t *game);
+void display_enemies(game_data_t *game);
+void display_npcs(game_data_t *game);
+
 #endif /* GAMEPLAY_H */

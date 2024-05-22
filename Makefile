@@ -109,6 +109,7 @@ SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/key_management.c \
 					gameplay/is_key.c \
 					gameplay/shader.c \
+					gameplay/display.c \
 
 SRC_INIT	=   	init/game_icon.c \
 					init/map.c \
