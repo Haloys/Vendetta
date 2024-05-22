@@ -72,35 +72,3 @@ void display_npcs(game_data_t *game)
         tmp = tmp->next;
     }
 }
-
-static void set_path(game_data_t *game, sfCircleShape *circle, sfText *text,
-    int i)
-{
-    char buffer[33] = {0};
-
-    sprintf(buffer, "%d", i);
-    sfCircleShape_setFillColor(circle, sfRed);
-    sfCircleShape_setRadius(circle, 10);
-    sfCircleShape_setOrigin(circle, (sfVector2f){10, 10});
-    sfCircleShape_setPosition(circle, game->points[i].position);
-    sfRenderWindow_drawCircleShape(game->window, circle, NULL);
-    sfText_setString(text, buffer);
-    sfText_setFont(text, game->font);
-    sfText_setCharacterSize(text, 20);
-    sfText_setPosition(text, (sfVector2f){game->points[i].position.x - 8,
-        game->points[i].position.y - 40});
-    sfRenderWindow_drawText(game->window, text, NULL);
-}
-
-void display_paths(game_data_t *game)
-{
-    sfCircleShape *circle = sfCircleShape_create();
-    sfText *text = sfText_create();
-
-    if (circle == NULL || text == NULL)
-        return;
-    for (int i = 0; i < game->points_count; ++i)
-        set_path(game, circle, text, i);
-    sfCircleShape_destroy(circle);
-    sfText_destroy(text);
-}
