@@ -31,6 +31,7 @@ typedef enum state_e {
     BOOK_2,
     BOOK_3,
     ENDING_SCREEN,
+    GAME_OVER,
     PAUSE,
 } state_t;
 
