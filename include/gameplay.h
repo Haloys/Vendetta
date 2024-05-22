@@ -73,5 +73,6 @@ void display_bullets(game_data_t *game);
 void display_entities(game_data_t *game);
 void display_enemies(game_data_t *game);
 void display_npcs(game_data_t *game);
+void display_paths(game_data_t *game);
 
 #endif /* GAMEPLAY_H */

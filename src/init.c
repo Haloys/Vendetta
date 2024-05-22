@@ -11,6 +11,7 @@
 #include "init_game.h"
 #include "map.h"
 #include "utils.h"
+#include "path_finding.h"
 
 static void init_parts(game_data_t *game)
 {
@@ -19,6 +20,7 @@ static void init_parts(game_data_t *game)
     init_npcs(game);
     init_items(game);
     init_keybinds(game);
+    init_path_finding(game);
 }
 
 static int init_partie_one(game_data_t *game)
