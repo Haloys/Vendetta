@@ -252,7 +252,7 @@ typedef enum texture_id_e {
     POTION_ICON,
     KEY_ICON,
     NPC_WOMAN,
-    BULLET
+    BULLET,
     BLACK_NPC_PIC,
     BLACK_NPC,
     GREEN_NPC_PIC,
