@@ -131,6 +131,7 @@ typedef struct game_data_s {
     notification_list_t notifications;
     path_node_t points[MAX_POINTS];
     int points_count;
+    bool clicked;
 } game_data_t;
 
 void npc_dialogues(game_data_t *game);
