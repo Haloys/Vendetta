@@ -84,7 +84,7 @@ static void hash_save(game_data_t *game, FILE *file)
 
 void save_global_settings(game_data_t *game)
 {
-    FILE *file = fopen("savegames/global_settings.ven", "w");
+    FILE *file = fopen("database/global_settings.ven", "w");
 
     if (!file)
         return;

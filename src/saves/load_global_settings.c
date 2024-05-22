@@ -149,7 +149,7 @@ void load_keybinds_settings(game_data_t *game, FILE *file)
 
 void load_global_settings(game_data_t *game)
 {
-    FILE *file = fopen("savegames/global_settings.ven", "r");
+    FILE *file = fopen("database/global_settings.ven", "r");
 
     if (!file)
         return;
@@ -161,7 +161,7 @@ void load_global_settings(game_data_t *game)
 
 void load_settings(game_data_t *game)
 {
-    FILE *file = fopen("savegames/global_settings.ven", "r");
+    FILE *file = fopen("database/global_settings.ven", "r");
 
     if (!file)
         return;
