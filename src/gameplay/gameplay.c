@@ -32,6 +32,10 @@ static void change_map_if_needed(game_data_t *game)
         set_map(game, (map_id + 1) % 3);
     if (is_in_portal(game, &game->map.back_portal))
         set_backmap(game, (map_id - 1) % 3);
+    for (int i = 0; i < game->map.door_count; i++) {
+        if (door_checker(game, &game->map.doors[i].rect))
+            game->player->health--;
+    }
 }
 
 static void update_gameplay(game_data_t *game)

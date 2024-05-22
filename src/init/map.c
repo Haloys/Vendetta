@@ -24,10 +24,10 @@ const map_config_t map_config[] = {
         .music = M_FIRST_MAP,
         .door_count = 4,
         .doors = {
-            {{.x = 1730, .y = 1634, .w = 1837, .h = 1659}},
-            {{.x = 2144, .y = 890, .w = 2123, .h = 992}},
-            {{.x = 1073, .y = 852, .w = 1092, .h = 751}},
-            {{.x = 2911, .y = 1385, .w = 2895, .h = 1628}}
+            {.rect = {1730, 1634, 1837, 1659}},
+            {.rect = {2144, 890, 2123, 992}},
+            {.rect = {1073, 852, 1092, 751}},
+            {.rect = {2911, 1385, 2895, 1628}}
         }
     },
     {
@@ -42,7 +42,7 @@ const map_config_t map_config[] = {
         .music = M_SECOND_MAP,
         .door_count = 1,
         .doors = {
-            {{.x = 1775, .y = 1345, .w = 1795, .h = 1240}},
+            {.rect = {1775, 1345, 1795, 1240}},
         }
     },
     {
@@ -57,9 +57,9 @@ const map_config_t map_config[] = {
         .music = M_THIRD_MAP,
         .door_count = 3,
         .doors = {
-            {{.x = 2071, .y = 960, .w = 2055, .h = 1064}},
-            {{.x = 2086, .y = 1494, .w = 2185, .h = 1515}},
-            {{.x = 2993, .y = 1076, .w = 3097, .h = 1093}}
+            {.rect = {2071, 960, 2055, 1064}},
+            {.rect = {2086, 1494, 2185, 1515}},
+            {.rect = {2993, 1076, 3097, 1093}}
         }
     }
 };
@@ -70,6 +70,16 @@ bool is_in_portal(game_data_t *game, rect_t *portal)
 
     if (pos.x >= portal->x && pos.x <= portal->w
         && pos.y >= portal->y && pos.y <= portal->h)
+        return true;
+    return false;
+}
+
+bool door_checker(game_data_t *game, rect_t *door)
+{
+    sfVector2f pos = game->player->position;
+
+    if (pos.x >= door->x && pos.x <= door->w
+        && pos.y >= door->y && pos.y <= door->h)
         return true;
     return false;
 }
