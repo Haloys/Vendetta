@@ -5,6 +5,8 @@
 ** Animation
 */
 
+#include <math.h>
+
 #include "my_game.h"
 #include "gameplay.h"
 
