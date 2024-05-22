@@ -12,6 +12,15 @@
 #include "map.h"
 #include "utils.h"
 
+static void init_parts(game_data_t *game)
+{
+    init_enemies(game);
+    init_bullets(game);
+    init_npcs(game);
+    init_items(game);
+    init_keybinds(game);
+}
+
 static int init_partie_one(game_data_t *game)
 {
     init_assets(game);
@@ -28,11 +37,8 @@ static int init_partie_one(game_data_t *game)
     dprintf(1, "OK !\n");
     if (set_map(game, MAP_ONE) == RET_FAIL)
         return RET_FAIL;
-    init_enemies(game);
-    init_npcs(game);
-    init_items(game);
     game->animation_clock = sfClock_create();
-    init_keybinds(game);
+    init_parts(game);
     return RET_NONE;
 }
 
