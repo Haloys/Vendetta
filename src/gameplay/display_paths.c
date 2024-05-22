@@ -34,6 +34,7 @@ static void set_paths_text(game_data_t *game, sfText *text, int i)
 static void set_paths_lines(game_data_t *game, sfVertexArray *vertex, int i)
 {
     path_link_t *tmp = NULL;
+
     sfVertexArray_setPrimitiveType(vertex, sfLinesStrip);
     for (int j = 0; j < game->points[i].link_count; ++j) {
         sfVertexArray_append(vertex, (sfVertex){
