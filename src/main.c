@@ -35,6 +35,7 @@ static int start_game(void)
         .fps = 60,
         .is_passive = true,
         .is_first = true,
+        .clicked = false,
     };
 
     srand(time(NULL));

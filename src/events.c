@@ -77,6 +77,7 @@ static void process_mouse_move_event(game_data_t *game)
 static void process_mouse_button_pressed(game_data_t *game,
     sfMouseButtonEvent *evt)
 {
+    game->clicked = true;
     remap_event_coords(game->window, &evt->x, &evt->y);
     process_mouse_click_play(game);
     handle_navbar_click(game, *evt);
@@ -113,6 +114,7 @@ void process_events(game_data_t *game)
 {
     sfEvent evt = {0};
 
+    game->clicked = false;
     reset_key_update(game);
     while (sfRenderWindow_pollEvent(game->window, &evt)) {
         process_global_events(game, &evt);
