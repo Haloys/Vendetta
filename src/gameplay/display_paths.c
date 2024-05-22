@@ -37,12 +37,11 @@ static void set_paths_lines(game_data_t *game, sfVertexArray *vertex, int i)
 
     sfVertexArray_setPrimitiveType(vertex, sfLinesStrip);
     for (int j = 0; j < game->points[i].link_count; ++j) {
-        sfVertexArray_append(vertex, (sfVertex){
-            .position = game->points[i].position, .color = sfBlue});
+        sfVertexArray_append(vertex, (sfVertex){game->points[i].position,
+            sfBlue});
         tmp = &game->points[i].links[j];
         sfVertexArray_append(vertex, (sfVertex){
-            .position = game->points[tmp->to].position,
-            .color = sfGreen});
+            game->points[tmp->to].position, sfGreen});
         sfRenderWindow_drawVertexArray(game->window, vertex, NULL);
         sfVertexArray_clear(vertex);
     }
