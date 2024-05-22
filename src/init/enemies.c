@@ -22,7 +22,7 @@ static void set_enemy_shapes(enemy_t *enemy)
     enemy->area = sfCircleShape_create();
     if (enemy->health_bar == NULL || enemy->area == NULL)
         return;
-    sfCircleShape_setRadius(enemy->area, 200);
+    sfCircleShape_setRadius(enemy->area, 250);
     sfCircleShape_setFillColor(enemy->area, sfTransparent);
     sfCircleShape_setOutlineThickness(enemy->area, 1);
     sfCircleShape_setOutlineColor(enemy->area, sfBlue);
@@ -43,7 +43,7 @@ enemy_t *create_enemy(game_data_t *game)
     enemy->position = (sfVector2f){2000, 2060};
     enemy->direction = (sfVector2f){0, 0};
     enemy->health = 100;
-    enemy->speed = 1.3;
+    enemy->speed = ENEMY_MOVE_SPEED;
     enemy->attack = 10;
     enemy->armor = 0;
     enemy->max_health = 100;
