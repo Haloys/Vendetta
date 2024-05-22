@@ -117,7 +117,8 @@ static void set_control_text(game_data_t *game)
 
     for (int i = 0; i < nbr_text; i++) {
         text1 = set_text(game, keys[i].name, 22, text_pos1);
-        text2 = set_text(game, key_to_string(game->keybinds[i + 7].code), 22, text_pos2);
+        text2 = set_text(game, key_to_string(game->keybinds[i + 7].code), 22,
+            text_pos2);
         sfRenderWindow_drawText(game->window, text1, NULL);
         sfRenderWindow_drawText(game->window, text2, NULL);
         sfText_destroy(text1);
