@@ -33,7 +33,8 @@ void give_random_items(game_data_t *game, int min_items, int max_items)
     for (int i = 0; i < num_items; ++i) {
         random_value = (float)rand() / RAND_MAX;
         give_item_based_on_rarity(game, random_value, total_items, &count);
-        if (count >= num_items) break;
+        if (count >= num_items)
+            break;
     }
 }
 
