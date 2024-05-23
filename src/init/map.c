@@ -96,27 +96,64 @@ bool is_in_portal(game_data_t *game, rect_t *portal)
     return false;
 }
 
-int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
+static void handle_map_unlock_notifications(game_data_t *game, map_id_t map_id)
+{
+    if (!game->map_unlocked[map_id]) {
+        switch (map_id) {
+            case MAP_ONE:
+                trigger_notification(game, 23);
+                break;
+            case MAP_TWO:
+                trigger_notification(game, 21);
+                break;
+            case MAP_THREE:
+                trigger_notification(game, 22);
+                break;
+        }
+        game->map_unlocked[map_id] = true;
+    }
+}
+
+static int set_map_data(game_data_t *game, map_id_t map_id)
 {
     map_config_t map = map_config[map_id];
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
-    if (game->map.id != map_id)
+    if (game->map.id != map_id) {
         trigger_notification(game, 1);
+        handle_map_unlock_notifications(game, map_id);
+    }
     printf("Setting map %d\n", map_id);
-    sfMusic_stop(game->assets.music[game->map.music]);
     game->map = map;
     game->map.sp_map = &SPRITES[map.map];
-    game->player->position = pos != NULL ? *pos : map.spawn_pos;
-    game->view_pos = map.spawn_pos;
-    sfView_setCenter(game->game_view, game->player->position);
-    start_music(&game->assets, map.music);
-    update_music_volumes(game);
     if (sp_cols_map == NULL)
         return RET_FAIL;
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
     if (game->cols_map == NULL)
         return RET_FAIL;
+    return RET_NONE;
+}
+
+static void set_player_music_data(game_data_t *game, map_id_t map_id,
+    sfVector2f *pos)
+{
+    map_config_t map = map_config[map_id];
+
+    game->player->position = pos != NULL ? *pos : map.spawn_pos;
+    game->view_pos = map.spawn_pos;
+    sfView_setCenter(game->game_view, game->player->position);
+    sfMusic_stop(game->assets.music[game->map.music]);
+    start_music(&game->assets, map.music);
+    update_music_volumes(game);
+}
+
+int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
+{
+    int map_data_status = set_map_data(game, map_id);
+
+    if (map_data_status != RET_NONE)
+        return map_data_status;
+    set_player_music_data(game, map_id, pos);
     return RET_NONE;
 }
 

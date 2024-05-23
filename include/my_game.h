@@ -138,6 +138,7 @@ typedef struct game_data_s {
     int points_count;
     bool clicked;
     sfClock *bullets_clock;
+    bool map_unlocked[3];
 } game_data_t;
 
 void display_game_over(game_data_t *game);

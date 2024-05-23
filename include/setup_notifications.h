@@ -39,6 +39,9 @@ static const notification_params_t NOTIFICATION[] = {
         "armour that could be more than useful\n"
             "for this vendetta!", SP_OBJECTIVE, 30.0},
     {"Goldcoin", "You found a goldcoin", SP_OBJECTIVE, 30.0},
+    {"Map 2 Unlocked", "You have unlocked Map 2!", SP_OBJECTIVE, 15.0},
+    {"Map 3 Unlocked", "You have unlocked Map 3!", SP_OBJECTIVE, 15.0},
+    {"Welcome", "You woke up !", SP_OBJECTIVE, 30.0}
 };
 
 #endif /* SETUP_NOTIFICATIONS_H */
