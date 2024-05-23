@@ -50,7 +50,7 @@ const item_config_t item_config[] = {
         .default_position = {471, 1806},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_key
     },
     {
         .name = "Bandage",
@@ -66,7 +66,7 @@ const item_config_t item_config[] = {
         .default_position = {500, 748},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_shoes
     },
     {
         .name = "Chest",
@@ -74,7 +74,7 @@ const item_config_t item_config[] = {
         .default_position = {1332, 636},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_armor
     },
     {
         .name = "Chest",
@@ -82,7 +82,7 @@ const item_config_t item_config[] = {
         .default_position = {1917, 846},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_mask
     },
     {
         .name = "Pistol",
