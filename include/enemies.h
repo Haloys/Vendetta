@@ -54,10 +54,21 @@ typedef struct enemy_config_s {
 extern const enemy_config_t ENEMIES_CONFIG[];
 
     #define BULLET_SLOW_SPEED 250
+    #define BULLET_NORMAL_SPEED 400
     #define BULLET_MEDIUM_SPEED 600
     #define BULLET_FAST_SPEED 1000
 
     #define ENEMY_MOVE_SPEED 100
+
+
+typedef struct bullet_config_s {
+    sfVector2f *pos;
+    sfVector2f *dir;
+    float rotation;
+    int damage;
+    int speed;
+} bullet_config_t;
+
 
 typedef struct bullet_t {
     sfSprite *sprite;
@@ -82,8 +93,7 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time);
 void update_bullet(game_data_t *game, bullet_t *bullet);
 bool bullet_touched_entity(game_data_t *game, bullet_t *bullet);
 
-bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
-    float rotation);
+bullet_t *create_bullet(game_data_t *game, bullet_config_t *config);
 
 void walk_to_nearest_point(enemy_t *enemy, game_data_t *game,
     sfTime time);

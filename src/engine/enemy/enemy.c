@@ -38,7 +38,8 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy)
     if (sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5) {
         if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
             list_add_element(&game->bullets, create_bullet(game,
-                &enemy->position, &enemy->target, enemy->rotation));
+                &(bullet_config_t){&enemy->position, &enemy->target,
+                    enemy->rotation, 1, BULLET_NORMAL_SPEED}));
             sfClock_restart(enemy->shoot_clock);
         }
     }
