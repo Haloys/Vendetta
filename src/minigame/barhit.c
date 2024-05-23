@@ -5,11 +5,12 @@
 ** Sequence Click
 */
 
-#include "my_game.h"
-
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "my_game.h"
+#include "utils.h"
 
 static void init_rectangles(barhit_t *barhit)
 {
@@ -89,6 +90,12 @@ static void update_bar_position(barhit_t *barhit, float seconds)
         (WINDOW_HEIGHT - RECT_HEIGHT) / 2});
 }
 
+static void reset_barhit(game_data_t *game, barhit_t *barhit)
+{
+    init_barhit(barhit);
+    sfClock_restart(game->clock);
+}
+
 static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
 {
     sfTime time = sfClock_getElapsedTime(game->clock);
@@ -99,6 +106,8 @@ static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
     }
     if (barhit->cooldown == 0 && barhit->game_active) {
         if (check_key_press(barhit)) {
+            change_game_mode(game, PLAYING);
+            reset_barhit(game, barhit);
             return true;
         }
     }
@@ -114,14 +123,15 @@ static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
 
 void display_barhit(game_data_t *game)
 {
-    static barhit_t barhit;
     static int initialized = 0;
+    barhit_t *barhit = &game->barhit;
 
-    basic_design(game);
     if (!initialized) {
-        init_barhit(&barhit);
+        init_barhit(barhit);
         sfClock_restart(game->clock);
         initialized = 1;
     }
-    update_and_draw_barhit(game, &barhit);
+    basic_design(game);
+    if (update_and_draw_barhit(game, barhit))
+        initialized = 0;
 }

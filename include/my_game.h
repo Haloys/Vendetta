@@ -130,6 +130,7 @@ typedef struct game_data_s {
     list_t entities;
     sfClock *animation_clock;
     sequence_click_t sequence;
+    barhit_t barhit;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
     list_t bullets;
@@ -138,6 +139,7 @@ typedef struct game_data_s {
     int points_count;
     bool clicked;
     sfClock *bullets_clock;
+    bool map_unlocked[3];
 } game_data_t;
 
 void display_game_over(game_data_t *game);

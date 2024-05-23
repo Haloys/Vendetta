@@ -21,12 +21,12 @@ const item_config_t item_config[] = {
         .callback_interact = callback_interact_key_a
     },
     {
-        .name = "Key B",
-        .sprite = SP_KEYB,
+        .name = "Key C",
+        .sprite = SP_KEYC,
         .default_position = {811, 620},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = callback_interact_key_b
+        .callback_interact = callback_interact_key_c
     },
     {
         .name = "Key C",
@@ -184,7 +184,7 @@ static void item_create_visuals(game_data_t *game, item_entity_t *item)
     item->keybind_text = sfText_create();
     sfText_setFont(item->keybind_text, game->font);
     sfText_setCharacterSize(item->keybind_text, 22);
-    strcpy(item->key, "E");
+    strcpy(item->key, key_to_string(game->keybinds[Interact].code));
     sfText_setString(item->keybind_text, item->key);
     item->square = sfRectangleShape_create();
     sfRectangleShape_setSize(item->square, (sfVector2f){40, 40});
