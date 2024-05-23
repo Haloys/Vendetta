@@ -15,7 +15,7 @@ const map_config_t map_config[] = {
     {
         .map = SP_MAP_1,
         .cols_map = SP_COLS_MAP_1,
-        .spawn_pos = {2195, 1669},
+        .spawn_pos = {2202, 1404},
         .spawn_pos_back = {3386, 1497},
         .sp_map = NULL,
         .id = MAP_ONE,

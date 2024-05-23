@@ -22,9 +22,15 @@ static bool execute_enemy_touched(game_data_t *game, enemy_t *enemy,
 
 static bool execute_player_touched(game_data_t *game, bullet_t *bullet)
 {
-    game->player->health -= (bullet->damage
-        - (game->player->armor * bullet->damage / 100));
-    game->player->health = MAX(0, game->player->health);
+    player_data_t *player = game->player;
+    player->health -= (bullet->damage
+        - (player->armor * bullet->damage / 100));
+    player->health = MAX(0, player->health);
+    if (player->health <= 0) {
+        player->health = 10;
+        player->position = game->map.spawn_pos;
+        change_game_mode(game, GAME_OVER);
+    }
     return true;
 }
 
