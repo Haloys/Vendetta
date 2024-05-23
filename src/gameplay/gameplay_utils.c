@@ -41,9 +41,9 @@ void display_overlay(game_data_t *game)
     sfVector2f view_size = sfView_getSize(game->game_view);
     sfVector2f relativepos = {game->view_pos.x + view_size.x / 2,
         game->view_pos.y - view_size.y / 2};
+    float ratio = game->view_zoom;
     sfText *passiv;
     char buffer[30];
-    float ratio = game->view_zoom;
 
     relativepos.y += 30 * ratio;
     relativepos.x -= 240 * ratio;
