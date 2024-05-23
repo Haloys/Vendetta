@@ -22,10 +22,12 @@ typedef struct enemy_s {
     int health;
     int armor;
     sfClock *clock;
+    sfClock *shoot_clock;
     float rotation;
     float disp_rotation;
     float target_rot;
     struct enemy_config_s *config;
+    path_node_t *path;
 } enemy_t;
 
 typedef struct enemy_config_s {
@@ -45,9 +47,9 @@ typedef struct enemy_config_s {
 
 extern const enemy_config_t ENEMIES_CONFIG[];
 
-    #define BULLET_SLOW_SPEED 5
-    #define BULLET_MEDIUM_SPEED 10
-    #define BULLET_FAST_SPEED 15
+    #define BULLET_SLOW_SPEED 200
+    #define BULLET_MEDIUM_SPEED 500
+    #define BULLET_FAST_SPEED 1000
 
     #define ENEMY_MOVE_SPEED 100
 
