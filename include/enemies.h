@@ -53,8 +53,8 @@ typedef struct enemy_config_s {
 
 extern const enemy_config_t ENEMIES_CONFIG[];
 
-    #define BULLET_SLOW_SPEED 200
-    #define BULLET_MEDIUM_SPEED 500
+    #define BULLET_SLOW_SPEED 250
+    #define BULLET_MEDIUM_SPEED 600
     #define BULLET_FAST_SPEED 1000
 
     #define ENEMY_MOVE_SPEED 100
