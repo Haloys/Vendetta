@@ -14,6 +14,7 @@
     #include <SFML/Audio/SoundBuffer.h>
 
     #include <stdbool.h>
+    #include <stdio.h>
 
     #include "resources.h"
     #include "inventory.h"
@@ -48,6 +49,7 @@ typedef struct game_assets_s {
 } game_assets_t;
 
 typedef struct player_data_s {
+    int save_number;
     inventory_t *inventory;
     int max_health;
     int health;
@@ -195,6 +197,8 @@ void handle_items_hover_label(game_data_t *game, sfRectangleShape **grid);
 int remove_item_from_inventory_by_name(game_data_t *game, char *item_name);
 int get_item_quantity(game_data_t *game, char *item_name);
 char *get_equiped_weapon(game_data_t *game);
+void insert_item_at_specific_slot(game_data_t *game, char *item_name, int qty,
+    int slot_id);
 
 // Skill Tree
 void display_skill_tree(game_data_t *game);
@@ -214,7 +218,15 @@ void second_book_callback(game_data_t *game);
 void third_book_callback(game_data_t *game);
 
 int asprintf(char **strp, const char *fmt, ...);
-
 char *key_to_string(sfKeyCode key);
+
+// Saves
+int init_game(game_data_t *game);
+unsigned long get_hash_values_from_file(FILE *file);
+void read_inventory(game_data_t *game, FILE *file);
+int load_game(game_data_t *game);
+void load_settings(game_data_t *game);
+unsigned long hash_values(unsigned long base_val);
+void save_global_settings(game_data_t *game);
 
 #endif /* MY_GAME_H */
