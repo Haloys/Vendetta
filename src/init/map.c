@@ -49,7 +49,14 @@ const map_config_t map_config[] = {
                 .pos = {0, 0}
             }
         },
-        .zoom_count = 4
+        .zoom_count = 4,
+        .door_count = 4,
+        .doors = {
+            {.rect = {1730, 1634, 1837, 1659}, .item = "keya"},
+            {.rect = {2114, 883, 2146, 994}, .item = "keyc"},
+            {.rect = {1075, 750, 1092, 856}, .item = "keyb"},
+            {.rect = {2893, 1385, 2916, 1622}, .item = "keyc"}
+        }
     },
     {
         .map = SP_MAP_2,
@@ -62,7 +69,11 @@ const map_config_t map_config[] = {
         .back_portal = {1418, 2102, 1711, 2157},
         .music = M_SECOND_MAP,
         .zoom = {{}},
-        .zoom_count = 0
+        .zoom_count = 0,
+        .door_count = 1,
+        .doors = {
+            {.rect = {1775, 1246, 1793, 1343}, .item = "keyc"},
+        }
     },
     {
         .map = SP_MAP_3,
@@ -82,7 +93,13 @@ const map_config_t map_config[] = {
                 .pos = {0, 0}
             }
         },
-        .zoom_count = 1
+        .zoom_count = 1,
+        .door_count = 3,
+        .doors = {
+            {.rect = {2053, 962, 2078, 1063}, .item = "keya"},
+            {.rect = {2089, 1496, 2182, 1518}, .item = "keyb"},
+            {.rect = {2992, 1074, 3095, 1100}, .item = "keyc"}
+        }
     }
 };
 
@@ -112,6 +129,18 @@ static void handle_map_unlock_notifications(game_data_t *game, map_id_t map_id)
         }
         game->map_unlocked[map_id] = true;
     }
+}
+
+bool door_checker(game_data_t *game, rect_t *door, char *item)
+{
+    sfVector2f pos = game->player->position;
+
+    if (pos.x >= door->x && pos.x <= door->w
+        && pos.y >= door->y && pos.y <= door->h
+        && get_item_quantity(game, item) > 0) {
+        return true;
+    }
+    return false;
 }
 
 static int set_map_data(game_data_t *game, map_id_t map_id)
