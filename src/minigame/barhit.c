@@ -123,15 +123,15 @@ static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
 
 void display_barhit(game_data_t *game)
 {
-    static barhit_t barhit;
     static int initialized = 0;
+    barhit_t *barhit = &game->barhit;
 
-    basic_design(game);
     if (!initialized) {
-        init_barhit(&barhit);
+        init_barhit(barhit);
         sfClock_restart(game->clock);
         initialized = 1;
     }
-    update_and_draw_barhit(game, &barhit);
+    basic_design(game);
+    if (update_and_draw_barhit(game, barhit))
+        initialized = 0;
 }
-
