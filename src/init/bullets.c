@@ -34,5 +34,8 @@ bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
 int init_bullets(game_data_t *game)
 {
     list_init(&game->bullets, (void *)free_bullet);
+    game->bullets_clock = sfClock_create();
+    if (game->bullets_clock == NULL)
+        return RET_FAIL;
     return RET_NONE;
 }

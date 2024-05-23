@@ -8,6 +8,33 @@
 #include "my_game.h"
 #include "enemies.h"
 
+const enemy_config_t ENEMIES_CONFIG[] = {
+    {
+        .name = "Easy enemy",
+        .sprite_data = &SPRITES[SP_ENEMY_EZ_IDLE],
+        .sprite = SP_ENEMY_EZ_IDLE,
+        .default_position = {2000, 2060},
+        .health = 100,
+        .speed = ENEMY_MOVE_SPEED + 75,
+        .attack = 10,
+        .armor = 0,
+        .max_health = 100,
+        .map_id = MAP_ONE,
+    },
+    {
+        .name = "Medium enemy",
+        .sprite_data = &SPRITES[SP_MEDIUM_IDLE],
+        .sprite = SP_MEDIUM_IDLE,
+        .default_position = {1223, 1469},
+        .health = 200,
+        .speed = ENEMY_MOVE_SPEED,
+        .attack = 20,
+        .armor = 10,
+        .max_health = 200,
+        .map_id = MAP_ONE,
+    },
+};
+
 static void free_enemy(enemy_t *enemy)
 {
     sfRectangleShape_destroy(enemy->health_bar);
@@ -32,33 +59,40 @@ static void set_enemy_shapes(enemy_t *enemy)
     sfRectangleShape_setOutlineColor(enemy->health_bar, sfBlack);
 }
 
-enemy_t *create_enemy(game_data_t *game)
+static enemy_t *create_enemy(game_data_t *game, enemy_config_t *config)
 {
     enemy_t *enemy = malloc(sizeof(enemy_t));
 
     if (enemy == NULL)
         return NULL;
-    enemy->sprite = get_sprite(game, SP_ENEMY_EZ_IDLE);
-    enemy->sprite_data = &SPRITES[SP_ENEMY_EZ_IDLE];
-    enemy->position = (sfVector2f){2000, 2060};
+    enemy->config = config;
+    enemy->sprite = get_sprite(game, config->sprite);
+    enemy->sprite_data = enemy->config->sprite_data;
+    enemy->position = enemy->config->default_position;
     enemy->direction = (sfVector2f){0, 0};
-    enemy->health = 100;
-    enemy->speed = ENEMY_MOVE_SPEED;
-    enemy->attack = 10;
-    enemy->armor = 0;
-    enemy->max_health = 100;
+    enemy->target = (sfVector2f){0, 0};
+    enemy->health = enemy->config->health;
+    enemy->armor = enemy->config->armor;
     enemy->clock = sfClock_create();
+    enemy->shoot_clock = sfClock_create();
     enemy->rotation = 0;
     enemy->disp_rotation = 0;
     enemy->target_rot = 0;
-    enemy->map_id = MAP_ONE;
+    enemy->path = NULL;
     set_enemy_shapes(enemy);
     return enemy;
 }
 
 int init_enemies(game_data_t *game)
 {
+    enemy_t *enemy = NULL;
+
     list_init(&game->enemies, (void *)free_enemy);
-    list_add_element(&game->enemies, create_enemy(game));
+    for (size_t i = 0; i < ENEMY_COUNT; ++i) {
+        enemy = create_enemy(game, (enemy_config_t *)&ENEMIES_CONFIG[i]);
+        if (enemy == NULL)
+            return RET_FAIL;
+        list_add_element(&game->enemies, enemy);
+    }
     return RET_NONE;
 }
