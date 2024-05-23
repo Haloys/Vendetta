@@ -31,7 +31,7 @@ bool is_rect(int x, int y, rect_t *rect)
 
 void resize_window(game_data_t *game)
 {
-    sfView *view = sfRenderWindow_getView(game->window);
+    sfView *view = (sfView *)sfRenderWindow_getView(game->window);
 
     sfView_setCenter(view, (sfVector2f){WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2});
     sfRenderWindow_setView(game->window, view);

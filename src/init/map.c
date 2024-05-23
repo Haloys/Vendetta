@@ -21,7 +21,34 @@ const map_config_t map_config[] = {
         .id = MAP_ONE,
         .portal = {3537, 1375, 3626, 1628},
         .back_portal = {0, 0, 0, 0},
-        .music = M_FIRST_MAP
+        .music = M_FIRST_MAP,
+        .zoom = {
+            {
+                .zone = {1644, 1645, 1883, 1838},
+                .min = 0.3,
+                .max = 0.3,
+                .pos = {1770, 1735}
+            },
+            {
+                .zone = {415, 1573, 734, 1985},
+                .min = 0.4,
+                .max = 0.4,
+                .pos = {645, 1800}
+            },
+            {
+                .zone = {256, 600, 1081, 937},
+                .min = 0.4,
+                .max = 0.4,
+                .pos = {810, 770}
+            },
+            {
+                .zone = {2156, 565, 2900, 1281},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
+            }
+        },
+        .zoom_count = 4
     },
     {
         .map = SP_MAP_2,
@@ -32,7 +59,9 @@ const map_config_t map_config[] = {
         .id = MAP_TWO,
         .portal = {1677, 1237, 1750, 1351},
         .back_portal = {1418, 2102, 1711, 2157},
-        .music = M_SECOND_MAP
+        .music = M_SECOND_MAP,
+        .zoom = {{}},
+        .zoom_count = 0
     },
     {
         .map = SP_MAP_3,
@@ -43,7 +72,16 @@ const map_config_t map_config[] = {
         .id = MAP_THREE,
         .portal = {2989, 1139, 3100, 1259},
         .back_portal = {687, 2445, 1138, 2507},
-        .music = M_THIRD_MAP
+        .music = M_THIRD_MAP,
+        .zoom = {
+            {
+                .zone = {631, 1292, 1693, 2505},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
+            }
+        },
+        .zoom_count = 1
     }
 };
 

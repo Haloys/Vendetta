@@ -18,30 +18,13 @@ static path_node_t *get_node_by_id(game_data_t *game, int id)
     return &game->points[id];
 }
 
-static bool is_child_of_node(path_node_t *current, path_node_t *to_check)
-{
-    for (int i = 0; i < current->link_count; ++i) {
-        if (current->links[i].to == to_check->id)
-            return true;
-    }
-    return false;
-}
-
-// if (current != NULL)
-//     printf("distance: %d => %d %d %d\n",
-//         node->id,
-//         can_move_to_point(game, pos, &direction, &node->position),
-//         distance < lowest,
-//         is_child_of_node(current, node));
-static path_node_t *get_nearest_node(game_data_t *game, sfVector2f *pos,
-    path_node_t *current)
+static path_node_t *get_nearest_node(game_data_t *game, sfVector2f *pos)
 {
     path_node_t *node = NULL;
     float distance = 0;
     int lowest = 999999;
     int save_node_id = -1;
     float angle = 0;
-    rect_t rect = {0};
 
     for (int i = 0; i < game->points_count; ++i) {
         node = &game->points[i];
@@ -82,7 +65,7 @@ static path_node_t *find_node_to_player(game_data_t *game,
 }
 
 static path_node_t *get_next_node_to_player_valid(game_data_t *game,
-    path_node_t *start, path_node_t *end)
+    path_node_t *start)
 {
     path_node_t *node = NULL;
 
@@ -110,7 +93,7 @@ static path_node_t *get_next_node_to_player(game_data_t *game,
     node = find_node_to_player(game, start, end, 0);
     if (node == NULL)
         return NULL;
-    node = get_next_node_to_player_valid(game, start, end);
+    node = get_next_node_to_player_valid(game, start);
     if (node == NULL)
         return NULL;
     return node;
@@ -157,9 +140,8 @@ void walk_to_nearest_point(enemy_t *enemy, game_data_t *game,
     sfTime time)
 {
     path_node_t *next_node = NULL;
-    path_node_t *node = get_nearest_node(game, &enemy->position, NULL);
-    path_node_t *player_node = get_nearest_node(game, &game->player->position,
-        NULL);
+    path_node_t *node = get_nearest_node(game, &enemy->position);
+    path_node_t *player_node = get_nearest_node(game, &game->player->position);
 
     if (can_move_to_point(game, &enemy->position, &enemy->direction,
         &game->player->position))
