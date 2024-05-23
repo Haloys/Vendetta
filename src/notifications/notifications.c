@@ -15,35 +15,48 @@
 #include "my_game.h"
 #include "notifications.h"
 
-static void display_single_notification(display_params_t *params,
-    notification_t *notification, int y_offset)
+static void notif_draw(display_params_t *params, notification_t *notification)
 {
-    sfRectangleShape_setPosition(params->background, (sfVector2f)
-        {params->relativepos.x, params->relativepos.y + 41 + y_offset});
-    sfRectangleShape_setPosition(params->line, (sfVector2f)
-        {params->relativepos.x, params->relativepos.y + 186 + y_offset});
     sfRenderWindow_drawRectangleShape(params->game->window, params->background,
         NULL);
     sfRenderWindow_drawRectangleShape(params->game->window,
         params->line, NULL);
-    sfSprite_setPosition(notification->icon, (sfVector2f)
-        {params->relativepos.x + 20, params->relativepos.y + 60 + y_offset});
-    sfText_setPosition(notification->title, (sfVector2f)
-        {params->relativepos.x + 54, params->relativepos.y + 55 + y_offset});
-    sfText_setPosition(notification->message, (sfVector2f)
-        {params->relativepos.x + 19, params->relativepos.y + 105 + y_offset});
     sfRenderWindow_drawSprite(params->game->window, notification->icon, NULL);
     sfRenderWindow_drawText(params->game->window, notification->title, NULL);
     sfRenderWindow_drawText(params->game->window, notification->message, NULL);
+}
+
+static void display_single_notification(game_data_t *game,
+display_params_t *params, notification_t *notification, int y_offset)
+{
+    float ratio = game->view_zoom;
+    sfVector2f relativepos = params->relativepos;
+
+    sfRectangleShape_setPosition(params->background, (sfVector2f)
+        {relativepos.x, relativepos.y + (41 * ratio) + y_offset});
+    sfRectangleShape_setPosition(params->line, (sfVector2f)
+        {relativepos.x, relativepos.y + (186 * ratio) + y_offset});
+    sfSprite_setPosition(notification->icon, (sfVector2f)
+        {relativepos.x + (20 * ratio), relativepos.y + 60 * ratio + y_offset});
+    sfText_setPosition(notification->title, (sfVector2f)
+        {relativepos.x + (54 * ratio), relativepos.y + 55 * ratio + y_offset});
+    sfText_setPosition(notification->message, (sfVector2f)
+        {relativepos.x + (19 * ratio), relativepos.y + 105 * ratio + y_offset});
+    sfRectangleShape_setScale(params->line, (sfVector2f){ratio, ratio});
+    sfRectangleShape_setScale(params->background, (sfVector2f){ratio, ratio});
+    sfSprite_setScale(notification->icon, (sfVector2f){ratio, ratio});
+    sfText_setScale(notification->title, (sfVector2f){ratio, ratio});
+    sfText_setScale(notification->message, (sfVector2f){ratio, ratio});
+    notif_draw(params, notification);
 }
 
 void display_notifications(game_data_t *game, notification_list_t *list)
 {
     notification_t *current = list->head;
     int y_offset = 0;
-    sfVector2f view_pos = sfView_getCenter(game->game_view);
-    sfVector2f relativepos = {view_pos.x - (WINDOW_WIDTH / 2),
-        view_pos.y - (WINDOW_HEIGHT / 2)};
+    sfVector2f view_size = sfView_getSize(game->game_view);
+    sfVector2f relativepos = {game->view_pos.x - view_size.x / 2,
+        game->view_pos.y - view_size.y / 2};
     sfRectangleShape *background = sfRectangleShape_create();
     sfRectangleShape *line = sfRectangleShape_create();
     display_params_t params = {game, background, line, relativepos};
@@ -53,8 +66,8 @@ void display_notifications(game_data_t *game, notification_list_t *list)
     sfRectangleShape_setSize(line, (sfVector2f){401, 5});
     sfRectangleShape_setFillColor(line, sfColor_fromRGB(51, 217, 122));
     while (current != NULL) {
-        display_single_notification(&params, current, y_offset);
-        y_offset += 200;
+        display_single_notification(game, &params, current, y_offset);
+        y_offset += 200 * game->view_zoom;
         current = current->next;
     }
     sfRectangleShape_destroy(background);
