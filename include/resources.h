@@ -2108,6 +2108,7 @@ typedef enum music_id_e {
     M_FIRST_MAP,
     M_SECOND_MAP,
     M_THIRD_MAP,
+    M_ENDING,
 } music_id_t;
 
 typedef struct music_s {
@@ -2130,6 +2131,10 @@ static music_t MUSICS[] = {
     },
     {
         .id = M_THIRD_MAP,
+        .volume = 20
+    },
+    {
+        .id = M_ENDING,
         .volume = 20
     },
 };

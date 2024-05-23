@@ -22,10 +22,13 @@ static void free_credits(char **credits, size_t line_count)
     free(credits);
 }
 
-static void display_credits(sfRenderWindow *window, credits_data_t *data)
+static void display_credits(sfRenderWindow *window, credits_data_t *data,
+    game_data_t *game)
 {
     sfText *text = sfText_create();
 
+    sfMusic_stop(game->assets.music[MUSICS[M_THIRD_MAP].id]);
+    start_music(&game->assets, M_ENDING);
     sfText_setFont(text, data->font);
     sfText_setCharacterSize(text, 30);
     for (size_t i = 0; i < data->line_count; i++) {
@@ -67,12 +70,14 @@ static void check_end_wait_time(ending_screen_t *ending, game_data_t *game)
 {
     if (time(NULL) >= ending->end_wait_time) {
         if (ending->state == 1) {
+            sfMusic_pause(game->assets.music[M_ENDING]);
             printf("Segmentation Fault (core dumped)\n");
             sfRenderWindow_close(game->window);
             sleep(5);
             free_and_reload_credits(ending);
             game->window = sfRenderWindow_create(game->video_mode, game->name,
                 sfResize | sfClose, NULL);
+            sfMusic_play(game->assets.music[M_ENDING]);
         }
         if (ending->state == 3)
             change_game_mode(game, MAIN_MENU);
@@ -84,7 +89,7 @@ static void handle_display_state(ending_screen_t *ending,
 {
     if (ending->state == 0 || ending->state == 2) {
         basic_design(game);
-        display_credits(game->window, data);
+        display_credits(game->window, data, game);
         update_credits_position(ending);
     } else if (ending->state == 1 || ending->state == 3) {
         check_end_wait_time(ending, game);
