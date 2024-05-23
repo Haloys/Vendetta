@@ -35,11 +35,12 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy, sfTime time)
             rect.left += enemy->sprite_data->rect.width;
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
-    if (sfTime_asMilliseconds(time) % 100 == 0) {
-        printf("Enemy trying shoot\n");
-        if (!will_collide_wall(game, &enemy->position, &enemy->target))
+    if (sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5) {
+        if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
             list_add_element(&game->bullets, create_bullet(game,
                 &enemy->position, &enemy->target, enemy->rotation));
+            sfClock_restart(enemy->shoot_clock);
+        }
     }
 }
 
