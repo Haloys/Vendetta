@@ -75,7 +75,7 @@ void draw_enemy(game_data_t *game, enemy_t *enemy);
 void update_enemy(game_data_t *game, enemy_t *enemy);
 
 
-void update_enemy_pos_sprite(enemy_t *enemy);
+void update_enemy_pos_sprite(game_data_t *game, enemy_t *enemy);
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time);
 
 // BULLETS
