@@ -9,6 +9,7 @@
 
 #include "my_game.h"
 #include "entity.h"
+#include "math.h"
 
 const item_config_t item_config[] = {
     {
@@ -17,7 +18,7 @@ const item_config_t item_config[] = {
         .default_position = {1728, 1784},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_a
     },
     {
         .name = "Key B",
@@ -25,7 +26,7 @@ const item_config_t item_config[] = {
         .default_position = {811, 620},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_b
     },
     {
         .name = "Key C",
@@ -33,15 +34,15 @@ const item_config_t item_config[] = {
         .default_position = {2596, 597},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_c
     },
     {
-        .name = "Sword",
+        .name = "Knife",
         .sprite = SP_SWORD_ICON,
-        .default_position = {1038, 1308},
+        .default_position = {1070, 1316},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_knife
     },
     {
         .name = "Chest",
@@ -49,15 +50,15 @@ const item_config_t item_config[] = {
         .default_position = {471, 1806},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_key
     },
     {
-        .name = "Potion",
+        .name = "Bandage",
         .sprite = SP_POTION_ICON,
-        .default_position = {1413, 1211},
+        .default_position = {1383, 1192},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_bandage
     },
     {
         .name = "Chest",
@@ -65,7 +66,7 @@ const item_config_t item_config[] = {
         .default_position = {500, 748},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_shoes
     },
     {
         .name = "Chest",
@@ -73,7 +74,7 @@ const item_config_t item_config[] = {
         .default_position = {1332, 636},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_armor
     },
     {
         .name = "Chest",
@@ -81,47 +82,39 @@ const item_config_t item_config[] = {
         .default_position = {1917, 846},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_mask
     },
     {
-        .name = "Sword",
+        .name = "Pistol",
         .sprite = SP_SWORD_ICON,
         .default_position = {2063, 1713},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_pistol
     },
     {
-        .name = "Potion",
+        .name = "Aidkit",
         .sprite = SP_POTION_ICON,
         .default_position = {801, 1753},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_aidkit
     },
     {
-        .name = "Oxycodone",
-        .sprite = SP_OXY,
-        .default_position = {820, 687},
-        .default_rotation = 0,
-        .map_id = MAP_TWO,
-        .callback_interact = NULL
-    },
-    {
-        .name = "Sword",
+        .name = "Rifle",
         .sprite = SP_SWORD_ICON,
         .default_position = {1106, 1106},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_rifle
     },
     {
-        .name = "Sword",
+        .name = "Shotgun",
         .sprite = SP_SWORD_ICON,
         .default_position = {499, 36},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_shotgun
     },
     {
         .name = "Chest",
@@ -129,7 +122,7 @@ const item_config_t item_config[] = {
         .default_position = {1948, 353},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_beach
     },
     {
         .name = "Chest",
@@ -137,7 +130,7 @@ const item_config_t item_config[] = {
         .default_position = {1893, 1182},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_inside
     },
     {
         .name = "Chest",
@@ -145,7 +138,7 @@ const item_config_t item_config[] = {
         .default_position = {3447, 1070},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_boss
     },
     {
         .name = "Key A",
@@ -153,7 +146,7 @@ const item_config_t item_config[] = {
         .default_position = {1369, 618},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_a
     },
     {
         .name = "Key B",
@@ -161,21 +154,65 @@ const item_config_t item_config[] = {
         .default_position = {2296, 1284},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_key_b
     },
     {
-        .name = "Potion",
+        .name = "Aidkit",
         .sprite = SP_POTION_ICON,
         .default_position = {2250, 1909},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_aidkit
+    },
+    {
+        .name = "Aidkit",
+        .sprite = SP_POTION_ICON,
+        .default_position = {405, 959},
+        .default_rotation = 0,
+        .map_id = MAP_THREE,
+        .callback_interact = callback_interact_aidkit
     },
 };
 
 static void free_item(item_entity_t *item)
 {
     free(item);
+}
+
+static void item_create_visuals(game_data_t *game, item_entity_t *item)
+{
+    item->keybind_text = sfText_create();
+    sfText_setFont(item->keybind_text, game->font);
+    sfText_setCharacterSize(item->keybind_text, 22);
+    strcpy(item->key, "E");
+    sfText_setString(item->keybind_text, item->key);
+    item->square = sfRectangleShape_create();
+    sfRectangleShape_setSize(item->square, (sfVector2f){40, 40});
+    sfRectangleShape_setFillColor(item->square, FILL_COLOR);
+    sfRectangleShape_setOutlineThickness(item->square, 2);
+    sfRectangleShape_setOutlineColor(item->square, BORDER_HOVER);
+}
+
+static void draw_item(game_data_t *game, item_entity_t *item)
+{
+    sfVector2f player_pos = game->player->position;
+    float distance = sqrt(pow(player_pos.x - item->position.x, 2) +
+        pow(player_pos.y - item->position.y, 2));
+
+    sfSprite_setPosition(item->sprite, item->position);
+    sfRenderWindow_drawSprite(game->window, item->sprite, NULL);
+    sfSprite_setRotation(item->sprite, item->rotation);
+    if (distance < 130) {
+        sfText_setPosition(item->keybind_text, (sfVector2f)
+            {item->position.x + 18, item->position.y - 43});
+        sfRectangleShape_setPosition(item->square, (sfVector2f)
+            {item->position.x + 7, item->position.y - 50});
+        sfRenderWindow_drawRectangleShape(game->window, item->square, NULL);
+        sfRenderWindow_drawText(game->window, item->keybind_text, NULL);
+        if (is_key_pressed(game, Interact)) {
+            item->config->callback_interact(game, item);
+        }
+    }
 }
 
 static item_entity_t *create_item(game_data_t *game, item_config_t *config)
@@ -189,6 +226,7 @@ static item_entity_t *create_item(game_data_t *game, item_config_t *config)
     item->sprite = get_sprite(game, item->config->sprite);
     item->position = config->default_position;
     item->rotation = config->default_rotation;
+    item_create_visuals(game, item);
     return item;
 }
 
@@ -204,4 +242,18 @@ int init_items(game_data_t *game)
         list_add_element(&game->entities, item);
     }
     return RET_NONE;
+}
+
+void display_items(game_data_t *game)
+{
+    element_t *current = game->entities.start.next;
+    item_entity_t *item = NULL;
+
+    while (current != &game->entities.end) {
+        item = (item_entity_t *)current->data;
+        if (game->map.id == item->config->map_id) {
+            draw_item(game, item);
+        }
+        current = current->next;
+    }
 }
