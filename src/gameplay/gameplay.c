@@ -46,6 +46,7 @@ static void change_map_if_needed(game_data_t *game)
         if (door_checker(game, &game->map.doors[i].rect,
             game->map.doors[i].item)) {
             door_callback(game, i);
+            return;
         }
     }
 }
@@ -57,7 +58,7 @@ static void update_gameplay(game_data_t *game)
 
     if (is_key_pressed(game, Reset)) {
         map_id = (map_id + 1) % 3;
-        set_map(game, map_id, NULL);
+        change_game_mode(game, ENDING_SCREEN);
     }
     sfRenderWindow_setView(game->window, game->game_view);
     sfClock_restart(game->player->clock);
@@ -102,7 +103,4 @@ void process_playing_gameplay(game_data_t *game)
 {
     update_gameplay(game);
     display_gameplay(game);
-    for (int i = 0; i < game->map.door_count; i++) {
-        draw_doors(game, &game->map.doors[i], &game->map.doors[i].rect);
-    }
 }

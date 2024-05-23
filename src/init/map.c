@@ -171,7 +171,9 @@ static void set_player_music_data(game_data_t *game, map_id_t map_id,
     game->player->position = pos != NULL ? *pos : map.spawn_pos;
     game->view_pos = map.spawn_pos;
     sfView_setCenter(game->game_view, game->player->position);
-    sfMusic_stop(game->assets.music[game->map.music]);
+    sfMusic_stop(game->assets.music[M_FIRST_MAP]);
+    sfMusic_stop(game->assets.music[M_SECOND_MAP]);
+    sfMusic_stop(game->assets.music[M_THIRD_MAP]);
     start_music(&game->assets, map.music);
     update_music_volumes(game);
 }
