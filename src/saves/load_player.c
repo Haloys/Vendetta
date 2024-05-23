@@ -81,13 +81,15 @@ unsigned long get_hash_values_from_file(FILE *file)
 static int verify_file_hash(char *base_value)
 {
     FILE *file = fopen(base_value, "r");
-    unsigned long base_hash = get_hash_values_from_file(file);
-    unsigned long hash = hash_values(base_hash);
+    unsigned long base_hash = 0;
+    unsigned long hash = 0;
     unsigned long file_hash = 0;
     char buffer[64] = {0};
 
     if (!file)
         return 1;
+    base_hash = get_hash_values_from_file(file);
+    hash = hash_values(base_hash);
     fscanf(file, "%s\n", buffer);
     sscanf(buffer, "hash=%ld", &file_hash);
     if (file_hash != hash) {
