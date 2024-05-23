@@ -56,9 +56,6 @@ static void set_enemy_shapes(enemy_t *enemy)
     sfCircleShape_setOutlineThickness(enemy->area, 1);
     sfCircleShape_setOutlineColor(enemy->area, sfBlue);
     sfRectangleShape_setSize(enemy->health_bar, (sfVector2f){100, 10});
-    sfRectangleShape_setFillColor(enemy->health_bar, sfRed);
-    sfRectangleShape_setOutlineThickness(enemy->health_bar, 1);
-    sfRectangleShape_setOutlineColor(enemy->health_bar, sfBlack);
 }
 
 static enemy_t *create_enemy(game_data_t *game, enemy_config_t *config)

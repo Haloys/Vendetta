@@ -49,7 +49,7 @@ void update_enemy(game_data_t *game, enemy_t *enemy)
     sfTime time = sfClock_getElapsedTime(enemy->clock);
 
     update_enemy_pos_diretion(enemy, game, time);
-    update_enemy_pos_sprite(enemy);
+    update_enemy_pos_sprite(game, enemy);
     update_spritesheet(game, enemy);
     sfClock_restart(enemy->clock);
 }

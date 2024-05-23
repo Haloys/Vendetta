@@ -45,14 +45,25 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
     }
 }
 
-void update_enemy_pos_sprite(enemy_t *enemy)
+void update_enemy_pos_sprite(game_data_t *game, enemy_t *enemy)
 {
     sfSprite_setPosition(enemy->sprite, enemy->position);
     sfCircleShape_setPosition(enemy->area, enemy->position);
     sfCircleShape_setOrigin(enemy->area, (sfVector2f){250, 250});
     sfSprite_setRotation(enemy->sprite, enemy->disp_rotation);
+    sfRectangleShape_setFillColor(enemy->health_bar, sfTransparent);
+    sfRectangleShape_setOutlineThickness(enemy->health_bar, 2);
+    sfRectangleShape_setOutlineColor(enemy->health_bar, sfBlack);
     sfRectangleShape_setSize(enemy->health_bar,
-        (sfVector2f){enemy->health, 10});
+        (sfVector2f){100, 10});
+    sfRectangleShape_setPosition(enemy->health_bar,
+        (sfVector2f){enemy->position.x - 50, enemy->position.y - 50});
+    sfRenderWindow_drawRectangleShape(game->window,
+        enemy->health_bar, NULL);
+    sfRectangleShape_setFillColor(enemy->health_bar, sfRed);
+    sfRectangleShape_setOutlineThickness(enemy->health_bar, 0);
+    sfRectangleShape_setSize(enemy->health_bar,
+        (sfVector2f){enemy->health * 100 / enemy->config->max_health, 10});
     sfRectangleShape_setPosition(enemy->health_bar,
         (sfVector2f){enemy->position.x - 50, enemy->position.y - 50});
 }
