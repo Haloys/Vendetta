@@ -46,17 +46,15 @@ void display_overlay(game_data_t *game)
     float ratio = game->view_zoom;
 
     relativepos.y += 30 * ratio;
+    relativepos.x -= 240 * ratio;
     if (game->is_passive) {
-        relativepos.x -= 240 * ratio;
         sprintf(buffer, "PASSIVE MODE [%s]",
             key_to_string(game->keybinds[Hostile].code));
-        passiv = set_text(game, buffer, 22, relativepos);
     } else {
-        relativepos.x -= 240 * ratio;
         sprintf(buffer, "HOSTILE MODE [%s]",
             key_to_string(game->keybinds[Hostile].code));
-        passiv = set_text(game, buffer, 22, relativepos);
     }
+    passiv = set_text(game, buffer, 22, relativepos);
     sfText_setScale(passiv, (sfVector2f){ratio, ratio});
     sfRenderWindow_drawText(game->window, passiv, NULL);
     sfText_destroy(passiv);
