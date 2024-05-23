@@ -89,6 +89,12 @@ typedef struct {
     bool is_fullscreen;
 } settings_t;
 
+typedef struct save_games_s {
+    char creation_date[32];
+    char save_name[32];
+    char save_path[64];
+} save_games_t;
+
 typedef struct game_data_s {
     char name[10];
     sfVideoMode video_mode;
@@ -114,6 +120,8 @@ typedef struct game_data_s {
     player_data_t *player;
     settings_t settings;
     sfImage *cols_map;
+    bool is_deleting;
+    save_games_t save_games[3];
     long key_state;
     long key_change;
     long key_update;
@@ -232,5 +240,20 @@ int load_game(game_data_t *game);
 void load_settings(game_data_t *game);
 unsigned long hash_values(unsigned long base_val);
 void save_global_settings(game_data_t *game);
+void set_shapes_params(sfRectangleShape *first_button,
+    sfRectangleShape *second_button, sfRectangleShape *third_button);
+int handle_click_first_button(game_data_t *game,
+    sfRectangleShape *first_button);
+int handle_click_second_button(game_data_t *game,
+    sfRectangleShape *second_button);
+int handle_click_third_button(game_data_t *game,
+    sfRectangleShape *third_button);
+int count_existing_saves(game_data_t *game);
+void draw_bottom_text(game_data_t *game, int i);
+int remove_save(game_data_t *game, int i);
+void handle_hover_and_action(game_data_t *game,
+    sfRectangleShape *del_btn, int i);
+void draw_delete_button(game_data_t *game, int i);
+void draw_bottom_part(game_data_t *game, int i);
 
 #endif /* MY_GAME_H */

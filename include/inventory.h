@@ -19,6 +19,9 @@
     #define SQUARE_BG sfColor_fromRGBA(255, 255, 255, 50)
     #define BORDER sfColor_fromRGBA(255, 255, 255, 125)
     #define BORDER_HOVER sfColor_fromRGB(51, 217, 122)
+    #define RED_BTN_BG sfColor_fromRGBA(242, 115, 132, 51)
+    #define RED_BTN_OUTLINE sfColor_fromRGBA(242, 115, 132, 128)
+    #define RED_HOVER sfColor_fromRGB(242, 115, 132)
     #define BORDER_RED sfColor_fromRGB(242, 115, 132)
 
     #define GET_SENTENCE(x) (x ? "YES" : "NO")

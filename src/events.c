@@ -11,18 +11,34 @@
 #include "gameplay.h"
 #include "utils.h"
 
+static void destroy_rectangles(sfRectangleShape *first_button,
+    sfRectangleShape *second_button, sfRectangleShape *third_button)
+{
+    sfRectangleShape_destroy(first_button);
+    sfRectangleShape_destroy(second_button);
+    sfRectangleShape_destroy(third_button);
+}
+
 static void process_mouse_click_play(game_data_t *game)
 {
-    for (int i = 0; i < 3; i++) {
-        if (game->state == MAIN_MENU && game->hover_slot_array[i]) {
-            game->player->save_number = i + 1;
-            change_game_mode(game, PLAYING);
-            game->player->is_playing = true;
-            game->is_navbar_visible = false;
-            load_game(game);
-            break;
-        }
+    sfRectangleShape *first_button = sfRectangleShape_create();
+    sfRectangleShape *second_button = sfRectangleShape_create();
+    sfRectangleShape *third_button = sfRectangleShape_create();
+
+    set_shapes_params(first_button, second_button, third_button);
+    if (handle_click_first_button(game, first_button) == 1) {
+        destroy_rectangles(first_button, second_button, third_button);
+        return;
     }
+    if (handle_click_second_button(game, second_button) == 1) {
+        destroy_rectangles(first_button, second_button, third_button);
+        return;
+    }
+    if (handle_click_third_button(game, third_button) == 1) {
+        destroy_rectangles(first_button, second_button, third_button);
+        return;
+    }
+    destroy_rectangles(first_button, second_button, third_button);
 }
 
 static void process_mouse_click_save(game_data_t *game)
@@ -81,7 +97,8 @@ static void process_mouse_button_pressed(game_data_t *game,
 {
     game->clicked = true;
     remap_event_coords(game->window, &evt->x, &evt->y);
-    process_mouse_click_play(game);
+    if (game->state == MAIN_MENU)
+        process_mouse_click_play(game);
     handle_navbar_click(game, *evt);
     handle_settings_click(game);
     process_mouse_click_save(game);

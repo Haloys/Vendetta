@@ -115,5 +115,7 @@ int init_assets(game_data_t *game)
     load_musics(&game->assets);
     load_shaders(&game->assets);
     init_notification_list(&game->notifications);
+    for (int i = 0; i < 3; i++)
+        game->save_games[i] = (save_games_t){0};
     return 0;
 }

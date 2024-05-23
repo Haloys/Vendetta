@@ -11,6 +11,7 @@
 
 #include "my_game.h"
 #include "save.h"
+#include "saves.h"
 #include "utils.h"
 
 int is_file_valid(game_ui_t *game_ui)
@@ -35,6 +36,18 @@ void update_valid_button_color(game_data_t *game, game_ui_t *game_ui)
     }
 }
 
+int save_file(game_data_t *game, char *file_name)
+{
+    for (int i = 0; i < 3; i++) {
+        if (access(SAVES_NAMES[i], F_OK) == -1) {
+            rename(file_name, SAVES_NAMES[i]);
+            game->validation_count++;
+            game->is_sprite_displayed = true;
+        }
+    }
+    return 0;
+}
+
 void handle_valid_button_click(game_data_t *game, game_ui_t *game_ui)
 {
     sfFloatRect valid_bounds =
@@ -45,8 +58,7 @@ void handle_valid_button_click(game_data_t *game, game_ui_t *game_ui)
         printf("Text entered: %s\n", game_ui->input);
         if (is_file_valid(game_ui)) {
             change_game_mode(game, MAIN_MENU);
-            game->validation_count++;
-            game->is_sprite_displayed = true;
+            save_file(game, game_ui->input);
         }
     }
 }
