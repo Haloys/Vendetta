@@ -16,8 +16,11 @@
 static void give_item_based_on_rarity(game_data_t *game, float random_value,
     int total_items, int *count)
 {
+    float cumulative_probability = 0.0;
+
     for (int j = 0; j < total_items; ++j) {
-        if (random_value < ITEMS[j].rarity) {
+        cumulative_probability += ITEMS[j].rarity;
+        if (random_value < cumulative_probability) {
             insert_item_in_inventory(game, ITEMS[j].name, 1);
             (*count)++;
             break;
