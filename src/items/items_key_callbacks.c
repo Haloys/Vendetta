@@ -10,6 +10,7 @@
 #include "my_game.h"
 #include "entity.h"
 #include "math.h"
+#include "setup_notifications.h"
 
 int callback_interact_key_a(game_data_t *game, item_entity_t *item)
 {

@@ -14,6 +14,7 @@
 
 #include "my_game.h"
 #include "notifications.h"
+#include "setup_notifications.h"
 
 static void notif_draw(display_params_t *params, notification_t *notification)
 {

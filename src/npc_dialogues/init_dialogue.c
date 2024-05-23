@@ -14,6 +14,7 @@
 #include "my_game.h"
 #include "setup_dialogues.h"
 #include "utils.h"
+#include "setup_notifications.h"
 
 void npc_dialogues(game_data_t *game)
 {
@@ -25,5 +26,5 @@ void npc_dialogues(game_data_t *game)
         return;
     }
     handle_choice(game, &DIALOGUES[game->player->npc_id], &state);
-    trigger_notification(game, 1);
+    trigger_notification(game, 0);
 }

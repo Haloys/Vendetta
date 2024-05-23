@@ -10,6 +10,7 @@
 #include "my_game.h"
 #include "map.h"
 #include "gameplay.h"
+#include "setup_notifications.h"
 
 const map_config_t map_config[] = {
     {
