@@ -21,9 +21,17 @@ const item_config_t item_config[] = {
         .callback_interact = callback_interact_key_a
     },
     {
-        .name = "Key B",
+        .name = "Key C",
         .sprite = SP_KEYC,
         .default_position = {811, 620},
+        .default_rotation = 0,
+        .map_id = MAP_ONE,
+        .callback_interact = callback_interact_key_c
+    },
+    {
+        .name = "Key C",
+        .sprite = SP_KEYC,
+        .default_position = {2596, 597},
         .default_rotation = 0,
         .map_id = MAP_ONE,
         .callback_interact = callback_interact_key_c
