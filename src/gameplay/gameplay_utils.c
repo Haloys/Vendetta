@@ -15,19 +15,20 @@
 #include "game_npc.h"
 #include "utils.h"
 
-static void draw_overlay(game_data_t *game, sfVector2f relativepos)
+static void draw_overlay(game_data_t *game, sfVector2f relativepos, float ratio)
 {
     sfSprite *sp_health = get_sprite(game, SP_HEALTH2);
     sfText *health;
     char buffer[10];
 
     sprintf(buffer, "%d", game->player->health);
-    relativepos.y += 40;
-    relativepos.x += 120;
+    relativepos.y += 40 * ratio;
+    relativepos.x += 120 * ratio;
     sfSprite_setPosition(sp_health, relativepos);
-    relativepos.x += 50;
-    relativepos.y -= 5;
-    health = set_text(game, buffer, 30, relativepos);
+    sfSprite_setScale(sp_health, (sfVector2f){ratio, ratio});
+    relativepos.x += 50 * ratio;
+    relativepos.y -= 5 * ratio;
+    health = set_text(game, buffer, 30 * ratio, relativepos);
     sfText_setStyle(health, sfTextBold);
     sfRenderWindow_drawText(game->window, health, NULL);
     sfRenderWindow_drawSprite(game->window, sp_health, NULL);
@@ -41,20 +42,21 @@ void display_overlay(game_data_t *game)
         game->view_pos.y - view_size.y / 2};
     sfText *passiv;
     char buffer[30];
+    float ratio = game->view_zoom;
 
-    relativepos.y += 30;
+    relativepos.y += 30 * ratio;
     if (game->is_passive) {
-        relativepos.x -= 240;
+        relativepos.x -= 240 * ratio;
         sprintf(buffer, "PASSIVE MODE [%s]",
             key_to_string(game->keybinds[Hostile].code));
-        passiv = set_text(game, buffer, 22, relativepos);
+        passiv = set_text(game, buffer, 22 * ratio, relativepos);
     } else {
-        relativepos.x -= 240;
+        relativepos.x -= 240 * ratio;
         sprintf(buffer, "HOSTILE MODE [%s]",
             key_to_string(game->keybinds[Hostile].code));
-        passiv = set_text(game, buffer, 22, relativepos);
+        passiv = set_text(game, buffer, 22 * ratio, relativepos);
     }
     sfRenderWindow_drawText(game->window, passiv, NULL);
     sfText_destroy(passiv);
-    draw_overlay(game, relativepos);
+    draw_overlay(game, relativepos, ratio);
 }
