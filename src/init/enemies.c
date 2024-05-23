@@ -53,7 +53,7 @@ static enemy_t *create_enemy(game_data_t *game, enemy_config_t *config)
     if (enemy == NULL)
         return NULL;
     enemy->config = config;
-    enemy->sprite = get_sprite(game, config->sprite_data->id);
+    enemy->sprite = get_sprite(game, config->sprite);
     enemy->sprite_data = enemy->config->sprite_data;
     enemy->position = enemy->config->default_position;
     enemy->direction = (sfVector2f){0, 0};

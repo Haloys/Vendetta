@@ -31,6 +31,7 @@ typedef struct enemy_s {
 typedef struct enemy_config_s {
     char name[128];
     game_sprite_t const *sprite_data;
+    sprite_id_t sprite;
     sfVector2f default_position;
     int health;
     int speed;
@@ -67,7 +68,7 @@ void update_enemy(game_data_t *game, enemy_t *enemy);
 
 
 void update_enemy_pos_sprite(enemy_t *enemy);
-void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game);
+void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time);
 
 // BULLETS
 void update_bullet(game_data_t *game, bullet_t *bullet);
