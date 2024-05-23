@@ -10,6 +10,7 @@
 
 #include "my_game.h"
 #include "gameplay.h"
+#include "enemies.h"
 
 static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
 {
@@ -122,6 +123,21 @@ static void update_player_direction_t(game_data_t *game)
     }
 }
 
+static void check_bullet_player(game_data_t *game)
+{
+    float angle = 0;
+    sfVector2f dir = {0, 0};
+
+    if (game->clicked) {
+        angle = atan2f(game->mouse_pos.y - game->player->position.y,
+            game->mouse_pos.x - game->player->position.x);
+        dir = (sfVector2f){cosf(angle), sinf(angle)};
+        list_add_element(&game->bullets,
+            create_bullet(game, &game->player->position,
+            &dir, game->player->target_rot + 90));
+    }
+}
+
 void update_player(game_data_t *game, sfTime time)
 {
     float scale = sfTime_asSeconds(time) * game->player->pspeed;
@@ -141,4 +157,5 @@ void update_player(game_data_t *game, sfTime time)
         player->position.y += player->direction.y;
     set_view(game, time);
     update_player_direction_t(game);
+    check_bullet_player(game);
 }

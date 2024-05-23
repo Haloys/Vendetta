@@ -17,6 +17,7 @@ typedef struct enemy_s {
     sfTexture *texture;
     sfVector2f position;
     sfVector2f direction;
+    sfVector2f target;
     sfRectangleShape *health_bar;
     sfCircleShape *area;
     int health;
@@ -34,6 +35,8 @@ typedef struct enemy_s {
     #define BULLET_SLOW_SPEED 5
     #define BULLET_MEDIUM_SPEED 10
     #define BULLET_FAST_SPEED 15
+
+    #define ENEMY_MOVE_SPEED 100
 
 typedef struct bullet_t {
     sfSprite *sprite;

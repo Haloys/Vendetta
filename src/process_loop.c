@@ -27,6 +27,7 @@ const process_state_t process_state[] = {
     display_second_book,
     display_third_book,
     display_ending_screen,
+    display_game_over,
 };
 
 static void process_loop_update(game_data_t *game)
