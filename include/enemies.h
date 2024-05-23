@@ -79,4 +79,7 @@ bool bullet_touched_entity(game_data_t *game, bullet_t *bullet);
 bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
     float rotation);
 
+void walk_to_nearest_point(enemy_t *enemy, game_data_t *game,
+    sfTime time);
+
 #endif /* ENEMIES_H */
