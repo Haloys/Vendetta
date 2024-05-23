@@ -23,6 +23,7 @@ static bool execute_enemy_touched(game_data_t *game, enemy_t *enemy,
 static bool execute_player_touched(game_data_t *game, bullet_t *bullet)
 {
     player_data_t *player = game->player;
+
     player->health -= (bullet->damage
         - (player->armor * bullet->damage / 100));
     player->health = MAX(0, player->health);

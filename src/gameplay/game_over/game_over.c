@@ -65,7 +65,6 @@ static void create_game_over_elems(game_data_t *game, game_over_elems_t *elems)
         WINDOW_HEIGHT / 2 - button_size.y / 2};
     sfVector2f respawn_position = {WINDOW_WIDTH / 2 + space / 2,
         WINDOW_HEIGHT / 2 - button_size.y / 2};
-
     button_data_t respawn_button_data = {button_size, respawn_position,
         &(elems->respawn_button), &(elems->respawn_txt)};
     button_data_t quit_button_data = {button_size, quit_position,
@@ -134,7 +133,8 @@ void display_game_over(game_data_t *game)
     create_game_over_elems(game, &elems);
     handle_game_over_hover(game, &elems);
     sfRenderWindow_drawRectangleShape(game->window, elems.quit_button, NULL);
-    sfRenderWindow_drawRectangleShape(game->window, elems.respawn_button, NULL);
+    sfRenderWindow_drawRectangleShape(game->window,
+        elems.respawn_button, NULL);
     sfRenderWindow_drawText(game->window, elems.quit_txt, NULL);
     sfRenderWindow_drawText(game->window, elems.respawn_txt, NULL);
     handle_clicks(game, &elems);
