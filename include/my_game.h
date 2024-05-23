@@ -255,5 +255,5 @@ void handle_hover_and_action(game_data_t *game,
     sfRectangleShape *del_btn, int i);
 void draw_delete_button(game_data_t *game, int i);
 void draw_bottom_part(game_data_t *game, int i);
-
+int save_game(game_data_t *game);
 #endif /* MY_GAME_H */
