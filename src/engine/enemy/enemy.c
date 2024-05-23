@@ -21,7 +21,7 @@ void draw_enemy(game_data_t *game, enemy_t *enemy)
     sfRenderWindow_drawRectangleShape(game->window, enemy->health_bar, NULL);
 }
 
-static void update_spritesheet(game_data_t *game, enemy_t *enemy, sfTime time)
+static void update_spritesheet(game_data_t *game, enemy_t *enemy)
 {
     sfTime game_time = sfClock_getElapsedTime(game->clock);
     sfIntRect rect = {0};
@@ -50,6 +50,6 @@ void update_enemy(game_data_t *game, enemy_t *enemy)
 
     update_enemy_pos_diretion(enemy, game, time);
     update_enemy_pos_sprite(enemy);
-    update_spritesheet(game, enemy, time);
+    update_spritesheet(game, enemy);
     sfClock_restart(enemy->clock);
 }

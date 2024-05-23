@@ -33,15 +33,13 @@ static bool is_child_of_node(path_node_t *current, path_node_t *to_check)
 //         can_move_to_point(game, pos, &direction, &node->position),
 //         distance < lowest,
 //         is_child_of_node(current, node));
-static path_node_t *get_nearest_node(game_data_t *game, sfVector2f *pos,
-    path_node_t *current)
+static path_node_t *get_nearest_node(game_data_t *game, sfVector2f *pos)
 {
     path_node_t *node = NULL;
     float distance = 0;
     int lowest = 999999;
     int save_node_id = -1;
     float angle = 0;
-    rect_t rect = {0};
 
     for (int i = 0; i < game->points_count; ++i) {
         node = &game->points[i];
@@ -157,9 +155,8 @@ void walk_to_nearest_point(enemy_t *enemy, game_data_t *game,
     sfTime time)
 {
     path_node_t *next_node = NULL;
-    path_node_t *node = get_nearest_node(game, &enemy->position, NULL);
-    path_node_t *player_node = get_nearest_node(game, &game->player->position,
-        NULL);
+    path_node_t *node = get_nearest_node(game, &enemy->position);
+    path_node_t *player_node = get_nearest_node(game, &game->player->position);
 
     if (can_move_to_point(game, &enemy->position, &enemy->direction,
         &game->player->position))
