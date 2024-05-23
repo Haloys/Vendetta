@@ -24,6 +24,16 @@ static void check_gameplay_keys(game_data_t *game)
         game->is_passive = !game->is_passive;
 }
 
+static void door_callback(game_data_t *game, int i)
+{
+    if (is_key_pressed(game, Interact) && i % 2 == 0) {
+        change_game_mode(game, SEQUENCE_CLICK);
+    }
+    if (is_key_pressed(game, Interact) && i % 2 == 1) {
+        change_game_mode(game, BARHIT);
+    }
+}
+
 static void change_map_if_needed(game_data_t *game)
 {
     map_id_t map_id = game->map.id;
@@ -33,8 +43,10 @@ static void change_map_if_needed(game_data_t *game)
     if (is_in_portal(game, &game->map.back_portal))
         set_backmap(game, (map_id - 1) % 3);
     for (int i = 0; i < game->map.door_count; i++) {
-        if (door_checker(game, &game->map.doors[i].rect))
-            game->player->health--;
+        if (door_checker(game, &game->map.doors[i].rect)) {
+            door_callback(game, i);
+            return;
+        }
     }
 }
 

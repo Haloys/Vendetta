@@ -5,11 +5,12 @@
 ** Sequence Click
 */
 
-#include "my_game.h"
-
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "my_game.h"
+#include "utils.h"
 
 static void shuffle_numbers(int *numbers, int size)
 {
@@ -164,6 +165,8 @@ void display_sequence_click(game_data_t *game)
     draw_sequence_progress_bar(game, elapsed);
     handle_click(game);
     if (game->sequence.current_number == NUM_SQUARES + 1) {
-        game->sequence.game_won = true;
+        change_game_mode(game, PLAYING);
+        reset_minigame(game);
+        return;
     }
 }
