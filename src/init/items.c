@@ -184,7 +184,7 @@ static void item_create_visuals(game_data_t *game, item_entity_t *item)
     item->keybind_text = sfText_create();
     sfText_setFont(item->keybind_text, game->font);
     sfText_setCharacterSize(item->keybind_text, 22);
-    strcpy(item->key, "E");
+    strcpy(item->key, key_to_string(game->keybinds[Interact].code));
     sfText_setString(item->keybind_text, item->key);
     item->square = sfRectangleShape_create();
     sfRectangleShape_setSize(item->square, (sfVector2f){40, 40});

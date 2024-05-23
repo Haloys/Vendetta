@@ -36,6 +36,10 @@ typedef struct zoom_config_s {
 typedef struct door_s {
     rect_t rect;
     char *item;
+    sfRectangleShape *square;
+    sfVector2f position;
+    sfText *keybind_text;
+    char key[32];
 } door_t;
 
 typedef struct map_config_s {
@@ -58,6 +62,7 @@ int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos);
 int set_backmap(game_data_t *game, map_id_t map_id);
 bool is_in_portal(game_data_t *game, rect_t *portal);
 bool door_checker(game_data_t *game, rect_t *door, char *item);
+void draw_doors(game_data_t *game, door_t *doors, rect_t *door);
 
 extern const map_config_t map_config[];
 

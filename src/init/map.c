@@ -118,8 +118,9 @@ bool door_checker(game_data_t *game, rect_t *door, char *item)
 
     if (pos.x >= door->x && pos.x <= door->w
         && pos.y >= door->y && pos.y <= door->h
-        && get_item_quantity(game, item) > 0)
+        && get_item_quantity(game, item) > 0) {
         return true;
+    }
     return false;
 }
 

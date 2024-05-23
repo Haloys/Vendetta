@@ -103,4 +103,7 @@ void process_playing_gameplay(game_data_t *game)
 {
     update_gameplay(game);
     display_gameplay(game);
+    for (int i = 0; i < game->map.door_count; i++) {
+        draw_doors(game, &game->map.doors[i], &game->map.doors[i].rect);
+    }
 }
