@@ -6,6 +6,7 @@
 */
 
 #include <string.h>
+
 #include "my_game.h"
 #include "entity.h"
 #include "math.h"
@@ -56,7 +57,7 @@ int callback_interact_chest_mask(game_data_t *game, item_entity_t *item)
 
 int callback_interact_chest_armor(game_data_t *game, item_entity_t *item)
 {
-    give_random_items(game, 1, 3);
+    give_random_items(game, 2, 4);
     insert_item_in_inventory(game, "armor", 1);
     remove_item_from_list(game, item);
     return 0;

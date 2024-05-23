@@ -63,4 +63,8 @@ int callback_interact_chest_mask(game_data_t *game, item_entity_t *item);
 int callback_interact_chest_armor(game_data_t *game, item_entity_t *item);
 int callback_interact_chest_shoes(game_data_t *game, item_entity_t *item);
 
+int callback_interact_chest_inside(game_data_t *game, item_entity_t *item);
+int callback_interact_chest_beach(game_data_t *game, item_entity_t *item);
+int callback_interact_chest_boss(game_data_t *game, item_entity_t *item);
+
 #endif /* !ENTITY_H_ */

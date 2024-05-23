@@ -132,6 +132,7 @@ SRC_ITEMS   =   	items/display_books.c \
 					items/items_heal_callbacks.c \
 					items/items_gun_callbacks.c \
 					items/items_chest_callbacks_one.c \
+					items/items_chest_callbacks_two.c \
 
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \

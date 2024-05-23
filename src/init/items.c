@@ -122,7 +122,7 @@ const item_config_t item_config[] = {
         .default_position = {1948, 353},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_beach
     },
     {
         .name = "Chest",
@@ -130,7 +130,7 @@ const item_config_t item_config[] = {
         .default_position = {1893, 1182},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_inside
     },
     {
         .name = "Chest",
@@ -138,7 +138,7 @@ const item_config_t item_config[] = {
         .default_position = {3447, 1070},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_chest_boss
     },
     {
         .name = "Key A",
