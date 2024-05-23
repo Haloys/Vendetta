@@ -38,5 +38,7 @@ bool is_inside_circle_area(sfVector2f *pos, sfVector2f pos2, float min_radius,
     float max_radius);
 bool will_collide_wall(game_data_t *game, sfVector2f *pos,
     sfVector2f *dir);
+bool can_move_to_point(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
+    sfVector2f *target);
 
 #endif /* !ENTITY_H_ */
