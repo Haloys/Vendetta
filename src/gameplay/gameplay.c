@@ -43,7 +43,8 @@ static void change_map_if_needed(game_data_t *game)
     if (is_in_portal(game, &game->map.back_portal))
         set_backmap(game, (map_id - 1) % 3);
     for (int i = 0; i < game->map.door_count; i++) {
-        if (door_checker(game, &game->map.doors[i].rect)) {
+        if (door_checker(game, &game->map.doors[i].rect,
+            game->map.doors[i].item)) {
             door_callback(game, i);
             return;
         }

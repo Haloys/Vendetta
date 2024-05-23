@@ -51,10 +51,10 @@ const map_config_t map_config[] = {
         .zoom_count = 4,
         .door_count = 4,
         .doors = {
-            {.rect = {1730, 1634, 1837, 1659}},
-            {.rect = {2114, 883, 2146, 994}},
-            {.rect = {1075, 750, 1092, 856}},
-            {.rect = {2893, 1385, 2916, 1622}}
+            {.rect = {1730, 1634, 1837, 1659}, .item = "keya"},
+            {.rect = {2114, 883, 2146, 994}, .item = "keyc"},
+            {.rect = {1075, 750, 1092, 856}, .item = "keyb"},
+            {.rect = {2893, 1385, 2916, 1622}, .item = "keyc"}
         }
     },
     {
@@ -71,7 +71,7 @@ const map_config_t map_config[] = {
         .zoom_count = 0,
         .door_count = 1,
         .doors = {
-            {.rect = {1775, 1246, 1793, 1343}},
+            {.rect = {1775, 1246, 1793, 1343}, .item = "keyc"},
         }
     },
     {
@@ -95,9 +95,9 @@ const map_config_t map_config[] = {
         .zoom_count = 1,
         .door_count = 3,
         .doors = {
-            {.rect = {2053, 962, 2078, 1063}},
-            {.rect = {2089, 1496, 2182, 1518}},
-            {.rect = {2992, 1074, 3095, 1100}}
+            {.rect = {2053, 962, 2078, 1063}, .item = "keya"},
+            {.rect = {2089, 1496, 2182, 1518}, .item = "keyb"},
+            {.rect = {2992, 1074, 3095, 1100}, .item = "keyc"}
         }
     }
 };
@@ -112,12 +112,13 @@ bool is_in_portal(game_data_t *game, rect_t *portal)
     return false;
 }
 
-bool door_checker(game_data_t *game, rect_t *door)
+bool door_checker(game_data_t *game, rect_t *door, char *item)
 {
     sfVector2f pos = game->player->position;
 
     if (pos.x >= door->x && pos.x <= door->w
-        && pos.y >= door->y && pos.y <= door->h)
+        && pos.y >= door->y && pos.y <= door->h
+        && get_item_quantity(game, item) > 0)
         return true;
     return false;
 }
