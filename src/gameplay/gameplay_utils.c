@@ -28,8 +28,9 @@ static void draw_overlay(game_data_t *game, sfVector2f relativepos, float ratio)
     sfSprite_setScale(sp_health, (sfVector2f){ratio, ratio});
     relativepos.x += 50 * ratio;
     relativepos.y -= 5 * ratio;
-    health = set_text(game, buffer, 30 * ratio, relativepos);
+    health = set_text(game, buffer, 30, relativepos);
     sfText_setStyle(health, sfTextBold);
+    sfText_setScale(health, (sfVector2f){ratio, ratio});
     sfRenderWindow_drawText(game->window, health, NULL);
     sfRenderWindow_drawSprite(game->window, sp_health, NULL);
     sfText_destroy(health);
@@ -49,13 +50,14 @@ void display_overlay(game_data_t *game)
         relativepos.x -= 240 * ratio;
         sprintf(buffer, "PASSIVE MODE [%s]",
             key_to_string(game->keybinds[Hostile].code));
-        passiv = set_text(game, buffer, 22 * ratio, relativepos);
+        passiv = set_text(game, buffer, 22, relativepos);
     } else {
         relativepos.x -= 240 * ratio;
         sprintf(buffer, "HOSTILE MODE [%s]",
             key_to_string(game->keybinds[Hostile].code));
-        passiv = set_text(game, buffer, 22 * ratio, relativepos);
+        passiv = set_text(game, buffer, 22, relativepos);
     }
+    sfText_setScale(passiv, (sfVector2f){ratio, ratio});
     sfRenderWindow_drawText(game->window, passiv, NULL);
     sfText_destroy(passiv);
     draw_overlay(game, relativepos, ratio);
