@@ -12,12 +12,25 @@ const enemy_config_t ENEMIES_CONFIG[] = {
     {
         .name = "Easy enemy",
         .sprite_data = &SPRITES[SP_ENEMY_EZ_IDLE],
+        .sprite = SP_ENEMY_EZ_IDLE,
         .default_position = {2000, 2060},
         .health = 100,
-        .speed = ENEMY_MOVE_SPEED,
+        .speed = ENEMY_MOVE_SPEED + 75,
         .attack = 10,
         .armor = 0,
         .max_health = 100,
+        .map_id = MAP_ONE,
+    },
+    {
+        .name = "Medium enemy",
+        .sprite_data = &SPRITES[SP_MEDIUM_IDLE],
+        .sprite = SP_MEDIUM_IDLE,
+        .default_position = {1223, 1469},
+        .health = 200,
+        .speed = ENEMY_MOVE_SPEED,
+        .attack = 20,
+        .armor = 10,
+        .max_health = 200,
         .map_id = MAP_ONE,
     },
 };
@@ -61,9 +74,11 @@ static enemy_t *create_enemy(game_data_t *game, enemy_config_t *config)
     enemy->health = enemy->config->health;
     enemy->armor = enemy->config->armor;
     enemy->clock = sfClock_create();
+    enemy->shoot_clock = sfClock_create();
     enemy->rotation = 0;
     enemy->disp_rotation = 0;
     enemy->target_rot = 0;
+    enemy->path = NULL;
     set_enemy_shapes(enemy);
     return enemy;
 }
