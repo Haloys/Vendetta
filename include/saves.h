@@ -17,7 +17,7 @@ typedef struct save_s {
     char name[64];
 } save_t;
 
-
+extern const char *SAVES_NAMES[3];
 
 extern const save_t SAVES[];
 
