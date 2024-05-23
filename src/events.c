@@ -41,7 +41,7 @@ static void remap_event_coords(sfRenderWindow *window, int *x, int *y)
     *y = coords.y;
 }
 
-static void window_resize_handler(game_data_t *game, sfSizeEvent *evt)
+void window_resize_handler(game_data_t *game, sfSizeEvent *evt)
 {
     sfView *view = game->state == PLAYING ? game->game_view :
         (sfView *)sfRenderWindow_getView(game->window);

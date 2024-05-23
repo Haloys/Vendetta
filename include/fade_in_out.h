@@ -30,8 +30,8 @@ typedef struct fade_in_out_params_s {
     int fade_out_start_ms;
 } fade_in_out_params_t;
 
-void do_check(sfRenderWindow *window, int *ret);
-void fade_in_all(fade_in_params_t *params, int *ret);
-void fade_in_out_all(fade_in_out_params_t *params, int *ret);
+void do_check(game_data_t *game, sfRenderWindow *window, int *ret);
+void fade_in_all(game_data_t *game, fade_in_params_t *params, int *ret);
+void fade_in_out_all(game_data_t *game, fade_in_out_params_t *params, int *ret);
 
 #endif /* !FADE_IN_OUT_H_ */

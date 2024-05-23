@@ -220,6 +220,8 @@ void third_book_callback(game_data_t *game);
 int asprintf(char **strp, const char *fmt, ...);
 char *key_to_string(sfKeyCode key);
 
+void window_resize_handler(game_data_t *game, sfSizeEvent *evt);
+
 // Saves
 int init_game(game_data_t *game);
 unsigned long get_hash_values_from_file(FILE *file);
