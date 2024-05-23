@@ -10,6 +10,7 @@
 
     #include "my_game.h"
 
+    #define MAX_ZOOM_CONFIG 10
     #define MAX_DOORS 4
 
 typedef enum map_id_s {
@@ -18,10 +19,24 @@ typedef enum map_id_s {
     MAP_THREE
 } map_id_t;
 
+typedef struct rect_2_s {
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+} rect_2_t;
+
+typedef struct zoom_config_s {
+    rect_2_t zone;
+    float min;
+    float max;
+    sfVector2f pos;
+} zoom_config_t;
+
 typedef struct door_s {
     rect_t rect;
 } door_t;
-
+=
 typedef struct map_config_s {
     sprite_id_t map;
     sprite_id_t cols_map;
@@ -32,6 +47,8 @@ typedef struct map_config_s {
     rect_t portal;
     rect_t back_portal;
     music_id_t music;
+    zoom_config_t zoom[MAX_ZOOM_CONFIG];
+    int zoom_count;
     door_t doors[MAX_DOORS];
     int door_count;
 } map_config_t;

@@ -44,3 +44,22 @@ bool will_collide_wall(game_data_t *game, sfVector2f *pos,
     }
     return false;
 }
+
+bool can_move_to_point(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
+    sfVector2f *target)
+{
+    sfVector2f pos_f = {pos->x, pos->y};
+    rect_t rect = {0, 0, 0, 0};
+
+    while (true) {
+        if (is_black_color(
+            get_pixel_color(game->cols_map, pos_f.x, pos_f.y)))
+            return false;
+        pos_f.x += dir->x;
+        pos_f.y += dir->y;
+        rect = get_hitbox_rect(&pos_f, 5);
+        if (is_rect(target->x, target->y, &rect))
+            break;
+    }
+    return true;
+}

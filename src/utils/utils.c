@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "my_game.h"
+#include "utils.h"
 
 void change_game_mode(game_data_t *game, state_t new_mode)
 {
@@ -26,4 +27,12 @@ bool is_rect(int x, int y, rect_t *rect)
         y <= rect->y + rect->h)
         return true;
     return false;
+}
+
+void resize_window(game_data_t *game)
+{
+    sfView *view = (sfView *)sfRenderWindow_getView(game->window);
+
+    sfView_setCenter(view, (sfVector2f){WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2});
+    sfRenderWindow_setView(game->window, view);
 }

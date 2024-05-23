@@ -34,6 +34,7 @@ void display_bullets(game_data_t *game)
         sfRenderWindow_drawSprite(game->window,
             bullet->sprite, NULL);
     }
+    sfClock_restart(game->bullets_clock);
 }
 
 void display_entities(game_data_t *game)
@@ -52,7 +53,7 @@ void display_enemies(game_data_t *game)
     element_t *tmp = game->enemies.start.next;
 
     for (int i = 0; i < game->enemies.length; ++i) {
-        if (game->map.id == ((enemy_t *)tmp->data)->map_id) {
+        if (game->map.id == ((enemy_t *)tmp->data)->config->map_id) {
             update_enemy(game, (enemy_t *)tmp->data);
             draw_enemy(game, (enemy_t *)tmp->data);
         }
