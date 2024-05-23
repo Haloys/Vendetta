@@ -55,6 +55,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/fade_in_out.c \
 						engine/enemy/enemy.c \
 						engine/enemy/update.c \
+						engine/enemy/paths.c \
 						engine/player/update.c \
 						engine/entity.c \
 						engine/npc/npc.c \

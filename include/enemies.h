@@ -14,27 +14,42 @@ typedef struct enemy_s {
     char name[128];
     game_sprite_t const *sprite_data;
     sfSprite *sprite;
-    sfTexture *texture;
     sfVector2f position;
     sfVector2f direction;
     sfVector2f target;
     sfRectangleShape *health_bar;
     sfCircleShape *area;
     int health;
+    int armor;
+    sfClock *clock;
+    sfClock *shoot_clock;
+    float rotation;
+    float disp_rotation;
+    float target_rot;
+    struct enemy_config_s *config;
+    path_node_t *path;
+} enemy_t;
+
+typedef struct enemy_config_s {
+    char name[128];
+    game_sprite_t const *sprite_data;
+    sprite_id_t sprite;
+    sfVector2f default_position;
+    int health;
     int speed;
     int attack;
     int armor;
     int max_health;
-    sfClock *clock;
-    float rotation;
-    float disp_rotation;
-    float target_rot;
     map_id_t map_id;
-} enemy_t;
+} enemy_config_t;
 
-    #define BULLET_SLOW_SPEED 5
-    #define BULLET_MEDIUM_SPEED 10
-    #define BULLET_FAST_SPEED 15
+    #define ENEMY_COUNT (sizeof(ENEMIES_CONFIG) / sizeof(ENEMIES_CONFIG[0]))
+
+extern const enemy_config_t ENEMIES_CONFIG[];
+
+    #define BULLET_SLOW_SPEED 200
+    #define BULLET_MEDIUM_SPEED 500
+    #define BULLET_FAST_SPEED 1000
 
     #define ENEMY_MOVE_SPEED 100
 
@@ -55,7 +70,7 @@ void update_enemy(game_data_t *game, enemy_t *enemy);
 
 
 void update_enemy_pos_sprite(enemy_t *enemy);
-void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game);
+void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time);
 
 // BULLETS
 void update_bullet(game_data_t *game, bullet_t *bullet);
@@ -63,5 +78,8 @@ bool bullet_touched_entity(game_data_t *game, bullet_t *bullet);
 
 bullet_t *create_bullet(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
     float rotation);
+
+void walk_to_nearest_point(enemy_t *enemy, game_data_t *game,
+    sfTime time);
 
 #endif /* ENEMIES_H */

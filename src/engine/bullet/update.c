@@ -50,10 +50,13 @@ bool bullet_touched_entity(game_data_t *game, bullet_t *bullet)
     return false;
 }
 
-void update_bullet(game_data_t *, bullet_t *bullet)
+void update_bullet(game_data_t *game, bullet_t *bullet)
 {
-    bullet->position.x += bullet->direction.x * BULLET_MEDIUM_SPEED;
-    bullet->position.y += bullet->direction.y * BULLET_MEDIUM_SPEED;
+    sfTime time = sfClock_getElapsedTime(game->bullets_clock);
+    float elapsed = sfTime_asSeconds(time);
+
+    bullet->position.x += bullet->direction.x * elapsed * BULLET_MEDIUM_SPEED;
+    bullet->position.y += bullet->direction.y * elapsed * BULLET_MEDIUM_SPEED;
     sfSprite_setPosition(bullet->sprite, bullet->position);
     sfSprite_setRotation(bullet->sprite, bullet->rotation);
 }

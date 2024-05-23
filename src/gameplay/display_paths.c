@@ -38,10 +38,10 @@ static void set_paths_lines(game_data_t *game, sfVertexArray *vertex, int i)
     sfVertexArray_setPrimitiveType(vertex, sfLinesStrip);
     for (int j = 0; j < game->points[i].link_count; ++j) {
         sfVertexArray_append(vertex, (sfVertex){game->points[i].position,
-            sfBlue});
+            sfBlue, (sfVector2f){0, 0}});
         tmp = &game->points[i].links[j];
         sfVertexArray_append(vertex, (sfVertex){
-            game->points[tmp->to].position, sfGreen});
+            game->points[tmp->to].position, sfGreen, (sfVector2f){0, 0}});
         sfRenderWindow_drawVertexArray(game->window, vertex, NULL);
         sfVertexArray_clear(vertex);
     }
