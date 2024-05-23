@@ -26,9 +26,9 @@ static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
 
 static void change_zoom_key(game_data_t *game, sfTime time, min_max_t *zoom)
 {
-    if (game->target_zoom < zoom->max && is_key_down(game, KeyPlus))
+    if (game->target_zoom < zoom->max && is_key_down(game, KeyMinus))
         game->target_zoom *= 1 + ZOOM_SPEED * sfTime_asSeconds(time);
-    if (game->target_zoom > zoom->min && is_key_down(game, KeyMinus))
+    if (game->target_zoom > zoom->min && is_key_down(game, KeyPlus))
         game->target_zoom *= 1 - ZOOM_SPEED * sfTime_asSeconds(time);
 }
 
