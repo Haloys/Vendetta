@@ -23,9 +23,10 @@ void draw_enemy(game_data_t *game, enemy_t *enemy)
 
 static void update_spritesheet(game_data_t *game, enemy_t *enemy, sfTime time)
 {
+    sfTime game_time = sfClock_getElapsedTime(game->clock);
     sfIntRect rect = {0};
 
-    if (sfTime_asMilliseconds(time) % 6 == 0) {
+    if (sfTime_asMilliseconds(game_time) % 6 == 0) {
         rect = sfSprite_getTextureRect(enemy->sprite);
         if (rect.left >= enemy->sprite_data->rect.width
             * (enemy->sprite_data->rect_count - 1))
@@ -34,11 +35,11 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy, sfTime time)
             rect.left += enemy->sprite_data->rect.width;
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
-    if (fmodf(sfTime_asMilliseconds(time), 50) == 0) {
+    if (sfTime_asMilliseconds(time) % 100 == 0) {
         printf("Enemy trying shoot\n");
-        if (!will_collide_wall(game, &enemy->position, &enemy->direction))
+        if (!will_collide_wall(game, &enemy->position, &enemy->target))
             list_add_element(&game->bullets, create_bullet(game,
-                &enemy->position, &enemy->direction, enemy->rotation));
+                &enemy->position, &enemy->target, enemy->rotation));
     }
 }
 
@@ -46,7 +47,8 @@ void update_enemy(game_data_t *game, enemy_t *enemy)
 {
     sfTime time = sfClock_getElapsedTime(enemy->clock);
 
-    update_enemy_pos_diretion(enemy, game);
+    update_enemy_pos_diretion(enemy, game, time);
     update_enemy_pos_sprite(enemy);
     update_spritesheet(game, enemy, time);
+    sfClock_restart(enemy->clock);
 }
