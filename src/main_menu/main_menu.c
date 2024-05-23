@@ -54,9 +54,9 @@ static void draw_game_slot(game_data_t *game, float rect_x, float rect_y,
 
 void setup_game_slots(game_data_t *game)
 {
-        draw_game_slot(game, 149, 241, 0);
-        draw_game_slot(game, 727, 241, 1);
-        draw_game_slot(game, 1321, 241, 2);
+    draw_game_slot(game, 149, 241, 0);
+    draw_game_slot(game, 727, 241, 1);
+    draw_game_slot(game, 1321, 241, 2);
 }
 
 static void draw_load_save_button(game_data_t *game)
@@ -88,9 +88,11 @@ static void draw_load_save(game_data_t *game)
     for (int i = 0; i < element_count; i++) {
         sprites[i] = get_sprite(game, elements[i]);
     }
-    for (int i = 0; i < game->validation_count; i++) {
-        if (i < element_count && game->is_sprite_displayed) {
+    for (int i = 0; i < element_count; i++) {
+        if (game->is_sprite_displayed &&
+        game->save_games[i].save_name[0] != '\0') {
             sfRenderWindow_drawSprite(game->window, sprites[i], NULL);
+            draw_bottom_part(game, i);
         }
     }
 }
@@ -106,7 +108,7 @@ static void draw_empty_slots(game_data_t *game)
     sfSprite *sprite = get_sprite(game, SP_EMPTY_SLOT);
 
     for (int i = 0; i < position_count; i++) {
-        if (i >= game->validation_count) {
+        if (game->save_games[i].save_name[0] == '\0') {
             sfSprite_setPosition(sprite, positions[i]);
             sfRenderWindow_drawSprite(game->window, sprite, NULL);
         }
@@ -122,4 +124,5 @@ void basic_play(game_data_t *game)
     setup_game_slots(game);
     draw_empty_slots(game);
     draw_load_save(game);
+    count_existing_saves(game);
 }
