@@ -15,9 +15,11 @@ static void process_mouse_click_play(game_data_t *game)
 {
     for (int i = 0; i < 3; i++) {
         if (game->state == MAIN_MENU && game->hover_slot_array[i]) {
+            game->player->save_number = i + 1;
             change_game_mode(game, PLAYING);
             game->player->is_playing = true;
             game->is_navbar_visible = false;
+            load_game(game);
             break;
         }
     }
