@@ -38,7 +38,7 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
     enemy->rotation = (angle * 180 / PI) + 90;
     if ((distance < 250 && distance > 50)
         || !will_collide_wall(game, &enemy->position, &enemy->direction)) {
-        if (enemy->config->attack_type == A_FIRST)
+        if (enemy->config->attack_type == A_PATH_FINDING)
             walk_to_nearest_point(enemy, game, time);
         else
             enemy_follow_player(enemy, game, time);

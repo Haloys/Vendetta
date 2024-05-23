@@ -38,13 +38,6 @@ typedef struct notification_params {
     float duration;
 } notification_params_t;
 
-static const notification_params_t NOTIFICATION[] = {
-    {"Short Duration", "This will last 2 seconds", SP_OBJECTIVE, 2.0},
-    {"Medium Duration", "This will last 5 seconds", SP_OBJECTIVE, 5.0},
-    {"Permanent", "This will last indefinitely", SP_OBJECTIVE, -1},
-    {"Map Change", "Map change !", SP_OBJECTIVE, 5.0},
-};
-
 void init_notification_list(notification_list_t *list);
 
 notification_t *create_notification(game_data_t *game,

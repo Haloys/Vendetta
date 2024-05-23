@@ -22,6 +22,7 @@
     #define RED_BTN_BG sfColor_fromRGBA(242, 115, 132, 51)
     #define RED_BTN_OUTLINE sfColor_fromRGBA(242, 115, 132, 128)
     #define RED_HOVER sfColor_fromRGB(242, 115, 132)
+    #define BORDER_RED sfColor_fromRGB(242, 115, 132)
 
     #define GET_SENTENCE(x) (x ? "YES" : "NO")
 
