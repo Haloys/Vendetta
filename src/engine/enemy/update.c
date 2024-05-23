@@ -13,6 +13,18 @@
 #include "entity.h"
 #include "utils.h"
 
+static void enemy_follow_player(enemy_t *enemy, game_data_t *game, sfTime time)
+{
+    float elapsed = sfTime_asSeconds(time);
+
+    if (can_move_to_point(game, &enemy->position, &enemy->direction,
+        &game->player->position) == false)
+        return;
+    enemy->disp_rotation = enemy->rotation;
+    enemy->position.x += enemy->direction.x * ENEMY_MOVE_SPEED * elapsed;
+    enemy->position.y += enemy->direction.y * ENEMY_MOVE_SPEED * elapsed;
+}
+
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
 {
     sfVector2f pos = sfSprite_getPosition(enemy->sprite);
@@ -26,7 +38,10 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
     enemy->rotation = (angle * 180 / PI) + 90;
     if ((distance < 250 && distance > 50)
         || !will_collide_wall(game, &enemy->position, &enemy->direction)) {
-        walk_to_nearest_point(enemy, game, time);
+        if (enemy->config->attack_type == A_FIRST)
+            walk_to_nearest_point(enemy, game, time);
+        else
+            enemy_follow_player(enemy, game, time);
     }
 }
 

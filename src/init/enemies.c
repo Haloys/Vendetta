@@ -20,6 +20,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .armor = 0,
         .max_health = 100,
         .map_id = MAP_ONE,
+        .attack_type = A_FIRST,
     },
     {
         .name = "Medium enemy",
@@ -32,6 +33,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .armor = 10,
         .max_health = 200,
         .map_id = MAP_ONE,
+        .attack_type = A_FIRST,
     },
 };
 
