@@ -130,6 +130,7 @@ typedef struct game_data_s {
     list_t entities;
     sfClock *animation_clock;
     sequence_click_t sequence;
+    barhit_t barhit;
     sf_to_keybind_t keybinds[KEYBINDS_COUNT];
     state_t last_state;
     list_t bullets;
