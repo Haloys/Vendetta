@@ -46,7 +46,6 @@ static void change_map_if_needed(game_data_t *game)
         if (door_checker(game, &game->map.doors[i].rect,
             game->map.doors[i].item)) {
             door_callback(game, i);
-            return;
         }
     }
 }
