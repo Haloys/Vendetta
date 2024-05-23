@@ -24,6 +24,7 @@ static int init_map_pos(game_data_t *game)
 
 static void init_other_values(player_data_t *player)
 {
+    player->save_number = -1;
     player->skill_tree = malloc(sizeof(skill_tree_t));
     if (player->skill_tree == NULL)
         return;
@@ -31,8 +32,8 @@ static void init_other_values(player_data_t *player)
     player->skill_tree->attack_lvl = 0;
     player->skill_tree->health_lvl = 0;
     player->skill_tree->speed_lvl = 0;
-    player->skill_points = 24;
-    player->current_lvl = 15;
+    player->skill_points = 0;
+    player->current_lvl = 1;
     player->current_xp = 0;
     for (int i = 0; i < 29; i++) {
         player->inventory->slots[i].item = NULL;

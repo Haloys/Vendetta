@@ -59,7 +59,7 @@ const save_t SAVES[] = {
     },
 };
 
-int get_file_value(FILE *file)
+static int get_file_value(FILE *file)
 {
     unsigned long values = 0;
     int tmp_values = 0;
@@ -94,7 +94,7 @@ int verify_hash(FILE *file)
     return 1;
 }
 
-void load_video_settings(game_data_t *game, FILE *file)
+static void load_video_settings(game_data_t *game, FILE *file)
 {
     int tmp_values = 0;
     int tmp_values_2 = 0;
@@ -107,7 +107,7 @@ void load_video_settings(game_data_t *game, FILE *file)
     game->settings.is_fullscreen = tmp_values;
 }
 
-void load_sound_settings(game_data_t *game, FILE *file)
+static void load_sound_settings(game_data_t *game, FILE *file)
 {
     int tmp_values = 0;
 
@@ -119,7 +119,23 @@ void load_sound_settings(game_data_t *game, FILE *file)
     game->settings.sa_x = tmp_values;
 }
 
-void load_keybinds_settings(game_data_t *game, FILE *file)
+static void load_keybinds_settings_2(game_data_t *game, FILE *file)
+{
+    int tmp_values = 0;
+
+    fscanf(file, "KeyPlus=%d\n", &tmp_values);
+    game->keybinds[KeyPlus].code = tmp_values;
+    fscanf(file, "Interact=%d\n", &tmp_values);
+    game->keybinds[Interact].code = tmp_values;
+    fscanf(file, "Sprint=%d\n", &tmp_values);
+    game->keybinds[Sprint].code = tmp_values;
+    fscanf(file, "Reset=%d\n", &tmp_values);
+    game->keybinds[Reset].code = tmp_values;
+    fscanf(file, "Hostile=%d\n", &tmp_values);
+    game->keybinds[Hostile].code = tmp_values;
+}
+
+static void load_keybinds_settings(game_data_t *game, FILE *file)
 {
     int tmp_values = 0;
 
@@ -135,16 +151,7 @@ void load_keybinds_settings(game_data_t *game, FILE *file)
     game->keybinds[Inventory].code = tmp_values;
     fscanf(file, "KeyMinus=%d\n", &tmp_values);
     game->keybinds[KeyMinus].code = tmp_values;
-    fscanf(file, "KeyPlus=%d\n", &tmp_values);
-    game->keybinds[KeyPlus].code = tmp_values;
-    fscanf(file, "Interact=%d\n", &tmp_values);
-    game->keybinds[Interact].code = tmp_values;
-    fscanf(file, "Sprint=%d\n", &tmp_values);
-    game->keybinds[Sprint].code = tmp_values;
-    fscanf(file, "Reset=%d\n", &tmp_values);
-    game->keybinds[Reset].code = tmp_values;
-    fscanf(file, "Hostile=%d\n", &tmp_values);
-    game->keybinds[Hostile].code = tmp_values;
+    load_keybinds_settings_2(game, file);
 }
 
 void load_global_settings(game_data_t *game)

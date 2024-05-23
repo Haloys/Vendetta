@@ -29,7 +29,7 @@ static void change_map_if_needed(game_data_t *game)
     map_id_t map_id = game->map.id;
 
     if (is_in_portal(game, &game->map.portal))
-        set_map(game, (map_id + 1) % 3);
+        set_map(game, (map_id + 1) % 3, NULL);
     if (is_in_portal(game, &game->map.back_portal))
         set_backmap(game, (map_id - 1) % 3);
 }
@@ -41,7 +41,7 @@ static void update_gameplay(game_data_t *game)
 
     if (is_key_pressed(game, Reset)) {
         map_id = (map_id + 1) % 3;
-        set_map(game, map_id);
+        set_map(game, map_id, NULL);
     }
     sfRenderWindow_setView(game->window, game->game_view);
     sfClock_restart(game->player->clock);
