@@ -25,5 +25,5 @@ void npc_dialogues(game_data_t *game)
         return;
     }
     handle_choice(game, &DIALOGUES[game->player->npc_id], &state);
-    trigger_notification(game, 2);
+    trigger_notification(game, 1);
 }

@@ -39,10 +39,22 @@ typedef struct notification_params {
 } notification_params_t;
 
 static const notification_params_t NOTIFICATION[] = {
-    {"Short Duration", "This will last 2 seconds", SP_OBJECTIVE, 2.0},
-    {"Medium Duration", "This will last 5 seconds", SP_OBJECTIVE, 5.0},
     {"Permanent", "This will last indefinitely", SP_OBJECTIVE, -1},
     {"Map Change", "Map change !", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Key A", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Key B", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Key C", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Knife", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Bandage", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Pistol", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Aidkit", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Rifle", SP_OBJECTIVE, 5.0},
+    {"New Item !", "You found Shotgun", SP_OBJECTIVE, 5.0},
+    {"Whaou !", "You found a chest", SP_OBJECTIVE, 5.0},
+    {"Incredible", "You found a secret chest", SP_OBJECTIVE},
+    {"Amazing", "You found a secret chest", SP_OBJECTIVE},
+    {"Unbelievable, You found boss stash", SP_OBJECTIVE},
+    {"Prodigious, You found a massive stash", SP_OBJECTIVE},
 };
 
 void init_notification_list(notification_list_t *list);
