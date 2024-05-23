@@ -27,7 +27,7 @@ static void notif_draw(display_params_t *params, notification_t *notification)
 }
 
 static void display_single_notification(game_data_t *game,
-display_params_t *params, notification_t *notification, int y_offset)
+    display_params_t *params, notification_t *notification, int y_offset)
 {
     float ratio = game->view_zoom;
     sfVector2f relativepos = params->relativepos;
@@ -41,7 +41,8 @@ display_params_t *params, notification_t *notification, int y_offset)
     sfText_setPosition(notification->title, (sfVector2f)
         {relativepos.x + (54 * ratio), relativepos.y + 55 * ratio + y_offset});
     sfText_setPosition(notification->message, (sfVector2f)
-        {relativepos.x + (19 * ratio), relativepos.y + 105 * ratio + y_offset});
+        {relativepos.x + (19 * ratio), relativepos.y +
+        (105 * ratio) + y_offset});
     sfRectangleShape_setScale(params->line, (sfVector2f){ratio, ratio});
     sfRectangleShape_setScale(params->background, (sfVector2f){ratio, ratio});
     sfSprite_setScale(notification->icon, (sfVector2f){ratio, ratio});

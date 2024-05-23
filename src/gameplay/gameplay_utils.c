@@ -15,7 +15,8 @@
 #include "game_npc.h"
 #include "utils.h"
 
-static void draw_overlay(game_data_t *game, sfVector2f relativepos, float ratio)
+static void draw_overlay(game_data_t *game, sfVector2f relativepos,
+    float ratio)
 {
     sfSprite *sp_health = get_sprite(game, SP_HEALTH2);
     sfText *health;
