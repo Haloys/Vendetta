@@ -58,7 +58,7 @@ const item_config_t item_config[] = {
         .default_position = {1383, 1192},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_bandage
     },
     {
         .name = "Chest",
@@ -98,7 +98,7 @@ const item_config_t item_config[] = {
         .default_position = {801, 1753},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_aidkit
     },
     {
         .name = "Rifle",
@@ -162,7 +162,7 @@ const item_config_t item_config[] = {
         .default_position = {2250, 1909},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_aidkit
     },
     {
         .name = "Aidkit",
@@ -170,7 +170,7 @@ const item_config_t item_config[] = {
         .default_position = {405, 959},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_aidkit
     },
 };
 
