@@ -125,7 +125,7 @@ static bool process_page(game_data_t *game, int page, int *ret)
 {
     sfTime elapsed_time = sfTime_Zero;
     sfClock *clock = sfClock_create();
-    sfView *view = sfRenderWindow_getView(game->window);
+    sfView *view = (sfView *)sfRenderWindow_getView(game->window);
 
     sfView_setCenter(view, (sfVector2f){WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2});
     sfView_setSize(view, (sfVector2f){WINDOW_WIDTH, WINDOW_HEIGHT});
