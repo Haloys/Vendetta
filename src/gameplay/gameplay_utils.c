@@ -36,8 +36,9 @@ static void draw_overlay(game_data_t *game, sfVector2f relativepos)
 
 void display_overlay(game_data_t *game)
 {
-    sfVector2f relativepos = {game->view_pos.x + WINDOW_WIDTH / 2,
-        game->view_pos.y - WINDOW_HEIGHT / 2};
+    sfVector2f view_size = sfView_getSize(game->game_view);
+    sfVector2f relativepos = {game->view_pos.x + view_size.x / 2,
+        game->view_pos.y - view_size.y / 2};
     sfText *passiv;
     char buffer[30];
 
