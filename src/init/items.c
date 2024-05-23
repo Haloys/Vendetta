@@ -42,7 +42,7 @@ const item_config_t item_config[] = {
         .default_position = {1070, 1316},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_knife
     },
     {
         .name = "Chest",
@@ -90,7 +90,7 @@ const item_config_t item_config[] = {
         .default_position = {2063, 1713},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_pistol
     },
     {
         .name = "Aidkit",
@@ -106,7 +106,7 @@ const item_config_t item_config[] = {
         .default_position = {1106, 1106},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_rifle
     },
     {
         .name = "Shotgun",
@@ -114,7 +114,7 @@ const item_config_t item_config[] = {
         .default_position = {499, 36},
         .default_rotation = 0,
         .map_id = MAP_THREE,
-        .callback_interact = NULL
+        .callback_interact = callback_interact_shotgun
     },
     {
         .name = "Chest",
