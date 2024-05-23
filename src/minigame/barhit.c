@@ -134,4 +134,8 @@ void display_barhit(game_data_t *game)
     basic_design(game);
     if (update_and_draw_barhit(game, barhit))
         initialized = 0;
+    if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
+        change_game_mode(game, PLAYING);
+        initialized = 0;
+    }
 }
