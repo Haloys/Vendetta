@@ -89,6 +89,7 @@ SRC_UI    =   	loading_screen/loading.c \
 				main_menu/save/save_ui.c \
 				main_menu/save/save_text_type.c \
 				main_menu/save/valid_save.c \
+				main_menu/load_bottom_text.c \
 
 
 SRC_INVENTORY    =   	inventory/inventory.c \
@@ -129,6 +130,8 @@ SRC_SAVES   =		saves/save_global_settings.c \
 					saves/load_global_settings.c \
 					saves/save_player.c \
 					saves/load_player.c \
+					saves/save_checker.c \
+					saves/load_games.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
