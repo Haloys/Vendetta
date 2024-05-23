@@ -36,7 +36,7 @@ typedef struct map_config_s {
     int door_count;
 } map_config_t;
 
-int set_map(game_data_t *game, map_id_t map_id);
+int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos);
 int set_backmap(game_data_t *game, map_id_t map_id);
 bool is_in_portal(game_data_t *game, rect_t *portal);
 bool door_checker(game_data_t *game, rect_t *door);

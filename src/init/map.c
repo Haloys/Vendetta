@@ -84,7 +84,7 @@ bool door_checker(game_data_t *game, rect_t *door)
     return false;
 }
 
-int set_map(game_data_t *game, map_id_t map_id)
+int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
 {
     map_config_t map = map_config[map_id];
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
@@ -95,7 +95,7 @@ int set_map(game_data_t *game, map_id_t map_id)
     sfMusic_stop(game->assets.music[game->map.music]);
     game->map = map;
     game->map.sp_map = &SPRITES[map.map];
-    game->player->position = map.spawn_pos;
+    game->player->position = pos != NULL ? *pos : map.spawn_pos;
     game->view_pos = map.spawn_pos;
     sfView_setCenter(game->game_view, game->player->position);
     start_music(&game->assets, map.music);

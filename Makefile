@@ -126,6 +126,8 @@ SRC_INIT	=   	init/game_icon.c \
 
 SRC_SAVES   =		saves/save_global_settings.c \
 					saves/load_global_settings.c \
+					saves/save_player.c \
+					saves/load_player.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
