@@ -80,6 +80,37 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
     return NULL;
 }
 
+static void reinitialize_game_part_two(game_data_t *game)
+{
+    game->player->position = map_config[0].spawn_pos;
+    game->player->path = NULL;
+    set_map(game, 0, &game->player->position);
+}
+
+static void reinitialize_game(game_data_t *game)
+{
+    for (int i = 0; i < 29; i++) {
+        game->player->inventory->slots[i].item = NULL;
+        game->player->inventory->slots[i].quantity = 0;
+        game->player->inventory->slots[i].weight = 0;
+    }
+    game->player->inventory->total_weight = 0;
+    game->player->armor = 10;
+    game->player->speed = 10;
+    game->player->health = 10;
+    game->player->attack = 10;
+    game->player->max_health = 15;
+    game->player->skill_tree->armor_lvl = 0;
+    game->player->skill_tree->attack_lvl = 0;
+    game->player->skill_tree->health_lvl = 0;
+    game->player->skill_tree->speed_lvl = 0;
+    game->player->skill_points = 0;
+    game->player->current_lvl = 1;
+    game->player->current_xp = 0;
+    game->player->is_playing = false;
+    reinitialize_game_part_two(game);
+}
+
 void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
 {
     const navbar_element_t *clicked_element =
@@ -92,6 +123,10 @@ void handle_navbar_click(game_data_t *game, sfMouseButtonEvent mouse_event)
             sfRenderWindow_close(game->window);
         } else {
             change_game_mode(game, clicked_element->target_state);
+            save_game(game);
+        }
+        if (strcmp(clicked_element->label, "HOME") == 0) {
+            reinitialize_game(game);
         }
     }
 }
