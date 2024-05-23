@@ -55,6 +55,7 @@ SRC_ENGINE        =   	engine/my_clock.c \
 						engine/fade_in_out.c \
 						engine/enemy/enemy.c \
 						engine/enemy/update.c \
+						engine/enemy/paths.c \
 						engine/player/update.c \
 						engine/entity.c \
 						engine/npc/npc.c \
@@ -131,6 +132,11 @@ SRC_SAVES   =		saves/save_global_settings.c \
 
 SRC_ITEMS   =   	items/display_books.c \
 					items/books_callbacks.c \
+					items/items_key_callbacks.c \
+					items/items_heal_callbacks.c \
+					items/items_gun_callbacks.c \
+					items/items_chest_callbacks_one.c \
+					items/items_chest_callbacks_two.c \
 
 SRC_DIALOGUES =   	npc_dialogues/choice_box.c \
 					npc_dialogues/load_dialogue.c \

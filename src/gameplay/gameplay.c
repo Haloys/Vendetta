@@ -71,6 +71,7 @@ static void display_gameplay(game_data_t *game)
     display_map(game);
     display_enemies(game);
     display_npcs(game);
+    display_items(game);
     display_entities(game);
     display_player(game);
     display_bullets(game);

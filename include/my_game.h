@@ -71,6 +71,7 @@ typedef struct player_data_s {
     int skill_points;
     bool is_playing;
     int npc_id;
+    path_node_t *path;
 } player_data_t;
 
 typedef struct {
@@ -136,6 +137,7 @@ typedef struct game_data_s {
     path_node_t points[MAX_POINTS];
     int points_count;
     bool clicked;
+    sfClock *bullets_clock;
 } game_data_t;
 
 void display_game_over(game_data_t *game);
@@ -217,6 +219,8 @@ void third_book_callback(game_data_t *game);
 
 int asprintf(char **strp, const char *fmt, ...);
 char *key_to_string(sfKeyCode key);
+
+void window_resize_handler(game_data_t *game, sfSizeEvent *evt);
 
 // Saves
 int init_game(game_data_t *game);

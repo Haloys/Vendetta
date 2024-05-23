@@ -9,7 +9,7 @@
 #include "fade_in_out.h"
 #include "utils.h"
 
-static int handle_loading_event(sfRenderWindow *window)
+static int handle_loading_event(game_data_t *game, sfRenderWindow *window)
 {
     sfEvent event;
     int ret = 0;
@@ -23,6 +23,9 @@ static int handle_loading_event(sfRenderWindow *window)
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeySpace) {
             ret = 1;
             return ret;
+        }
+        if (event.type == sfEvtResized) {
+            window_resize_handler(game, (sfSizeEvent *)&event.size);
         }
     }
     return ret;
@@ -45,7 +48,7 @@ void start_load_one(game_data_t *game, sfRenderWindow *win, sfClock *clock,
     }
     sfText_setLetterSpacing(text, 10.0f);
     sfText_setStyle(text, sfTextBold);
-    fade_in_out_all(&params, ret);
+    fade_in_out_all(game, &params, ret);
     sfText_destroy(text);
 }
 
@@ -67,7 +70,7 @@ void start_load_two(game_data_t *game, sfRenderWindow *window, sfClock *clock,
     }
     sfText_setLetterSpacing(text, 10.0f);
     sfText_setStyle(text, sfTextBold);
-    fade_in_out_all(&params, ret);
+    fade_in_out_all(game, &params, ret);
     sfText_destroy(text);
 }
 
@@ -88,7 +91,7 @@ void start_load_third(game_data_t *game, sfRenderWindow *window, sfClock *clck,
     }
     sfText_setLetterSpacing(text, 14.5f);
     sfText_setStyle(text, sfTextBold);
-    fade_in_all(&params, ret);
+    fade_in_all(game, &params, ret);
     sfText_destroy(text);
 }
 
@@ -111,9 +114,9 @@ static void page_show(game_data_t *game, sfClock *clock, int page, int *ret)
     }
 }
 
-void do_check(sfRenderWindow *window, int *ret)
+void do_check(game_data_t *game, sfRenderWindow *window, int *ret)
 {
-    if (handle_loading_event(window) == 1) {
+    if (handle_loading_event(game, window) == 1) {
         *ret = 1;
     }
 }
@@ -122,11 +125,15 @@ static bool process_page(game_data_t *game, int page, int *ret)
 {
     sfTime elapsed_time = sfTime_Zero;
     sfClock *clock = sfClock_create();
+    sfView *view = (sfView *)sfRenderWindow_getView(game->window);
 
-    page_show(game, clock, page, ret);
+    sfView_setCenter(view, (sfVector2f){WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2});
+    sfView_setSize(view, (sfVector2f){WINDOW_WIDTH, WINDOW_HEIGHT});
+    sfRenderWindow_setView(game->window, view);
     sfRenderWindow_display(game->window);
+    page_show(game, clock, page, ret);
     do {
-        do_check(game->window, ret);
+        do_check(game, game->window, ret);
         if (*ret == 1) {
             change_game_mode(game, MAIN_MENU);
             sfMusic_stop(game->assets.music[M_LOADING]);

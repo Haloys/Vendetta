@@ -11,6 +11,8 @@
 #include "my_game.h"
 #include "gameplay.h"
 #include "enemies.h"
+#include "utils.h"
+#include "map.h"
 
 static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
 {
@@ -26,21 +28,27 @@ static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
 
 static void change_zoom_key(game_data_t *game, sfTime time, min_max_t *zoom)
 {
-    if (game->target_zoom < zoom->max && is_key_down(game, KeyPlus))
+    if (game->target_zoom < zoom->max && is_key_down(game, KeyMinus))
         game->target_zoom *= 1 + ZOOM_SPEED * sfTime_asSeconds(time);
-    if (game->target_zoom > zoom->min && is_key_down(game, KeyMinus))
+    if (game->target_zoom > zoom->min && is_key_down(game, KeyPlus))
         game->target_zoom *= 1 - ZOOM_SPEED * sfTime_asSeconds(time);
 }
 
-static void check_custom_zone(player_data_t *player, min_max_t *zoom,
+static void check_custom_zone(game_data_t *game, min_max_t *zoom,
     sfVector2f *position)
 {
-    if (player->position.x >= 1433 && player->position.x <= 1635
-        && player->position.y >= 1503 && player->position.y <= 1705) {
-        zoom->min = 0.3;
-        zoom->max = 0.3;
-        position->x = 1530;
-        position->y = 1600;
+    for (int i = 0; i < game->map.zoom_count; ++i) {
+        if (position->x >= game->map.zoom[i].zone.x1
+            && position->x <= game->map.zoom[i].zone.x2
+            && position->y >= game->map.zoom[i].zone.y1
+            && position->y <= game->map.zoom[i].zone.y2) {
+            zoom->min = game->map.zoom[i].min;
+            zoom->max = game->map.zoom[i].max;
+            position->x = game->map.zoom[i].pos.x > 0 ? game->map.zoom[i].pos.x
+                : position->x;
+            position->y = game->map.zoom[i].pos.y > 0 ? game->map.zoom[i].pos.y
+                : position->y;
+        }
     }
 }
 
@@ -75,7 +83,7 @@ static void set_view(game_data_t *game, sfTime time)
     float diff = 0;
 
     change_zoom_key(game, time, &zoom);
-    check_custom_zone(game->player, &zoom, &position);
+    check_custom_zone(game, &zoom, &position);
     diff = update_zoom_one(game, &zoom, &size, &position);
     diff = (CLAMP(position.x, 10.f, map->rect.width - size.x - 10)
         + size.x / 2.f) - game->view_pos.x;
@@ -133,8 +141,8 @@ static void check_bullet_player(game_data_t *game)
             game->mouse_pos.x - game->player->position.x);
         dir = (sfVector2f){cosf(angle), sinf(angle)};
         list_add_element(&game->bullets,
-            create_bullet(game, &game->player->position,
-            &dir, game->player->target_rot + 90));
+            create_bullet(game, &(bullet_config_t){&game->player->position,
+                &dir, game->player->target_rot + 90, 1, BULLET_MEDIUM_SPEED}));
     }
 }
 

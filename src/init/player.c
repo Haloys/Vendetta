@@ -42,6 +42,7 @@ static void init_other_values(player_data_t *player)
         player->inventory->slots[i].is_selected = false;
     }
     player->is_playing = false;
+    player->path = NULL;
 }
 
 static int init_player_inventory(game_data_t *game, player_data_t *player)
