@@ -14,23 +14,35 @@ typedef struct enemy_s {
     char name[128];
     game_sprite_t const *sprite_data;
     sfSprite *sprite;
-    sfTexture *texture;
     sfVector2f position;
     sfVector2f direction;
     sfVector2f target;
     sfRectangleShape *health_bar;
     sfCircleShape *area;
     int health;
-    int speed;
-    int attack;
     int armor;
-    int max_health;
     sfClock *clock;
     float rotation;
     float disp_rotation;
     float target_rot;
-    map_id_t map_id;
+    struct enemy_config_s *config;
 } enemy_t;
+
+typedef struct enemy_config_s {
+    char name[128];
+    game_sprite_t const *sprite_data;
+    sfVector2f default_position;
+    int health;
+    int speed;
+    int attack;
+    int armor;
+    int max_health;
+    map_id_t map_id;
+} enemy_config_t;
+
+    #define ENEMY_COUNT (sizeof(ENEMIES_CONFIG) / sizeof(ENEMIES_CONFIG[0]))
+
+extern const enemy_config_t ENEMIES_CONFIG[];
 
     #define BULLET_SLOW_SPEED 5
     #define BULLET_MEDIUM_SPEED 10
