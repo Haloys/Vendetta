@@ -10,6 +10,11 @@
 
     #include "my_game.h"
 
+typedef enum enemy_attack_type_e {
+    A_FIRST,
+    A_PATH_FINDING,
+} enemy_attack_type_t;
+
 typedef struct enemy_s {
     char name[128];
     game_sprite_t const *sprite_data;
@@ -41,6 +46,7 @@ typedef struct enemy_config_s {
     int armor;
     int max_health;
     map_id_t map_id;
+    enemy_attack_type_t attack_type;
 } enemy_config_t;
 
     #define ENEMY_COUNT (sizeof(ENEMIES_CONFIG) / sizeof(ENEMIES_CONFIG[0]))
