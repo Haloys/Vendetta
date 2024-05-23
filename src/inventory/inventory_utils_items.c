@@ -47,3 +47,20 @@ char *get_equiped_weapon(game_data_t *game)
     }
     return NULL;
 }
+
+void insert_item_at_specific_slot(game_data_t *game, char *item_name, int qty,
+    int slot_id)
+{
+    inventory_slot_t *slot = &game->player->inventory->slots[slot_id];
+
+    if (strcmp(item_name, "NULL") == 0) {
+        return;
+    }
+    if (slot->item == NULL) {
+        slot->item = get_item_by_name(item_name);
+        slot->quantity = slot->item->is_stackable == true ? qty : 1;
+        slot->weight = slot->item->weight * slot->quantity;
+        update_inventory_weight(game);
+        calculate_player_stats(game);
+    }
+}
