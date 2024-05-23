@@ -34,6 +34,7 @@ void display_bullets(game_data_t *game)
         sfRenderWindow_drawSprite(game->window,
             bullet->sprite, NULL);
     }
+    sfClock_restart(game->bullets_clock);
 }
 
 void display_entities(game_data_t *game)
