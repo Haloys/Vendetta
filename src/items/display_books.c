@@ -6,6 +6,7 @@
 */
 
 #include "my_game.h"
+#include "gameplay.h"
 #include "utils.h"
 
 void display_first_book(game_data_t *game)
@@ -17,6 +18,7 @@ void display_first_book(game_data_t *game)
         insert_item_in_inventory(game, "first_book", 1);
         sfSound_stop(game->assets.sound[S_FIRST_BOOK]);
         change_game_mode(game, INVENTORY);
+        update_music_volumes(game);
     }
 }
 
@@ -29,6 +31,7 @@ void display_second_book(game_data_t *game)
         insert_item_in_inventory(game, "second_book", 1);
         sfSound_stop(game->assets.sound[S_SECOND_BOOK]);
         change_game_mode(game, INVENTORY);
+        update_music_volumes(game);
     }
 }
 
@@ -41,5 +44,6 @@ void display_third_book(game_data_t *game)
         insert_item_in_inventory(game, "third_book", 1);
         sfSound_stop(game->assets.sound[S_THIRD_BOOK]);
         change_game_mode(game, INVENTORY);
+        update_music_volumes(game);
     }
 }
