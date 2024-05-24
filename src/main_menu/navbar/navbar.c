@@ -85,6 +85,8 @@ static void reinitialize_game_part_two(game_data_t *game)
     game->player->position = map_config[0].spawn_pos;
     game->player->path = NULL;
     set_map(game, 0, &game->player->position);
+    game->player->sprite_data = &SPRITES[SP_PLAYER_HAND];
+    game->player->sprite = get_sprite(game, SP_PLAYER_HAND);
 }
 
 static void reinitialize_game(game_data_t *game)
@@ -99,7 +101,7 @@ static void reinitialize_game(game_data_t *game)
     game->player->speed = 10;
     game->player->health = 10;
     game->player->attack = 10;
-    game->player->max_health = 15;
+    game->player->max_health = 40;
     game->player->skill_tree->armor_lvl = 0;
     game->player->skill_tree->attack_lvl = 0;
     game->player->skill_tree->health_lvl = 0;

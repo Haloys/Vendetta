@@ -102,27 +102,9 @@ static int verify_file_hash(char *base_value)
     return 0;
 }
 
-void read_inventory(game_data_t *game, FILE *file)
-{
-    char buffer[64] = {0};
-    char item[64] = {0};
-    int temp = 0;
-    int qty = 0;
-
-    for (int i = 0; i < 29; i++) {
-        if (fgets(buffer, sizeof(buffer), file) == NULL) {
-            break;
-        }
-        if (strstr(buffer, "item=") != NULL) {
-            sscanf(buffer, "item=%d:%63[^:]:%d", &temp, item, &qty);
-            insert_item_at_specific_slot(game, item, qty, temp);
-        }
-    }
-}
-
 static void read_continue(game_data_t *game, FILE *file, int temp)
 {
-    char buffer[32];
+    char buffer[64];
 
     if (fgets(buffer, sizeof(buffer), file) != NULL)
         sscanf(buffer, "current_xp=%d", &game->player->current_xp);
@@ -143,10 +125,9 @@ static void read_continue(game_data_t *game, FILE *file, int temp)
     calculate_player_stats(game);
 }
 
-
 static void read_save_data(game_data_t *game, FILE *file)
 {
-    char buffer[32];
+    char buffer[64];
     float x = 0;
     float y = 0;
     int temp = 0;
@@ -164,6 +145,24 @@ static void read_save_data(game_data_t *game, FILE *file)
     read_continue(game, file, temp);
 }
 
+void read_inventory(game_data_t *game, FILE *file)
+{
+    char buffer[64] = {0};
+    char item[64] = {0};
+    int temp = 0;
+    int qty = 0;
+
+    for (int i = 0; i < 29; i++) {
+        if (fgets(buffer, sizeof(buffer), file) == NULL) {
+            break;
+        }
+        if (strstr(buffer, "item=") != NULL) {
+            sscanf(buffer, "item=%d:%63[^:]:%d", &temp, item, &qty);
+            insert_item_at_specific_slot(game, item, qty, temp);
+        }
+    }
+    read_save_data(game, file);
+}
 
 int load_game(game_data_t *game)
 {
@@ -184,7 +183,6 @@ int load_game(game_data_t *game)
     if (!file)
         return 1;
     read_inventory(game, file);
-    read_save_data(game, file);
     if (fclose(file) != 0)
         return 1;
     return 0;

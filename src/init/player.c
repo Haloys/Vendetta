@@ -54,9 +54,9 @@ static int init_player_inventory(game_data_t *game, player_data_t *player)
     player->inventory->total_weight = 0;
     player->armor = 10;
     player->speed = 10;
-    player->health = 10;
+    player->health = 40;
     player->attack = 10;
-    player->max_health = 15;
+    player->max_health = 40;
     player->sprite_data = &SPRITES[SP_PLAYER_HAND];
     player->sprite = get_sprite(game, SP_PLAYER_HAND);
     player->clock = sfClock_create();
