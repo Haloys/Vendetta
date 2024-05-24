@@ -59,8 +59,10 @@ typedef struct map_config_s {
 int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos);
 int set_backmap(game_data_t *game, map_id_t map_id);
 bool is_in_portal(game_data_t *game, rect_t *portal);
-bool door_checker(game_data_t *game, rect_t *door, char *item);
+bool door_checker(game_data_t *game, sfVector2f *pos, rect_t *door,
+    char *item);
 void draw_doors(game_data_t *game, door_t *doors, rect_t *door);
+bool can_pass_door(game_data_t *game, int x, int y);
 
 extern const map_config_t map_config[];
 

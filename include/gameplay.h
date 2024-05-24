@@ -75,4 +75,6 @@ void display_enemies(game_data_t *game);
 void display_npcs(game_data_t *game);
 void display_paths(game_data_t *game);
 
+bool can_entity_pass(game_data_t *game, int new_x, int new_y);
+
 #endif /* GAMEPLAY_H */

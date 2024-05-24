@@ -35,6 +35,24 @@ static void doors_create_visual(game_data_t *game, door_t *door,
     }
 }
 
+bool can_pass_door(game_data_t *game, int x, int y)
+{
+    door_t *door = NULL;
+
+    for (int i = 0; i < game->map.door_count; i++) {
+        door = &game->map.doors[i];
+        if (!(x >= door->rect.x && x <= door->rect.w
+            && y >= door->rect.y && y <= door->rect.h))
+            continue;
+        if (get_item_quantity(game, door->item) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
 void draw_doors(game_data_t *game, door_t *door, rect_t *rect)
 {
     sfVector2f player_pos = game->player->position;
@@ -50,8 +68,7 @@ void draw_doors(game_data_t *game, door_t *door, rect_t *rect)
     if (square == NULL || keybind_text == NULL)
         return;
     doors_create_visual(game, door, square, keybind_text);
-    sfText_setPosition(keybind_text, (sfVector2f)
-        {rect->x + 20, rect->y + 13});
+    sfText_setPosition(keybind_text, (sfVector2f){rect->x + 20, rect->y + 13});
     sfRectangleShape_setPosition(square, (sfVector2f)
         {rect->x + 7, rect->y + 6});
     sfRenderWindow_drawRectangleShape(game->window, square, NULL);

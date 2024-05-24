@@ -158,11 +158,11 @@ void update_player(game_data_t *game, sfTime time)
     normalize(&game->player->direction);
     player->direction.x *= scale;
     player->direction.y *= scale;
-    if (!(is_black_color(get_pixel_color(game->cols_map, player->position.x
-        + (player->direction.x * RADAR_SIZE), player->position.y))))
+    if (can_entity_pass(game, player->position.x +
+        (player->direction.x * RADAR_SIZE), player->position.y))
         player->position.x += player->direction.x;
-    if (!(is_black_color(get_pixel_color(game->cols_map, player->position.x,
-        player->position.y + (player->direction.y * RADAR_SIZE)))))
+    if (can_entity_pass(game, player->position.x,
+        player->position.y + (player->direction.y * RADAR_SIZE)))
         player->position.y += player->direction.y;
     set_view(game, time);
     update_player_direction_t(game);
