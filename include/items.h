@@ -25,7 +25,7 @@ static const item_t ITEMS[] = {
         .type = ITEM_MISC,
         .damage = 0,
         .armor = 0,
-        .health = 10,
+        .health = 40,
         .speed = 0,
         .effect = NULL
     },
@@ -89,7 +89,7 @@ static const item_t ITEMS[] = {
         .type = ITEM_MISC,
         .damage = 0,
         .armor = 0,
-        .health = 4,
+        .health = 10,
         .speed = 0,
         .effect = NULL
     },
