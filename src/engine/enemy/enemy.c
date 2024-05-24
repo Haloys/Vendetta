@@ -17,7 +17,6 @@
 void draw_enemy(game_data_t *game, enemy_t *enemy)
 {
     sfRenderWindow_drawSprite(game->window, enemy->sprite, NULL);
-    sfRenderWindow_drawCircleShape(game->window, enemy->area, NULL);
     sfRenderWindow_drawRectangleShape(game->window, enemy->health_bar, NULL);
 }
 
@@ -37,7 +36,8 @@ static void process_enemy_shoot(game_data_t *game, enemy_t *enemy)
         for (int i = 0; i < 360; i += 45) {
             list_add_element(&game->bullets, create_bullet(game,
                 &(bullet_config_t){&enemy->position, &(sfVector2f){
-                    cos(i * PI / 180), sin(i * PI / 180)}, i,
+                    cos(i * PI / 180), sin(i * PI / 180)}, enemy->rotation
+                        + i + 90,
                     enemy->config->attack, enemy->config->bullet_speed}));
         }
         sfClock_restart(enemy->shoot_clock);
