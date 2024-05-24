@@ -54,12 +54,7 @@ static void change_map_if_needed(game_data_t *game)
 static void update_gameplay(game_data_t *game)
 {
     sfTime time = sfClock_getElapsedTime(game->player->clock);
-    map_id_t map_id = game->map.id;
 
-    if (is_key_pressed(game, Reset)) {
-        map_id = (map_id + 1) % 3;
-        change_game_mode(game, ENDING_SCREEN);
-    }
     sfRenderWindow_setView(game->window, game->game_view);
     sfClock_restart(game->player->clock);
     update_player(game, time);

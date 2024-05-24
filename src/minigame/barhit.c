@@ -62,7 +62,7 @@ static bool check_key_press(barhit_t *barhit)
     sfVector2f bar_pos;
     sfVector2f inner_pos;
 
-    if (sfKeyboard_isKeyPressed(sfKeyL)) {
+    if (sfKeyboard_isKeyPressed(sfKeySpace)) {
         bar_pos = sfRectangleShape_getPosition(barhit->bar);
         inner_pos = sfRectangleShape_getPosition(barhit->inner_rect);
         if (bar_pos.x >= inner_pos.x && bar_pos.x <=
