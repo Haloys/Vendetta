@@ -43,7 +43,8 @@ void display_third_book(game_data_t *game)
     if (is_key_pressed(game, Space)) {
         insert_item_in_inventory(game, "third_book", 1);
         sfSound_stop(game->assets.sound[S_THIRD_BOOK]);
-        change_game_mode(game, ENDING_SCREEN);
         update_music_volumes(game);
+        start_music(&game->assets, M_ENDING);
+        change_game_mode(game, ENDING_SCREEN);
     }
 }
