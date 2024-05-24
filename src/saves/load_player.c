@@ -110,52 +110,60 @@ void read_inventory(game_data_t *game, FILE *file)
     int qty = 0;
 
     for (int i = 0; i < 29; i++) {
-        fscanf(file, "%s\n", buffer);
+        if (fgets(buffer, sizeof(buffer), file) == NULL) {
+            break;
+        }
         if (strstr(buffer, "item=") != NULL) {
-            sscanf(buffer, "item=%d:%[^:]:%d", &temp, item, &qty);
+            sscanf(buffer, "item=%d:%63[^:]:%d", &temp, item, &qty);
             insert_item_at_specific_slot(game, item, qty, temp);
         }
     }
 }
 
-static void read_continue(game_data_t *game, FILE *file)
+static void read_continue(game_data_t *game, FILE *file, int temp)
 {
-    char buffer[32] = {0};
-    int temp = 0;
+    char buffer[32];
 
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "current_xp=%d", &game->player->current_xp);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "skill_points=%d", &game->player->skill_points);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "armor_lvl=%d", &game->player->skill_tree->armor_lvl);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "attack_lvl=%d", &game->player->skill_tree->attack_lvl);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "health_lvl=%d", &game->player->skill_tree->health_lvl);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "speed_lvl=%d", &game->player->skill_tree->speed_lvl);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "map_id=%d", &temp);
-    set_map(game, temp, &game->player->position);
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+        sscanf(buffer, "current_xp=%d", &game->player->current_xp);
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+        sscanf(buffer, "skill_points=%d", &game->player->skill_points);
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+        sscanf(buffer, "armor_lvl=%d", &game->player->skill_tree->armor_lvl);
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+        sscanf(buffer, "attack_lvl=%d", &game->player->skill_tree->attack_lvl);
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+        sscanf(buffer, "health_lvl=%d", &game->player->skill_tree->health_lvl);
+    if (fgets(buffer, sizeof(buffer), file) != NULL)
+        sscanf(buffer, "speed_lvl=%d", &game->player->skill_tree->speed_lvl);
+    if (fgets(buffer, sizeof(buffer), file) != NULL) {
+        sscanf(buffer, "map_id=%d", &temp);
+        set_map(game, temp, &game->player->position);
+    }
     calculate_player_stats(game);
 }
 
+
 static void read_save_data(game_data_t *game, FILE *file)
 {
-    char buffer[32] = {0};
+    char buffer[32];
     float x = 0;
     float y = 0;
+    int temp = 0;
 
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "health=%d", &game->player->health);
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "position=%f:%f", &x, &y);
-    game->player->position = (sfVector2f){x, y};
-    fscanf(file, "%s\n", buffer);
-    sscanf(buffer, "current_lvl=%d", &game->player->current_lvl);
-    read_continue(game, file);
+    if (fgets(buffer, sizeof(buffer), file) != NULL) {
+        sscanf(buffer, "health=%d", &game->player->health);
+    }
+    if (fgets(buffer, sizeof(buffer), file) != NULL) {
+        sscanf(buffer, "position=%f:%f", &x, &y);
+        game->player->position = (sfVector2f){x, y};
+    }
+    if (fgets(buffer, sizeof(buffer), file) != NULL) {
+        sscanf(buffer, "current_lvl=%d", &game->player->current_lvl);
+    }
+    read_continue(game, file, temp);
 }
+
 
 int load_game(game_data_t *game)
 {
@@ -173,8 +181,11 @@ int load_game(game_data_t *game)
     if (verify_file_hash(buffer) == 1)
         return 1;
     file = fopen(buffer, "r");
+    if (!file)
+        return 1;
     read_inventory(game, file);
     read_save_data(game, file);
-    fclose(file);
+    if (fclose(file) != 0)
+        return 1;
     return 0;
 }

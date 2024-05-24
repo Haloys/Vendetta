@@ -67,6 +67,7 @@ int callback_interact_chest_shoes(game_data_t *game, item_entity_t *item);
 int callback_interact_chest_inside(game_data_t *game, item_entity_t *item);
 int callback_interact_chest_beach(game_data_t *game, item_entity_t *item);
 int callback_interact_chest_boss(game_data_t *game, item_entity_t *item);
+int callback_interact_chest_random(game_data_t *game, item_entity_t *item);
 
 bool can_move_to_point(game_data_t *game, sfVector2f *pos, sfVector2f *dir,
     sfVector2f *target);
