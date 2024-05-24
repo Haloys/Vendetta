@@ -23,10 +23,23 @@ void draw_enemy(game_data_t *game, enemy_t *enemy)
 
 static void process_enemy_shoot(game_data_t *game, enemy_t *enemy)
 {
-    if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
+    if ((enemy->config->attack_type == A_FIRST
+        || enemy->config->attack_type == A_PATH_FINDING)
+        && !will_collide_wall(game, &enemy->position, &enemy->target)) {
         list_add_element(&game->bullets, create_bullet(game,
             &(bullet_config_t){&enemy->position, &enemy->target,
-                enemy->rotation, enemy->config->attack, BULLET_NORMAL_SPEED}));
+                enemy->rotation, enemy->config->attack,
+                enemy->config->bullet_speed}));
+        sfClock_restart(enemy->shoot_clock);
+    }
+    if (enemy->config->attack_type == A_EXPLOSION
+        && !will_collide_wall(game, &enemy->position, &enemy->target)) {
+        for (int i = 0; i < 360; i += 45) {
+            list_add_element(&game->bullets, create_bullet(game,
+                &(bullet_config_t){&enemy->position, &(sfVector2f){
+                    cos(i * PI / 180), sin(i * PI / 180)}, i,
+                    enemy->config->attack, enemy->config->bullet_speed}));
+        }
         sfClock_restart(enemy->shoot_clock);
     }
 }
@@ -46,7 +59,8 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy)
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
     if (game->is_passive == false
-        && sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5)
+        && sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock))
+        > enemy->config->attack_speed)
         process_enemy_shoot(game, enemy);
 }
 

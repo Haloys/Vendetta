@@ -25,9 +25,25 @@ static void enemy_follow_player(enemy_t *enemy, game_data_t *game, sfTime time)
     enemy->position.y += enemy->direction.y * ENEMY_MOVE_SPEED * elapsed;
 }
 
+static void process_attack(game_data_t *game, enemy_t *enemy, sfTime time)
+{
+    switch (enemy->config->attack_type)
+    {
+    case A_PATH_FINDING:
+        walk_to_nearest_point(enemy, game, time);
+        break;
+    case A_FIRST:
+    case A_EXPLOSION:
+        enemy_follow_player(enemy, game, time);
+        break;
+    default:
+        break;
+    }
+}
+
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
 {
-    sfVector2f pos = sfSprite_getPosition(enemy->sprite);
+    sfVector2f pos = enemy->position;
     sfVector2f player_pos = game->player->position;
     float angle = atan2(player_pos.y - pos.y, player_pos.x - pos.x);
     float distance = sqrt(pow(player_pos.x - pos.x, 2) +
@@ -40,10 +56,7 @@ void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
         enemy->disp_rotation = enemy->rotation;
     if (game->is_passive == false && distance > 100 && (distance < 250
         || !will_collide_wall(game, &enemy->position, &enemy->direction))) {
-        if (enemy->config->attack_type == A_PATH_FINDING)
-            walk_to_nearest_point(enemy, game, time);
-        else
-            enemy_follow_player(enemy, game, time);
+        process_attack(game, enemy, time);
     }
 }
 
