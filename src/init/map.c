@@ -48,9 +48,21 @@ const map_config_t map_config[] = {
                 .min = 0.5,
                 .max = 0.5,
                 .pos = {0, 0}
+            },
+            {
+                .zone = {726, 957, 1088, 1211},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {915, 1079}
+            },
+            {
+                .zone = {2283, 1513, 2552, 1858},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {2409, 1699}
             }
         },
-        .zoom_count = 4,
+        .zoom_count = 6,
         .door_count = 4,
         .doors = {
             {.rect = {1730, 1634, 1837, 1659}, .item = "keya"},
@@ -92,9 +104,27 @@ const map_config_t map_config[] = {
                 .min = 0.5,
                 .max = 0.5,
                 .pos = {0, 0}
+            },
+            {
+                .zone = {2069, 878, 2761, 1490},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
+            },
+            {
+                .zone = {1857, 1158, 2276, 1500},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
+            },
+            {
+                .zone = {2906, 1084, 3186, 1366},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
             }
         },
-        .zoom_count = 1,
+        .zoom_count = 4,
         .door_count = 3,
         .doors = {
             {.rect = {2053, 962, 2078, 1063}, .item = "keya"},
@@ -172,7 +202,9 @@ static void set_player_music_data(game_data_t *game, map_id_t map_id,
     game->player->position = pos != NULL ? *pos : map.spawn_pos;
     game->view_pos = map.spawn_pos;
     sfView_setCenter(game->game_view, game->player->position);
-    sfMusic_stop(game->assets.music[game->map.music]);
+    sfMusic_stop(game->assets.music[M_FIRST_MAP]);
+    sfMusic_stop(game->assets.music[M_SECOND_MAP]);
+    sfMusic_stop(game->assets.music[M_THIRD_MAP]);
     start_music(&game->assets, map.music);
     update_music_volumes(game);
 }
