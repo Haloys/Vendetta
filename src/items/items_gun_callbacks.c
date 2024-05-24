@@ -12,14 +12,6 @@
 #include "math.h"
 #include "setup_notifications.h"
 
-int callback_interact_knife(game_data_t *game, item_entity_t *item)
-{
-    insert_item_in_inventory(game, "knife", 1);
-    trigger_notification(game, 5);
-    remove_item_from_list(game, item);
-    return 0;
-}
-
 int callback_interact_pistol(game_data_t *game, item_entity_t *item)
 {
     insert_item_in_inventory(game, "pistol", 1);

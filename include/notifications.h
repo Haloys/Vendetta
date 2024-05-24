@@ -48,5 +48,7 @@ void remove_notification(notification_list_t *list);
 void display_notifications(game_data_t *game, notification_list_t *list);
 void update_notifications(notification_list_t *list);
 void trigger_notification(game_data_t *game, int dialog_index);
+void remove_notification_by_title(notification_list_t *list,
+    const char *title);
 
 #endif /* NOTIFICATIONS_H */

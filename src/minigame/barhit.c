@@ -101,9 +101,8 @@ static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
     sfTime time = sfClock_getElapsedTime(game->clock);
     float seconds = time.microseconds / 1000000.0f;
 
-    if (barhit->cooldown > 0) {
+    if (barhit->cooldown > 0)
         update_cooldown(barhit, seconds);
-    }
     if (barhit->cooldown == 0 && barhit->game_active) {
         if (check_key_press(barhit)) {
             change_game_mode(game, PLAYING);
@@ -111,9 +110,8 @@ static bool update_and_draw_barhit(game_data_t *game, barhit_t *barhit)
             return true;
         }
     }
-    if (barhit->game_active) {
+    if (barhit->game_active)
         update_bar_position(barhit, seconds);
-    }
     sfRenderWindow_drawRectangleShape(game->window, barhit->outer_rect, NULL);
     sfRenderWindow_drawRectangleShape(game->window, barhit->inner_rect, NULL);
     sfRenderWindow_drawRectangleShape(game->window, barhit->bar, NULL);
@@ -134,4 +132,8 @@ void display_barhit(game_data_t *game)
     basic_design(game);
     if (update_and_draw_barhit(game, barhit))
         initialized = 0;
+    if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
+        change_game_mode(game, PLAYING);
+        initialized = 0;
+    }
 }
