@@ -36,9 +36,7 @@ typedef struct zoom_config_s {
 typedef struct door_s {
     rect_t rect;
     char *item;
-    sfRectangleShape *square;
     sfVector2f position;
-    sfText *keybind_text;
     char key[32];
 } door_t;
 
