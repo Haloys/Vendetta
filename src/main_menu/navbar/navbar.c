@@ -99,9 +99,9 @@ static void reinitialize_game(game_data_t *game)
     game->player->inventory->total_weight = 0;
     game->player->armor = 10;
     game->player->speed = 10;
-    game->player->health = 10;
+    game->player->health = 80;
     game->player->attack = 10;
-    game->player->max_health = 40;
+    game->player->max_health = 80;
     game->player->skill_tree->armor_lvl = 0;
     game->player->skill_tree->attack_lvl = 0;
     game->player->skill_tree->health_lvl = 0;
