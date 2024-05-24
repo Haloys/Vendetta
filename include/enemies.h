@@ -13,6 +13,7 @@
 typedef enum enemy_attack_type_e {
     A_FIRST,
     A_PATH_FINDING,
+    A_EXPLOSION
 } enemy_attack_type_t;
 
 typedef struct enemy_s {
