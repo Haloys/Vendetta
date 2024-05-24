@@ -23,7 +23,8 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
-        .attack_speed = 0.5f
+        .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED
     },
     {
         .name = "Medium enemy",
@@ -39,7 +40,8 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
-        .attack_speed = 0.5f
+        .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED
     },
 };
 
