@@ -36,6 +36,7 @@ static int start_game(void)
         .is_passive = true,
         .is_first = true,
         .clicked = false,
+        .main_quest_stage = 1,
     };
 
     srand(time(NULL));

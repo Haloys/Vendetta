@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "my_game.h"
 #include "map.h"
@@ -208,6 +209,41 @@ static void set_player_music_data(game_data_t *game, map_id_t map_id,
     update_music_volumes(game);
 }
 
+static void trigger_notification_based_on_stage(game_data_t *game)
+{
+    switch (game->main_quest_stage) {
+        case 1:
+            trigger_notification(game, 24);
+            break;
+        case 2:
+            trigger_notification(game, 25);
+            break;
+        case 3:
+            trigger_notification(game, 26);
+            break;
+    }
+}
+
+void handle_main_notifications(game_data_t *game, map_id_t map_id)
+{
+    static const char *main_notif_titles[] = {
+        "The start of a vendetta",
+        "Finding the mysterious lady",
+        "Your Vendetta"
+    };
+
+    for (int i = 0; i < 3; i++) {
+        remove_notification_by_title(&game->notifications,
+            main_notif_titles[i]);
+    }
+    if (map_id == MAP_TWO && game->main_quest_stage < 2) {
+        game->main_quest_stage = 2;
+    } else if (map_id == MAP_THREE && game->main_quest_stage < 3) {
+        game->main_quest_stage = 3;
+    }
+    trigger_notification_based_on_stage(game);
+}
+
 int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
 {
     int map_data_status = set_map_data(game, map_id);
@@ -215,6 +251,7 @@ int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
     if (map_data_status != RET_NONE)
         return map_data_status;
     set_player_music_data(game, map_id, pos);
+    handle_main_notifications(game, map_id);
     return RET_NONE;
 }
 
@@ -237,5 +274,6 @@ int set_backmap(game_data_t *game, map_id_t map_id)
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
     if (game->cols_map == NULL)
         return RET_FAIL;
+    handle_main_notifications(game, map_id);
     return RET_NONE;
 }

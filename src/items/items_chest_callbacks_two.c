@@ -41,3 +41,11 @@ int callback_interact_chest_boss(game_data_t *game, item_entity_t *item)
     remove_item_from_list(game, item);
     return 0;
 }
+
+int callback_interact_chest_random(game_data_t *game, item_entity_t *item)
+{
+    give_random_items(game, 2, 5);
+    trigger_notification(game, 11);
+    remove_item_from_list(game, item);
+    return 0;
+}
