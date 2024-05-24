@@ -27,8 +27,7 @@ static void enemy_follow_player(enemy_t *enemy, game_data_t *game, sfTime time)
 
 static void process_attack(game_data_t *game, enemy_t *enemy, sfTime time)
 {
-    switch (enemy->config->attack_type)
-    {
+    switch (enemy->config->attack_type) {
     case A_PATH_FINDING:
         walk_to_nearest_point(enemy, game, time);
         break;
