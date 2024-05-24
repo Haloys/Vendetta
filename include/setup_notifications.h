@@ -46,7 +46,7 @@ static const notification_params_t NOTIFICATION[] = {
         "all the keys and take your revenge.", SP_OBJECTIVE, -1},
     {"Finding the mysterious lady", "After this magnificent escape, find\n"
         "the informant who will give you access to\n"
-            "the Sylens lair.", SP_OBJECTIVE, -1},
+        "the Sylens lair.", SP_OBJECTIVE, -1},
     {"Your Vendetta", "Face your worst enemy, and achieve\n"
         "your vendetta\n", SP_OBJECTIVE, -1},
 };
