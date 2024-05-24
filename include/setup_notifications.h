@@ -28,16 +28,16 @@ static const notification_params_t NOTIFICATION[] = {
     {"Unbelievable", "You found boss stash", SP_OBJECTIVE, 10.0},
     {"Prodigious", "You found a massive stash", SP_OBJECTIVE, 10.0},
     {"Oxycodone ?", "Trevor gave you some oxycodone, would\n"
-                "it be a good idea to take it?", SP_OBJECTIVE, 30.0},
+        "it be a good idea to take it?", SP_OBJECTIVE, 30.0},
     {"New key !", "Oleksandra has given you a key! Will you,\n"
         "go to the bottom of the cementery to,\n"
-            "stop this organisation!", SP_OBJECTIVE, 30.0},
+        "stop this organisation!", SP_OBJECTIVE, 30.0},
     {"Nice shoes !", "Mike gave you some nice green shoes !\n"
         "Would  it be useful to equip them by,\n"
-            "opening the inventory?", SP_OBJECTIVE, 30.0},
+        "opening the inventory?", SP_OBJECTIVE, 30.0},
     {"That some protection !", "Mike has given you a suit of\n"
         "armour that could be more than useful\n"
-            "for this vendetta!", SP_OBJECTIVE, 30.0},
+        "for this vendetta!", SP_OBJECTIVE, 30.0},
     {"Goldcoin", "You found a goldcoin", SP_OBJECTIVE, 30.0},
     {"Map 2 Unlocked", "You have unlocked Map 2!", SP_OBJECTIVE, 15.0},
     {"Map 3 Unlocked", "You have unlocked Map 3!", SP_OBJECTIVE, 15.0},
