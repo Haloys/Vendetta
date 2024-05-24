@@ -17,7 +17,6 @@
 void draw_enemy(game_data_t *game, enemy_t *enemy)
 {
     sfRenderWindow_drawSprite(game->window, enemy->sprite, NULL);
-    sfRenderWindow_drawCircleShape(game->window, enemy->area, NULL);
     sfRenderWindow_drawRectangleShape(game->window, enemy->health_bar, NULL);
 }
 
