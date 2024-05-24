@@ -92,8 +92,6 @@ static void display_gameplay(game_data_t *game)
     display_entities(game);
     display_player(game);
     display_bullets(game);
-    if (game->map.id == MAP_ONE)
-        display_paths(game);
     apply_shader(game);
     display_overlay(game);
     display_notifications(game, &game->notifications);
