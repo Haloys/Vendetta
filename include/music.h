@@ -13,6 +13,7 @@ static const char *MUSIC_L[] = {
     "assets/musics/first_map.ogg",
     "assets/musics/second_map.ogg",
     "assets/musics/third_map.ogg",
+    "assets/musics/end.ogg",
 };
 
 static const char *SOUND_L[] = {

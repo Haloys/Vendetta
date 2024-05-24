@@ -137,3 +137,34 @@ void trigger_notification(game_data_t *game, int dialog_index)
     notif = create_notification(game, params);
     add_notification(&game->notifications, notif);
 }
+
+static void destroy_notification(notification_list_t *list,
+    notification_t *prev, notification_t *current)
+{
+    if (prev == NULL) {
+        list->head = current->next;
+    } else {
+        prev->next = current->next;
+    }
+    sfText_destroy(current->title);
+    sfText_destroy(current->message);
+    sfClock_destroy(current->clock);
+    free(current);
+    list->count--;
+}
+
+void remove_notification_by_title(notification_list_t *list, const char *title)
+{
+    notification_t *current = list->head;
+    notification_t *prev = NULL;
+
+    while (current != NULL) {
+        if (strcmp(sfText_getString(current->title), title) != 0) {
+            prev = current;
+            current = current->next;
+            continue;
+        }
+        destroy_notification(list, prev, current);
+        return;
+    }
+}

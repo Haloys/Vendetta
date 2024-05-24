@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <string.h>
 
 #include "my_game.h"
 #include "map.h"
@@ -47,9 +48,21 @@ const map_config_t map_config[] = {
                 .min = 0.5,
                 .max = 0.5,
                 .pos = {0, 0}
+            },
+            {
+                .zone = {726, 957, 1088, 1211},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {915, 1079}
+            },
+            {
+                .zone = {2283, 1513, 2552, 1858},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {2409, 1699}
             }
         },
-        .zoom_count = 4,
+        .zoom_count = 6,
         .door_count = 4,
         .doors = {
             {.rect = {1730, 1634, 1837, 1659}, .item = "keya"},
@@ -91,9 +104,27 @@ const map_config_t map_config[] = {
                 .min = 0.5,
                 .max = 0.5,
                 .pos = {0, 0}
+            },
+            {
+                .zone = {2069, 878, 2761, 1490},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
+            },
+            {
+                .zone = {1857, 1158, 2276, 1500},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
+            },
+            {
+                .zone = {2906, 1084, 3186, 1366},
+                .min = 0.5,
+                .max = 0.5,
+                .pos = {0, 0}
             }
         },
-        .zoom_count = 1,
+        .zoom_count = 4,
         .door_count = 3,
         .doors = {
             {.rect = {2053, 962, 2078, 1063}, .item = "keya"},
@@ -171,9 +202,46 @@ static void set_player_music_data(game_data_t *game, map_id_t map_id,
     game->player->position = pos != NULL ? *pos : map.spawn_pos;
     game->view_pos = map.spawn_pos;
     sfView_setCenter(game->game_view, game->player->position);
-    sfMusic_stop(game->assets.music[game->map.music]);
+    sfMusic_stop(game->assets.music[M_FIRST_MAP]);
+    sfMusic_stop(game->assets.music[M_SECOND_MAP]);
+    sfMusic_stop(game->assets.music[M_THIRD_MAP]);
     start_music(&game->assets, map.music);
     update_music_volumes(game);
+}
+
+static void trigger_notification_based_on_stage(game_data_t *game)
+{
+    switch (game->main_quest_stage) {
+        case 1:
+            trigger_notification(game, 24);
+            break;
+        case 2:
+            trigger_notification(game, 25);
+            break;
+        case 3:
+            trigger_notification(game, 26);
+            break;
+    }
+}
+
+void handle_main_notifications(game_data_t *game, map_id_t map_id)
+{
+    static const char *main_notif_titles[] = {
+        "The start of a vendetta",
+        "Finding the mysterious lady",
+        "Your Vendetta"
+    };
+
+    for (int i = 0; i < 3; i++) {
+        remove_notification_by_title(&game->notifications,
+            main_notif_titles[i]);
+    }
+    if (map_id == MAP_TWO && game->main_quest_stage < 2) {
+        game->main_quest_stage = 2;
+    } else if (map_id == MAP_THREE && game->main_quest_stage < 3) {
+        game->main_quest_stage = 3;
+    }
+    trigger_notification_based_on_stage(game);
 }
 
 int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
@@ -183,6 +251,7 @@ int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
     if (map_data_status != RET_NONE)
         return map_data_status;
     set_player_music_data(game, map_id, pos);
+    handle_main_notifications(game, map_id);
     return RET_NONE;
 }
 
@@ -205,5 +274,6 @@ int set_backmap(game_data_t *game, map_id_t map_id)
     game->cols_map = sfTexture_copyToImage(sfSprite_getTexture(sp_cols_map));
     if (game->cols_map == NULL)
         return RET_FAIL;
+    handle_main_notifications(game, map_id);
     return RET_NONE;
 }

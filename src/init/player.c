@@ -43,6 +43,7 @@ static void init_other_values(player_data_t *player)
     }
     player->is_playing = false;
     player->path = NULL;
+    player->target_rot = 0;
 }
 
 static int init_player_inventory(game_data_t *game, player_data_t *player)
@@ -60,6 +61,7 @@ static int init_player_inventory(game_data_t *game, player_data_t *player)
     player->sprite = get_sprite(game, SP_PLAYER_HAND);
     player->clock = sfClock_create();
     player->anim_clock = sfClock_create();
+    player->rotation = 0;
     init_other_values(player);
     return RET_NONE;
 }

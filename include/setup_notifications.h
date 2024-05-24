@@ -22,7 +22,7 @@ static const notification_params_t NOTIFICATION[] = {
     {"New Item !", "You found Aidkit", SP_OBJECTIVE, 10.0},
     {"New Item !", "You found Rifle", SP_OBJECTIVE, 10.0},
     {"New Item !", "You found Shotgun", SP_OBJECTIVE, 10.0},
-    {"Whaou !", "You found a chest", SP_OBJECTIVE, 10.0},
+    {"Wow !", "You found a chest", SP_OBJECTIVE, 10.0},
     {"Incredible", "You found a secret chest", SP_OBJECTIVE, 10.0},
     {"Amazing", "You found a secret chest", SP_OBJECTIVE, 10.0},
     {"Unbelievable", "You found boss stash", SP_OBJECTIVE, 10.0},
@@ -41,7 +41,14 @@ static const notification_params_t NOTIFICATION[] = {
     {"Goldcoin", "You found a goldcoin", SP_OBJECTIVE, 30.0},
     {"Map 2 Unlocked", "You have unlocked Map 2!", SP_OBJECTIVE, 15.0},
     {"Map 3 Unlocked", "You have unlocked Map 3!", SP_OBJECTIVE, 15.0},
-    {"Welcome", "You woke up !", SP_OBJECTIVE, 30.0}
+    {"Welcome", "You woke up !", SP_OBJECTIVE, 30.0},
+    {"The start of a vendetta", "Escape from prison, recover\n"
+        "all the keys and take your revenge.", SP_OBJECTIVE, -1},
+    {"Finding the mysterious lady", "After this magnificent escape, find\n"
+        "the informant who will give you access to\n"
+            "the Sylens lair.", SP_OBJECTIVE, -1},
+    {"Your Vendetta", "Face your worst enemy, and achieve\n"
+        "your vendetta\n", SP_OBJECTIVE, -1},
 };
 
 #endif /* SETUP_NOTIFICATIONS_H */
