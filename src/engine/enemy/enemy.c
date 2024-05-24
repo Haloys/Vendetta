@@ -36,8 +36,9 @@ static void process_enemy_shoot(game_data_t *game, enemy_t *enemy)
         for (int i = 0; i < 360; i += 45) {
             list_add_element(&game->bullets, create_bullet(game,
                 &(bullet_config_t){&enemy->position, &(sfVector2f){
-                    cos(i * PI / 180), sin(i * PI / 180)}, enemy->rotation
-                        + i + 90,
+                    cos(enemy->disp_rotation + i * PI / 180),
+                    sin(enemy->disp_rotation + i * PI / 180)},
+                    enemy->disp_rotation + i,
                     enemy->config->attack, enemy->config->bullet_speed}));
         }
         sfClock_restart(enemy->shoot_clock);
