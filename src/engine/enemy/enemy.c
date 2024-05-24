@@ -26,7 +26,7 @@ static void process_enemy_shoot(game_data_t *game, enemy_t *enemy)
     if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
         list_add_element(&game->bullets, create_bullet(game,
             &(bullet_config_t){&enemy->position, &enemy->target,
-                enemy->rotation, 1, BULLET_NORMAL_SPEED}));
+                enemy->rotation, enemy->config->attack, BULLET_NORMAL_SPEED}));
         sfClock_restart(enemy->shoot_clock);
     }
 }
