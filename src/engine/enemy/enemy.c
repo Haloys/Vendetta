@@ -46,7 +46,8 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy)
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
     if (game->is_passive == false
-        && sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5)
+        && sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock))
+        > enemy->config->attack_speed)
         process_enemy_shoot(game, enemy);
 }
 
