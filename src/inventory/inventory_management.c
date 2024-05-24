@@ -86,7 +86,7 @@ void calculate_player_stats(game_data_t *game)
 
     game->player->armor = 10;
     game->player->speed = 10;
-    game->player->max_health = 40;
+    game->player->max_health = 80;
     game->player->attack = 10;
     for (size_t i = 25; i < 29; i++) {
         slot = &game->player->inventory->slots[i];
