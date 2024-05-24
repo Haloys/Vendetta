@@ -43,7 +43,7 @@ static void process_attack(game_data_t *game, enemy_t *enemy, sfTime time)
 
 void update_enemy_pos_diretion(enemy_t *enemy, game_data_t *game, sfTime time)
 {
-    sfVector2f pos = sfSprite_getPosition(enemy->sprite);
+    sfVector2f pos = enemy->position;
     sfVector2f player_pos = game->player->position;
     float angle = atan2(player_pos.y - pos.y, player_pos.x - pos.x);
     float distance = sqrt(pow(player_pos.x - pos.x, 2) +

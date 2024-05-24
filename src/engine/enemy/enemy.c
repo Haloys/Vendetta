@@ -32,7 +32,8 @@ static void process_enemy_shoot(game_data_t *game, enemy_t *enemy)
                 enemy->config->bullet_speed}));
         sfClock_restart(enemy->shoot_clock);
     }
-    if (enemy->config->attack_type == A_EXPLOSION) {
+    if (enemy->config->attack_type == A_EXPLOSION
+        && !will_collide_wall(game, &enemy->position, &enemy->target)) {
         for (int i = 0; i < 360; i += 45) {
             list_add_element(&game->bullets, create_bullet(game,
                 &(bullet_config_t){&enemy->position, &(sfVector2f){
