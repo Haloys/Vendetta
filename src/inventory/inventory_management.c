@@ -13,6 +13,8 @@
 #include "inventory.h"
 #include "items.h"
 #include "utils.h"
+#include "gameplay.h"
+#include "player.h"
 
 static int insert_existing_item(game_data_t *game, char *name, int qty, int i)
 {
@@ -67,14 +69,24 @@ static void use_item(game_data_t *game, int slot_id)
     }
 }
 
-void calculate_player_stats(game_data_t *game)
+static void update_player_stats(game_data_t *game)
 {
     skill_tree_t *tree = game->player->skill_tree;
+
+    game->player->armor *= get_multiplier(tree->armor_lvl);
+    game->player->speed *= get_multiplier(tree->speed_lvl);
+    game->player->max_health *= get_multiplier(tree->health_lvl);
+    game->player->attack *= get_multiplier(tree->attack_lvl);
+    game->player->pspeed = PLAYER_MOVE_SPEED * game->player->speed / 10;
+}
+
+void calculate_player_stats(game_data_t *game)
+{
     inventory_slot_t *slot = NULL;
 
     game->player->armor = 10;
     game->player->speed = 10;
-    game->player->max_health = 15;
+    game->player->max_health = 40;
     game->player->attack = 10;
     for (size_t i = 25; i < 29; i++) {
         slot = &game->player->inventory->slots[i];
@@ -85,10 +97,8 @@ void calculate_player_stats(game_data_t *game)
             game->player->attack += slot->item->damage;
         }
     }
-    game->player->armor *= get_multiplier(tree->armor_lvl);
-    game->player->speed *= get_multiplier(tree->speed_lvl);
-    game->player->max_health *= get_multiplier(tree->health_lvl);
-    game->player->attack *= get_multiplier(tree->attack_lvl);
+    update_player_stats(game);
+    update_player_skin(game);
 }
 
 void use_or_trash(game_data_t *game, int slot_id, int item_id)
