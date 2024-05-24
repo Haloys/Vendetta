@@ -23,6 +23,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Easy enemy",
@@ -38,6 +39,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Easy enemy",
@@ -53,6 +55,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Easy enemy",
@@ -68,6 +71,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Easy enemy",
@@ -83,6 +87,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Easy enemy",
@@ -132,6 +137,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Medium enemy",
@@ -147,6 +153,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -162,6 +169,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Medium enemy",
@@ -177,6 +185,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Medium enemy",
@@ -192,6 +201,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -207,6 +217,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Medium enemy",
@@ -222,6 +233,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -237,6 +249,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Medium enemy",
@@ -252,6 +265,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -267,6 +281,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -282,6 +297,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Medium enemy",
@@ -297,6 +313,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -312,6 +329,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Hard enemy",
@@ -327,6 +345,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     },
     {
         .name = "Boss enemy",
@@ -342,6 +361,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .is_boss = false,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
+        .attack_speed = 0.5f,
     }
 };
 
