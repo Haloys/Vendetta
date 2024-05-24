@@ -51,7 +51,7 @@ void draw_doors(game_data_t *game, door_t *door, rect_t *rect)
         return;
     doors_create_visual(game, door, square, keybind_text);
     sfText_setPosition(keybind_text, (sfVector2f)
-        {rect->x + 18, rect->y + 15});
+        {rect->x + 20, rect->y + 13});
     sfRectangleShape_setPosition(square, (sfVector2f)
         {rect->x + 7, rect->y + 6});
     sfRenderWindow_drawRectangleShape(game->window, square, NULL);
