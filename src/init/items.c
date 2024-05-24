@@ -70,6 +70,22 @@ const item_config_t item_config[] = {
     {
         .name = "Chest",
         .sprite = SP_CHEST_ICON,
+        .default_position = {2477, 1798},
+        .default_rotation = 0,
+        .map_id = MAP_ONE,
+        .callback_interact = callback_interact_pistol
+    },
+    {
+        .name = "Bandage",
+        .sprite = SP_POTION_ICON,
+        .default_position = {2160, 1952},
+        .default_rotation = 0,
+        .map_id = MAP_ONE,
+        .callback_interact = callback_interact_bandage
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
         .default_position = {500, 748},
         .default_rotation = 0,
         .map_id = MAP_TWO,
@@ -92,12 +108,12 @@ const item_config_t item_config[] = {
         .callback_interact = callback_interact_chest_mask
     },
     {
-        .name = "Pistol",
-        .sprite = SP_SWORD_ICON,
+        .name = "Aidkit",
+        .sprite = SP_POTION_ICON,
         .default_position = {2063, 1713},
         .default_rotation = 0,
         .map_id = MAP_TWO,
-        .callback_interact = callback_interact_pistol
+        .callback_interact = callback_interact_aidkit
     },
     {
         .name = "Aidkit",
