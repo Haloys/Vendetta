@@ -46,6 +46,7 @@ typedef struct enemy_config_s {
     int armor;
     int max_health;
     int exp;
+    bool is_boss;
     map_id_t map_id;
     enemy_attack_type_t attack_type;
 } enemy_config_t;
