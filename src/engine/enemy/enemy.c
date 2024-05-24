@@ -21,6 +21,16 @@ void draw_enemy(game_data_t *game, enemy_t *enemy)
     sfRenderWindow_drawRectangleShape(game->window, enemy->health_bar, NULL);
 }
 
+static void process_enemy_shoot(game_data_t *game, enemy_t *enemy)
+{
+    if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
+        list_add_element(&game->bullets, create_bullet(game,
+            &(bullet_config_t){&enemy->position, &enemy->target,
+                enemy->rotation, 1, BULLET_NORMAL_SPEED}));
+        sfClock_restart(enemy->shoot_clock);
+    }
+}
+
 static void update_spritesheet(game_data_t *game, enemy_t *enemy)
 {
     sfTime game_time = sfClock_getElapsedTime(game->clock);
@@ -35,14 +45,9 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy)
             rect.left += enemy->sprite_data->rect.width;
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
-    if (sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5) {
-        if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
-            list_add_element(&game->bullets, create_bullet(game,
-                &(bullet_config_t){&enemy->position, &enemy->target,
-                    enemy->rotation, 1, BULLET_NORMAL_SPEED}));
-            sfClock_restart(enemy->shoot_clock);
-        }
-    }
+    if (game->is_passive == false
+        && sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5)
+        process_enemy_shoot(game, enemy);
 }
 
 void update_enemy(game_data_t *game, enemy_t *enemy)

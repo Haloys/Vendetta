@@ -43,8 +43,8 @@ static void change_map_if_needed(game_data_t *game)
     if (is_in_portal(game, &game->map.back_portal))
         set_backmap(game, (map_id - 1) % 3);
     for (int i = 0; i < game->map.door_count; i++) {
-        if (door_checker(game, &game->map.doors[i].rect,
-            game->map.doors[i].item)) {
+        if (door_checker(game, &game->player->position,
+            &game->map.doors[i].rect, game->map.doors[i].item)) {
             door_callback(game, i);
             return;
         }
@@ -92,8 +92,6 @@ static void display_gameplay(game_data_t *game)
     display_entities(game);
     display_player(game);
     display_bullets(game);
-    if (game->map.id == MAP_ONE)
-        display_paths(game);
     apply_shader(game);
     display_overlay(game);
     display_notifications(game, &game->notifications);
@@ -106,4 +104,12 @@ void process_playing_gameplay(game_data_t *game)
     for (int i = 0; i < game->map.door_count; i++) {
         draw_doors(game, &game->map.doors[i], &game->map.doors[i].rect);
     }
+}
+
+bool can_entity_pass(game_data_t *game, int new_x, int new_y)
+{
+    if (is_black_color(get_pixel_color(game->cols_map, new_x, new_y))
+        || can_pass_door(game, new_x, new_y) == false)
+        return false;
+    return true;
 }

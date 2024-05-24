@@ -162,12 +162,10 @@ static void handle_map_unlock_notifications(game_data_t *game, map_id_t map_id)
     }
 }
 
-bool door_checker(game_data_t *game, rect_t *door, char *item)
+bool door_checker(game_data_t *game, sfVector2f *pos, rect_t *door, char *item)
 {
-    sfVector2f pos = game->player->position;
-
-    if (pos.x >= door->x && pos.x <= door->w
-        && pos.y >= door->y && pos.y <= door->h
+    if (pos->x >= door->x && pos->x <= door->w
+        && pos->y >= door->y && pos->y <= door->h
         && get_item_quantity(game, item) > 0) {
         return true;
     }

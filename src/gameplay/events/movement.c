@@ -137,7 +137,7 @@ static void check_bullet_player(game_data_t *game)
     sfVector2f dir = {0, 0};
     int damage = 1 + game->player->attack / 5;
 
-    if (game->clicked) {
+    if (game->clicked && game->is_passive == false) {
         angle = atan2f(game->mouse_pos.y - game->player->position.y,
             game->mouse_pos.x - game->player->position.x);
         dir = (sfVector2f){cosf(angle), sinf(angle)};
@@ -158,11 +158,11 @@ void update_player(game_data_t *game, sfTime time)
     normalize(&game->player->direction);
     player->direction.x *= scale;
     player->direction.y *= scale;
-    if (!(is_black_color(get_pixel_color(game->cols_map, player->position.x
-        + (player->direction.x * RADAR_SIZE), player->position.y))))
+    if (can_entity_pass(game, player->position.x +
+        (player->direction.x * RADAR_SIZE), player->position.y))
         player->position.x += player->direction.x;
-    if (!(is_black_color(get_pixel_color(game->cols_map, player->position.x,
-        player->position.y + (player->direction.y * RADAR_SIZE)))))
+    if (can_entity_pass(game, player->position.x,
+        player->position.y + (player->direction.y * RADAR_SIZE)))
         player->position.y += player->direction.y;
     set_view(game, time);
     update_player_direction_t(game);
