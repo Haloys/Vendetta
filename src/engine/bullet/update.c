@@ -15,8 +15,10 @@ static bool execute_enemy_touched(game_data_t *game, enemy_t *enemy,
     bullet_t *bullet, element_t *tmp)
 {
     enemy->health -= bullet->damage;
-    if (enemy->health <= 0)
+    if (enemy->health <= 0) {
         list_remove_element(&game->enemies, tmp->prev);
+        add_xp(game, enemy->config->exp);
+    }
     return true;
 }
 
@@ -25,7 +27,7 @@ static bool execute_player_touched(game_data_t *game, bullet_t *bullet)
     player_data_t *player = game->player;
 
     player->health -= (bullet->damage
-        - (player->armor * bullet->damage / 100));
+        - (player->armor * bullet->damage / 80));
     player->health = MAX(0, player->health);
     if (player->health <= 0) {
         player->health = 10;

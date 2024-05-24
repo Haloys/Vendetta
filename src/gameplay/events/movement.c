@@ -135,14 +135,15 @@ static void check_bullet_player(game_data_t *game)
 {
     float angle = 0;
     sfVector2f dir = {0, 0};
+    int damage = 1 + game->player->attack / 5;
 
     if (game->clicked) {
         angle = atan2f(game->mouse_pos.y - game->player->position.y,
             game->mouse_pos.x - game->player->position.x);
         dir = (sfVector2f){cosf(angle), sinf(angle)};
-        list_add_element(&game->bullets,
-            create_bullet(game, &(bullet_config_t){&game->player->position,
-                &dir, game->player->target_rot + 90, 1, BULLET_MEDIUM_SPEED}));
+        list_add_element(&game->bullets, create_bullet(game,
+            &(bullet_config_t){&game->player->position, &dir,
+            game->player->target_rot + 90, damage, BULLET_MEDIUM_SPEED}));
     }
 }
 
