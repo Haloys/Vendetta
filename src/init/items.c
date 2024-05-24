@@ -37,12 +37,12 @@ const item_config_t item_config[] = {
         .callback_interact = callback_interact_key_c
     },
     {
-        .name = "Knife",
-        .sprite = SP_SWORD_ICON,
+        .name = "Bandage",
+        .sprite = SP_POTION_ICON,
         .default_position = {1070, 1316},
         .default_rotation = 0,
         .map_id = MAP_ONE,
-        .callback_interact = callback_interact_knife
+        .callback_interact = callback_interact_bandage
     },
     {
         .name = "Chest",
