@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Checking coding-style
+        timeout-minutes: 5
         run: |
           check.sh $(pwd) $(pwd)
           cat $REPORT_FILENAME | while read LINE; do
