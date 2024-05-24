@@ -22,7 +22,7 @@ static const notification_params_t NOTIFICATION[] = {
     {"New Item !", "You found Aidkit", SP_OBJECTIVE, 10.0},
     {"New Item !", "You found Rifle", SP_OBJECTIVE, 10.0},
     {"New Item !", "You found Shotgun", SP_OBJECTIVE, 10.0},
-    {"Whaou !", "You found a chest", SP_OBJECTIVE, 10.0},
+    {"Wow !", "You found a chest", SP_OBJECTIVE, 10.0},
     {"Incredible", "You found a secret chest", SP_OBJECTIVE, 10.0},
     {"Amazing", "You found a secret chest", SP_OBJECTIVE, 10.0},
     {"Unbelievable", "You found boss stash", SP_OBJECTIVE, 10.0},

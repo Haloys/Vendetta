@@ -47,6 +47,13 @@ const item_config_t item_config[] = {
     {
         .name = "Chest",
         .sprite = SP_CHEST_ICON,
+        .default_position = {839, 1161},
+        .map_id = MAP_ONE,
+        .callback_interact = callback_interact_chest_random
+    },
+    {
+        .name = "Chest",
+        .sprite = SP_CHEST_ICON,
         .default_position = {471, 1806},
         .default_rotation = 0,
         .map_id = MAP_ONE,
