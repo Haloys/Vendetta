@@ -24,6 +24,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Easy enemy",
@@ -40,6 +41,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Easy enemy",
@@ -56,6 +58,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Easy enemy",
@@ -72,6 +75,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Easy enemy",
@@ -88,6 +92,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_ONE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Easy enemy",
@@ -138,6 +143,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Medium enemy",
@@ -154,6 +160,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -170,6 +177,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Medium enemy",
@@ -186,6 +194,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Medium enemy",
@@ -202,6 +211,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -218,6 +228,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_TWO,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Medium enemy",
@@ -234,6 +245,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -250,6 +262,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Medium enemy",
@@ -266,6 +279,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -282,6 +296,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -298,6 +313,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Medium enemy",
@@ -314,6 +330,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -330,6 +347,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Hard enemy",
@@ -346,6 +364,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     },
     {
         .name = "Boss enemy",
@@ -362,6 +381,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
         .attack_speed = 0.5f,
+        .bullet_speed = BULLET_NORMAL_SPEED,
     }
 };
 
