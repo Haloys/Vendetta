@@ -35,7 +35,8 @@ static void update_spritesheet(game_data_t *game, enemy_t *enemy)
             rect.left += enemy->sprite_data->rect.width;
         sfSprite_setTextureRect(enemy->sprite, rect);
     }
-    if (sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5) {
+    if (game->is_passive == false
+        && sfTime_asSeconds(sfClock_getElapsedTime(enemy->shoot_clock)) > 0.5){
         if (!will_collide_wall(game, &enemy->position, &enemy->target)) {
             list_add_element(&game->bullets, create_bullet(game,
                 &(bullet_config_t){&enemy->position, &enemy->target,
