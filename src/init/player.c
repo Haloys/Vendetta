@@ -63,6 +63,7 @@ static int init_player_inventory(game_data_t *game, player_data_t *player)
     player->anim_clock = sfClock_create();
     player->rotation = 0;
     init_other_values(player);
+    insert_item_in_inventory(game, "third_book", 1);
     return RET_NONE;
 }
 

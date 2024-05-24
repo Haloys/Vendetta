@@ -28,7 +28,8 @@ static void display_credits(sfRenderWindow *window, credits_data_t *data,
     sfText *text = sfText_create();
 
     sfMusic_stop(game->assets.music[MUSICS[M_THIRD_MAP].id]);
-    start_music(&game->assets, M_ENDING);
+    sfMusic_stop(game->assets.music[MUSICS[M_SECOND_MAP].id]);
+    sfMusic_stop(game->assets.music[MUSICS[M_FIRST_MAP].id]);
     sfText_setFont(text, data->font);
     sfText_setCharacterSize(text, 30);
     for (size_t i = 0; i < data->line_count; i++) {
