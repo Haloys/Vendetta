@@ -18,6 +18,9 @@ static bool execute_enemy_touched(game_data_t *game, enemy_t *enemy,
     if (enemy->health <= 0) {
         list_remove_element(&game->enemies, tmp->prev);
         add_xp(game, enemy->config->exp);
+        if (enemy->config->is_boss) {
+            third_book_callback(game);
+        }
     }
     return true;
 }
