@@ -137,7 +137,8 @@ static void check_bullet_player(game_data_t *game)
     sfVector2f dir = {0, 0};
     int damage = 1 + game->player->attack / 5;
 
-    if (game->clicked && game->is_passive == false) {
+    if (game->clicked && game->is_passive == false
+        && get_equiped_weapon(game) != NULL) {
         angle = atan2f(game->mouse_pos.y - game->player->position.y,
             game->mouse_pos.x - game->player->position.x);
         dir = (sfVector2f){cosf(angle), sinf(angle)};
