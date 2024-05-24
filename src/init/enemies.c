@@ -335,7 +335,7 @@ const enemy_config_t ENEMIES_CONFIG[] = {
         .armor = 0,
         .max_health = 700,
         .exp = 5000,
-        .is_boss = false,
+        .is_boss = true,
         .map_id = MAP_THREE,
         .attack_type = A_FIRST,
     }
