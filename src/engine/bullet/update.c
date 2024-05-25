@@ -22,6 +22,7 @@ static bool execute_enemy_touched(game_data_t *game, enemy_t *enemy,
             third_book_callback(game);
         }
     }
+    play_sound(game, S_HIT);
     return true;
 }
 

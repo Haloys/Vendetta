@@ -2035,6 +2035,7 @@ typedef enum sound_id_e {
     S_PUNCH,
     S_RIFLE,
     S_SHOTGUN,
+    S_HIT,
 } sound_id_t;
 
 typedef struct sound_s {
@@ -2099,6 +2100,10 @@ static sound_t SOUNDS[] = {
         .id = S_SHOTGUN,
         .volume = 50
     },
+    {
+        .id = S_HIT,
+        .volume = 50
+    }
 };
 
     #define SOUND_COUNT (sizeof(SOUNDS) / sizeof(sound_t))
