@@ -139,6 +139,7 @@ static void check_bullet_player(game_data_t *game)
 
     if (game->clicked && game->is_passive == false
         && get_equiped_weapon(game) != NULL) {
+        play_sound(game, S_AK47);
         angle = atan2f(game->mouse_pos.y - game->player->position.y,
             game->mouse_pos.x - game->player->position.x);
         dir = (sfVector2f){cosf(angle), sinf(angle)};
