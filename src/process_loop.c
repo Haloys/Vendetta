@@ -30,8 +30,24 @@ const process_state_t process_state[] = {
     display_game_over,
 };
 
+static void clean_sound(game_data_t *game)
+{
+    int saved_len = game->active_sounds.length;
+    element_t *tmp = game->active_sounds.start.next;
+    sfSound *sound = NULL;
+
+    for (int i = 0; i < saved_len; ++i) {
+        tmp = tmp->next;
+        sound = (sfSound *)tmp->prev->data;
+        if (sfSound_getStatus(sound) == sfStopped) {
+            list_remove_element(&game->active_sounds, tmp->prev);
+        }
+    }
+}
+
 static void process_loop_update(game_data_t *game)
 {
+    clean_sound(game);
     for (size_t i = 0; i < STATE_COUNT; ++i) {
         if (game->state == i) {
             process_state[i](game);

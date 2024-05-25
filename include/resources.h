@@ -2036,6 +2036,7 @@ typedef enum sound_id_e {
     S_RIFLE,
     S_SHOTGUN,
     S_HIT,
+    S_AK47,
 } sound_id_t;
 
 typedef struct sound_s {
@@ -2102,6 +2103,10 @@ static sound_t SOUNDS[] = {
     },
     {
         .id = S_HIT,
+        .volume = 50
+    },
+    {
+        .id = S_AK47,
         .volume = 50
     }
 };
