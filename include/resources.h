@@ -2044,7 +2044,7 @@ typedef struct sound_s {
     float volume;
 } sound_t;
 
-static sound_t SOUNDS[] = {
+static const sound_t SOUNDS[] = {
     {
         .id = S_PLAYER_PUNCH,
         .volume = 20
@@ -2126,7 +2126,7 @@ typedef struct music_s {
     float volume;
 } music_t;
 
-static music_t MUSICS[] = {
+static const music_t MUSICS[] = {
     {
         .id = M_LOADING,
         .volume = 20
