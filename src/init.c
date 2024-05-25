@@ -13,6 +13,11 @@
 #include "utils.h"
 #include "path_finding.h"
 
+static void free_sound(void *data)
+{
+    sfSound_destroy(data);
+}
+
 static void init_parts(game_data_t *game)
 {
     init_enemies(game);
@@ -21,6 +26,7 @@ static void init_parts(game_data_t *game)
     init_items(game);
     init_keybinds(game);
     init_path_finding(game);
+    list_init(&game->active_sounds, free_sound);
 }
 
 static int load_window(game_data_t *game)

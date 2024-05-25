@@ -149,6 +149,7 @@ typedef struct game_data_s {
     sfClock *bullets_clock;
     bool map_unlocked[3];
     int main_quest_stage;
+    list_t active_sounds;
 } game_data_t;
 
 void display_game_over(game_data_t *game);

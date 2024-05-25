@@ -39,6 +39,7 @@ int destroy_game_data(game_data_t *game, int code)
     destroy_game_clocks(game);
     sfRenderWindow_destroy(game->window);
     sfFont_destroy(game->font);
+    free_list(&game->active_sounds);
     dprintf(1, "OK !\n");
     return code;
 }
