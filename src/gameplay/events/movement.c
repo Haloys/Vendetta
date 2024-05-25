@@ -149,6 +149,17 @@ static void check_bullet_player(game_data_t *game)
     }
 }
 
+static void resolve_collision(game_data_t *game, sfVector2f *pos,
+    const sfVector2f *dir, float speed)
+{
+    sfVector2f new_pos = {pos->x + dir->x * speed, pos->y + dir->y * speed};
+
+    if (can_entity_pass(game, new_pos.x, pos->y))
+        pos->x = new_pos.x;
+    if (can_entity_pass(game, pos->x, new_pos.y))
+        pos->y = new_pos.y;
+}
+
 void update_player(game_data_t *game, sfTime time)
 {
     float scale = sfTime_asSeconds(time) * game->player->pspeed;
@@ -158,14 +169,7 @@ void update_player(game_data_t *game, sfTime time)
     if (is_key_down(game, Sprint))
         scale *= SPRINT_MUL;
     normalize(&game->player->direction);
-    player->direction.x *= scale;
-    player->direction.y *= scale;
-    if (can_entity_pass(game, player->position.x +
-        (player->direction.x * RADAR_SIZE), player->position.y))
-        player->position.x += player->direction.x;
-    if (can_entity_pass(game, player->position.x,
-        player->position.y + (player->direction.y * RADAR_SIZE)))
-        player->position.y += player->direction.y;
+    resolve_collision(game, &player->position, &player->direction, scale);
     set_view(game, time);
     update_player_direction_t(game);
     check_bullet_player(game);

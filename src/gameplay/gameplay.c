@@ -103,8 +103,6 @@ void process_playing_gameplay(game_data_t *game)
 
 bool can_entity_pass(game_data_t *game, int new_x, int new_y)
 {
-    if (is_black_color(get_pixel_color(game->cols_map, new_x, new_y))
-        || can_pass_door(game, new_x, new_y) == false)
-        return false;
-    return true;
+    return (!(is_black_color(get_pixel_color(game->cols_map, new_x, new_y))
+        || can_pass_door(game, new_x, new_y) == false));
 }
