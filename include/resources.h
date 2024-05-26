@@ -431,6 +431,7 @@ typedef enum sound_id_e {
     S_VILLAGER_COMPLETE,
     S_PORTAL,
     S_PILLS,
+    S_UUH,
 } sound_id_t;
 
 typedef struct sound_s {
@@ -526,6 +527,10 @@ static const sound_t SOUNDS[] = {
     {
         .id = S_PILLS,
         .volume = 80
+    },
+    {
+        .id = S_UUH,
+        .volume = 50
     }
 };
 
