@@ -37,6 +37,7 @@ static bool execute_player_touched(game_data_t *game, bullet_t *bullet)
         player->health = 10;
         player->position = game->map.spawn_pos;
         change_game_mode(game, GAME_OVER);
+        play_sound(game, S_DIE);
     }
     play_sound(game, S_UUH);
     return true;

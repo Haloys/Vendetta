@@ -40,6 +40,7 @@ static const char *SOUND_L[] = {
     "assets/sounds/misc/portal.ogg",
     "assets/sounds/misc/pills.ogg",
     "assets/sounds/misc/uuh.ogg",
+    "assets/sounds/misc/die.ogg",
 };
 
 #endif /* !MUSIC_H_ */
