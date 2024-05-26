@@ -1604,7 +1604,7 @@ const game_sprite_t SPRITES[] = {
         },
         .scale = 1,
         .position = {0, 0},
-        .origin = {0, 0},
+        .origin = {7, 17},
         .rect_count = 1
     },
     {
