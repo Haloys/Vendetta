@@ -2151,12 +2151,6 @@ static const music_t MUSICS[] = {
 
     #define MUSIC_COUNT (sizeof(MUSICS) / sizeof(music_t))
 
-static const char *SHADERS_PATHS[] = {
-    "shaders/darkness.frag",
-};
-
-    #define ASSET_SHADER_COUNT (sizeof(SHADERS_PATHS) / sizeof(char *))
-
 typedef enum shader_id_e {
     SH_MAIN_DARKNESS,
 } shader_id_t;
@@ -2165,6 +2159,8 @@ typedef struct shader_s {
     shader_id_t id;
 } shader_t;
 
+extern const char *SHADER_PATHS[];
+extern const int SHADER_PATHS_COUNT;
 extern const shader_t SHADERS[];
 extern const int SHADER_COUNT;
 

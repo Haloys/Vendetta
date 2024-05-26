@@ -45,7 +45,7 @@ typedef struct game_assets_s {
     sfSound *sound[SOUND_COUNT];
     sfSoundBuffer *sound_buff[SOUND_COUNT];
     sfMusic *music[MUSIC_COUNT];
-    sfShader *shaders[ASSET_SHADER_COUNT];
+    sfShader **shaders;
 } game_assets_t;
 
 typedef struct player_data_s {

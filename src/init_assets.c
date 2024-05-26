@@ -96,9 +96,12 @@ static int load_shaders(game_assets_t *assets)
 {
     sfShader *shader = NULL;
 
-    for (size_t i = 0; i < ASSET_SHADER_COUNT; ++i) {
-        dprintf(1, "Loading shader: %s\n", SHADERS_PATHS[i]);
-        shader = sfShader_createFromFile(NULL, NULL, SHADERS_PATHS[i]);
+    assets->shaders = malloc(sizeof(sfShader *) * SHADER_PATHS_COUNT);
+    if (assets->shaders == NULL)
+        return RET_FAIL;
+    for (int i = 0; i < SHADER_PATHS_COUNT; ++i) {
+        dprintf(1, "Loading shader: %s\n", SHADER_PATHS[i]);
+        shader = sfShader_createFromFile(NULL, NULL, SHADER_PATHS[i]);
         if (shader == NULL)
             continue;
         assets->shaders[i] = shader;
