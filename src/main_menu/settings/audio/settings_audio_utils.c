@@ -48,18 +48,19 @@ void update_music_volumes(game_data_t *game)
     float global_volume = calculate_global_sound(game);
     int music_volume = game->settings.sm_x;
     int ambiant_volume = game->settings.sa_x;
+    int new_volume = 0;
 
     for (size_t i = 0; i < sizeof(MUSICS) / sizeof(MUSICS[0]); i++) {
-        MUSICS[i].volume = CLAMP(music_volume * global_volume, 0, 243);
+        new_volume = CLAMP(music_volume * global_volume, 0, 243);
         if (game->settings.sg_x == 0 || game->settings.sm_x == 0)
-            MUSICS[i].volume = 0;
-        sfMusic_setVolume(game->assets.music[MUSICS[i].id], MUSICS[i].volume);
+            music_volume = 0;
+        sfMusic_setVolume(game->assets.music[MUSICS[i].id], new_volume);
     }
     for (size_t j = 0; j < sizeof(SOUNDS) / sizeof(SOUNDS[0]); j++) {
-        SOUNDS[j].volume = CLAMP(ambiant_volume * global_volume, 0, 243);
+        new_volume = CLAMP(ambiant_volume * global_volume, 0, 243);
         if (game->settings.sg_x == 0 || game->settings.sa_x == 0)
-            SOUNDS[j].volume = 0;
-        sfSound_setVolume(game->assets.sound[SOUNDS[j].id], SOUNDS[j].volume);
+            new_volume = 0;
+        sfSound_setVolume(game->assets.sound[SOUNDS[j].id], new_volume);
     }
 }
 
