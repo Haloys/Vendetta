@@ -64,6 +64,6 @@ bool door_checker(game_data_t *game, sfVector2f *pos, rect_t *door,
 void draw_doors(game_data_t *game, door_t *doors, rect_t *door);
 bool can_pass_door(game_data_t *game, int x, int y);
 
-extern const map_config_t map_config[];
+extern const map_config_t MAP_CONFIG[];
 
 #endif /* MAP_H */

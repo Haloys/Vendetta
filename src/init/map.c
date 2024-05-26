@@ -13,7 +13,7 @@
 #include "gameplay.h"
 #include "setup_notifications.h"
 
-const map_config_t map_config[] = {
+const map_config_t MAP_CONFIG[] = {
     {
         .map = SP_MAP_1,
         .cols_map = SP_COLS_MAP_1,
@@ -174,7 +174,7 @@ bool door_checker(game_data_t *game, sfVector2f *pos, rect_t *door, char *item)
 
 static int set_map_data(game_data_t *game, map_id_t map_id)
 {
-    map_config_t map = map_config[map_id];
+    map_config_t map = MAP_CONFIG[map_id];
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
     if (game->map.id != map_id) {
@@ -195,7 +195,7 @@ static int set_map_data(game_data_t *game, map_id_t map_id)
 static void set_player_music_data(game_data_t *game, map_id_t map_id,
     sfVector2f *pos)
 {
-    map_config_t map = map_config[map_id];
+    map_config_t map = MAP_CONFIG[map_id];
 
     game->player->position = pos != NULL ? *pos : map.spawn_pos;
     game->view_pos = map.spawn_pos;
@@ -255,7 +255,7 @@ int set_map(game_data_t *game, map_id_t map_id, sfVector2f *pos)
 
 int set_backmap(game_data_t *game, map_id_t map_id)
 {
-    map_config_t map = map_config[map_id];
+    map_config_t map = MAP_CONFIG[map_id];
     sfSprite *sp_cols_map = get_sprite(game, map.cols_map);
 
     printf("Setting map %d\n", map_id);
