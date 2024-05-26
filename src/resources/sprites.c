@@ -1602,7 +1602,7 @@ const game_sprite_t SPRITES[] = {
             .width = 14,
             .height = 38
         },
-        .scale = 1,
+        .scale = 0.8,
         .position = {0, 0},
         .origin = {7, 17},
         .rect_count = 1
