@@ -45,6 +45,7 @@ void give_random_items(game_data_t *game, int min_items, int max_items)
 
 int callback_interact_chest_key(game_data_t *game, item_entity_t *item)
 {
+    play_sound(game, S_CHEST);
     give_random_items(game, 1, 3);
     insert_item_in_inventory(game, "keyb", 1);
     trigger_notification(game, 11);
@@ -54,6 +55,7 @@ int callback_interact_chest_key(game_data_t *game, item_entity_t *item)
 
 int callback_interact_chest_mask(game_data_t *game, item_entity_t *item)
 {
+    play_sound(game, S_CHEST);
     give_random_items(game, 2, 4);
     insert_item_in_inventory(game, "mask3", 1);
     trigger_notification(game, 13);
@@ -63,6 +65,7 @@ int callback_interact_chest_mask(game_data_t *game, item_entity_t *item)
 
 int callback_interact_chest_armor(game_data_t *game, item_entity_t *item)
 {
+    play_sound(game, S_CHEST);
     give_random_items(game, 2, 4);
     insert_item_in_inventory(game, "armor", 1);
     trigger_notification(game, 11);
@@ -72,6 +75,7 @@ int callback_interact_chest_armor(game_data_t *game, item_entity_t *item)
 
 int callback_interact_chest_shoes(game_data_t *game, item_entity_t *item)
 {
+    play_sound(game, S_CHEST);
     give_random_items(game, 2, 4);
     insert_item_in_inventory(game, "blue_shoes", 1);
     trigger_notification(game, 12);
