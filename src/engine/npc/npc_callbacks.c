@@ -52,6 +52,7 @@ int third_npc_callback(game_data_t *game, npc_t *npc)
     play_sound(game, S_VILLAGER_IDLE);
     printf("Interacting with %s\n", npc->config->name);
     if (given == 0) {
+        play_sound(game, S_PILLS);
         insert_item_in_inventory(game, "oxycodone", 1);
         given = 1;
     }
