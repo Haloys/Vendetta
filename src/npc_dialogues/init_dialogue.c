@@ -38,6 +38,7 @@ void npc_dialogues(game_data_t *game)
         trigger_npc_notification(game, 2, &notification_given[2], 16);
         trigger_npc_notification(game, 3, &notification_given[3], 17);
         trigger_npc_notification(game, 4, &notification_given[4], 19);
+        play_sound(game, S_VILLAGER_COMPLETE);
         return;
     }
     handle_choice(game, &DIALOGUES[game->player->npc_id], &state);

@@ -16,6 +16,7 @@ int first_npc_callback(game_data_t *game, npc_t *npc)
 {
     static int given = 0;
 
+    play_sound(game, S_VILLAGER_IDLE);
     printf("Interacting with %s\n", npc->config->name);
     game->player->npc_id = 0;
     if (given == 0) {
@@ -32,6 +33,7 @@ int second_npc_callback(game_data_t *game, npc_t *npc)
     int qty = get_item_quantity(game, "goldcoin");
     static int given = 0;
 
+    play_sound(game, S_VILLAGER_IDLE);
     printf("Interacting with %s\n", npc->config->name);
     if (qty >= 1 && given == 0) {
         remove_item_from_inventory_by_name(game, "goldcoin");
@@ -47,6 +49,7 @@ int third_npc_callback(game_data_t *game, npc_t *npc)
 {
     static int given = 0;
 
+    play_sound(game, S_VILLAGER_IDLE);
     printf("Interacting with %s\n", npc->config->name);
     if (given == 0) {
         insert_item_in_inventory(game, "oxycodone", 1);
@@ -61,6 +64,7 @@ int fourth_npc_callback(game_data_t *game, npc_t *npc)
 {
     static int given = 0;
 
+    play_sound(game, S_VILLAGER_IDLE);
     game->player->npc_id = 3;
     printf("Interacting with %s\n", npc->config->name);
     if (given == 0) {
@@ -76,6 +80,7 @@ int fifth_npc_callback(game_data_t *game, npc_t *npc)
 {
     static int given = 0;
 
+    play_sound(game, S_VILLAGER_IDLE);
     printf("Interacting with %s\n", npc->config->name);
     if (given == 0) {
         insert_item_in_inventory(game, "armor2", 1);
