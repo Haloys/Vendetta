@@ -59,6 +59,8 @@ static void draw_number(game_data_t *game, sfVector2f position, int number)
     sfText *number_text = sfText_create();
     sfVector2f text_pos = {position.x + 15, position.y + 10};
 
+    if (number_text == NULL)
+        return;
     snprintf(number_str, sizeof(number_str), "%d", number);
     sfText_setString(number_text, number_str);
     sfText_setFont(number_text, game->font);
@@ -76,6 +78,8 @@ static void draw_rect_with_squares(game_data_t *game)
     sfVector2f position;
 
     rect = sfRectangleShape_create();
+    if (rect == NULL)
+        return;
     draw_rectangle(game, rect);
     for (int i = 0; i < NUM_SQUARES; ++i) {
         square = sfRectangleShape_create();

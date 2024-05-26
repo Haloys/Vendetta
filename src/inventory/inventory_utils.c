@@ -29,6 +29,8 @@ sfRectangleShape *create_rectangle(game_data_t *game, sfVector2f pos,
 {
     sfRectangleShape *rect = sfRectangleShape_create();
 
+    if (rect == NULL)
+        return NULL;
     sfRectangleShape_setPosition(rect, pos);
     sfRectangleShape_setSize(rect, (sfVector2f){sizex, sizey});
     sfRectangleShape_setFillColor(rect, SQUARE_BG);

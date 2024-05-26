@@ -26,6 +26,8 @@ notification_t *create_notification(game_data_t *game,
 {
     notification_t *notif = malloc(sizeof(notification_t));
 
+    if (notif == NULL)
+        return NULL;
     notif->title = sfText_create();
     notif->message = sfText_create();
     notif->icon = get_sprite(game, params->sprite_id);

@@ -41,6 +41,8 @@ static void draw_progbar(game_data_t *game)
     sfRectangleShape *weight_bar = sfRectangleShape_create();
     int width = game->player->inventory->total_weight * 600 / 25;
 
+    if (weight_bar == NULL || weight_bg == NULL)
+        return;
     sfRectangleShape_setPosition(weight_bg, (sfVector2f){220, 240});
     sfRectangleShape_setPosition(weight_bar, (sfVector2f){220, 240});
     sfRectangleShape_setSize(weight_bg, (sfVector2f){600, 10});
