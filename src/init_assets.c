@@ -96,7 +96,7 @@ static int load_shaders(game_assets_t *assets)
 {
     sfShader *shader = NULL;
 
-    for (size_t i = 0; i < SHADER_COUNT; ++i) {
+    for (size_t i = 0; i < ASSET_SHADER_COUNT; ++i) {
         dprintf(1, "Loading shader: %s\n", SHADERS_PATHS[i]);
         shader = sfShader_createFromFile(NULL, NULL, SHADERS_PATHS[i]);
         if (shader == NULL)

@@ -2155,7 +2155,7 @@ static const char *SHADERS_PATHS[] = {
     "shaders/darkness.frag",
 };
 
-    #define SHADER_COUNT (sizeof(SHADERS_PATHS) / sizeof(char *))
+    #define ASSET_SHADER_COUNT (sizeof(SHADERS_PATHS) / sizeof(char *))
 
 typedef enum shader_id_e {
     SH_MAIN_DARKNESS,
@@ -2165,10 +2165,7 @@ typedef struct shader_s {
     shader_id_t id;
 } shader_t;
 
-static const shader_t SHADERS[] = {
-    {
-        .id = SH_MAIN_DARKNESS
-    },
-};
+extern const shader_t SHADERS[];
+extern const int SHADER_COUNT;
 
 #endif /* RESOURCES_H */
