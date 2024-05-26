@@ -82,7 +82,7 @@ static const navbar_element_t *get_clicked_element(game_data_t *game,
 
 static void reinitialize_game_part_two(game_data_t *game)
 {
-    game->player->position = map_config[0].spawn_pos;
+    game->player->position = MAP_CONFIG[0].spawn_pos;
     game->player->path = NULL;
     set_map(game, 0, &game->player->position);
     game->player->sprite_data = &SPRITES[SP_PLAYER_HAND];
