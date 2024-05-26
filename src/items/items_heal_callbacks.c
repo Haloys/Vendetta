@@ -14,6 +14,7 @@
 
 int callback_interact_bandage(game_data_t *game, item_entity_t *item)
 {
+    play_sound(game, S_POTION_LOOT);
     insert_item_in_inventory(game, "bandage", 2);
     trigger_notification(game, 6);
     remove_item_from_list(game, item);

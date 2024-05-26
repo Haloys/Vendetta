@@ -33,6 +33,7 @@ static const char *SOUND_L[] = {
     "assets/sounds/weapons/shotgun.ogg",
     "assets/sounds/misc/player_hit.ogg",
     "assets/sounds/weapons/ak47.ogg",
+    "assets/sounds/misc/potion.ogg",
 };
 
 #endif /* !MUSIC_H_ */
