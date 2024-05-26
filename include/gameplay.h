@@ -77,4 +77,6 @@ void display_paths(game_data_t *game);
 
 bool can_entity_pass(game_data_t *game, int new_x, int new_y);
 
+void display_debug(game_data_t *game);
+
 #endif /* GAMEPLAY_H */
