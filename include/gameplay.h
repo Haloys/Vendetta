@@ -24,14 +24,13 @@
     #define MAX(a, b) (b > a ? b : a)
     #define CLAMP(a, b, c) (MIN(MAX(a, b), c))
 
-    #define PI 3.1415926535f
-
     #define SPRINT_MUL 1.5f
 
+    #define PI 3.1415926535f
     #define PI_180 57.2957795131f
-    #define ABS(x) x < 0 ? -x : x
+    #define DEG2RAD(x) (x / PI_180)
 
-    #define EPSILON 0.0001f
+    #define EPSILON 0.000001f
 
     #define PLAYER_HITBOX 20
 
@@ -63,6 +62,7 @@ sfColor get_pixel_color(sfImage *image, int x, int y);
 void normalize(sfVector2f *vector);
 float lerp_angle(float a, float b, float t);
 void update_player(game_data_t *game, sfTime time);
+void set_view(game_data_t *game, sfTime time);
 
 void apply_shader(game_data_t *game);
 

@@ -14,87 +14,10 @@
 #include "utils.h"
 #include "map.h"
 
-static float get_max_zoom(game_data_t *game, game_sprite_t const *map)
-{
-    sfVector2f center = game->player->position;
-
-    return MIN(
-        MIN(center.x / (WINDOW_WIDTH / 2),
-            (map->rect.width - center.x) / (WINDOW_WIDTH / 2)),
-        MIN(center.y / (WINDOW_HEIGHT / 2),
-            (map->rect.height - center.y) / (WINDOW_HEIGHT / 2))
-    );
-}
-
-static void change_zoom_key(game_data_t *game, sfTime time, min_max_t *zoom)
-{
-    if (game->target_zoom < zoom->max && is_key_down(game, KeyMinus))
-        game->target_zoom *= 1 + ZOOM_SPEED * sfTime_asSeconds(time);
-    if (game->target_zoom > zoom->min && is_key_down(game, KeyPlus))
-        game->target_zoom *= 1 - ZOOM_SPEED * sfTime_asSeconds(time);
-}
-
-static void check_custom_zone(game_data_t *game, min_max_t *zoom,
-    sfVector2f *position)
-{
-    for (int i = 0; i < game->map.zoom_count; ++i) {
-        if (position->x >= game->map.zoom[i].zone.x1
-            && position->x <= game->map.zoom[i].zone.x2
-            && position->y >= game->map.zoom[i].zone.y1
-            && position->y <= game->map.zoom[i].zone.y2) {
-            zoom->min = game->map.zoom[i].min;
-            zoom->max = game->map.zoom[i].max;
-            position->x = game->map.zoom[i].pos.x > 0 ? game->map.zoom[i].pos.x
-                : position->x;
-            position->y = game->map.zoom[i].pos.y > 0 ? game->map.zoom[i].pos.y
-                : position->y;
-        }
-    }
-}
-
-static int update_zoom_one(game_data_t *game, min_max_t *zoom,
-    sfVector2f *size, sfVector2f *position)
-{
-    game_sprite_t const *map = game->map.sp_map;
-    float diff = 0;
-
-    diff = CLAMP(MIN(game->target_zoom, get_max_zoom(game, map)),
-        zoom->min, zoom->max) - game->view_zoom;
-    if (fabsf(diff) > EPSILON) {
-        game->view_zoom += diff / 10.f;
-        size->x = WINDOW_WIDTH * game->view_zoom;
-        size->y = WINDOW_HEIGHT * game->view_zoom;
-        sfView_setSize(game->game_view, *size);
-    } else {
-        *size = sfView_getSize(game->game_view);
-    }
-    sfView_setCenter(game->game_view, game->player->position);
-    position->x -= size->x / 2.f;
-    position->y -= size->y / 2.f;
-    return diff;
-}
-
-static void set_view(game_data_t *game, sfTime time)
-{
-    game_sprite_t const *map = game->map.sp_map;
-    sfVector2f position = game->player->position;
-    min_max_t zoom = {ZOOM_MIN, ZOOM_MAX};
-    sfVector2f size;
-    float diff = 0;
-
-    change_zoom_key(game, time, &zoom);
-    check_custom_zone(game, &zoom, &position);
-    diff = update_zoom_one(game, &zoom, &size, &position);
-    diff = (CLAMP(position.x, 10.f, map->rect.width - size.x - 10)
-        + size.x / 2.f) - game->view_pos.x;
-    if (fabsf(diff) > EPSILON)
-        game->view_pos.x += diff / 20.f;
-    diff = (CLAMP(position.y, 10.f, map->rect.height - size.y - 10)
-        + size.y / 2.f) - game->view_pos.y;
-    if (fabsf(diff) > EPSILON)
-        game->view_pos.y += diff / 10.f;
-    sfView_setCenter(game->game_view, game->view_pos);
-}
+const int COLLIDE_POINTS = 11;
+const float RAD = 20.f;
+const float COLLIDE_ARC = DEG2RAD(90.f);
+const float ANGLE_DIFF = COLLIDE_ARC / (COLLIDE_POINTS - 1);
 
 static void update_player_direction(game_data_t *game)
 {
@@ -125,7 +48,7 @@ static void update_player_direction_t(game_data_t *game)
 
     normalize(&direction);
     player->target_rot = fmodf(atan2f(direction.y, direction.x) * PI_180, 360);
-    if (ABS(player->rotation - player->target_rot) > EPSILON) {
+    if (fabsf(player->rotation - player->target_rot) > EPSILON) {
         player->rotation = lerp_angle(player->rotation, player->target_rot,
             0.15f);
     }
@@ -149,15 +72,41 @@ static void check_bullet_player(game_data_t *game)
     }
 }
 
-static void resolve_collision(game_data_t *game, sfVector2f *pos,
-    const sfVector2f *dir, float speed)
+static sfVector2f detect_collision(game_data_t *game,
+    const sfVector2f *pos, const sfVector2f *direction)
 {
-    sfVector2f new_pos = {pos->x + dir->x * speed, pos->y + dir->y * speed};
+    float a = atan2f(direction->y, direction->x) - COLLIDE_ARC / 2.f;
+    sfVector2f move = {0, 0};
+    sfCircleShape *circle = sfCircleShape_create();
+    sfVector2f rot = {0, 0};
 
-    if (can_entity_pass(game, new_pos.x, pos->y))
-        pos->x = new_pos.x;
-    if (can_entity_pass(game, pos->x, new_pos.y))
-        pos->y = new_pos.y;
+    sfCircleShape_setRadius(circle, 6);
+    sfCircleShape_setOrigin(circle, (sfVector2f){3, 3});
+    for (int i = 0; i < COLLIDE_POINTS; i++) {
+        rot = (sfVector2f){pos->x + cosf(a) * RAD, pos->y + sinf(a) * RAD};
+        sfCircleShape_setPosition(circle, rot);
+        if (can_entity_pass(game, rot.x, rot.y)) {
+            move = (sfVector2f){move.x + cosf(a), move.y + sinf(a)};
+            sfCircleShape_setFillColor(circle, sfRed);
+        } else
+            sfCircleShape_setFillColor(circle, sfBlue);
+        a += ANGLE_DIFF;
+        sfRenderTexture_drawCircleShape(game->debug_overlay, circle, NULL);
+    }
+    sfCircleShape_destroy(circle);
+    return move;
+}
+
+static void resolve_collision(game_data_t *game, sfVector2f *pos,
+    sfVector2f const *dir, float speed)
+{
+    sfVector2f movement = detect_collision(game, pos, dir);
+
+    normalize(&movement);
+    if (fabsf(movement.x) > EPSILON || fabsf(movement.y) > EPSILON) {
+        pos->x += movement.x * speed;
+        pos->y += movement.y * speed;
+    }
 }
 
 void update_player(game_data_t *game, sfTime time)
@@ -168,9 +117,10 @@ void update_player(game_data_t *game, sfTime time)
     update_player_direction(game);
     if (is_key_down(game, Sprint))
         scale *= SPRINT_MUL;
-    normalize(&game->player->direction);
-    resolve_collision(game, &player->position, &player->direction, scale);
-    set_view(game, time);
+    if (fabsf(player->direction.x) > EPSILON
+        || fabsf(player->direction.y) > EPSILON)
+        resolve_collision(game, &player->position, &player->direction, scale);
     update_player_direction_t(game);
+    set_view(game, time);
     check_bullet_player(game);
 }

@@ -55,9 +55,10 @@ static void update_gameplay(game_data_t *game)
 {
     sfTime time = sfClock_getElapsedTime(game->player->clock);
 
-    sfRenderWindow_setView(game->window, game->game_view);
     sfClock_restart(game->player->clock);
     update_player(game, time);
+    sfRenderTexture_setView(game->debug_overlay, game->game_view);
+    sfRenderWindow_setView(game->window, game->game_view);
     check_gameplay_keys(game);
     update_notifications(&game->notifications);
     change_map_if_needed(game);
@@ -78,8 +79,30 @@ static void display_map(game_data_t *game)
     sfRenderWindow_drawSprite(game->window, sp_map, NULL);
 }
 
+static void display_debug(game_data_t *game)
+{
+    sfRenderTexture *debug_overlay = game->debug_overlay;
+    sfSprite *sp_debug_overlay = sfSprite_create();
+    sfVector2u size = sfRenderTexture_getSize(game->debug_overlay);
+    sfView *backup = sfView_copy(sfRenderWindow_getView(game->window));
+    sfView *view = sfView_createFromRect((sfFloatRect){0, 0, size.x, size.y});
+
+    if (debug_overlay == NULL || backup == NULL || view == NULL)
+        return;
+    sfRenderTexture_display(debug_overlay);
+    sfSprite_setTexture(sp_debug_overlay,
+        sfRenderTexture_getTexture(debug_overlay), sfTrue);
+    sfRenderWindow_setView(game->window, view);
+    sfRenderWindow_drawSprite(game->window, sp_debug_overlay, NULL);
+    sfRenderWindow_setView(game->window, backup);
+    sfView_destroy(view);
+    sfView_destroy(backup);
+    sfSprite_destroy(sp_debug_overlay);
+}
+
 static void display_gameplay(game_data_t *game)
 {
+    display_map(game);
     display_enemies(game);
     display_npcs(game);
     display_items(game);
@@ -87,13 +110,13 @@ static void display_gameplay(game_data_t *game)
     display_player(game);
     display_bullets(game);
     apply_shader(game);
+    display_debug(game);
     display_overlay(game);
     display_notifications(game, &game->notifications);
 }
 
 void process_playing_gameplay(game_data_t *game)
 {
-    display_map(game);
     update_gameplay(game);
     display_gameplay(game);
     for (int i = 0; i < game->map.door_count; i++) {

@@ -115,6 +115,7 @@ SRC_GAMEPLAY	=	gameplay/gameplay.c \
 					gameplay/game_over/game_over.c \
 					gameplay/display_paths.c \
 					gameplay/doors.c \
+					gameplay/view.c \
 
 SRC_INIT	=   	init/game_icon.c \
 					init/map.c \

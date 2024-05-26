@@ -32,13 +32,15 @@ void normalize(sfVector2f *vector)
 {
     float length = sqrtf(vector->x * vector->x + vector->y * vector->y);
 
+    if (fabsf(length) < EPSILON)
+        return;
     vector->x /= length;
     vector->y /= length;
 }
 
 float lerp_angle(float a, float b, float t)
 {
-    float difference = fmod(b - a, 360.f);
+    float difference = fmodf(b - a, 360.f);
 
     return a + (fmodf(2 * difference, 360) - difference) * t;
 }
