@@ -80,7 +80,6 @@ static void display_map(game_data_t *game)
 
 static void display_gameplay(game_data_t *game)
 {
-    display_map(game);
     display_enemies(game);
     display_npcs(game);
     display_items(game);
@@ -94,6 +93,7 @@ static void display_gameplay(game_data_t *game)
 
 void process_playing_gameplay(game_data_t *game)
 {
+    display_map(game);
     update_gameplay(game);
     display_gameplay(game);
     for (int i = 0; i < game->map.door_count; i++) {
