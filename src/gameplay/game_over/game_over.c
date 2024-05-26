@@ -115,11 +115,13 @@ static void handle_clicks(game_data_t *game, game_over_elems_t *elems)
 
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
         if (sfFloatRect_contains(&quit_bounds, mapped_pos.x, mapped_pos.y)) {
+            play_sound(game, S_CLICK_SOUND);
             sfRenderWindow_close(game->window);
         }
         if (sfFloatRect_contains(&respawn_bounds, mapped_pos.x,
             mapped_pos.y)) {
             change_game_mode(game, PLAYING);
+            play_sound(game, S_CLICK_SOUND);
         }
     }
 }

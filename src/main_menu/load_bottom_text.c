@@ -54,6 +54,7 @@ void handle_hover_and_action(game_data_t *game,
         sfRectangleShape_setOutlineColor(del_btn, RED_HOVER);
         if (sfMouse_isButtonPressed(sfMouseLeft)) {
             remove_save(game, i - 1);
+            play_sound(game, S_CLICK_SOUND);
         }
     }
 }

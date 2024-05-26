@@ -33,6 +33,7 @@ int handle_click_first_button(game_data_t *game,
         game->player->is_playing = true;
         game->is_navbar_visible = false;
         load_game(game);
+        play_sound(game, S_CLICK_SOUND);
         return 1;
     }
     return 0;
@@ -51,6 +52,7 @@ int handle_click_second_button(game_data_t *game,
         game->player->is_playing = true;
         game->is_navbar_visible = false;
         load_game(game);
+        play_sound(game, S_CLICK_SOUND);
         return 1;
     }
     return 0;
@@ -69,6 +71,7 @@ int handle_click_third_button(game_data_t *game,
         game->player->is_playing = true;
         game->is_navbar_visible = false;
         load_game(game);
+        play_sound(game, S_CLICK_SOUND);
         return 1;
     }
     return 0;

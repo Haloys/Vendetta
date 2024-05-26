@@ -70,6 +70,7 @@ void handle_cancel_button_click(game_data_t *game, game_ui_t *game_ui)
 
     if (sfFloatRect_contains(&cancel_bounds,
         game->mouse_pos.x, game->mouse_pos.y)) {
+        play_sound(game, S_CLICK_SOUND);
         change_game_mode(game, MAIN_MENU);
     }
 }

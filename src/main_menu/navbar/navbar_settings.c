@@ -102,8 +102,7 @@ static int get_clicked_element_index(game_data_t *game)
         {"Controls", {335, 140}, {153, 52}},
         {"Audio", {535, 140}, {153, 52}}
     };
-    int elements_count = sizeof(elements) /
-        sizeof(settings_navbar_element_t);
+    int elements_count = sizeof(elements) / sizeof(settings_navbar_element_t);
 
     for (int i = 0; i < elements_count; i++) {
         if ((game->state == SETTINGS_VIDEO || game->state == SETTINGS_CONTROLS
@@ -113,6 +112,7 @@ static int get_clicked_element_index(game_data_t *game)
             elements[i].size.x && game->mouse_pos.y >= elements[i].position.y
             && game->mouse_pos.y <= elements[i].position.y +
             elements[i].size.y) {
+            play_sound(game, S_CLICK_SOUND);
             return i;
         }
     }

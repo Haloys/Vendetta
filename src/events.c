@@ -44,6 +44,7 @@ static void process_mouse_click_play(game_data_t *game)
 static void process_mouse_click_save(game_data_t *game)
 {
     if (game->hover_save_button) {
+        play_sound(game, S_CLICK_SOUND);
         change_game_mode(game, SAVE);
     }
 }
