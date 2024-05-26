@@ -82,14 +82,14 @@ static sfVector2f detect_collision(game_data_t *game,
 
     sfCircleShape_setRadius(circle, 6);
     sfCircleShape_setOrigin(circle, (sfVector2f){3, 3});
-    for (int i = 0; i < COLLIDE_POINTS; i++) {
+    for (int i = 0; i < COLLIDE_POINTS; ++i) {
         rot = (sfVector2f){pos->x + cosf(a) * RAD, pos->y + sinf(a) * RAD};
         sfCircleShape_setPosition(circle, rot);
         if (can_entity_pass(game, rot.x, rot.y)) {
             move = (sfVector2f){move.x + cosf(a), move.y + sinf(a)};
-            sfCircleShape_setFillColor(circle, sfRed);
-        } else
             sfCircleShape_setFillColor(circle, sfBlue);
+        } else
+            sfCircleShape_setFillColor(circle, sfRed);
         a += ANGLE_DIFF;
         sfRenderTexture_drawCircleShape(game->debug_overlay, circle, NULL);
     }
