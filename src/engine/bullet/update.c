@@ -51,6 +51,8 @@ bool bullet_touched_entity(game_data_t *game, bullet_t *bullet)
     for (int i = 0; i < saved_len; ++i) {
         tmp = tmp->next;
         enemy = (enemy_t *)tmp->prev->data;
+        if (enemy->config->map_id != game->map.id)
+            continue;
         rect = get_hitbox_rect(&enemy->position, PLAYER_HITBOX);
         if (is_rect(bullet->position.x, bullet->position.y, &rect))
             return execute_enemy_touched(game, enemy, bullet, tmp);
