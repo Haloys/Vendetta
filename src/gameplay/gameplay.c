@@ -38,10 +38,14 @@ static void change_map_if_needed(game_data_t *game)
 {
     map_id_t map_id = game->map.id;
 
-    if (is_in_portal(game, &game->map.portal))
+    if (is_in_portal(game, &game->map.portal)) {
+        play_sound(game, S_PORTAL);
         set_map(game, (map_id + 1) % 3, NULL);
-    if (is_in_portal(game, &game->map.back_portal))
+    }
+    if (is_in_portal(game, &game->map.back_portal)) {
+        play_sound(game, S_PORTAL);
         set_backmap(game, (map_id - 1) % 3);
+    }
     for (int i = 0; i < game->map.door_count; i++) {
         if (door_checker(game, &game->player->position,
             &game->map.doors[i].rect, game->map.doors[i].item)) {
