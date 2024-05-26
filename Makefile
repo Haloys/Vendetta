@@ -158,6 +158,7 @@ SRC_UTILS	=   	utils/utils.c \
 					utils/list.c \
 
 SRC_RESOURCES	=	resources/shaders.c \
+					resources/sprites.c \
 
 SRC_NOTIFICATIONS =   	notifications/notifications.c \
 						notifications/notifications_list.c \
