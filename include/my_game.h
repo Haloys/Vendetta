@@ -150,6 +150,7 @@ typedef struct game_data_s {
     bool map_unlocked[3];
     int main_quest_stage;
     list_t active_sounds;
+    sfRenderTexture *debug_overlay;
 } game_data_t;
 
 void display_game_over(game_data_t *game);

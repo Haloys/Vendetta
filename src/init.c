@@ -41,6 +41,10 @@ static int load_window(game_data_t *game)
         sfResize | sfClose, NULL);
     if (game->window == NULL)
         return RET_FAIL;
+    game->debug_overlay = sfRenderTexture_create(game->video_mode.width,
+        game->video_mode.height, sfFalse);
+    if (game->debug_overlay == NULL)
+        return RET_FAIL;
     return RET_NONE;
 }
 
